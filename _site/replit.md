@@ -24,8 +24,9 @@ A Jekyll-based static website theme (Snowlake v2) with blog, portfolio, shop, an
 ## Development
 The site runs via Jekyll's built-in server:
 ```
-bundle exec jekyll serve --host 0.0.0.0 --port 5000 --livereload
+bundle exec jekyll serve --host 0.0.0.0 --port 5000
 ```
+Note: Livereload is disabled for compatibility with the Replit preview environment.
 
 ## Deployment
 Configured as a static site deployment:
