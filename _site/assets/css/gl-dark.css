@@ -258,16 +258,15 @@ img { max-width: 100%; display: block; }
 .gl-sector-card {
   background: var(--bg);
   padding: 1.75rem;
-  cursor: pointer;
-  transition: background var(--transition);
+  cursor: default;
+  transition: background var(--transition), border-color var(--transition);
   position: relative;
   overflow: hidden;
+  border-bottom: 1px solid transparent;
 }
 .gl-sector-card:hover {
   background: var(--bg-2);
-}
-.gl-sector-card.active {
-  background: var(--bg-2);
+  border-bottom-color: var(--accent);
 }
 .gl-sector-header {
   display: flex;
@@ -275,53 +274,60 @@ img { max-width: 100%; display: block; }
   align-items: center;
 }
 .gl-sector-title {
-  font-size: 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text);
 }
 .gl-sector-group {
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   color: var(--accent);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
 }
 .gl-sector-icon {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: var(--muted);
-  transition: color var(--transition), transform var(--transition);
+  transition: color var(--transition), transform var(--transition), opacity var(--transition);
+  font-family: var(--mono);
 }
-.gl-sector-card.active .gl-sector-icon { color: var(--accent); transform: rotate(45deg); }
+.gl-sector-card:hover .gl-sector-icon {
+  color: var(--accent);
+  opacity: 0;
+}
 .gl-sector-body {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.3s ease;
+  transition: max-height 0.45s ease, opacity 0.35s ease;
   opacity: 0;
 }
-.gl-sector-card.active .gl-sector-body {
+.gl-sector-card:hover .gl-sector-body {
   max-height: 200px;
   opacity: 1;
 }
 .gl-sector-body p {
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.7;
-  padding-top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: rgba(237,237,237,0.55);
+  line-height: 1.75;
+  padding-top: 0.85rem;
   border-top: 1px solid var(--border);
-  margin-top: 1rem;
+  margin-top: 0.85rem;
+  letter-spacing: 0.02em;
 }
 .gl-sector-glow {
   position: absolute;
   inset: 0;
   background: var(--accent-glow);
   opacity: 0;
-  transition: opacity var(--transition);
+  transition: opacity 0.35s ease;
   pointer-events: none;
 }
-.gl-sector-card.active .gl-sector-glow { opacity: 1; }
+.gl-sector-card:hover .gl-sector-glow { opacity: 1; }
 
 /* ── INVESTMENTS ── */
 .gl-investments-grid {

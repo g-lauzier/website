@@ -31,22 +31,24 @@ A premium dark-mode portfolio site for Guillaume Lauzier, Venture Partner. Built
 ## Key Files
 - `_config.yml` — Site title: "Guillaume Lauzier", shop/author collections removed
 - `assets/css/gl-dark.css` — Complete design system (single file, no Bootstrap dependency)
-- `assets/js/gl.js` — Vanilla JS: sector accordion, alignment toggle, pitch form success state
+- `assets/js/gl.js` — Vanilla JS: alignment toggle, pitch form success state (sectors are pure CSS hover-reveal)
 
 ## Development
-```
-bundle exec jekyll serve --host 0.0.0.0 --port 5000
-```
-Livereload is disabled (breaks Replit preview). Server on port 5000.
+Workflow: `bundle exec jekyll build && ruby -run -e httpd _site -p 80 -b 0.0.0.0`
+Server runs on port 80 (required for Replit proxy routing). Restart workflow to rebuild after file changes.
 
 ## Deployment
+- **Target:** Static site
 - **Build:** `bundle exec jekyll build`
 - **Public directory:** `_site`
+- **Custom domain:** Configure `guillaumelauzier.com` via Replit deployment dashboard after publishing
 
 ## Navigation (simplified)
 Home · Investments · Writing · Advisory · **Pitch** (bordered CTA)
 
-## Sectors (10 primitives, accordion reveal)
+## Sectors (10 primitives, pure CSS hover-reveal)
 The Backbone: Digital Infrastructure, Cybersecurity, Blockchain Software
 The Intelligence: AI Software, Fintech, eCommerce
 The Expression: Design & Architecture, Digital Art, Entertainment, Marketing & Content
+- Sector titles: JetBrains Mono, 0.78rem, 0.12em tracking, uppercase
+- Hover reveals: "Technical Conviction" sentence in mono + electric blue glow + accent border-bottom

@@ -1,17 +1,8 @@
 /* Guillaume Lauzier — Site Scripts */
 
-/* ── SECTOR ACCORDION ── */
-document.addEventListener('DOMContentLoaded', function () {
+/* ── SECTOR HOVER REVEAL (pure CSS — no JS needed) ── */
 
-  /* Sector cards */
-  const cards = document.querySelectorAll('.gl-sector-card');
-  cards.forEach(function (card) {
-    card.addEventListener('click', function () {
-      const isActive = card.classList.contains('active');
-      cards.forEach(function (c) { c.classList.remove('active'); });
-      if (!isActive) card.classList.add('active');
-    });
-  });
+document.addEventListener('DOMContentLoaded', function () {
 
   /* Alignment toggle */
   const toggle = document.getElementById('gl-align-toggle');
