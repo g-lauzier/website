@@ -23,8 +23,8 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "bundle exec jekyll build && ruby -run -e httpd _site -p 80 -b 0.0.0.0"
-waitForPort = 80
+args = "node serve.js"
+waitForPort = 5000
 
 [workflows.workflow.metadata]
 outputType = "webview"
