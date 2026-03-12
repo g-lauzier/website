@@ -1,20 +1,16 @@
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://snowlake-jekyll-v2.pages.dev" # the base hostname & protocol for your site, e.g. http://example.com
+title: "Guillaume Lauzier"
+description: "Venture Partner. Backing product-obsessed founders at the frontier of Digital Infrastructure, Cybersecurity, AI, and Blockchain."
+baseurl: ""
+url: ""
 permalink: "/:title"
 
 # Build settings
-#theme: minima
 plugins:
   - jekyll-feed
   - jekyll-paginate-v2
   - jekyll-archives
 
 collections:
-  authors:
-    output: true
-  shop_items:
-    output: true
-    permalink: /shop/:name
   portfolio:
       output: true
       permalink: /portfolio/:name

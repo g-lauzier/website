@@ -1,0 +1,46 @@
+The Thesis: "Foundational Weirdness"
+
+The Headline
+
+"I back the architects of the new digital sovereign."
+
+The Narrative (The "Why")
+
+Most investors chase "proven" models. I hunt for the non-consensus primitives.
+
+I am looking for the founders who are building the infrastructure we don't yet realize we’re dependent on. From the mathematical certainty of Blockchain and Cybersecurity to the raw, generative power of AI and Digital Art, I provide the first check for ideas that sound like science fiction today—but will be the standard tomorrow.
+
+The Filter (The "How")
+
+Conviction over Consensus: If your idea is popular, I’m probably too late. If people are telling you it’s "too technical" or "too niche," you have my attention.
+Infrastructure over Apps: I don’t invest in "features." I invest in the rails, the protocols, and the engines.
+The Early Check: I am comfortable being your first believer. If you don't have a 40-page deck but you have a working prototype and a obsession, we should talk.
+Updated Site Structure for Replit
+
+Since your sectors bridge "Hard Tech" (Cyber/Blockchain) and "High Culture" (Art/Design), your site needs to look Technically Precise but Culturally Sophisticated.
+
+1. The Home Page Grid (Bento Style)
+
+Instead of a list, use a minimalist grid to show your sectors. It should feel like a high-end dashboard.
+
+Box 1: The Thesis	Box 2: Current Focus
+Huge bold text: "Backing the architects of the new digital sovereign."	Small, clean list: Cybersecurity, Blockchain, AI, Digital Infrastructure.
+Box 3: The Portfolio	Box 4: The Filter
+Minimalist grayscale logos of existing investments.	"I don't care about market fit. I care about technical inevitability."
+2. The "Sectors" Layout
+
+Don't just list them. Categorize them to show you understand the synergy:
+
+The Backbone: Digital Infrastructure, Cybersecurity, Blockchain.
+The Intelligence: AI Software, Fintech, eCommerce.
+The Expression: Design & Architecture, Digital Art, Entertainment, Marketing.
+What to tell the Replit Agent next:
+
+Copy and paste this to refine the "Thesis" section of your site:
+
+"I want to implement the 'Digital Sovereign' thesis on the homepage.
+
+Typography: Use a massive, high-contrast serif font for the headline: 'I back the architects of the new digital sovereign.'
+Sector Grid: Create a minimalist 3-column grid below the hero section. Use subtle border-bottoms and hover-glows. Group my sectors into 'The Backbone,' 'The Intelligence,' and 'The Expression.'
+The Filter Section: Add a dedicated 'Non-Consensus' section with a dark-gray background and white text. It should clearly state: 'If everyone is telling you No, come to me.'
+Visuals: Ensure all startup logos in the _portfolio section are rendered in grayscale with a 50% opacity, flipping to 100% color on hover to maintain the premium aesthetic."

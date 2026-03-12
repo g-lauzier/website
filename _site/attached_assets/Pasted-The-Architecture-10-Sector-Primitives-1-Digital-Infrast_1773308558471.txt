@@ -1,0 +1,51 @@
+The Architecture: 10 Sector Primitives
+
+1. Digital Infrastructure
+
+"I architect the resilient, low-latency rails that move data from centralized silos to sovereign edge-nodes."
+
+2. Cybersecurity
+
+"I move teams beyond reactive defense to proactive, zero-trust cryptographic hardening of their core IP."
+
+3. Blockchain Software
+
+"I bridge the gap between speculative hype and functional protocol design, focusing on verifiable ownership and automated governance."
+
+4. AI Software
+
+"I help founders move past the 'wrapper' layer to build proprietary inference engines and private-data moats."
+
+5. Design & Architecture
+
+"I apply engineering-level precision to aesthetic systems, ensuring high-end UI becomes a functional barrier to entry for competitors."
+
+6. Digital Art
+
+"I treat art as a programmable asset, architecting new standards for provenance, royalties, and cross-platform utility."
+
+7. Entertainment
+
+"I design the backend infrastructure for decentralized media distribution, returning power from the platforms to the creators."
+
+8. eCommerce
+
+"I rebuild the stack for headless, borderless commerce that prioritizes direct-to-consumer sovereignty and frictionless settlement."
+
+9. Fintech
+
+"I architect the transition from legacy banking rails to real-time, programmable money and automated compliance layers."
+
+10. Marketing & Content Creation
+
+"I build AI-accelerated workflows that turn content from a cost center into a high-velocity, data-driven feedback loop."
+
+How to display this in Replit (The Layout)
+
+To keep the site from looking like a wall of text, ask the Replit Agent to use a "Hover-Reveal" or "Accordion" style for these sentences:
+
+"In the 'Sectors' grid on the Homepage:
+
+Show only the Sector Title (e.g., 'Cybersecurity') and a small '+' icon in a minimalist box.
+On Hover, smoothly expand the box or reveal the 1-sentence Value-Add summary in a slightly smaller, muted-white font.
+Ensure the background of the box subtly glows with my accent color when active, creating a 'System Diagnostic' feel."

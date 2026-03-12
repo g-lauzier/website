@@ -1,0 +1,27 @@
+---
+layout: gl-default
+title: "Writing"
+description: "Essays on Digital Infrastructure, AI, Cybersecurity, and the architecture of the new digital sovereign."
+---
+
+<main>
+  <div class="gl-section" style="padding-top: 9rem;">
+    <p class="gl-section-label">Writing</p>
+    <h1 class="gl-section-title">Field Notes.</h1>
+    <p class="gl-section-body">Non-consensus thinking on the primitives that matter. Infrastructure, intelligence, and the architecture of what's inevitable.</p>
+
+    <div class="gl-posts-list" style="margin-top: 3rem;">
+      {% for post in site.posts %}
+      <a href="{{ post.url }}" class="gl-post-row" style="text-decoration:none; display:grid; grid-template-columns: 120px 1fr auto; gap: 2rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--border); transition: all 0.3s ease;">
+        <span class="gl-post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+        <span class="gl-post-title">{{ post.title }}</span>
+        <span class="gl-post-tag">{% if post.categories.first %}{{ post.categories.first }}{% endif %}</span>
+      </a>
+      {% endfor %}
+
+      {% if site.posts.size == 0 %}
+      <p class="gl-text-muted" style="padding: 3rem 0; font-family: var(--mono); font-size: 0.85rem;">— No entries yet. The signal is building.</p>
+      {% endif %}
+    </div>
+  </div>
+</main>

@@ -1,0 +1,43 @@
+To maintain your "Contrarian Builder" branding, this shouldn't look like a standard pricing table. It needs to look like a Term Sheet summary. It signals that you aren't a freelancer looking for a paycheck; you’re an investor of time looking for an upside.
+
+Here is the design and the specific code structure to send to Replit.
+
+The "Skin-in-the-Game" Disclaimer
+
+Place this right below your 3-tier engagement models. It’s a high-signal move that separates "consultants" from "partners."
+
+The Alignment Model “I prioritize conviction over cash flow. My goal is to be a long-term stakeholder in the infrastructure I help architect.”
+
+[ Fee vs. Equity Toggle ]
+
+Standard Advisory: A balanced mix of retainer and equity, designed for established teams needing predictable scaling.
+High-Conviction Partner: 100% Equity/Token-based engagements for early-stage primitives where I provide the "First Operational Check."
+Note: I only accept 2-3 High-Conviction partnerships per year to ensure deep architectural focus.
+
+The Replit Prompt (For the Toggle & Logic)
+
+This prompt tells Replit exactly how to build a sleek, interactive "Alignment" section.
+
+"Add a 'Skin-in-the-Game' section to the bottom of advisory.html.
+
+1. The Interaction:
+
+Build a custom CSS toggle switch (not a generic checkbox). Label it 'Fee-Based' on the left and 'Equity-Heavy' on the right.
+Visuals: Use the same 'Terminal' aesthetic: #050505 background, with a glowing accent color for the active state of the toggle.
+2. The Dynamic Text:
+
+When the toggle is on 'Fee-Based', show: 'Strategic Roadmap & Operational Sprints. Focused on immediate technical bottlenecks and 12-month execution. (Best for Series A+).'
+When the toggle is on 'Equity-Heavy', show: 'Foundational Partnership. I invest my time and architectural expertise in exchange for long-term equity/tokens. (Best for 0-to-1 Primitives).'
+3. The Disclaimer Footer:
+
+Below the toggle, add a small, muted-text disclaimer: 'Engagement is subject to technical due diligence. I do not act as a service provider; I act as a co-architect.'
+4. Implementation:
+
+Use a small snippet of Vanilla JavaScript to handle the toggle state. Do not use external libraries. Ensure the transition between text states is a smooth 'fade-in' effect."
+Why this is the "G Lauzier" edge:
+
+In sectors like Cybersecurity, Blockchain, and AI software, "consultants" are often seen as overhead. By offering an Equity-Heavy option, you align yourself with the "Sovereign" mindset. You’re telling the founder: "I believe in your protocol so much I’ll work for a piece of it."
+
+One last thing for your GitHub repo:
+
+Since you are using Snowflake, make sure the _assets/js/ folder includes this new script. Replit might try to put it in the HTML file, but for a clean Jekyll build, it's better to keep it in its own .js file and call it in the footer layout.

@@ -1,0 +1,76 @@
+---
+layout: gl-default
+title: "Pitch"
+description: "A high-friction filter for Contrarian Builders. Do not pitch unless you are right — but currently alone."
+---
+
+<main>
+
+<div class="gl-pitch-hero">
+  <p class="gl-hero-eyebrow">// Access Protocol</p>
+  <h1 class="gl-pitch-hero" style="min-height: unset; display: block; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; padding: 0; border: none; max-width: 100%;">DO NOT PITCH UNLESS YOU ARE RIGHT<span style="color: var(--accent);">—</span>BUT CURRENTLY ALONE.</h1>
+  <p style="font-size: 0.9rem; color: var(--muted); max-width: 520px; line-height: 1.7; margin-top: 1.5rem; font-family: var(--mono);">This is not a contact form. It is a filter. If your idea is popular, you are not the target. If people are telling you it's impossible — proceed.</p>
+</div>
+
+<form class="gl-form" id="gl-pitch-form" action="#" method="POST">
+
+  <div class="gl-form-row">
+    <div class="gl-form-group">
+      <label class="gl-form-label" for="pitch-name">Name</label>
+      <input class="gl-form-input" type="text" id="pitch-name" name="name" autocomplete="name" required />
+    </div>
+    <div class="gl-form-group">
+      <label class="gl-form-label" for="pitch-email">Email</label>
+      <input class="gl-form-input" type="email" id="pitch-email" name="email" autocomplete="email" required />
+    </div>
+  </div>
+
+  <div class="gl-form-group">
+    <label class="gl-form-label" for="pitch-url">GitHub / Project URL <span>*</span></label>
+    <input class="gl-form-input" type="url" id="pitch-url" name="project_url" placeholder="https://" required />
+  </div>
+
+  <div class="gl-form-group">
+    <label class="gl-form-label" for="pitch-type">Are you looking for</label>
+    <select class="gl-form-select" id="pitch-type" name="looking_for" required>
+      <option value="" disabled selected>Select one</option>
+      <option value="capital">Capital</option>
+      <option value="strategy">Strategy</option>
+      <option value="both">Capital + Strategy</option>
+    </select>
+  </div>
+
+  <div class="gl-form-group">
+    <label class="gl-form-label" for="pitch-primitive">Are you building a</label>
+    <select class="gl-form-select" id="pitch-primitive" name="primitive_type" required>
+      <option value="" disabled selected>Select one</option>
+      <option value="feature">Feature</option>
+      <option value="product">Product</option>
+      <option value="protocol">Protocol</option>
+    </select>
+  </div>
+
+  <div class="gl-form-group">
+    <label class="gl-form-label" for="pitch-noncon">What do you believe about your sector that everyone else thinks is crazy? <span>*</span></label>
+    <textarea class="gl-form-textarea" id="pitch-noncon" name="non_consensus" required style="min-height: 140px;"></textarea>
+  </div>
+
+  <div class="gl-form-group">
+    <label class="gl-form-label" for="pitch-inev">Why is this technically inevitable? <span>*</span></label>
+    <textarea class="gl-form-textarea" id="pitch-inev" name="inevitability" required style="min-height: 140px;"></textarea>
+  </div>
+
+  <div class="gl-form-group">
+    <label class="gl-form-label" for="pitch-deck">Vision Deck / Technical Spec (optional)</label>
+    <input class="gl-form-input" type="url" id="pitch-deck" name="deck_url" placeholder="Link to document" />
+  </div>
+
+  <button type="submit" class="gl-form-submit">[ TRANSMIT ]</button>
+
+</form>
+
+<div class="gl-form-success" id="gl-pitch-success">
+  <em>"Acknowledged. If there is resonance, you will hear from me."</em>
+</div>
+
+</main>
