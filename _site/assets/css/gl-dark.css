@@ -2,8 +2,6 @@
    Guillaume Lauzier — Dark Mode Premium Stylesheet
    ===================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=JetBrains+Mono:wght@400;500&display=swap');
-
 :root {
   --bg:        #0a0a0a;
   --bg-2:      #111111;
