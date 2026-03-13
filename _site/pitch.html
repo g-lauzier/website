@@ -14,22 +14,27 @@
 <body>
 
 <nav class="gl-nav">
-  <a href="/" class="gl-nav-logo">GL<span>.</span></a>
-  <ul class="gl-nav-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="#investments">Investments</a></li>
-    <li><a href="/writing">Writing</a></li>
-    <li><a href="/advisory">Advisory</a></li>
-    <li class="nav-cta"><a href="/pitch">Pitch</a></li>
-  </ul>
+  <div class="gl-nav-inner">
+    <a href="/" class="gl-nav-logo">GL<span>.</span></a>
+    <button class="gl-nav-hamburger" id="gl-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="gl-nav-links" id="gl-nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="#investments">Investments</a></li>
+      <li><a href="/writing">Writing</a></li>
+      <li><a href="/advisory">Advisory</a></li>
+      <li class="nav-cta"><a href="/pitch">Pitch</a></li>
+    </ul>
+  </div>
 </nav>
 
 <main>
 
 <div class="gl-pitch-hero">
   <p class="gl-hero-eyebrow">// Access Protocol</p>
-  <h1 class="gl-pitch-hero" style="min-height: unset; display: block; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; padding: 0; border: none; max-width: 100%;">DO NOT PITCH UNLESS YOU ARE RIGHT<span style="color: var(--accent);">—</span>BUT CURRENTLY ALONE.</h1>
-  <p style="font-size: 0.9rem; color: var(--muted); max-width: 520px; line-height: 1.7; margin-top: 1.5rem; font-family: var(--mono);">This is not a contact form. It is a filter. If your idea is popular, you are not the target. If people are telling you it's impossible — proceed.</p>
+  <h1 class="gl-page-headline">DO NOT PITCH UNLESS YOU ARE RIGHT<span class="gl-text-accent">—</span>BUT CURRENTLY ALONE.</h1>
+  <p class="gl-pitch-hero-sub gl-mono">This is not a contact form. It is a filter. If your idea is popular, you are not the target. If people are telling you it's impossible — proceed.</p>
 </div>
 
 <form class="gl-form" id="gl-pitch-form" action="#" method="POST">
@@ -97,11 +102,13 @@
 
 
 <footer class="gl-footer">
-  <span>© 2026 Guillaume Lauzier</span>
-  <div class="gl-footer-links">
-    <a href="/advisory">Advisory</a>
-    <a href="/writing">Writing</a>
-    <a href="/pitch">Pitch</a>
+  <div class="gl-nav-inner">
+    <span>© 2026 Guillaume Lauzier</span>
+    <div class="gl-footer-links">
+      <a href="/advisory">Advisory</a>
+      <a href="/writing">Writing</a>
+      <a href="/pitch">Pitch</a>
+    </div>
   </div>
 </footer>
 

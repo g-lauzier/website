@@ -14,24 +14,31 @@
 <body>
 
 <nav class="gl-nav">
-  <a href="/" class="gl-nav-logo">GL<span>.</span></a>
-  <ul class="gl-nav-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="#investments">Investments</a></li>
-    <li><a href="/writing">Writing</a></li>
-    <li><a href="/advisory">Advisory</a></li>
-    <li class="nav-cta"><a href="/pitch">Pitch</a></li>
-  </ul>
+  <div class="gl-nav-inner">
+    <a href="/" class="gl-nav-logo">GL<span>.</span></a>
+    <button class="gl-nav-hamburger" id="gl-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="gl-nav-links" id="gl-nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="#investments">Investments</a></li>
+      <li><a href="/writing">Writing</a></li>
+      <li><a href="/advisory">Advisory</a></li>
+      <li class="nav-cta"><a href="/pitch">Pitch</a></li>
+    </ul>
+  </div>
 </nav>
 
 {{ content }}
 
 <footer class="gl-footer">
-  <span>© {{ 'now' | date: "%Y" }} Guillaume Lauzier</span>
-  <div class="gl-footer-links">
-    <a href="/advisory">Advisory</a>
-    <a href="/writing">Writing</a>
-    <a href="/pitch">Pitch</a>
+  <div class="gl-nav-inner">
+    <span>© {{ 'now' | date: "%Y" }} Guillaume Lauzier</span>
+    <div class="gl-footer-links">
+      <a href="/advisory">Advisory</a>
+      <a href="/writing">Writing</a>
+      <a href="/pitch">Pitch</a>
+    </div>
   </div>
 </footer>
 

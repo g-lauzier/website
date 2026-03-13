@@ -1,8 +1,24 @@
 /* Guillaume Lauzier — Site Scripts */
 
-/* ── SECTOR HOVER REVEAL (pure CSS — no JS needed) ── */
-
 document.addEventListener('DOMContentLoaded', function () {
+
+  /* Mobile hamburger menu */
+  const hamburger = document.getElementById('gl-hamburger');
+  const navLinks  = document.getElementById('gl-nav-links');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', function () {
+      const open = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 
   /* Alignment toggle */
   const toggle = document.getElementById('gl-align-toggle');
