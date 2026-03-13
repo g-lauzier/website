@@ -863,11 +863,39 @@ img { max-width: 100%; display: block; }
   color: var(--muted);
 }
 .gl-footer .gl-nav-inner {
-  padding: 2.5rem 0;
+  padding: 2rem 0;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
-.gl-footer-links { display: flex; gap: 2rem; }
+.gl-footer-copy { white-space: nowrap; }
+.gl-footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
 .gl-footer-links a { color: var(--muted); }
 .gl-footer-links a:hover { color: var(--text); }
+
+/* ── FOOTER SOCIAL ICONS ── */
+.gl-footer-social {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.gl-footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: color var(--transition), transform var(--transition);
+  line-height: 1;
+}
+.gl-footer-social a:hover {
+  color: var(--text);
+  transform: translateY(-2px);
+}
+.gl-footer-social svg {
+  width: 15px;
+  height: 15px;
+  display: block;
+  flex-shrink: 0;
+}
 
 /* ── UTILITIES ── */
 .gl-container { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
@@ -922,9 +950,11 @@ img { max-width: 100%; display: block; }
   .gl-footer .gl-nav-inner {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 1.25rem;
     padding: 2rem 0;
   }
+  .gl-footer-social { gap: 1rem; flex-wrap: wrap; }
+  .gl-footer-links { gap: 1.25rem; }
 
   /* Posts */
   .gl-post-row { grid-template-columns: 1fr; gap: 0.25rem; }
