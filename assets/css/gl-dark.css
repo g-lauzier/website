@@ -884,6 +884,91 @@ img { max-width: 100%; display: block; }
 }
 .gl-post-back a:hover { color: var(--accent); }
 
+/* ── TAG PAGES ── */
+.gl-tag-hero {
+  padding-top: 9rem !important;
+  padding-bottom: 2rem !important;
+}
+.gl-tag-heading {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--text);
+  margin: 0.5rem 0 1rem;
+}
+.gl-tag-heading span { color: var(--accent); }
+.gl-tag-count {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+  max-width: none;
+}
+.gl-tag-posts { border-top: 1px solid var(--border); }
+.gl-post-tag-pill {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius);
+  white-space: nowrap;
+}
+.gl-all-tags-section { border-top: 1px solid var(--border); }
+.gl-all-tags-heading {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--text);
+  margin: 0.5rem 0 2.5rem;
+}
+.gl-tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+.gl-tag-cloud-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius);
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+  text-decoration: none;
+}
+.gl-tag-cloud-item:hover {
+  color: var(--text);
+  border-color: var(--border-h);
+  background: var(--bg-2);
+}
+.gl-tag-cloud-active {
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  background: var(--accent-glow) !important;
+}
+.gl-tag-cloud-count {
+  font-size: 0.6rem;
+  color: var(--muted);
+  background: var(--bg-3);
+  border-radius: 2px;
+  padding: 0.05rem 0.3rem;
+  min-width: 1.2rem;
+  text-align: center;
+}
+.gl-tag-cloud-active .gl-tag-cloud-count { color: var(--accent); }
+
 /* ── FOOTER ── */
 .gl-footer {
   border-top: 1px solid var(--border);

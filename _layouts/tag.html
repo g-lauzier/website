@@ -1,40 +1,55 @@
 ---
-layout: default
+layout: gl-default
 ---
-{% include layouts/nav/nav-5.html  drop_search=true %}
-<div class="wrapper image-wrapper bg-image page-title-wrapper inverse-text" data-image-src="{{site.data.general_settings.author_page_header.header_background_image}}">
-  <div class="container inner text-center">
-    <div class="row">
-      <div class="col-md-8 mx-auto"> 
-        <div class="space90"></div>
-        <h1 class="page-title">Posts tagged with "{{ page.title }}"</h1>
-      </div>
+
+<main>
+  <!-- ── TAG HERO ── -->
+  <div class="gl-section gl-tag-hero">
+    <p class="gl-section-label">Tag</p>
+    <h1 class="gl-tag-heading">{{ page.title | upcase }}</h1>
+    <p class="gl-tag-count">
+      {% assign post_count = page.posts | size %}
+      {{ post_count }} {% if post_count == 1 %}entry{% else %}entries{% endif %} in the field notes.
+    </p>
+  </div>
+
+  <!-- ── POSTS LIST ── -->
+  <div class="gl-section gl-tag-posts" style="padding-top: 0;">
+    {% if page.posts.size > 0 %}
+      {% assign sorted_posts = page.posts | sort: "date" | reverse %}
+      {% for post in sorted_posts %}
+      <a href="{{ post.url }}" class="gl-post-row" style="text-decoration:none; display:grid; grid-template-columns: 120px 1fr auto; gap: 2rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--border); transition: all 0.3s ease;">
+        <span class="gl-post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+        <span class="gl-post-title">{{ post.title }}</span>
+        <span class="gl-post-tag-pill">{% if post.categories.first %}{{ post.categories.first }}{% elsif post.tags.first %}{{ post.tags.first }}{% endif %}</span>
+      </a>
+      {% endfor %}
+    {% else %}
+      <p style="font-family: var(--mono); font-size: 0.85rem; color: var(--muted); padding: 3rem 0;">— No entries found for this tag.</p>
+    {% endif %}
+  </div>
+
+  <!-- ── ALL TAGS ── -->
+  <div class="gl-section gl-all-tags-section">
+    <p class="gl-section-label">All Tags</p>
+    <h2 class="gl-all-tags-heading">Browse by topic</h2>
+
+    <div class="gl-tag-cloud">
+      {% assign all_tags = site.tags | sort %}
+      {% for tag in all_tags %}
+        {% assign tag_name = tag[0] %}
+        {% assign tag_posts = tag[1] %}
+        {% assign tag_size = tag_posts | size %}
+        {% if tag_size > 0 %}
+        <a href="/tag/{{ tag_name | slugify }}"
+           class="gl-tag-cloud-item {% if page.title == tag_name %}gl-tag-cloud-active{% endif %}"
+           data-count="{{ tag_size }}">
+          {{ tag_name }}
+          <span class="gl-tag-cloud-count">{{ tag_size }}</span>
+        </a>
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
-  <!-- /.container -->
-</div>
-<!-- /.wrapper -->
-<div class="wrapper light-wrapper">
-  <div class="container inner">
-    <div class="blog grid grid-view">
-      <div class="row isotope">
-        {% for post in page.posts %}
-   
-          {% include posts/loops/post-loop.html 
-            title_length=27
-            excerpt_length=40
-            text_alignment='text-center'
-            is_boxed=true
-            is_grid=true
-          %}
-        <!-- /.post -->
-        {% endfor %}
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.blog -->
-  </div>
-  <!-- /.container -->
-</div>
-<!-- /.wrapper -->
-{% include layouts/footer/footer-3.html %}
+
+</main>
