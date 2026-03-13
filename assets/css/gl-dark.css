@@ -953,7 +953,7 @@ img { max-width: 100%; display: block; }
   background: var(--accent);
   color: var(--bg);
 }
-.gl-post-title {
+.gl-post-hero-title {
   font-family: var(--serif);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 900;
@@ -1317,7 +1317,7 @@ img { max-width: 100%; display: block; }
   .gl-post-carousel-slide img { height: 280px; }
   .gl-post-carousel { max-height: 280px; }
   .gl-post-hero-media { max-height: 280px; }
-  .gl-post-title { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+  .gl-post-hero-title { font-size: clamp(1.75rem, 7vw, 2.5rem); }
   .gl-post-footer { flex-direction: column; align-items: flex-start; }
   .gl-post-gallery-grid { grid-template-columns: 1fr 1fr; }
 
