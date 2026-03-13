@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Understanding 20 Blockchain Vulnerabilities"
 date: 2023-01-13 00:00:00 +0000
-categories: ["blog"]
+categories: ["cybersecurity"]
 tags: ["51-attacks", "blockchain"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/generatedart_blockchain_attack_3ae5c706-8a16-4238-808a-32eef2f3db8b.png"
 description: "Blockchain technology has been hailed as a revolutionary development in the field of digital transactions, offering a secure and transparent way to record and transfer digital assets. However, despite"

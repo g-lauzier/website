@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Harnessing the Power of Grafana for Render Farm Monitoring"
 date: 2023-04-24 00:00:00 +0000
-categories: ["blog"]
+categories: ["infrastructure"]
 tags: ["3d-rendering"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/generatedart_render_farm_31c3b34b-5f3c-4f83-9c5e-a3e2839ecbf2-2.png"
 description: "Render farms are essential for handling complex 3D rendering and film visual effects (VFX) tasks. As the number of render nodes increases, managing and monitoring their performance becomes increasingl"

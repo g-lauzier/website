@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Exploring the Benefits of Blockchain Interoperability"
 date: 2022-10-19 00:00:00 +0000
-categories: ["blog"]
+categories: ["blockchain"]
 tags: ["atomic-swaps", "blockchain-interoperability"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/crypto-interoperability.jpg"
 description: "Blockchain interoperability is the ability for different blockchain networks to communicate and interact with each other. As the number of blockchain networks increases, it's becoming increasingly imp"

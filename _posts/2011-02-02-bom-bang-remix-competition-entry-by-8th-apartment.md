@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Bom Bang! Remix Competition Entry by 8th Apartment"
 date: 2011-02-02 00:00:00 +0000
-categories: ["projects"]
+categories: ["entertainment"]
 tags: ["8th-apartment", "bedrock-records", "bom-bang"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/maxresdefault.jpg"
 description: "In February 2011, I participated in a remix competition organized by Bedrock Records and Marco Bailey for the track \"Bom Bang!\" (Original Mix). I used my artist name 8th Apartment to submit my remix. "

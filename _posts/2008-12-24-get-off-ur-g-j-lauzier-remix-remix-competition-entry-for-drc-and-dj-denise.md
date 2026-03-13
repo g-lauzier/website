@@ -2,7 +2,7 @@
 layout: posts/post
 title: "&#8220;Get Off Ur&#8230;&#8221; (G.J. Lauzier Remix) – Remix Competition Entry for DRC and DJ Denise"
 date: 2008-12-24 00:00:00 +0000
-categories: ["projects"]
+categories: ["entertainment"]
 tags: ["ableton"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/hqdefault.jpg"
 description: "In 2010, I took part in a remix competition for DRC and DJ Denise, and Mizumo Music, competing against hundreds of other participants. I created an Electro House track using Ableton and Logic Pro, usi"

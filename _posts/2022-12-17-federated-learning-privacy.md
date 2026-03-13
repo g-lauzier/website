@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Federated Learning: Privacy-Preserving Machine Learning"
 date: 2022-12-17 00:00:00 +0000
-categories: ["blog"]
+categories: ["cybersecurity"]
 tags: ["biased-data", "collaborative-learning"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2022/12/generatedart_federated_learning_data_privacy.png"
 description: "In today's data-driven world, machine learning has become an essential tool for many industries. However, traditional machine learning approaches often require large amounts of centralized data, which"

@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Raiffeisen Lausanne Street & Bowl Contest 2011: Video Report"
 date: 2011-09-04 00:00:00 +0000
-categories: ["projects"]
+categories: ["entertainment"]
 tags: []
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/street-bowl-contest-2011.png"
 description: "This is a video report of the Raiffeisen Lausanne Street & Bowl Contest organized by LSBC in Switzerland. The contest was held on September 1-4, 2011, at the Vidy and HS36 skatepark in Lausanne. The v"

@@ -2,7 +2,7 @@
 layout: posts/post
 title: "&#8220;Play + Draw&#8221;: An Interactive Installation and Scenography"
 date: 2013-06-10 00:00:00 +0000
-categories: ["projects"]
+categories: ["design"]
 tags: []
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/IMG_1505.jpg"
 description: "\"Play + Draw\" was an interactive installation and scenography project featured at the 2013 Figment Festival on Governors Island in New York. Participants were able to take control as VJs and DJs, mani"

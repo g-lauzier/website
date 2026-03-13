@@ -2,7 +2,7 @@
 layout: posts/post
 title: "D! Club at Geneva's Lake Parade: A Sonic Journey"
 date: 2012-07-15 00:00:00 +0000
-categories: ["projects"]
+categories: ["entertainment"]
 tags: ["bad-nelson"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/geneva-lake-parade-2012.png"
 description: "Discover the vibrant spirit of Geneva's Lake Parade in this captivating video, featuring D! Club's inaugural float. While the video footage was captured by another collaborator, the editing process wa"

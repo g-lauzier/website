@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Managing Parties and Fetching Off-Chain Data in NFTs using Solidity and Chainlink Oracles"
 date: 2023-07-11 00:00:00 +0000
-categories: ["projects"]
+categories: ["blockchain"]
 tags: ["chainlink", "collaboration"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_ethereum_oracle_d5ca524d-218b-411d-8bef-f47cab4abc34-2.png"
 description: "In the burgeoning world of Non-Fungible Tokens (NFTs), many new challenges and use-cases are emerging. One such use-case is managing different contributing parties and their respective shares in a pro"

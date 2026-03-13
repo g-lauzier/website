@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Zero-Knowledge Proofs: A Pillar of Cryptographic Privacy"
 date: 2023-03-11 00:00:00 +0000
-categories: ["blog"]
+categories: ["cybersecurity"]
 tags: ["blockchain"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_cryptography_encryption_a29f64d4-9071-412d-bdd5-4f6e75dd92c1-2.png"
 description: "As our world becomes increasingly digital, the ability to securely share and verify information is crucial. Cryptography has made impressive strides in this area, and zero-knowledge proofs (ZKPs) are "

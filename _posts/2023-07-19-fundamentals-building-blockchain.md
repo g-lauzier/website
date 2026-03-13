@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Fundamentals of Building a Blockchain"
 date: 2023-07-19 00:00:00 +0000
-categories: ["projects"]
+categories: ["blockchain"]
 tags: ["block-design", "blockchain", "blockchain-mathematical-principles", "c-blockchain-implementation"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_blockchain_design_2646b05c-8a51-400f-8a48-d65ace71f92f-2.png"
 description: "The blockchain is a transformative technology that has had a profound impact on various sectors from finance to supply chain management. While the journey to master blockchain development is a complex"

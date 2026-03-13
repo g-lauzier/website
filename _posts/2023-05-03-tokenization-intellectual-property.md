@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Tokenization of Intellectual Property: A Pathway to Unlocking Value for Stakeholders and Shareholders"
 date: 2023-05-03 00:00:00 +0000
-categories: ["blog"]
+categories: ["blockchain"]
 tags: ["blockchain"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/generatedart_Tokenisation_d57532fa-8dca-4258-ac6a-14876f10ddcc-2.png"
 description: "The digital revolution has reshaped various industries, and the field of intellectual property (IP) is no exception. Tokenization, a process that involves converting rights to an asset into a digital "

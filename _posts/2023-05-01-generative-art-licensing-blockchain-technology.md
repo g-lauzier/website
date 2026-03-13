@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Generative Art Licensing using Blockchain Technology"
 date: 2023-05-01 00:00:00 +0000
-categories: ["blog"]
+categories: ["blockchain"]
 tags: ["art-licensing", "authenticity", "blockchain-technology"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/generatedart_dark_neon_generative_art_ccc919ba-f8c8-4919-8089-97299b7b3c71.png"
 description: "Generative art, created through the use of algorithms and technology, has gained significant traction in recent years. With this growth comes an increasing need for efficient and secure licensing meth"

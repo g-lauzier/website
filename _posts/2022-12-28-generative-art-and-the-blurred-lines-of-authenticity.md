@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Generative art and the blurred lines of authenticity"
 date: 2022-12-28 00:00:00 +0000
-categories: ["blog"]
+categories: ["digital-art"]
 tags: ["algorithm", "artist", "authenticity", "coding"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2022/12/generatedart_generative_art_authenticity_afd82f0e-0379-44bb-bc70-6680415ed1c5.png"
 description: "Generative art refers to art that is created using an algorithmic process, often involving computer software. In this context, the artist's role may involve designing the parameters and rules that gov"

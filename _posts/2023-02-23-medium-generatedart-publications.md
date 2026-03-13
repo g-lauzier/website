@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Submit Your Work to GeneratedArt Publications on Medium"
 date: 2023-02-23 00:00:00 +0000
-categories: ["blog"]
+categories: ["digital-art"]
 tags: ["ai-art", "algorithms"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_social_media_publications.png"
 description: "Do you have a passion for generative art, AI art, creative coding, or generative design? Are you looking to share your insights, ideas, and stories with a wider audience? Submitting your Medium story "

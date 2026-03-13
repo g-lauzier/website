@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Understanding Web 3.0: A Shift Towards Decentralization and User Sovereignty"
 date: 2023-07-25 00:00:00 +0000
-categories: ["blog"]
+categories: ["blockchain"]
 tags: ["blockchain-technology"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_decentralized_technology_e76d26a0-f98e-468a-880d-f3ace508692e-2.png"
 description: "The digital world is on the brink of a paradigm shift as we transition from Web 2.0 to Web 3.0, also known as Web3. This shift promises a more decentralized, transparent, and user-centric version of t"

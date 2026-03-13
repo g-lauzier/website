@@ -2,7 +2,7 @@
 layout: posts/post
 title: "CHOCOLATE 2012: A Celebration of Electronic Music"
 date: 2012-06-10 00:00:00 +0000
-categories: ["projects"]
+categories: ["entertainment"]
 tags: ["adana-twins", "after-party-at-d-club"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/chocolate-festival-2012.png"
 description: "Dive into the electric atmosphere of CHOCOLATE 2012 through my vibrant video project, a dynamic representation of Lausanne's premier electronic music festival, which took place on 3rd and 4th of June."

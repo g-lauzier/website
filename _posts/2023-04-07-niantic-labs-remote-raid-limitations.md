@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Niantic Labs' Remote Raid Limitations in Pokémon GO: A Contradiction to Sustainability, Inclusion, and Player Concerns"
 date: 2023-04-07 00:00:00 +0000
-categories: ["blog"]
+categories: ["entertainment"]
 tags: ["communication"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/169.jpg"
 description: "Niantic Labs, the creator of the widely popular augmented reality (AR) game Pokémon GO, has recently decided to impose a remote raid limitation of 5 raids per day. This controversial move has not only"

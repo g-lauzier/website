@@ -2,7 +2,7 @@
 layout: posts/post
 title: "First Nights in Tokyo: Showcasing the City's Nightlife and Beautiful Landscapes"
 date: 2012-11-01 00:00:00 +0000
-categories: ["projects"]
+categories: ["entertainment"]
 tags: ["canon"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/first-nights-in-tokyo.png"
 description: "Take a journey to Tokyo through the captivating lens of Guillaume J. Lauzier in \"First Nights in Tokyo.\" Filmed during the winter of 2012, the video showcases the city's exceptional nightlife and brea"

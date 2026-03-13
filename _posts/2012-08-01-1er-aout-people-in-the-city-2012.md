@@ -2,7 +2,7 @@
 layout: posts/post
 title: "1er Août People in the City 2012: Celebrating National Spirit"
 date: 2012-08-01 00:00:00 +0000
-categories: ["projects"]
+categories: ["entertainment"]
 tags: ["1er-aout-people-in-the-city", "benoit-sergio"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/flyer_front_17907-scaled.jpg"
 description: "Immerse yourself in the celebratory spirit of Lausanne's national festival through my video report of the 4th annual \"1er Août People in the City\". Filmed, edited, and color-corrected by me, this visu"

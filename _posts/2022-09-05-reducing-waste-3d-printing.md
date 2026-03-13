@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Reducing Waste and Excess Inventory through 3D Printing"
 date: 2022-09-05 00:00:00 +0000
-categories: ["blog"]
+categories: ["design"]
 tags: ["3d-printing"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/GENESIS-Eco-Screen-10.jpg"
 description: "3D printing, also known as additive manufacturing, is a process of creating three-dimensional objects by building up layers of material, such as plastic, metal, or ceramic. As a rapidly evolving techn"

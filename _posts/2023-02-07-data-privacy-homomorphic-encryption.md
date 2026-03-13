@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Data Privacy: Homomorphic Encryption"
 date: 2023-02-07 00:00:00 +0000
-categories: ["blog"]
+categories: ["cybersecurity"]
 tags: []
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_homomorphic_encryption.png"
 description: "In today's world, data privacy is becoming increasingly important as more and more sensitive information is being shared and stored online. At the same time, there is a growing need for computations t"

@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Niantic Labs' Remote Raid Limitations: A Call for Greater Inclusivity and Sustainability in Pokémon GO"
 date: 2023-04-21 00:00:00 +0000
-categories: ["blog"]
+categories: ["entertainment"]
 tags: ["co%e2%82%82-emissions"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/generatedart_pikachu_saving_the_planet_6b5ee2d4-f95d-4cb6-9c77-094292beb042.png"
 description: "Recent changes to remote raid limitations in Pokémon GO have raised concerns among players about Niantic Labs' commitment to global sustainability goals and game inclusivity. Based on the Go Raiding S"

@@ -2,7 +2,7 @@
 layout: posts/post
 title: "In Montreux and Lausanne with R3hab"
 date: 2012-07-14 00:00:00 +0000
-categories: ["projects"]
+categories: ["entertainment"]
 tags: ["3d-animation", "cinema4d", "color-correction"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/r3hab.png"
 description: "Step into the exhilarating world of R3hab through my video project, filmed during the iconic 2012 Montreux Jazz Festival and at the Mad Club in Lausanne the following night. Capturing the electrifying"

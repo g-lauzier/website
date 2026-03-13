@@ -2,7 +2,7 @@
 layout: posts/post
 title: "The Generative Artist's Criteria: Your Gateway to GeneratedArt"
 date: 2023-05-14 00:00:00 +0000
-categories: ["blog"]
+categories: ["digital-art"]
 tags: ["algorithm-development", "art", "art-inspiration", "collaboration", "compliance-in-art"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/generatedart_generative_art_exhibition_2195b493-43f9-4622-942a-e5f2683a745f-2.png"
 description: "In the vast and diverse world of digital art, GeneratedArt has positioned itself as a conduit for pioneering and innovative works of generative art. Through this unique approach, we champion artists w"

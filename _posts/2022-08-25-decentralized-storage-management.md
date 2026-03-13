@@ -2,7 +2,7 @@
 layout: posts/post
 title: "How Decentralized Storage is Transforming Data Management"
 date: 2022-08-25 00:00:00 +0000
-categories: ["blog"]
+categories: ["infrastructure"]
 tags: []
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/Decentralized-Storage.jpg"
 description: "Decentralized storage systems are a promising new technology that have the potential to revolutionize the way we store and access data. Unlike traditional storage systems that rely on a single, centra"

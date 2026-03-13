@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Before Bitcoin"
 date: 2022-08-21 00:00:00 +0000
-categories: ["blog"]
+categories: ["blockchain"]
 tags: ["bitcoin", "blockchain"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2022/12/Logo-e-gold.png"
 description: "Before Bitcoin, there were several attempts at creating digital currencies, but they were not as successful or widely adopted as Bitcoin. One early example is the digital currency called e-gold, which"

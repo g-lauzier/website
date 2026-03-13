@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Mapping Festival 2012: A Captivating Report"
 date: 2012-05-10 00:00:00 +0000
-categories: ["projects"]
+categories: ["design"]
 tags: []
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/Mapping_affiche1-683x1024-1.jpg"
 description: "In 2012, I had the opportunity to attend the Mapping Festival in Geneva and produced a video report that showcases the festival's highlights. The report was filmed, edited, and animated by me, Guillau"

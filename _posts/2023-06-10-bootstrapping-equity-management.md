@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Bootstrapping and Equity Management"
 date: 2023-06-10 00:00:00 +0000
-categories: ["blog"]
+categories: ["fintech"]
 tags: ["bootstrapping", "business-model", "cap-table"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/generatedart_futuristic_office_space_ec0552aa-50fa-4a6d-958b-d65c6df21854-2.png"
 description: "Navigating Equity Traps and Maximizing Startup Ownership As an entrepreneur, I am often confronted by entrepreneurs grappling with the challenges of funding their nascent businesses while trying to ma"

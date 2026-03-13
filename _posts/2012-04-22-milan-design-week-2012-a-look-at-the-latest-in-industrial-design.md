@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Milan Design Week 2012: A Look at the Latest in Industrial Design"
 date: 2012-04-22 00:00:00 +0000
-categories: ["projects"]
+categories: ["design"]
 tags: []
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/milan-design-week-2012.png"
 description: "\"Milan Design Week 2012\" is a video report of one of Europe's most recognized industrial design fairs that took place from April 17th to 22nd in Milan, including Salone Internazionale del Mobile, Salo"

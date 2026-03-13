@@ -2,7 +2,7 @@
 layout: posts/post
 title: "VJs Mag: Lighting the Path for Audio-Visual Art Forms"
 date: 2023-04-19 00:00:00 +0000
-categories: ["projects"]
+categories: ["entertainment"]
 tags: ["art-profiles", "audio-visual-art", "audio-visual-community"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/vjsmag-project.png"
 description: "In 2013, spurred by an intense passion for VJing, I set out to create a digital space that would serve as a meeting point for sound and visual media. This marked the birth of VJs Mag. Since its incept"

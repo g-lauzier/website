@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Hybrid Approach to Innovation"
 date: 2022-11-01 00:00:00 +0000
-categories: ["blog"]
+categories: ["infrastructure"]
 tags: ["collaboration"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/lean-startup.png"
 description: "Combining Design Thinking, Lean Startup, and Agile Development The use of a hybrid of lean startup and agile software development can help organizations create innovative products and services in a fl"

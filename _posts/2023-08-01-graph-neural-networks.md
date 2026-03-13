@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Graph Neural Networks: Revolutionizing Data Analysis in Graph-Structured Domains"
 date: 2023-08-01 00:00:00 +0000
-categories: ["blog"]
+categories: ["ai"]
 tags: []
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/12/01825e05-3190-4e71-bd11-c31cff37a834_grid_0.webp"
 description: "Graph Neural Networks (GNNs) represent a paradigm shift in the realm of neural networks, uniquely tailored for graph-structured data. They are pivotal in addressing complex data scenarios where tradit"

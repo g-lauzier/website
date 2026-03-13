@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Generative Window Art: Transforming Spaces with Algorithmic Designs"
 date: 2023-03-02 00:00:00 +0000
-categories: ["blog"]
+categories: ["design"]
 tags: ["algorithm-driven-designs"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/generatedart_Generative_window_art_commercial_ed58436b-fd5d-4219-8697-8ee5582409cc-2.png"
 description: "Generative window art is an innovative and captivating approach to traditional window treatments, utilizing algorithm-driven patterns and designs to transform ordinary windows into visual masterpieces"

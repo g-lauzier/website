@@ -2,7 +2,7 @@
 layout: posts/post
 title: "NFT 2.0: Future of Digital Asset Ownership"
 date: 2023-04-29 00:00:00 +0000
-categories: ["blog"]
+categories: ["blockchain"]
 tags: ["blockchain"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/generatedart_generative_art_urban_art_bf96e126-333d-426b-a163-079f50a522ad.png"
 description: "Non-fungible tokens (NFTs) have taken the world by storm, enabling digital artists, collectors, and investors to buy, sell, and trade unique digital assets such as digital art, collectibles, and virtu"

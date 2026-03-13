@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Ethical guidelines for AI and machine learning"
 date: 2022-12-31 00:00:00 +0000
-categories: ["blog"]
+categories: ["ai"]
 tags: ["accountability", "artificial-intelligence", "bias"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2022/12/generatedart_Impact_of_Data-Driven_Art_on_Scientific_5d3d77a7-cf57-42f2-be9e-e4f49e6e409c.png"
 description: "Artificial intelligence (AI) and machine learning have the potential to bring significant benefits to society, including improvements in healthcare, transportation, education, and other areas. However"

@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Algorithms for Eco-Friendly Urban and Architectural Planning"
 date: 2023-04-26 00:00:00 +0000
-categories: ["blog"]
+categories: ["design"]
 tags: ["agent-based-models", "architectural-design", "artificial-life-systems", "biophilic-design", "cellular-automata"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/generatedart_generative_urban_design_c04b2b0c-699a-4ec0-9cf5-4ac1a1bc7b9d-2.png"
 description: "As the world faces an increasing number of environmental challenges, architects and urban planners are searching for innovative solutions to create sustainable, eco-friendly spaces. One promising aven"

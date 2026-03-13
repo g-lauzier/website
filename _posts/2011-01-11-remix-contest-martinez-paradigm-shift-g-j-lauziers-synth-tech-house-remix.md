@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Remix Contest: Martinez – Paradigm Shift (G.J. Lauzier's Synth Tech House Remix)"
 date: 2011-01-11 00:00:00 +0000
-categories: ["projects"]
+categories: ["entertainment"]
 tags: ["ableton"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/163185_301796504948_36113129948_1249550_6452642_n-1.jpg"
 description: "In January 2011, I participated in a remix contest for Martinez's \"Paradigm Shift,\" producing a Synth Tech House style remix using Ableton and Logic Pro. The contest was hosted by Moon Harbour and Jun"

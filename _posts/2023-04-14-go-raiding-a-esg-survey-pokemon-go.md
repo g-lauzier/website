@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Impact of Niantic's Policies through the &#8220;GO Raiding a ESG Survey&#8221; on Pokémon GO"
 date: 2023-04-14 00:00:00 +0000
-categories: ["projects"]
+categories: ["entertainment"]
 tags: ["community-engagement"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/11/go-raiding-survey.png"
 description: "In the evolving landscape of mobile gaming, Niantic Labs' Pokémon GO has not just been a game but a phenomenon. However, recent changes in the game's mechanics, specifically the implementation of remo"

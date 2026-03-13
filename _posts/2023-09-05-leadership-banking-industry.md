@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Leadership Within the Banking Industry"
 date: 2023-09-05 00:00:00 +0000
-categories: ["blog"]
+categories: ["fintech"]
 tags: ["autonomy", "banking-industry"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/09/generatedart_Leadership_Within_the_Banking_Industry_ae41d43d-1551-4543-8d7c-8aaf424fa8f7-2.png"
 description: "In the volatile landscape of investment banking, effective leadership is the cornerstone for success and resilience. It's not just about steering the ship but also about training the crew, balancing t"

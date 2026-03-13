@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Transfer Learning in Modern AI"
 date: 2023-08-05 00:00:00 +0000
-categories: ["blog"]
+categories: ["ai"]
 tags: ["artificial-neural-networks"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/12/transfer-learning.png"
 description: "Transfer Learning has emerged as a transformative approach in the realm of machine learning and deep learning, enabling more efficient and adaptable model training. Here's an in-depth exploration of t"

@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Exploring the Future of Finance with GenerativeFinance (GEFI.io)"
 date: 2023-01-28 00:00:00 +0000
-categories: ["projects"]
+categories: ["fintech"]
 tags: ["ai-algorithms-in-banking", "ai-driven-investment"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/11/generatedart_trading_finance_-ar_32_-v_5.2_021eb4a1-079d-44a5-bf96-e7aaec07187d-2.png"
 description: "GenerativeFinance (GEFI.io) is a platform dedicated to the exploration and advancement of generative finance, a burgeoning field at the intersection of artificial intelligence (AI), machine learning, "

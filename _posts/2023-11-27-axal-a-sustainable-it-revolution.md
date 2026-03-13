@@ -2,7 +2,7 @@
 layout: posts/post
 title: "AXAL: A Sustainable IT Revolution"
 date: 2023-11-27 00:00:00 +0000
-categories: ["projects"]
+categories: ["infrastructure"]
 tags: ["agriculture-integration", "axal", "community-resilience"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/11/transformative.png"
 description: "As a part of my diverse project portfolio, I am proud to introduce AXAL, a groundbreaking initiative that stands at the forefront of sustainable IT solutions. This project embodies my commitment to in"

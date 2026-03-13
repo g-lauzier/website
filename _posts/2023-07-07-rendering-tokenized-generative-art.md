@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Demystifying the Technicalities of Rendering Tokenized Generative Art"
 date: 2023-07-07 00:00:00 +0000
-categories: ["blog"]
+categories: ["blockchain"]
 tags: ["blockchain"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_ethereum_smart_contract_8a8913a8-7ab4-40f5-bb5d-2fb3f2eca9b5-2.png"
 description: "Art and technology have been gradually intertwining over the years, culminating in the emergence of tokenized generative art. It’s a fascinating convergence of creativity and computer science, involvi"

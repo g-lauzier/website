@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Exploring Copyright Licenses for AI Art"
 date: 2023-05-04 00:00:00 +0000
-categories: ["blog"]
+categories: ["digital-art"]
 tags: ["ai-art", "blockchain", "collaborative-royalty-distribution", "collective-licensing-models"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/generatedart_AI_Art_legal_7eb6dc1b-01e6-43b2-8108-efad70ae1228-2.png"
 description: "As AI-generated art becomes increasingly popular and sophisticated, questions surrounding copyright licenses for such works have become more pressing. This article examines various copyright licenses "

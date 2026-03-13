@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Managing the Supply Chain for Tokenized Generative Assets"
 date: 2023-02-21 00:00:00 +0000
-categories: ["projects"]
+categories: ["blockchain"]
 tags: ["ai-models", "blockchain"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_supply_chain_of_generative_assets.png"
 description: "Generative assets supply chain traceability is an important concept that aims to ensure transparency in the creation, distribution, and sale of tokenized generative assets. Tokenized generative assets"

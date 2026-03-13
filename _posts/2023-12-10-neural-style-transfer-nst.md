@@ -2,7 +2,7 @@
 layout: posts/post
 title: "Neural Style Transfer (NST)"
 date: 2023-12-10 00:00:00 +0000
-categories: ["blog"]
+categories: ["ai"]
 tags: ["ai", "art", "artistic-style"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/12/generatedart_super_computer_image_processor_-ar_32_-v_4_777b2e40-5906-4a23-868b-6976fb0cc7ee-3.png"
 description: "Neural Style Transfer (NST) is a captivating intersection of artificial intelligence and artistic creativity. This technology leverages the capabilities of deep learning to merge the essence of one im"
