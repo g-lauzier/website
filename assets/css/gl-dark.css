@@ -439,16 +439,16 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid var(--border);
   transition: background var(--transition);
 }
-.gl-post-row:hover .gl-post-title { color: var(--accent); }
+.gl-post-row:hover .gl-post-title { color: var(--text); }
 .gl-post-date {
   font-family: var(--mono);
   font-size: 0.75rem;
   color: var(--muted);
 }
 .gl-post-title {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--muted);
   transition: color var(--transition);
 }
 .gl-post-tag {
