@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neural Style Transfer (NST) — Guillaume Lauzier</title>
+  <meta name="description" content="Neural Style Transfer (NST) is a captivating intersection of artificial intelligence and artistic creativity. This technology leverages the capabilities of deep learning to merge the essence of one im" />
+  <link rel="shortcut icon" href="/assets/images/favicon.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="/assets/css/gl-dark.css" />
+</head>
+<body>
+
+<nav class="gl-nav">
+  <div class="gl-nav-inner">
+    <a href="/" class="gl-nav-logo">GL<span>.</span></a>
+    <button class="gl-nav-hamburger" id="gl-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="gl-nav-links" id="gl-nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="#investments">Investments</a></li>
+      <li><a href="/writing">Writing</a></li>
+      <li><a href="/advisory">Advisory</a></li>
+      <li class="nav-cta"><a href="/pitch">Pitch</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── POST HERO ── -->
+  <div class="gl-post-hero">
+    
+      <div class="gl-post-hero-media">
+        <img src="https://old.guillaumelauzier.com/wp-content/uploads/2023/12/generatedart_super_computer_image_processor_-ar_32_-v_4_777b2e40-5906-4a23-868b-6976fb0cc7ee-3.png" alt="Neural Style Transfer (NST)" class="gl-post-hero-img" />
+      </div>
+    
+
+    <div class="gl-post-hero-content">
+      <div class="gl-section">
+        
+        <div class="gl-post-cats">
+          
+          <a href="/category/blog" class="gl-post-cat-badge">blog</a>
+          
+        </div>
+        
+        <h1 class="gl-post-title">Neural Style Transfer (NST)</h1>
+        <div class="gl-post-meta">
+          <span class="gl-post-meta-item">December 10, 2023</span>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gl-divider"></div>
+
+  <!-- ── POST BODY ── -->
+  <div class="gl-section">
+    <div class="gl-post-body">
+
+      <div class="gl-post-content">
+        <p>Neural Style Transfer (NST) is a captivating intersection of artificial intelligence and artistic creativity. This technology leverages the capabilities of deep learning to merge the essence of one image with the aesthetic style of another.</p>
+
+<h2 id="basic-concept-of-neural-style-transfer-nst">Basic Concept of Neural Style Transfer (NST)</h2>
+
+<p><strong>Combining Content and Style</strong>: NST works by taking two images – a content image (like a photograph) and a style image (usually a famous painting) – and combining them. The goal is to produce a new image that retains the original content but is rendered in the artistic style of the second image.</p>
+
+<p><strong>Deep Learning at its Core</strong>: This process is made possible through deep learning techniques, specifically using Convolutional Neural Networks (CNNs). These networks are adept at recognizing and processing visual information.</p>
+
+<p><strong>Content Representation</strong>: The CNN captures the content of the target image at its deeper layers, where the network understands higher-level features (like objects and their arrangements).</p>
+
+<p><strong>Style Representation</strong>: The style of the source image is captured from the correlations between different layers of the CNN. These layers encode textural and color patterns characteristic of the artistic style.</p>
+
+<p><strong>Image Transformation</strong>: The NST algorithm iteratively adjusts a third, initially random image to minimize the differences in content with the target image and in style with the source image.</p>
+
+<p><strong>Resulting Image</strong>: The result is a fascinating blend that looks like the original photograph (content) ‘painted’ in the style of the artwork (style).</p>
+
+<h2 id="how-neural-style-transfer-works-with-python-example">How Neural Style Transfer Works with Python Example</h2>
+
+<p>**
+Content and Style Images**: The process begins with two images: a content image (the subject you want to transform) and a style image (the artistic style to be transferred).</p>
+
+<p><strong>Using a Pre-Trained CNN</strong>: Typically, a pre-trained CNN like VGG19 is used. This network has been trained on a vast dataset of images and can effectively extract and represent features from these images.</p>
+
+<p><strong>Feature Extraction</strong>: The CNN extracts content features from the content image and style features from the style image. These features are essentially patterns and textures that define the image’s content and style.</p>
+
+<p><strong>Combining Features</strong>: The NST algorithm then creates a new image that combines the content features of the content image with the style features of the style image.</p>
+
+<p><strong>Optimization</strong>: This new image is gradually refined through an optimization process, minimizing the loss between its content and the content image, and its style and the style image.</p>
+
+<p><strong>Result</strong>: The final output is a new image that retains the essence of the content image but is rendered in the style of the style image.</p>
+
+<p>Python Code Example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import tensorflow as tf
+import tensorflow_hub as hub
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Load content and style images
+content_image = plt.imread('path_to_content_image.jpg')
+style_image = plt.imread('path_to_style_image.jpg')
+
+# Load a style transfer model from TensorFlow Hub
+hub_model = hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
+
+# Preprocess images and run the style transfer
+content_image = tf.image.convert_image_dtype(content_image, tf.float32)tf.newaxis, ...]
+style_image = tf.image.convert_image_dtype(style_image, tf.float32)tf.newaxis, ...]
+stylized_image = hub_model(tf.constant(content_image), tf.constant(style_image))0]
+
+# Display the output
+plt.imshow(np.squeeze(stylized_image))
+plt.show()
+</code></pre></div></div>
+
+<p>This code snippet uses TensorFlow and TensorFlow Hub to apply a style transfer model, merging the content of one image with the style of another.</p>
+
+<h2 id="detailed-section-on-content-and-style-representations-in-neural-style-transfer">Detailed Section on Content and Style Representations in Neural Style Transfer</h2>
+
+<p><strong>Feature Extraction Using Pre-Trained CNN</strong>: VGG19, a CNN model pre-trained on a large dataset (like ImageNet), is often used. This model effectively extracts features from images.</p>
+
+<p><strong>Content Representation</strong>:</p>
+
+<ul>
+  <li>
+    <p>The content of an image is represented by the feature maps of higher layers in the CNN.</p>
+  </li>
+  <li>
+    <p>These layers capture the high-level content of the image, such as objects and their spatial arrangement, but not the finer details or style aspects.</p>
+  </li>
+</ul>
+
+<p><strong>Style Representation</strong>:</p>
+
+<ul>
+  <li>
+    <p>The style of an image is captured by examining the correlations across different layers’ feature maps.</p>
+  </li>
+  <li>
+    <p>These correlations are represented as a Gram matrix, which effectively captures the texture and visual patterns that define the image’s style.</p>
+  </li>
+</ul>
+
+<p><strong>Combining Content and Style</strong>:</p>
+
+<ul>
+  <li>
+    <p>NST algorithms aim to preserve the content from the content image while adopting the style of the style image.</p>
+  </li>
+  <li>
+    <p>This is done by minimizing a loss function that measures the difference in content and style representations between the generated image and the respective content and style images.</p>
+  </li>
+</ul>
+
+<p>Python Code Example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import numpy as np
+import tensorflow as tf
+from tensorflow.keras.applications import vgg19
+from tensorflow.keras.preprocessing.image import load_img, img_to_array
+
+# Function to preprocess the image for VGG19
+def preprocess_image(image_path, target_size=(224, 224)):
+    img = load_img(image_path, target_size=target_size)
+    img = img_to_array(img)
+    img = np.expand_dims(img, axis=0)
+    img = vgg19.preprocess_input(img)
+    return img
+
+# Load your content and style images
+content_image = preprocess_image('path_to_your_content_image.jpg')
+style_image = preprocess_image('path_to_your_style_image.jpg')
+
+# Load the VGG19 model
+model = vgg19.VGG19(weights='imagenet', include_top=False)
+
+# Define a function to get content and style features
+def get_features(image, model):
+    layers = {
+        'content': 'block5_conv2'], 
+        'style': 'block1_conv1', 'block2_conv1', 'block3_conv1', 'block4_conv1', 'block5_conv1']
+    }
+    features = {}
+    outputs = model.get_layer(name).output for name in layers'content'] + layers'style']]
+    model = tf.keras.Model(model.input], outputs)
+    image_features = model(image)
+    for name, output in zip(layers'content'] + layers'style'], image_features):
+        featuresname] = output
+    return features
+
+# Extract features
+content_features = get_features(content_image, model)
+style_features = get_features(style_image, model)
+</code></pre></div></div>
+
+<p>This code provides a basic structure for extracting content and style features using VGG19 in Python. Further steps would involve defining and optimizing the loss functions to generate the stylized image.</p>
+
+<h2 id="applications-of-neural-style-transfer">Applications of Neural Style Transfer</h2>
+
+<p><strong>Video Styling</strong>: NST can be applied to video content, allowing filmmakers and content creators to impart artistic styles to their videos. This can transform ordinary footage into visually stunning sequences that resemble paintings or other art forms.</p>
+
+<p><strong>Website Design</strong>: In web design, NST can be used to create unique, visually appealing backgrounds and elements. Designers can apply specific artistic styles to images, aligning them with the overall aesthetic of the website.</p>
+
+<p><strong>Fashion and Textile Design</strong>: NST has been explored in the fashion industry for designing fabrics and garments. By transferring artistic styles onto textile patterns, designers can create innovative and unique clothing lines.</p>
+
+<p><strong>Augmented Reality (AR) and Virtual Reality (VR)</strong>: In AR and VR environments, NST can enhance the visual experience by applying artistic styles in real-time, creating immersive and engaging worlds for users.</p>
+
+<p><strong>Product Design</strong>: NST can be used in product design to create visually appealing prototypes and presentations, allowing designers to experiment with different artistic styles quickly.</p>
+
+<p><strong>Therapeutic Settings for Mental Health</strong>: There’s growing interest in using NST in therapeutic settings. By creating soothing and pleasant images, it can be used as a tool for relaxation and stress relief, contributing positively to mental health and well-being.</p>
+
+<p><strong>Educational Tools</strong>: NST can also be used as an educational tool in art and design schools, helping students understand the nuances of different artistic styles and techniques.</p>
+
+<p>These diverse applications showcase the versatility of NST, demonstrating its potential beyond the realm of digital art creation.</p>
+
+<h2 id="limitations-and-challenges-of-neural-style-transfer">Limitations and Challenges of Neural Style Transfer</h2>
+
+<p><strong>Computational Intensity</strong>:</p>
+
+<ul>
+  <li>NST, especially when using deep learning models like VGG19, is computationally demanding. It requires significant processing power, often necessitating the use of GPUs to achieve reasonable processing times.</li>
+</ul>
+
+<p><strong>Balancing Content and Style</strong>:</p>
+
+<ul>
+  <li>Achieving the right balance between content and style in the output image can be challenging. It often requires careful tuning of the algorithm’s parameters and may involve a lot of trial and error.</li>
+</ul>
+
+<p><strong>Unpredictability of Results</strong>:</p>
+
+<ul>
+  <li>The outcome of NST can be unpredictable. The results may vary widely based on the chosen content and style images and the specific configurations of the neural network.</li>
+</ul>
+
+<p><strong>Quality of Output</strong>:</p>
+
+<ul>
+  <li>The quality of the generated image can sometimes be lower than expected, with issues like distortions in the content or the style not being accurately captured.</li>
+</ul>
+
+<p><strong>Training Data Limitations</strong>:</p>
+
+<ul>
+  <li>The effectiveness of NST is also influenced by the variety and quality of images used to train the underlying model. Limited or biased training data can affect the versatility and effectiveness of the style transfer.</li>
+</ul>
+
+<p><strong>Overfitting</strong>:</p>
+
+<ul>
+  <li>There’s a risk of overfitting, especially when the style transfer model is trained on a narrow set of images. This can limit the model’s ability to generalize across different styles and contents.</li>
+</ul>
+
+<p>These challenges highlight the need for ongoing research and development in the field of NST to enhance its efficiency, versatility, and accessibility.</p>
+
+<p>## 
+Necessary Hardware Resources for AI and Machine Learning in Art Generation</p>
+
+<p>To effectively work with AI and machine learning algorithms for art generation, which can be computationally intensive, certain hardware resources are essential:</p>
+
+<p><strong>High-Performance GPUs</strong>:</p>
+
+<ul>
+  <li>
+    <p>Graphics Processing Units (GPUs) are crucial for their ability to handle parallel tasks, making them ideal for the intensive computations required in training and running neural networks.</p>
+  </li>
+  <li>
+    <p>GPUs significantly reduce the time required for training models and generating art, compared to traditional CPUs.</p>
+  </li>
+</ul>
+
+<p><strong>Sufficient RAM</strong>:</p>
+
+<ul>
+  <li>
+    <p>Adequate Random Access Memory (RAM) is important for handling large datasets and the high memory requirements of deep learning models.</p>
+  </li>
+  <li>
+    <p>A minimum of 16GB RAM is recommended, but 32GB or higher is preferable for more complex tasks.</p>
+  </li>
+</ul>
+
+<p><strong>Fast Storage Solutions</strong>:</p>
+
+<ul>
+  <li>Solid State Drives (SSDs) are preferred over Hard Disk Drives (HDDs) for their faster data access speeds, which is beneficial when working with large datasets and models.</li>
+</ul>
+
+<p><strong>High-Performance CPUs</strong>:</p>
+
+<ul>
+  <li>
+    <p>While GPUs handle most of the heavy lifting, a good CPU can improve overall system performance and efficiency.</p>
+  </li>
+  <li>
+    <p>Multi-core processors with high clock speeds are recommended.</p>
+  </li>
+</ul>
+
+<p><strong>Cloud Computing Platforms</strong>:</p>
+
+<ul>
+  <li>
+    <p>Cloud computing resources like AWS, Google Cloud Platform, or Microsoft Azure offer powerful hardware for AI and machine learning tasks without the need for local installation.</p>
+  </li>
+  <li>
+    <p>These platforms provide scalability, allowing you to choose resources as per the project’s requirements.</p>
+  </li>
+</ul>
+
+<p><strong>Adequate Cooling Solutions</strong>:</p>
+
+<ul>
+  <li>High computational tasks generate significant heat. Therefore, a robust cooling solution is necessary to maintain optimal hardware performance and longevity.</li>
+</ul>
+
+<p><strong>Reliable Power Supply</strong>:</p>
+
+<ul>
+  <li>A stable and reliable power supply is crucial, especially for desktop setups, to ensure uninterrupted processing and to protect the hardware from power surges.</li>
+</ul>
+
+<p>Investing in these hardware resources can greatly enhance the efficiency and capabilities of AI and machine learning algorithms in art generation and other computationally demanding tasks.</p>
+
+<h2 id="limitations-and-challenges-of-neural-style-transfer-1">Limitations and Challenges of Neural Style Transfer</h2>
+
+<p>Neural Style Transfer (NST), despite its innovative applications in art and technology, faces several limitations and challenges:</p>
+
+<p><strong>Computational Resource Intensity</strong>:</p>
+
+<ul>
+  <li>NST is computationally demanding, often requiring powerful GPUs and significant processing power. This can be a barrier for individuals or organizations without access to high-end computing resources.</li>
+</ul>
+
+<p><strong>Quality and Resolution of Output</strong>:</p>
+
+<ul>
+  <li>The quality and resolution of the output images can sometimes be less than satisfactory. High-resolution images may lose detail or suffer from distortions after the style transfer.</li>
+</ul>
+
+<p><strong>Balancing Act Between Content and Style</strong>:</p>
+
+<ul>
+  <li>Achieving a harmonious balance between the content and style in the output image can be challenging. It often requires fine-tuning of parameters and multiple iterations.</li>
+</ul>
+
+<p><strong>Generalization and Diversity</strong>:</p>
+
+<ul>
+  <li>NST models might struggle with generalizing across vastly different styles or content types. This can limit the diversity of styles that can be effectively transferred.</li>
+</ul>
+
+<p><strong>Training Data Biases</strong>:</p>
+
+<ul>
+  <li>The effectiveness of NST can be limited by the biases present in the training data. A model trained on a narrow range of styles may not perform well with radically different artistic styles.</li>
+</ul>
+
+<p><strong>Overfitting Risks</strong>:</p>
+
+<ul>
+  <li>There’s a risk of overfitting when the style transfer model is exposed to a limited set of images, leading to reduced effectiveness on a broader range of styles.</li>
+</ul>
+
+<p><strong>Real-Time Processing Challenges</strong>:</p>
+
+<ul>
+  <li>Implementing NST in real-time applications, such as video styling, can be particularly challenging due to the intensive computational requirements.</li>
+</ul>
+
+<p>Understanding and addressing these limitations and challenges is crucial for the advancement and wider application of NST technologies.</p>
+
+<p>## 
+Trends and Innovations in Neural Style Transfer (NST)</p>
+
+<p>Neural Style Transfer (NST) is an evolving field with continuous advancements and innovations. These developments are broadening its applications and enhancing its efficiency:</p>
+
+<p><strong>Improving Efficiency</strong>:</p>
+
+<ul>
+  <li>Research is focused on making NST algorithms faster and more resource-efficient. This includes optimizing existing neural network architectures and developing new methods to reduce computational requirements.</li>
+</ul>
+
+<p><strong>Adapting to Various Artistic Styles</strong>:</p>
+
+<ul>
+  <li>Innovations in NST are enabling the adaptation to a wider range of artistic styles. This includes the ability to mimic more complex and abstract art forms, providing artists and designers with more diverse creative tools.</li>
+</ul>
+
+<p><strong>Extending Applications Beyond Visual Art</strong>:</p>
+
+<ul>
+  <li>NST is finding applications in areas beyond traditional visual art. This includes video game design, film production, interior design, and even fashion, where NST can be used to create unique patterns and designs.</li>
+</ul>
+
+<p><strong>Real-Time Style Transfer</strong>:</p>
+
+<ul>
+  <li>Advances in real-time processing capabilities are enabling NST to be applied in dynamic environments, such as live video feeds, augmented reality (AR), and virtual reality (VR).</li>
+</ul>
+
+<p><strong>Integration with Other AI Technologies</strong>:</p>
+
+<ul>
+  <li>NST is being combined with other AI technologies like Generative Adversarial Networks (GANs) and reinforcement learning to create more sophisticated and versatile style transfer tools.</li>
+</ul>
+
+<p><strong>User-Friendly Tools and Platforms</strong>:</p>
+
+<ul>
+  <li>The development of more user-friendly NST tools and platforms is democratizing access, allowing artists and non-technical users to experiment with style transfer without deep technical knowledge.</li>
+</ul>
+
+<p>These trends and innovations are propelling NST into new realms of creativity and practical application, making it a rapidly growing area in the field of AI and machine learning.</p>
+
+<h1 id="how-can-neural-style-transfer-nst-be-used-in-generative-art">How can Neural Style Transfer (NST) be used in Generative Art?</h1>
+
+<p>Neural Style Transfer (NST) offers a transformative approach to generative art, combining deep learning techniques to create visually striking and unique artworks. Its application in generative art can be understood through the following points:</p>
+
+<ol>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+</ol>
+
+<h2 id="-sources">🌐 Sources</h2>
+
+<ul>
+  <li>
+    <p><a href="https://www.linkedin.com/advice/3/what-latest-trends-innovations-neural-style-transfer">Neural Style Transfer: Trends, Innovations, and Benefits</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.linkedin.com/advice/0/what-current-challenges-limitations-deep-learning">Challenges and Limitations of Deep Learning for Style Transfer</a></p>
+  </li>
+  <li>
+    <p><a href="https://ieeexplore.ieee.org/document/9539183/">Neural Style Transfer: A Critical Review</a></p>
+  </li>
+  <li>
+    <p><a href="https://inst.eecs.berkeley.edu/~cs194-26/fa18/upload/files/projFinalProposed/cs194-26-adv/docs/">Neural Style Transfer for So Long, and Thanks for all the Fish</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.researchgate.net/figure/Advantages-and-disadvantages-of-the-two-methods-presented-a-Content-image-from-Fig-1_fig3_304163747">Advantages and disadvantages of two methods of Neural Style Transfer</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.sciencedirect.com/science/article/abs/pii/S1077314221000473">Evaluate and improve the quality of neural style transfer</a></p>
+  </li>
+  <li>
+    <p><a href="https://medium.com/@zhonghong9998/neural-style-transfer-creating-artistic-images-with-deep-learning-803409fc64c0">Neural Style Transfer: Creating Artistic Images with Deep Learning</a></p>
+  </li>
+  <li>
+    <p><a href="https://rcorin.medium.com/transforming-photos-into-art-automatically-classic-algorithms-neural-style-transfer-gan-and-a3cac3124916">Classic algorithms, neural style transfer, GAN – Ricardo Corin</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.ikomia.ai/blog/neural-style-transfer-guide">Mastering Neural Style Transfer</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/ycjing/Neural-Style-Transfer-Papers">Neural Style Transfer Papers on GitHub</a></p>
+  </li>
+  <li>
+    <p><a href="https://towardsdatascience.com/how-to-make-artistic-images-with-neural-style-transfer-345a376d56cf">How to Make Artistic Images with Neural Style Transfer</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.linkedin.com/pulse/artificial-intelligence-applications-neural-style-transfer-mohan">Artificial Intelligence and Applications: Neural Style Transfer</a></p>
+  </li>
+  <li>
+    <p><a href="https://medium.com/@mirzezadeh.elvin/neural-style-transfer-with-deep-vgg-model-26b11ea06b7e">Neural Style Transfer with Deep VGG model</a></p>
+  </li>
+  <li>
+    <p><a href="https://medium.com/udacity-pytorch-challengers/style-transfer-using-deep-nural-network-and-pytorch-3fae1c2dd73e">Style Transfer using Deep Neural Network and PyTorch</a></p>
+  </li>
+  <li>
+    <p><a href="https://towardsdatascience.com/neural-style-transfer-on-real-time-video-with-full-implementable-code-ac2dbc0e9822">Neural Style Transfer on Real Time Video (With Full Implementable Code)</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/">How to Code Neural Style Transfer in Python?</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.datacamp.com/tutorial/implementing-neural-style-transfer-using-tensorflow">Implementing Neural Style Transfer Using TensorFlow 2.0</a></p>
+  </li>
+  <li>
+    <p><a href="https://heartbeat.comet.ml/neural-style-transfer-nst-1ba877165179">Neural Style Transfer (NST). Using Deep Learning Algorithms</a></p>
+  </li>
+  <li>
+    <p><a href="https://medium.com/@mirzezadeh.elvin/neural-style-transfer-with-deep-vgg-model-26b11ea06b7e">Neural Style Transfer with Deep VGG model</a></p>
+  </li>
+  <li>
+    <p><a href="https://medium.com/udacity-pytorch-challengers/style-transfer-using-deep-nural-network-and-pytorch-3fae1c2dd73e">Style Transfer using Deep Neural Network and PyTorch</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/">How to Code Neural Style Transfer in Python?</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.datacamp.com/tutorial/implementing-neural-style-transfer-using-tensorflow">Implementing Neural Style Transfer Using TensorFlow 2.0</a></p>
+  </li>
+  <li>
+    <p><a href="https://towardsdatascience.com/neural-style-transfer-on-real-time-video-with-full-implementable-code-ac2dbc0e9822">Neural Style Transfer on Real Time Video (With Full Implementable Code)</a></p>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Neural style transfer</td>
+          <td>TensorFlow Core](https://www.tensorflow.org/tutorials/generative/style_transfer)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><a href="https://medium.com/@mirzezadeh.elvin/neural-style-transfer-with-deep-vgg-model-26b11ea06b7e">Neural Style Transfer with Deep VGG model</a></p>
+  </li>
+  <li>
+    <p><a href="https://medium.com/udacity-pytorch-challengers/style-transfer-using-deep-nural-network-and-pytorch-3fae1c2dd73e">Style Transfer using Deep Neural Network and PyTorch</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/">Introduction and Implementation to Neural Style Transfer</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.datacamp.com/tutorial/implementing-neural-style-transfer-using-tensorflow">Implementing Neural Style Transfer Using TensorFlow 2.0</a></p>
+  </li>
+  <li>
+    <p><a href="https://towardsdatascience.com/making-deep-learning-your-artist-with-style-transfer-4854055f79b7">Making deep learning your artist with Style Transfer</a></p>
+  </li>
+  <li>
+    <p><a href="https://towardsdatascience.com/neural-style-transfer-on-real-time-video-with-full-implementable-code-ac2dbc0e9822">Neural Style Transfer on Real Time Video</a></p>
+  </li>
+  <li>
+    <p><a href="https://anderfernandez.com/en/blog/how-to-code-neural-style-transfer-in-python/">How to code Neural Style Transfer in Python</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/superb20/Image-Style-Transfer-Using-Convolutional-Neural-Networks">Image-Style-Transfer-Using-Convolutional-Neural-Networks on GitHub</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/">Introduction and Implementation to Neural Style Transfer</a></p>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[How to do Image Style Transfer in Python</td>
+          <td>Medium](https://medium.com/analytics-vidhya/how-to-do-neural-style-transfer-in-python-bee3f0d1008b)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Implementing Neural Style Transfer Using TensorFlow 2.0</td>
+          <td>DataCamp](https://www.datacamp.com/tutorial/implementing-neural-style-transfer-using-tensorflow)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Fast Neural Style Transfer Using TensorFlow 2</td>
+          <td>Towards Data Science](https://towardsdatascience.com/python-for-art-fast-neural-style-transfer-using-tensorflow-2-d5e7662061be)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Neural style transfer</td>
+          <td>TensorFlow Core](https://www.tensorflow.org/tutorials/generative/style_transfer)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Neural Style Transfer (NST) — theory and implementation</td>
+          <td>Medium](https://medium.com/@ferlatti.aldo/neural-style-transfer-nst-theory-and-implementation-c26728cf969d)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[How Do Neural Style Transfers Work?</td>
+          <td>Towards Data Science](https://towardsdatascience.com/how-do-neural-style-transfers-work-b76de101eb3)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Neural Style Transfer: Using Deep Learning to Generate Art</td>
+          <td>V7 Labs](https://www.v7labs.com/blog/neural-style-transfer)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Intuitive Guide to Neural Style Transfer</td>
+          <td>Towards Data Science](https://towardsdatascience.com/light-on-math-machine-learning-intuitive-guide-to-neural-style-transfer-ef88e46697ee)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[How to Code Neural Style Transfer in Python?</td>
+          <td>Analytics Vidhya](https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[How Do Neural Style Transfers Work?</td>
+          <td>Towards Data Science](https://towardsdatascience.com/how-do-neural-style-transfers-work-b76de101eb3)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Neural Style Transfer: Using Deep Learning to Generate Art</td>
+          <td>V7 Labs](https://www.v7labs.com/blog/neural-style-transfer)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[A brief introduction to Neural Style Transfer</td>
+          <td>Towards Data Science](https://towardsdatascience.com/a-brief-introduction-to-neural-style-transfer-d05d0403901d)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Neural Style Transfer (NST) — theory and implementation</td>
+          <td>Medium](https://medium.com/@ferlatti.aldo/neural-style-transfer-nst-theory-and-implementation-c26728cf969d)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Shrinking Neural Style Transfer Model with Knowledge</td>
+          <td>IEEE Xplore](https://ieeexplore.ieee.org/document/9918806)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Neural Style Transfer: Trends, Innovations, and Benefits</td>
+          <td>LinkedIn](https://www.linkedin.com/advice/3/what-latest-trends-innovations-neural-style-transfer)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><a href="https://www.linkedin.com/advice/0/what-most-effective-techniques-style-transfer-afgzf">LinkedIn – How to Use Generative AI for Style Transfer</a></p>
+  </li>
+  <li>
+    <p>Medium – Neural Style Transfer: Creating Artistic Images with Deep Learning</p>
+  </li>
+  <li>
+    <p><a href="https://www.ikomia.ai/blog/neural-style-transfer-guide">Ikomia – Mastering Neural Style Transfer: Techniques and</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/deepeshdm/Neural-Style-Transfer">GitHub – deepeshdm/Neural-Style-Transfer: Creating digital art</a></p>
+  </li>
+  <li><a href="https://heartbeat.comet.ml/neural-style-transfer-nst-1ba877165179">Heartbeat – Neural Style Transfer (NST). Using Deep Learning Algorithms</a></li>
+</ul>
+
+
+        
+      </div>
+
+      <!-- Tags + Share -->
+      <div class="gl-post-footer">
+        
+        <div class="gl-post-tags">
+          
+          <a href="/tag/ai" class="gl-post-tag">ai</a>
+          
+          <a href="/tag/art" class="gl-post-tag">art</a>
+          
+          <a href="/tag/artistic-style" class="gl-post-tag">artistic-style</a>
+          
+        </div>
+        
+        <div class="gl-post-share">
+          <span class="gl-post-share-label">Share</span>
+          <a href="https://twitter.com/intent/tweet?url=%2Fneural-style-transfer-nst%2F&text=Neural+Style+Transfer+%28NST%29" target="_blank" rel="noopener" aria-label="Share on X">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=%2Fneural-style-transfer-nst%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Back to writing -->
+      <div class="gl-post-back">
+        <a href="/writing" class="gl-post-back-link">← Back to Field Notes</a>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+
+<footer class="gl-footer">
+  <div class="gl-nav-inner">
+    <span class="gl-footer-copy">© 2026 Guillaume Lauzier</span>
+
+    <div class="gl-footer-social">
+      <a href="https://www.linkedin.com/in/guillaumelauzier/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/guilauzier/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://x.com/guilauzier" target="_blank" rel="noopener" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://github.com/guillaumelauzier" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <a href="https://www.instagram.com/guillaumelauzier" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@guillaumelauzier" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+      </a>
+      <a href="https://medium.com/@guillaumelauzier" target="_blank" rel="noopener" aria-label="Medium">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+      </a>
+    </div>
+
+    <div class="gl-footer-links">
+      <a href="/advisory">Advisory</a>
+      <a href="/writing">Writing</a>
+      <a href="/pitch">Pitch</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/gl.js"></script>
+</body>
+</html>

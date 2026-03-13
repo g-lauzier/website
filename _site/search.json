@@ -1,183 +1,669 @@
 [
   
     {
-      "title"    : "MultiCarousel Post",
+      "title"    : "The World of Pixel Recurrent Neural Networks (PixelRNNs)",
       "category" : "",
-      "tags"     : "travel, photography",
-      "url"      : "/posts/multi-carousel-post",
-      "date"     : "2025-01-15 04:37:13 +0000",
-      "desc"     : "MultiCarousel Post"
+      "tags"     : "artificial-intelligence",
+      "url"      : "/the-world-pixelrnns/",
+      "date"     : "2023-12-19 00:00:00 +0000",
+      "desc"     : "The World of Pixel Recurrent Neural Networks (PixelRNNs)"
     } ,
   
     {
-      "title"    : "Essential Travel Photography: Capturing Moments Around the Globe",
+      "title"    : "Neural Style Transfer (NST)",
       "category" : "",
-      "tags"     : "travel tips, photography, adventure",
-      "url"      : "/posts/travel-photography-guide",
-      "date"     : "2025-01-14 04:37:13 +0000",
-      "desc"     : "Essential Travel Photography: Capturing Moments Around the Globe"
+      "tags"     : "ai, art, artistic-style",
+      "url"      : "/neural-style-transfer-nst/",
+      "date"     : "2023-12-10 00:00:00 +0000",
+      "desc"     : "Neural Style Transfer (NST)"
     } ,
   
     {
-      "title"    : "Post with Carousel on main Image",
+      "title"    : "AXAL: A Sustainable IT Revolution",
       "category" : "",
-      "tags"     : "technology, education",
-      "url"      : "/posts/post-with-carousel",
-      "date"     : "2025-01-14 04:37:13 +0000",
-      "desc"     : "Post with Carousel on main Image"
+      "tags"     : "agriculture-integration, axal, community-resilience",
+      "url"      : "/axal-a-sustainable-it-revolution/",
+      "date"     : "2023-11-27 00:00:00 +0000",
+      "desc"     : "AXAL: A Sustainable IT Revolution"
     } ,
   
     {
-      "title"    : "Mastering Markdown: A Comprehensive Guide",
+      "title"    : "Leadership Within the Banking Industry",
       "category" : "",
-      "tags"     : "markdown, jekyll, formatting, tutorial",
-      "url"      : "/posts/markdown-advanced-guide",
-      "date"     : "2025-01-14 04:00:00 +0000",
-      "desc"     : "Mastering Markdown: A Comprehensive Guide"
+      "tags"     : "autonomy, banking-industry",
+      "url"      : "/leadership-banking-industry/",
+      "date"     : "2023-09-05 00:00:00 +0000",
+      "desc"     : "Leadership Within the Banking Industry"
     } ,
   
     {
-      "title"    : "Post with Gallery",
+      "title"    : "Offering Cryptocurrency as a Service",
       "category" : "",
-      "tags"     : "technology, education",
-      "url"      : "/posts/post-with-gallery",
-      "date"     : "2025-01-10 14:37:13 +0000",
-      "desc"     : "Post with Gallery"
+      "tags"     : "blockchain, client-demand",
+      "url"      : "/offering-cryptocurrency-as-a-service/",
+      "date"     : "2023-08-30 00:00:00 +0000",
+      "desc"     : "Offering Cryptocurrency as a Service"
     } ,
   
     {
-      "title"    : "Simple Post With No Sidebar",
+      "title"    : "Transfer Learning in Modern AI",
       "category" : "",
-      "tags"     : "technology, education",
-      "url"      : "/posts/simple-post-with-no-sidebar",
-      "date"     : "2025-01-08 14:37:13 +0000",
-      "desc"     : "Simple Post With No Sidebar"
+      "tags"     : "artificial-neural-networks",
+      "url"      : "/the-power-of-transfer-learning-in-modern-ai/",
+      "date"     : "2023-08-05 00:00:00 +0000",
+      "desc"     : "Transfer Learning in Modern AI"
     } ,
   
     {
-      "title"    : "The Natural Places in Brazil",
+      "title"    : "Graph Neural Networks: Revolutionizing Data Analysis in Graph-Structured Domains",
       "category" : "",
-      "tags"     : "travel",
-      "url"      : "/posts/the-natural-places-in-brazil",
-      "date"     : "2025-01-07 14:37:13 +0000",
-      "desc"     : "The Natural Places in Brazil"
+      "tags"     : "",
+      "url"      : "/graph-neural-networks/",
+      "date"     : "2023-08-01 00:00:00 +0000",
+      "desc"     : "Graph Neural Networks: Revolutionizing Data Analysis in Graph-Structured Domains"
     } ,
   
     {
-      "title"    : "Ultricies fusce porta elit pharetra augue faucibus",
+      "title"    : "Understanding Web 3.0: A Shift Towards Decentralization and User Sovereignty",
       "category" : "",
-      "tags"     : "technology, education",
-      "url"      : "/posts/our-statement",
-      "date"     : "2025-01-07 14:37:13 +0000",
-      "desc"     : "Ultricies fusce porta elit pharetra augue faucibus"
+      "tags"     : "blockchain-technology",
+      "url"      : "/understanding-web-3-0/",
+      "date"     : "2023-07-25 00:00:00 +0000",
+      "desc"     : "Understanding Web 3.0: A Shift Towards Decentralization and User Sovereignty"
     } ,
   
     {
-      "title"    : "Maecenas sed diam eget risus varius blandit sit amet non",
+      "title"    : "Fundamentals of Building a Blockchain",
       "category" : "",
-      "tags"     : "jekyll",
-      "url"      : "/posts/24-hours-in-the-village-of-belgium",
-      "date"     : "2025-01-07 08:05:11 +0000",
-      "desc"     : "Maecenas sed diam eget risus varius blandit sit amet non"
+      "tags"     : "block-design, blockchain, blockchain-mathematical-principles, c-blockchain-implementation",
+      "url"      : "/fundamentals-building-blockchain/",
+      "date"     : "2023-07-19 00:00:00 +0000",
+      "desc"     : "Fundamentals of Building a Blockchain"
     } ,
   
     {
-      "title"    : "Markdown Post With Video",
+      "title"    : "Managing Parties and Fetching Off-Chain Data in NFTs using Solidity and Chainlink Oracles",
       "category" : "",
-      "tags"     : "vlog",
-      "url"      : "/posts/post-with-video",
-      "date"     : "2025-01-06 14:37:13 +0000",
-      "desc"     : "Markdown Post With Video"
+      "tags"     : "chainlink, collaboration",
+      "url"      : "/chain-data-solidity-chainlink-oracles/",
+      "date"     : "2023-07-11 00:00:00 +0000",
+      "desc"     : "Managing Parties and Fetching Off-Chain Data in NFTs using Solidity and Chainlink Oracles"
     } ,
   
     {
-      "title"    : "The Biggest Train Station in Europe",
+      "title"    : "Demystifying the Technicalities of Rendering Tokenized Generative Art",
       "category" : "",
-      "tags"     : "travel",
-      "url"      : "/posts/the-biggest-train-station-in-europe",
-      "date"     : "2025-01-06 14:37:13 +0000",
-      "desc"     : "The Biggest Train Station in Europe"
+      "tags"     : "blockchain",
+      "url"      : "/rendering-tokenized-generative-art/",
+      "date"     : "2023-07-07 00:00:00 +0000",
+      "desc"     : "Demystifying the Technicalities of Rendering Tokenized Generative Art"
     } ,
   
     {
-      "title"    : "Markdown post with code highlighting",
+      "title"    : "Mastering the Power of C at 42 Lausanne: A Journey into Lower-Level Programming Languages",
       "category" : "",
-      "tags"     : "kramdown",
-      "url"      : "/posts/post-with-code-highlight",
-      "date"     : "2025-01-05 14:37:13 +0000",
-      "desc"     : "Markdown post with code highlighting"
+      "tags"     : "42-lausanne, c-programming-2, c-programming",
+      "url"      : "/c-42-lausanne/",
+      "date"     : "2023-06-27 00:00:00 +0000",
+      "desc"     : "Mastering the Power of C at 42 Lausanne: A Journey into Lower-Level Programming Languages"
     } ,
   
     {
-      "title"    : "24 Hours in the Village of Valencia",
+      "title"    : "Generative Art: The Algorithmic Touch",
       "category" : "",
-      "tags"     : "shopping",
-      "url"      : "/posts/24-hours-in-the-village-of-valencia",
-      "date"     : "2025-01-05 14:37:13 +0000",
-      "desc"     : "24 Hours in the Village of Valencia"
+      "tags"     : "cellular-automata",
+      "url"      : "/generative-art-the-algorithmic-touch/",
+      "date"     : "2023-06-26 00:00:00 +0000",
+      "desc"     : "Generative Art: The Algorithmic Touch"
     } ,
   
     {
-      "title"    : "My Love Affair with Cappadocia",
+      "title"    : "The Importance of Understanding Tokenomics as a Cryptocurrency Investor",
       "category" : "",
-      "tags"     : "history",
-      "url"      : "/posts/my-love-affair-with-cappadocia",
-      "date"     : "2025-01-04 14:37:13 +0000",
-      "desc"     : "My Love Affair with Cappadocia"
+      "tags"     : "blockchain",
+      "url"      : "/the-importance-of-understanding-tokenomics-as-a-cryptocurrency-investor/",
+      "date"     : "2023-06-20 00:00:00 +0000",
+      "desc"     : "The Importance of Understanding Tokenomics as a Cryptocurrency Investor"
     } ,
   
     {
-      "title"    : "Markdown Post with image",
+      "title"    : "Monte Carlo Simulation in Finance: Traditional and Decentralized",
       "category" : "",
-      "tags"     : "technology, education",
-      "url"      : "/posts/post-with-image",
-      "date"     : "2025-01-04 14:37:13 +0000",
-      "desc"     : "Markdown Post with image"
+      "tags"     : "",
+      "url"      : "/monte-carlo-simulation-finance/",
+      "date"     : "2023-06-17 00:00:00 +0000",
+      "desc"     : "Monte Carlo Simulation in Finance: Traditional and Decentralized"
     } ,
   
     {
-      "title"    : "Markdown Post",
+      "title"    : "Bootstrapping and Equity Management",
       "category" : "",
-      "tags"     : "kramdown, wedding",
-      "url"      : "/posts/markdown-post",
-      "date"     : "2025-01-03 14:37:13 +0000",
-      "desc"     : "Markdown Post"
+      "tags"     : "bootstrapping, business-model, cap-table",
+      "url"      : "/bootstrapping-equity-management/",
+      "date"     : "2023-06-10 00:00:00 +0000",
+      "desc"     : "Bootstrapping and Equity Management"
     } ,
   
     {
-      "title"    : "A Dreamy Roadtrip in Australia",
+      "title"    : "Web Server Architecture Techniques for High Volume Traffic",
       "category" : "",
-      "tags"     : "ecommerce",
-      "url"      : "/posts/a-dreamy-roadtrip-in-australia",
-      "date"     : "2025-01-03 14:37:13 +0000",
-      "desc"     : "A Dreamy Roadtrip in Australia"
+      "tags"     : "auto-scaling, caching, cdn",
+      "url"      : "/web-server-architecture/",
+      "date"     : "2023-05-24 00:00:00 +0000",
+      "desc"     : "Web Server Architecture Techniques for High Volume Traffic"
     } ,
   
     {
-      "title"    : "Boxed Post",
+      "title"    : "The Generative Artist&#39;s Criteria: Your Gateway to GeneratedArt",
       "category" : "",
-      "tags"     : "architecture",
-      "url"      : "/posts/post-boxed",
-      "date"     : "2025-01-02 14:37:13 +0000",
-      "desc"     : "Boxed Post"
+      "tags"     : "algorithm-development, art, art-inspiration, collaboration, compliance-in-art",
+      "url"      : "/generative-artists-criteria-generatedart/",
+      "date"     : "2023-05-14 00:00:00 +0000",
+      "desc"     : "The Generative Artist's Criteria: Your Gateway to GeneratedArt"
     } ,
   
     {
-      "title"    : "Boxed Post with Sidebar",
+      "title"    : "Exploring Copyright Licenses for AI Art",
       "category" : "",
-      "tags"     : "architecture",
-      "url"      : "/posts/post-boxed-sidebar",
-      "date"     : "2025-01-02 14:37:13 +0000",
-      "desc"     : "Boxed Post with Sidebar"
+      "tags"     : "ai-art, blockchain, collaborative-royalty-distribution, collective-licensing-models",
+      "url"      : "/exploring-copyright-licenses-for-ai-art/",
+      "date"     : "2023-05-04 00:00:00 +0000",
+      "desc"     : "Exploring Copyright Licenses for AI Art"
     } ,
   
     {
-      "title"    : "Simple Post With Sidebar",
+      "title"    : "Tokenization of Intellectual Property: A Pathway to Unlocking Value for Stakeholders and Shareholders",
       "category" : "",
-      "tags"     : "travel",
-      "url"      : "/posts/simple-post-with-sidebar",
-      "date"     : "2025-01-01 14:37:13 +0000",
-      "desc"     : "Simple Post With Sidebar"
+      "tags"     : "blockchain",
+      "url"      : "/tokenization-intellectual-property/",
+      "date"     : "2023-05-03 00:00:00 +0000",
+      "desc"     : "Tokenization of Intellectual Property: A Pathway to Unlocking Value for Stakeholders and Shareholders"
+    } ,
+  
+    {
+      "title"    : "Generative Art Licensing using Blockchain Technology",
+      "category" : "",
+      "tags"     : "art-licensing, authenticity, blockchain-technology",
+      "url"      : "/generative-art-licensing-blockchain-technology/",
+      "date"     : "2023-05-01 00:00:00 +0000",
+      "desc"     : "Generative Art Licensing using Blockchain Technology"
+    } ,
+  
+    {
+      "title"    : "NFT 2.0: Future of Digital Asset Ownership",
+      "category" : "",
+      "tags"     : "blockchain",
+      "url"      : "/nft-2-0-future-of-digital-asset-ownership/",
+      "date"     : "2023-04-29 00:00:00 +0000",
+      "desc"     : "NFT 2.0: Future of Digital Asset Ownership"
+    } ,
+  
+    {
+      "title"    : "Algorithms for Eco-Friendly Urban and Architectural Planning",
+      "category" : "",
+      "tags"     : "agent-based-models, architectural-design, artificial-life-systems, biophilic-design, cellular-automata",
+      "url"      : "/algorithms-eco-urban-architectural-planning/",
+      "date"     : "2023-04-26 00:00:00 +0000",
+      "desc"     : "Algorithms for Eco-Friendly Urban and Architectural Planning"
+    } ,
+  
+    {
+      "title"    : "Harnessing the Power of Grafana for Render Farm Monitoring",
+      "category" : "",
+      "tags"     : "3d-rendering",
+      "url"      : "/grafana-render-farm-monitoring/",
+      "date"     : "2023-04-24 00:00:00 +0000",
+      "desc"     : "Harnessing the Power of Grafana for Render Farm Monitoring"
+    } ,
+  
+    {
+      "title"    : "Niantic Labs&#39; Remote Raid Limitations: A Call for Greater Inclusivity and Sustainability in Pokémon GO",
+      "category" : "",
+      "tags"     : "co%e2%82%82-emissions",
+      "url"      : "/niantic-labs-call-for-inclusivity-sustainability/",
+      "date"     : "2023-04-21 00:00:00 +0000",
+      "desc"     : "Niantic Labs' Remote Raid Limitations: A Call for Greater Inclusivity and Sustainability in Pokémon GO"
+    } ,
+  
+    {
+      "title"    : "VJs Mag: Lighting the Path for Audio-Visual Art Forms",
+      "category" : "",
+      "tags"     : "art-profiles, audio-visual-art, audio-visual-community",
+      "url"      : "/vjs-mag-audio-visual-art-forms/",
+      "date"     : "2023-04-19 00:00:00 +0000",
+      "desc"     : "VJs Mag: Lighting the Path for Audio-Visual Art Forms"
+    } ,
+  
+    {
+      "title"    : "Impact of Niantic&#39;s Policies through the &amp;#8220;GO Raiding a ESG Survey&amp;#8221; on Pokémon GO",
+      "category" : "",
+      "tags"     : "community-engagement",
+      "url"      : "/go-raiding-a-esg-survey-pokemon-go/",
+      "date"     : "2023-04-14 00:00:00 +0000",
+      "desc"     : "Impact of Niantic's Policies through the &#8220;GO Raiding a ESG Survey&#8221; on Pokémon GO"
+    } ,
+  
+    {
+      "title"    : "Niantic Labs&#39; Remote Raid Limitations in Pokémon GO: A Contradiction to Sustainability, Inclusion, and Player Concerns",
+      "category" : "",
+      "tags"     : "communication",
+      "url"      : "/niantic-labs-remote-raid-limitations/",
+      "date"     : "2023-04-07 00:00:00 +0000",
+      "desc"     : "Niantic Labs' Remote Raid Limitations in Pokémon GO: A Contradiction to Sustainability, Inclusion, and Player Concerns"
+    } ,
+  
+    {
+      "title"    : "Zero-Knowledge Proofs: A Pillar of Cryptographic Privacy",
+      "category" : "",
+      "tags"     : "blockchain",
+      "url"      : "/zero-knowledge-proofs/",
+      "date"     : "2023-03-11 00:00:00 +0000",
+      "desc"     : "Zero-Knowledge Proofs: A Pillar of Cryptographic Privacy"
+    } ,
+  
+    {
+      "title"    : "Generative Window Art: Transforming Spaces with Algorithmic Designs",
+      "category" : "",
+      "tags"     : "algorithm-driven-designs",
+      "url"      : "/generative-window-art/",
+      "date"     : "2023-03-02 00:00:00 +0000",
+      "desc"     : "Generative Window Art: Transforming Spaces with Algorithmic Designs"
+    } ,
+  
+    {
+      "title"    : "Transform Your Space with Generative Art Flooring Using Epoxy Paint",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/generative-art-flooring-epoxy-paint/",
+      "date"     : "2023-02-28 00:00:00 +0000",
+      "desc"     : "Transform Your Space with Generative Art Flooring Using Epoxy Paint"
+    } ,
+  
+    {
+      "title"    : "Emotional XYZ sound wave",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/emotional-xyz-sound-wave/",
+      "date"     : "2023-02-25 00:00:00 +0000",
+      "desc"     : "Emotional XYZ sound wave"
+    } ,
+  
+    {
+      "title"    : "Submit Your Work to GeneratedArt Publications on Medium",
+      "category" : "",
+      "tags"     : "ai-art, algorithms",
+      "url"      : "/medium-generatedart-publications/",
+      "date"     : "2023-02-23 00:00:00 +0000",
+      "desc"     : "Submit Your Work to GeneratedArt Publications on Medium"
+    } ,
+  
+    {
+      "title"    : "Managing the Supply Chain for Tokenized Generative Assets",
+      "category" : "",
+      "tags"     : "ai-models, blockchain",
+      "url"      : "/supply-chain-generative-assets/",
+      "date"     : "2023-02-21 00:00:00 +0000",
+      "desc"     : "Managing the Supply Chain for Tokenized Generative Assets"
+    } ,
+  
+    {
+      "title"    : "Automated Auditing and Compliance Layer Using Smart Contracts",
+      "category" : "",
+      "tags"     : "auditing, automated-alerts, blockchain, compliance",
+      "url"      : "/aac-layer/",
+      "date"     : "2023-02-19 00:00:00 +0000",
+      "desc"     : "Automated Auditing and Compliance Layer Using Smart Contracts"
+    } ,
+  
+    {
+      "title"    : "Scaling Ethereum: Exploring Layer 2 Solutions",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/scaling-ethereum-exploring-layer-2-solutions/",
+      "date"     : "2023-02-16 00:00:00 +0000",
+      "desc"     : "Scaling Ethereum: Exploring Layer 2 Solutions"
+    } ,
+  
+    {
+      "title"    : "Data Privacy: Homomorphic Encryption",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/data-privacy-homomorphic-encryption/",
+      "date"     : "2023-02-07 00:00:00 +0000",
+      "desc"     : "Data Privacy: Homomorphic Encryption"
+    } ,
+  
+    {
+      "title"    : "The Power of Generative Art for Philanthropy",
+      "category" : "",
+      "tags"     : "algorithms, charity-auctions, collaborations",
+      "url"      : "/generative-art-for-philanthropy/",
+      "date"     : "2023-02-01 00:00:00 +0000",
+      "desc"     : "The Power of Generative Art for Philanthropy"
+    } ,
+  
+    {
+      "title"    : "Exploring the Future of Finance with GenerativeFinance (GEFI.io)",
+      "category" : "",
+      "tags"     : "ai-algorithms-in-banking, ai-driven-investment",
+      "url"      : "/future-of-finance-with-generativefinance/",
+      "date"     : "2023-01-28 00:00:00 +0000",
+      "desc"     : "Exploring the Future of Finance with GenerativeFinance (GEFI.io)"
+    } ,
+  
+    {
+      "title"    : "Understanding 20 Blockchain Vulnerabilities",
+      "category" : "",
+      "tags"     : "51-attacks, blockchain",
+      "url"      : "/understanding-20-blockchain-vulnerabilities/",
+      "date"     : "2023-01-13 00:00:00 +0000",
+      "desc"     : "Understanding 20 Blockchain Vulnerabilities"
+    } ,
+  
+    {
+      "title"    : "Decentralized Data Storage: An Overview of Techniques and Algorithms",
+      "category" : "",
+      "tags"     : "algorithms",
+      "url"      : "/decentralized-data-storage/",
+      "date"     : "2023-01-07 00:00:00 +0000",
+      "desc"     : "Decentralized Data Storage: An Overview of Techniques and Algorithms"
+    } ,
+  
+    {
+      "title"    : "Ethical guidelines for AI and machine learning",
+      "category" : "",
+      "tags"     : "accountability, artificial-intelligence, bias",
+      "url"      : "/ethical-guidelines-ai/",
+      "date"     : "2022-12-31 00:00:00 +0000",
+      "desc"     : "Ethical guidelines for AI and machine learning"
+    } ,
+  
+    {
+      "title"    : "Generative art and the blurred lines of authenticity",
+      "category" : "",
+      "tags"     : "algorithm, artist, authenticity, coding",
+      "url"      : "/generative-art-and-the-blurred-lines-of-authenticity/",
+      "date"     : "2022-12-28 00:00:00 +0000",
+      "desc"     : "Generative art and the blurred lines of authenticity"
+    } ,
+  
+    {
+      "title"    : "Federated Learning: Privacy-Preserving Machine Learning",
+      "category" : "",
+      "tags"     : "biased-data, collaborative-learning",
+      "url"      : "/federated-learning-privacy/",
+      "date"     : "2022-12-17 00:00:00 +0000",
+      "desc"     : "Federated Learning: Privacy-Preserving Machine Learning"
+    } ,
+  
+    {
+      "title"    : "Expanding Human Perception through Generative Art and Technology",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/expanding-human-perception/",
+      "date"     : "2022-12-01 00:00:00 +0000",
+      "desc"     : "Expanding Human Perception through Generative Art and Technology"
+    } ,
+  
+    {
+      "title"    : "Preparing for the Post-Quantum Era",
+      "category" : "",
+      "tags"     : "algorithms, code-based",
+      "url"      : "/preparing-post-quantum-era/",
+      "date"     : "2022-11-05 00:00:00 +0000",
+      "desc"     : "Preparing for the Post-Quantum Era"
+    } ,
+  
+    {
+      "title"    : "Hybrid Approach to Innovation",
+      "category" : "",
+      "tags"     : "collaboration",
+      "url"      : "/hybrid-approach-to-innovation/",
+      "date"     : "2022-11-01 00:00:00 +0000",
+      "desc"     : "Hybrid Approach to Innovation"
+    } ,
+  
+    {
+      "title"    : "The future of finance: The rise of generative techniques",
+      "category" : "",
+      "tags"     : "artificial-intelligence, asset-pricing",
+      "url"      : "/the-future-of-finance-the-rise-of-generative-techniques/",
+      "date"     : "2022-10-25 00:00:00 +0000",
+      "desc"     : "The future of finance: The rise of generative techniques"
+    } ,
+  
+    {
+      "title"    : "How Crypto Mining Can Help Power the Clean Energy Revolution",
+      "category" : "",
+      "tags"     : "carbon-credits, carbon-emissions, clean-energy, clean-energy-policies",
+      "url"      : "/crypto-mining-clean-energy-revolution/",
+      "date"     : "2022-10-23 00:00:00 +0000",
+      "desc"     : "How Crypto Mining Can Help Power the Clean Energy Revolution"
+    } ,
+  
+    {
+      "title"    : "Exploring the Benefits of Blockchain Interoperability",
+      "category" : "",
+      "tags"     : "atomic-swaps, blockchain-interoperability",
+      "url"      : "/blockchain-interoperability/",
+      "date"     : "2022-10-19 00:00:00 +0000",
+      "desc"     : "Exploring the Benefits of Blockchain Interoperability"
+    } ,
+  
+    {
+      "title"    : "Challenging Traditional Notions of Art and Artist with Generative Art",
+      "category" : "",
+      "tags"     : "algorithm",
+      "url"      : "/challenging-traditional-art/",
+      "date"     : "2022-09-09 00:00:00 +0000",
+      "desc"     : "Challenging Traditional Notions of Art and Artist with Generative Art"
+    } ,
+  
+    {
+      "title"    : "Reducing Waste and Excess Inventory through 3D Printing",
+      "category" : "",
+      "tags"     : "3d-printing",
+      "url"      : "/reducing-waste-3d-printing/",
+      "date"     : "2022-09-05 00:00:00 +0000",
+      "desc"     : "Reducing Waste and Excess Inventory through 3D Printing"
+    } ,
+  
+    {
+      "title"    : "1st AI projects",
+      "category" : "",
+      "tags"     : "ai, artificial-intelligence",
+      "url"      : "/1st-ai-projects/",
+      "date"     : "2022-09-01 00:00:00 +0000",
+      "desc"     : "1st AI projects"
+    } ,
+  
+    {
+      "title"    : "How Decentralized Storage is Transforming Data Management",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/decentralized-storage-management/",
+      "date"     : "2022-08-25 00:00:00 +0000",
+      "desc"     : "How Decentralized Storage is Transforming Data Management"
+    } ,
+  
+    {
+      "title"    : "Before Bitcoin",
+      "category" : "",
+      "tags"     : "bitcoin, blockchain",
+      "url"      : "/before-bitcoin/",
+      "date"     : "2022-08-21 00:00:00 +0000",
+      "desc"     : "Before Bitcoin"
+    } ,
+  
+    {
+      "title"    : "Impact of Data-Driven Art on Scientific Discovery and Innovation",
+      "category" : "",
+      "tags"     : "algorithm, bias",
+      "url"      : "/data-art-scientific-discovery-innovation/",
+      "date"     : "2022-08-16 00:00:00 +0000",
+      "desc"     : "Impact of Data-Driven Art on Scientific Discovery and Innovation"
+    } ,
+  
+    {
+      "title"    : "Basic Educative iOS App: Understanding Blockchain Smart Contract Transactions",
+      "category" : "",
+      "tags"     : "blockchain-technology, commoncrypto",
+      "url"      : "/blockchain-ios-app/",
+      "date"     : "2020-02-26 00:00:00 +0000",
+      "desc"     : "Basic Educative iOS App: Understanding Blockchain Smart Contract Transactions"
+    } ,
+  
+    {
+      "title"    : "GVA PoGo: Real-Time Pokemon Spawns Map for Geneva",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/gva-pogo-real-time-pokemon-spawns-map-for-geneva/",
+      "date"     : "2017-02-24 00:00:00 +0000",
+      "desc"     : "GVA PoGo: Real-Time Pokemon Spawns Map for Geneva"
+    } ,
+  
+    {
+      "title"    : "&amp;#8220;Play + Draw&amp;#8221;: An Interactive Installation and Scenography",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/play-draw-an-interactive-installation-and-scenography/",
+      "date"     : "2013-06-10 00:00:00 +0000",
+      "desc"     : "&#8220;Play + Draw&#8221;: An Interactive Installation and Scenography"
+    } ,
+  
+    {
+      "title"    : "Noctune: A Nightlife and Music Videos Website",
+      "category" : "",
+      "tags"     : "bootstrap",
+      "url"      : "/noctune-a-nightlife-and-music-videos-website/",
+      "date"     : "2013-01-13 00:00:00 +0000",
+      "desc"     : "Noctune: A Nightlife and Music Videos Website"
+    } ,
+  
+    {
+      "title"    : "VJs TV: An Online Platform for Global Artists and Creatives",
+      "category" : "",
+      "tags"     : "ad-free-tv",
+      "url"      : "/vjs-tv-project-an-online-platform-for-global-artists-and-creatives/",
+      "date"     : "2012-12-15 00:00:00 +0000",
+      "desc"     : "VJs TV: An Online Platform for Global Artists and Creatives"
+    } ,
+  
+    {
+      "title"    : "First Nights in Tokyo: Showcasing the City&#39;s Nightlife and Beautiful Landscapes",
+      "category" : "",
+      "tags"     : "canon",
+      "url"      : "/first-nights-in-tokyo-showcasing-the-citys-nightlife-and-beautiful-landscapes/",
+      "date"     : "2012-11-01 00:00:00 +0000",
+      "desc"     : "First Nights in Tokyo: Showcasing the City's Nightlife and Beautiful Landscapes"
+    } ,
+  
+    {
+      "title"    : "London Lausanne Konekshan: An Afro-Fusion VJing Gig",
+      "category" : "",
+      "tags"     : "african-dance, afro-fusion",
+      "url"      : "/london-lausanne-konekshan-an-afro-fusion-vjing-gig/",
+      "date"     : "2012-10-20 00:00:00 +0000",
+      "desc"     : "London Lausanne Konekshan: An Afro-Fusion VJing Gig"
+    } ,
+  
+    {
+      "title"    : "1er Août People in the City 2012: Celebrating National Spirit",
+      "category" : "",
+      "tags"     : "1er-aout-people-in-the-city, benoit-sergio",
+      "url"      : "/1er-aout-people-in-the-city-2012/",
+      "date"     : "2012-08-01 00:00:00 +0000",
+      "desc"     : "1er Août People in the City 2012: Celebrating National Spirit"
+    } ,
+  
+    {
+      "title"    : "D! Club at Geneva&#39;s Lake Parade: A Sonic Journey",
+      "category" : "",
+      "tags"     : "bad-nelson",
+      "url"      : "/d-club-geneva-lake-parade/",
+      "date"     : "2012-07-15 00:00:00 +0000",
+      "desc"     : "D! Club at Geneva's Lake Parade: A Sonic Journey"
+    } ,
+  
+    {
+      "title"    : "In Montreux and Lausanne with R3hab",
+      "category" : "",
+      "tags"     : "3d-animation, cinema4d, color-correction",
+      "url"      : "/montreux-lausanne-r3hab/",
+      "date"     : "2012-07-14 00:00:00 +0000",
+      "desc"     : "In Montreux and Lausanne with R3hab"
+    } ,
+  
+    {
+      "title"    : "Exploring the World of Robotics: A Look into the EPFL Robotics Festival",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/exploring-the-world-of-robotics/",
+      "date"     : "2012-06-19 00:00:00 +0000",
+      "desc"     : "Exploring the World of Robotics: A Look into the EPFL Robotics Festival"
+    } ,
+  
+    {
+      "title"    : "CHOCOLATE 2012: A Celebration of Electronic Music",
+      "category" : "",
+      "tags"     : "adana-twins, after-party-at-d-club",
+      "url"      : "/chocolate-2012-celebration/",
+      "date"     : "2012-06-10 00:00:00 +0000",
+      "desc"     : "CHOCOLATE 2012: A Celebration of Electronic Music"
+    } ,
+  
+    {
+      "title"    : "Mapping Festival 2012: A Captivating Report",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/mapping-festival-2012-a-captivating-report/",
+      "date"     : "2012-05-10 00:00:00 +0000",
+      "desc"     : "Mapping Festival 2012: A Captivating Report"
+    } ,
+  
+    {
+      "title"    : "Milan Design Week 2012: A Look at the Latest in Industrial Design",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/milan-design-week-2012-a-look-at-the-latest-in-industrial-design/",
+      "date"     : "2012-04-22 00:00:00 +0000",
+      "desc"     : "Milan Design Week 2012: A Look at the Latest in Industrial Design"
+    } ,
+  
+    {
+      "title"    : "Raiffeisen Lausanne Street &amp; Bowl Contest 2011: Video Report",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/raiffeisen-lausanne-street-bowl-contest-2011-video-report/",
+      "date"     : "2011-09-04 00:00:00 +0000",
+      "desc"     : "Raiffeisen Lausanne Street & Bowl Contest 2011: Video Report"
+    } ,
+  
+    {
+      "title"    : "Bom Bang! Remix Competition Entry by 8th Apartment",
+      "category" : "",
+      "tags"     : "8th-apartment, bedrock-records, bom-bang",
+      "url"      : "/bom-bang-remix-competition-entry-by-8th-apartment/",
+      "date"     : "2011-02-02 00:00:00 +0000",
+      "desc"     : "Bom Bang! Remix Competition Entry by 8th Apartment"
+    } ,
+  
+    {
+      "title"    : "Remix Contest: Martinez – Paradigm Shift (G.J. Lauzier&#39;s Synth Tech House Remix)",
+      "category" : "",
+      "tags"     : "ableton",
+      "url"      : "/remix-contest-martinez-paradigm-shift-g-j-lauziers-synth-tech-house-remix/",
+      "date"     : "2011-01-11 00:00:00 +0000",
+      "desc"     : "Remix Contest: Martinez – Paradigm Shift (G.J. Lauzier's Synth Tech House Remix)"
+    } ,
+  
+    {
+      "title"    : "&amp;#8220;Get Off Ur&amp;#8230;&amp;#8221; (G.J. Lauzier Remix) – Remix Competition Entry for DRC and DJ Denise",
+      "category" : "",
+      "tags"     : "ableton",
+      "url"      : "/get-off-ur-g-j-lauzier-remix-remix-competition-entry-for-drc-and-dj-denise/",
+      "date"     : "2008-12-24 00:00:00 +0000",
+      "desc"     : "&#8220;Get Off Ur&#8230;&#8221; (G.J. Lauzier Remix) – Remix Competition Entry for DRC and DJ Denise"
     } 
   
 ]

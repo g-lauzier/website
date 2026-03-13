@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The World of Pixel Recurrent Neural Networks (PixelRNNs) — Guillaume Lauzier</title>
+  <meta name="description" content="Pixel Recurrent Neural Networks (PixelRNNs) have emerged as a groundbreaking approach in the field of image generation and processing. These sophisticated neural network architectures are reshaping ho" />
+  <link rel="shortcut icon" href="/assets/images/favicon.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="/assets/css/gl-dark.css" />
+</head>
+<body>
+
+<nav class="gl-nav">
+  <div class="gl-nav-inner">
+    <a href="/" class="gl-nav-logo">GL<span>.</span></a>
+    <button class="gl-nav-hamburger" id="gl-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="gl-nav-links" id="gl-nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="#investments">Investments</a></li>
+      <li><a href="/writing">Writing</a></li>
+      <li><a href="/advisory">Advisory</a></li>
+      <li class="nav-cta"><a href="/pitch">Pitch</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── POST HERO ── -->
+  <div class="gl-post-hero">
+    
+      <div class="gl-post-hero-media">
+        <img src="https://old.guillaumelauzier.com/wp-content/uploads/2023/12/generatedart_Pixel_Recurrent_Neural_Networks_874142f3-17f1-4ba4-af7c-cc7e099163d1.png" alt="The World of Pixel Recurrent Neural Networks (PixelRNNs)" class="gl-post-hero-img" />
+      </div>
+    
+
+    <div class="gl-post-hero-content">
+      <div class="gl-section">
+        
+        <div class="gl-post-cats">
+          
+          <a href="/category/blog" class="gl-post-cat-badge">blog</a>
+          
+        </div>
+        
+        <h1 class="gl-post-title">The World of Pixel Recurrent Neural Networks (PixelRNNs)</h1>
+        <div class="gl-post-meta">
+          <span class="gl-post-meta-item">December 19, 2023</span>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gl-divider"></div>
+
+  <!-- ── POST BODY ── -->
+  <div class="gl-section">
+    <div class="gl-post-body">
+
+      <div class="gl-post-content">
+        <p>Pixel Recurrent Neural Networks (PixelRNNs) have emerged as a groundbreaking approach in the field of image generation and processing. These sophisticated neural network architectures are reshaping how machines understand and generate visual content. This article delves into the core aspects of PixelRNNs, exploring their purpose, architecture, variants, and the challenges they face.</p>
+
+<h2 id="purpose-and-application">Purpose and Application</h2>
+
+<p>PixelRNNs are primarily engineered for image generation and completion tasks. Their prowess lies in understanding and generating pixel-level patterns. This makes them exceptionally suitable for tasks like image inpainting, where they fill in missing parts of an image, and super-resolution, which involves enhancing the quality of images. Moreover, PixelRNNs are capable of generating entirely new images based on learned patterns, showcasing their versatility in the realm of image synthesis.</p>
+
+<h2 id="architecture">Architecture</h2>
+
+<p>The architecture of PixelRNNs is built upon the principles of recurrent neural networks (RNNs), renowned for their ability to handle sequential data. In PixelRNNs, the sequence is the pixels of an image, processed in an orderly fashion, typically row-wise or diagonally. This sequential processing allows PixelRNNs to capture the intricate dependencies between pixels, which is crucial for generating coherent and visually appealing images.</p>
+
+<ol>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+</ol>
+
+<h2 id="pixel-by-pixel-generation">Pixel-by-Pixel Generation</h2>
+
+<p>At the heart of PixelRNNs lies the concept of generating pixels one at a time, following a specified order. Each prediction of a new pixel is informed by the pixels generated previously, allowing the network to construct an image in a step-by-step manner. This pixel-by-pixel approach is fundamental to the network’s ability to produce detailed and accurate images.</p>
+
+<h2 id="two-variants">Two Variants</h2>
+
+<p>PixelRNNs come in two main variants: Row LSTM and Diagonal BiLSTM. The Row LSTM variant processes the image row by row, making it efficient for certain types of image patterns. In contrast, the Diagonal BiLSTM processes the image diagonally, offering a different perspective in understanding and generating image data. The choice between these two depends largely on the specific requirements of the task at hand.</p>
+
+<p>**
+Row LSTM**:</p>
+
+<ul>
+  <li>
+    <p><strong>Row-by-Row Processing</strong>: The Row LSTM variant of PixelRNN processes images row by row. This method is akin to reading a text in a book, where the understanding of each row is built upon the previous ones.</p>
+  </li>
+  <li>
+    <p><strong>Efficiency</strong>: It’s particularly efficient for image patterns where horizontal relationships between pixels are more significant. The sequential row processing allows the network to capture these horizontal dependencies effectively.</p>
+  </li>
+  <li>
+    <p><strong>Applications</strong>: Best suited for images where horizontal features and patterns play a crucial role, such as landscapes or images with strong horizontal structures.</p>
+  </li>
+</ul>
+
+<p><strong>Diagonal BiLSTM</strong>:</p>
+
+<ul>
+  <li>
+    <p><strong>Diagonal Processing</strong>: In contrast, the Diagonal BiLSTM processes images diagonally, considering pixels in a diagonal fashion from both directions. This approach allows it to capture a more comprehensive set of relationships between pixels.</p>
+  </li>
+  <li>
+    <p><strong>Broader Context</strong>: By processing diagonally, Diagonal BiLSTM captures a broader context, considering both horizontal and vertical dependencies in the image. This can be particularly beneficial for complex images where these relationships are more nuanced.</p>
+  </li>
+  <li>
+    <p><strong>Applications</strong>: Ideal for images with complex patterns and textures, where both vertical and horizontal pixel relationships are important, such as intricate designs or detailed portraits.</p>
+  </li>
+</ul>
+
+<h2 id="conditional-generation">Conditional Generation</h2>
+
+<p>A remarkable feature of PixelRNNs is their ability to be conditioned on additional information, such as class labels or parts of images. This conditioning enables the network to direct the image generation process more precisely, which is particularly beneficial for tasks like targeted image editing or generating images that need to meet specific criteria.</p>
+
+<ol>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+</ol>
+
+<h2 id="training-and-data-requirements">Training and Data Requirements</h2>
+
+<p>As with other neural networks, PixelRNNs require a significant volume of training data to learn effectively. They are trained on large datasets of images, where they learn to model the distribution of pixel values. This extensive training is necessary for the networks to capture the diverse range of patterns and nuances present in visual data.</p>
+
+<ol>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+</ol>
+
+<h2 id="challenges-and-limitations">Challenges and Limitations</h2>
+
+<p>Despite their capabilities, PixelRNNs face certain challenges and limitations. They are computationally intensive due to their sequential processing nature, which can be a bottleneck in applications requiring high-speed image generation. Additionally, they tend to struggle with generating high-resolution images, as the complexity increases exponentially with the number of pixels.</p>
+
+<p>Creating a PixelRNN for image generation involves several steps, including setting up the neural network architecture and training it on a dataset of images. Here’s an example in Python using TensorFlow and Keras, two popular libraries for building and training neural networks.</p>
+
+<p>This example will focus on a simple PixelRNN structure using LSTM (Long Short-Term Memory) units, a common choice for RNNs. The code will outline the basic structure, but please note that for a complete and functional PixelRNN, additional components and fine-tuning are necessary.</p>
+
+<h2 id="pixrnn-using-tensorflow">PixRNN using TensorFlow</h2>
+
+<p>First, ensure you have TensorFlow installed:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install tensorflow
+</code></pre></div></div>
+
+<p>Now, let’s proceed with the Python code:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import tensorflow as tf
+from tensorflow.keras import layers
+
+def build_pixel_rnn(image_height, image_width, image_channels):
+    # Define the input shape
+    input_shape = (image_height, image_width, image_channels)
+
+    # Create a Sequential model
+    model = tf.keras.Sequential()
+
+    # Adding LSTM layers - assuming image_height is the sequence length
+    # and image_width * image_channels is the feature size per step
+    model.add(layers.LSTM(256, return_sequences=True, input_shape=input_shape))
+    model.add(layers.LSTM(256, return_sequences=True))
+
+    # PixelRNNs usually have more complex structures, but this is a basic example
+
+    # Output layer - predicting the pixel values
+    model.add(layers.TimeDistributed(layers.Dense(image_channels, activation='softmax')))
+
+    return model
+
+# Example parameters for a grayscale image (height, width, channels)
+image_height = 64
+image_width = 64
+image_channels = 1  # For grayscale, this would be 1; for RGB images, it would be 3
+
+# Build the model
+pixel_rnn = build_pixel_rnn(image_height, image_width, image_channels)
+
+# Compile the model
+pixel_rnn.compile(optimizer='adam', loss='categorical_crossentropy')
+
+# Summary of the model
+pixel_rnn.summary()
+</code></pre></div></div>
+
+<p>This code sets up a basic PixelRNN model with two LSTM layers. The model’s output is a sequence of pixel values for each step in the sequence. Remember, this example is quite simplified. In practice, PixelRNNs are more complex and may involve techniques such as masking to handle different parts of the image generation process.</p>
+
+<p>Training this model requires a dataset of images, which should be preprocessed to match the input shape expected by the network. The training process involves feeding the images to the network and optimizing the weights using a loss function (in this case, categorical crossentropy) and an optimizer (Adam).</p>
+
+<p>For real-world applications, you would need to expand this structure significantly, adjust hyperparameters, and possibly integrate additional features like convolutional layers or different RNN structures, depending on the specific requirements of your task.</p>
+
+<h1 id="how-can-pixel-recurrent-neural-networks-pixelrnns-be-used-for-generative-art">How can Pixel Recurrent Neural Networks (PixelRNNs) be used for Generative art?</h1>
+
+<p>Pixel Recurrent Neural Networks (PixelRNNs) offer significant potential in the field of generative art. Here’s how they can be utilized:</p>
+
+<ol>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+</ol>
+
+<h2 id="recent-developments">Recent Developments</h2>
+
+<p>Over time, the field of PixelRNNs has seen significant advancements. Newer architectures, such as PixelCNNs, have been developed, offering improvements in computational efficiency and the quality of generated images. These developments are indicative of the ongoing evolution in the field, as researchers and practitioners continue to push the boundaries of what is possible with PixelRNNs.</p>
+
+<p>Pixel Recurrent Neural Networks represent a fascinating intersection of artificial intelligence and image processing. Their ability to generate and complete images with remarkable accuracy opens up a plethora of possibilities in areas ranging from digital art to practical applications like medical imaging. As this technology continues to evolve, we can expect to see even more innovative uses and enhancements in the future.</p>
+
+<h2 id="️-sources">🗒️ Sources</h2>
+
+<ol>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+  <li>
+    <p>$1</p>
+  </li>
+</ol>
+
+
+        
+      </div>
+
+      <!-- Tags + Share -->
+      <div class="gl-post-footer">
+        
+        <div class="gl-post-tags">
+          
+          <a href="/tag/artificial-intelligence" class="gl-post-tag">artificial-intelligence</a>
+          
+        </div>
+        
+        <div class="gl-post-share">
+          <span class="gl-post-share-label">Share</span>
+          <a href="https://twitter.com/intent/tweet?url=%2Fthe-world-pixelrnns%2F&text=The+World+of+Pixel+Recurrent+Neural+Networks+%28PixelRNNs%29" target="_blank" rel="noopener" aria-label="Share on X">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=%2Fthe-world-pixelrnns%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Back to writing -->
+      <div class="gl-post-back">
+        <a href="/writing" class="gl-post-back-link">← Back to Field Notes</a>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+
+<footer class="gl-footer">
+  <div class="gl-nav-inner">
+    <span class="gl-footer-copy">© 2026 Guillaume Lauzier</span>
+
+    <div class="gl-footer-social">
+      <a href="https://www.linkedin.com/in/guillaumelauzier/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/guilauzier/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://x.com/guilauzier" target="_blank" rel="noopener" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://github.com/guillaumelauzier" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <a href="https://www.instagram.com/guillaumelauzier" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@guillaumelauzier" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+      </a>
+      <a href="https://medium.com/@guillaumelauzier" target="_blank" rel="noopener" aria-label="Medium">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+      </a>
+    </div>
+
+    <div class="gl-footer-links">
+      <a href="/advisory">Advisory</a>
+      <a href="/writing">Writing</a>
+      <a href="/pitch">Pitch</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/gl.js"></script>
+</body>
+</html>

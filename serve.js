@@ -29,8 +29,12 @@ http.createServer(function (req, res) {
 
   let filePath = path.join(ROOT, urlPath);
 
+  // Resolve directories to their index.html
+  if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
+    filePath = path.join(filePath, 'index.html');
+  }
   if (!fs.existsSync(filePath)) {
-    filePath = filePath + '.html';
+    filePath = path.join(ROOT, urlPath) + '.html';
   }
   if (!fs.existsSync(filePath) && !urlPath.includes('.')) {
     filePath = path.join(ROOT, urlPath, 'index.html');

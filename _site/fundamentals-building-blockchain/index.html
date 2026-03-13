@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fundamentals of Building a Blockchain — Guillaume Lauzier</title>
+  <meta name="description" content="The blockchain is a transformative technology that has had a profound impact on various sectors from finance to supply chain management. While the journey to master blockchain development is a complex" />
+  <link rel="shortcut icon" href="/assets/images/favicon.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="/assets/css/gl-dark.css" />
+</head>
+<body>
+
+<nav class="gl-nav">
+  <div class="gl-nav-inner">
+    <a href="/" class="gl-nav-logo">GL<span>.</span></a>
+    <button class="gl-nav-hamburger" id="gl-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="gl-nav-links" id="gl-nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="#investments">Investments</a></li>
+      <li><a href="/writing">Writing</a></li>
+      <li><a href="/advisory">Advisory</a></li>
+      <li class="nav-cta"><a href="/pitch">Pitch</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── POST HERO ── -->
+  <div class="gl-post-hero">
+    
+      <div class="gl-post-hero-media">
+        <img src="https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_blockchain_design_2646b05c-8a51-400f-8a48-d65ace71f92f-2.png" alt="Fundamentals of Building a Blockchain" class="gl-post-hero-img" />
+      </div>
+    
+
+    <div class="gl-post-hero-content">
+      <div class="gl-section">
+        
+        <div class="gl-post-cats">
+          
+          <a href="/category/projects" class="gl-post-cat-badge">projects</a>
+          
+        </div>
+        
+        <h1 class="gl-post-title">Fundamentals of Building a Blockchain</h1>
+        <div class="gl-post-meta">
+          <span class="gl-post-meta-item">July 19, 2023</span>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gl-divider"></div>
+
+  <!-- ── POST BODY ── -->
+  <div class="gl-section">
+    <div class="gl-post-body">
+
+      <div class="gl-post-content">
+        <p>The blockchain is a transformative technology that has had a profound impact on various sectors from finance to supply chain management. While the journey to master blockchain development is a complex one, understanding its fundamentals is the first step towards proficiency. This article delves into these essential building blocks of creating a blockchain.</p>
+
+<h2 id="1-understanding-blockchain-basics">1. Understanding Blockchain Basics</h2>
+
+<p>Before you build a blockchain, it’s crucial to understand its core elements:</p>
+
+<ul>
+  <li><strong>Blockchain Structure</strong>: A blockchain is a distributed ledger of transactions, organized into blocks. Each block contains a list of transactions, a reference to the previous block (through its hash), and the block’s unique hash. This chain of blocks forms the blockchain.</li>
+</ul>
+
+<p>Creating a blockchain structure involves creating a data structure to store blocks, and each block will contain a set of transactions. For simplicity, we’ll create a simple blockchain structure where each block stores a string as data. Also, we’ll use the SHA-256 cryptographic hash function to create the hash for each block. Here’s a simple C++ implementation:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;iostream&gt;
+#include &lt;sstream&gt;
+#include &lt;vector&gt;
+#include &lt;openssl/sha.h&gt;
+
+using namespace std;
+
+// Function to calculate SHA256
+string calculateSHA256(string data) {
+    unsigned char hashSHA256_DIGEST_LENGTH];
+    SHA256_CTX sha256;
+    SHA256_Init(&amp;sha256);
+    SHA256_Update(&amp;sha256, data.c_str(), data.size());
+    SHA256_Final(hash, &amp;sha256);
+
+    stringstream ss;
+    for(int i = 0; i &lt; SHA256_DIGEST_LENGTH; i++) {
+        ss &lt;&lt; hex &lt;&lt; setw(2) &lt;&lt; setfill('0') &lt;&lt; (int)hashi];
+    }
+    return ss.str();
+}
+
+// Block Structure
+class Block {
+public:
+    string prevHash;
+    string data;
+    string blockHash;
+    Block(string data, string prevHash) {
+        this-&gt;data = data;
+        this-&gt;prevHash = prevHash;
+        blockHash = calculateSHA256(prevHash + data);
+    }
+};
+
+// Blockchain Structure
+class Blockchain {
+private:
+    vector&lt;Block&gt; chain;
+public:
+    // Add Block to Blockchain
+    void addBlock(string data) {
+        string prevHash = chain.empty() ? string(64, '0') : chain.back().blockHash;
+        Block newBlock(data, prevHash);
+        chain.push_back(newBlock);
+    }
+
+    // Print Blockchain
+    void printChain() {
+        for(Block block : chain) {
+            cout &lt;&lt; "Data: " &lt;&lt; block.data &lt;&lt; endl;
+            cout &lt;&lt; "Previous Hash: " &lt;&lt; block.prevHash &lt;&lt; endl;
+            cout &lt;&lt; "Block Hash: " &lt;&lt; block.blockHash &lt;&lt; endl &lt;&lt; endl;
+        }
+    }
+};
+
+int main() {
+    Blockchain myChain;
+    myChain.addBlock("Block 1");
+    myChain.addBlock("Block 2");
+    myChain.addBlock("Block 3");
+    myChain.printChain();
+    return 0;
+}
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<p>Note that you need the OpenSSL library installed to compile this code.</p>
+
+<p>This code defines a <code class="language-plaintext highlighter-rouge">Block</code> class that stores the data, the hash of the previous block, and the hash of the current block. The current block’s hash is calculated by hashing the previous block’s hash and the data. The <code class="language-plaintext highlighter-rouge">Blockchain</code> class is a list of <code class="language-plaintext highlighter-rouge">Block</code> objects. It has a method to add new blocks to the blockchain, with the new block’s previous hash set to the current last block’s hash.</p>
+
+<p>In terms of mathematical formula, it’s important to remember that a blockchain is not represented by a single formula. However, the way a block’s hash is calculated can be represented as follows:</p>
+
+<p>H = Hash(PH + D)</p>
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>H is the current block’s hash</p>
+  </li>
+  <li>
+    <p>PH is the previous block’s hash</p>
+  </li>
+  <li>
+    <p>D is the current block’s data</p>
+  </li>
+  <li>
+    <p>’+’ indicates concatenation of the strings</p>
+  </li>
+  <li>
+    <p>Hash is the SHA-256 cryptographic hash function</p>
+  </li>
+  <li>
+    <p><strong>Consensus Mechanism</strong>: This is the method a blockchain uses to agree on the validity of transactions. The most known mechanisms are Proof-of-Work (PoW) and Proof-of-Stake (PoS), but other types, like Delegated Proof-of-Stake (DPoS), Byzantine Fault Tolerance (BFT), and more are also used.</p>
+  </li>
+</ul>
+
+<p>Implementing a consensus mechanism like Proof-of-Work (PoW) or Proof-of-Stake (PoS) in C++ would be a fairly complex task, as these algorithms require a network of nodes communicating with each other and other advanced features. However, a simplified implementation of Proof-of-Work can be done, which we will demonstrate below. In this example, we’ll use a simple mining function to demonstrate the PoW concept.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;iostream&gt;
+#include &lt;sstream&gt;
+#include &lt;vector&gt;
+#include &lt;openssl/sha.h&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+string calculateSHA256(string data) {
+    unsigned char hashSHA256_DIGEST_LENGTH];
+    SHA256_CTX sha256;
+    SHA256_Init(&amp;sha256);
+    SHA256_Update(&amp;sha256, data.c_str(), data.size());
+    SHA256_Final(hash, &amp;sha256);
+
+    stringstream ss;
+    for(int i = 0; i &lt; SHA256_DIGEST_LENGTH; i++) {
+        ss &lt;&lt; hex &lt;&lt; setw(2) &lt;&lt; setfill('0') &lt;&lt; (int)hashi];
+    }
+    return ss.str();
+}
+
+class Block {
+public:
+    string prevHash;
+    string data;
+    string blockHash;
+    int nonce;
+    Block(string data, string prevHash) {
+        this-&gt;data = data;
+        this-&gt;prevHash = prevHash;
+        nonce = -1;
+        blockHash = mineBlock(4);  // 4 is the difficulty level
+    }
+
+    string mineBlock(int difficulty) {
+        string target(difficulty, '0');
+        string newHash;
+        do {
+            nonce++;
+            newHash = calculateSHA256(prevHash + data + to_string(nonce));
+        } while (newHash.substr(0, difficulty) != target);
+        return newHash;
+    }
+};
+
+class Blockchain {
+private:
+    vector&lt;Block&gt; chain;
+public:
+    void addBlock(string data) {
+        string prevHash = chain.empty() ? string(64, '0') : chain.back().blockHash;
+        Block newBlock(data, prevHash);
+        chain.push_back(newBlock);
+    }
+
+    void printChain() {
+        for(Block block : chain) {
+            cout &lt;&lt; "Data: " &lt;&lt; block.data &lt;&lt; endl;
+            cout &lt;&lt; "Previous Hash: " &lt;&lt; block.prevHash &lt;&lt; endl;
+            cout &lt;&lt; "Block Hash: " &lt;&lt; block.blockHash &lt;&lt; endl;
+            cout &lt;&lt; "Nonce: " &lt;&lt; block.nonce &lt;&lt; endl &lt;&lt; endl;
+        }
+    }
+};
+
+int main() {
+    Blockchain myChain;
+    myChain.addBlock("Block 1");
+    myChain.addBlock("Block 2");
+    myChain.addBlock("Block 3");
+    myChain.printChain();
+    return 0;
+}
+</code></pre></div></div>
+
+<p>In this code, the <code class="language-plaintext highlighter-rouge">Block</code> class has been updated to include a <code class="language-plaintext highlighter-rouge">nonce</code> variable and a <code class="language-plaintext highlighter-rouge">mineBlock</code> function. This function calculates the block’s hash in a loop until it finds a hash that starts with a certain number of zeroes. The number of zeroes (the difficulty level) determines how hard it is to mine a block.</p>
+
+<p>Mathematically, Proof of Work can be represented as:</p>
+
+<p>H = Hash(PH + D + N) &lt; Target</p>
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>H is the current block’s hash</p>
+  </li>
+  <li>
+    <p>PH is the previous block’s hash</p>
+  </li>
+  <li>
+    <p>D is the current block’s data</p>
+  </li>
+  <li>
+    <p>N is the nonce</p>
+  </li>
+  <li>
+    <p>Hash is the SHA-256 cryptographic hash function</p>
+  </li>
+  <li>
+    <p>Target is a value that the hash must be less than (represented by leading zeroes)</p>
+  </li>
+</ul>
+
+<p>The loop continues to increment the nonce and compute the hash until it finds a hash value less than the target. This process is what gives PoW its security, as it requires significant computational resources to calculate a valid hash.</p>
+
+<ul>
+  <li><strong>Decentralization</strong>: Blockchain networks are typically decentralized, meaning no single entity has control over the entire network. Instead, multiple nodes participate in the network, each having a copy of the entire blockchain.</li>
+</ul>
+
+<h2 id="2-node-creation">2. Node Creation</h2>
+
+<p>A blockchain network is made up of nodes. Each node is a computer that participates in the blockchain network and maintains a copy of the entire blockchain. Understanding how to set up these nodes, which involves installing the necessary software and connecting the node to the blockchain network, is fundamental to building a blockchain.</p>
+
+<p>Creating a node and establishing a network connection in C++ involves using networking libraries. We will use a simplified version in our example which uses the standard library’s networking facilities (as of C++20, C++ now includes native support for networking in the standard library).</p>
+
+<p>Before going further, it should be noted that implementing a fully functional blockchain node in C++ from scratch would require handling many complex issues including peer discovery, transaction validation, block validation, consensus algorithms, maintaining a UTXO database, handling forks, broadcasting messages to peers, etc. It would also need to be secure against various forms of attacks and handle large amounts of data efficiently.</p>
+
+<p>Below is a simple example of a blockchain node that can receive and display blocks from its peers. It does not validate the blocks or maintain a copy of the blockchain:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;asio/ip/tcp.hpp&gt;
+
+using asio::ip::tcp;
+using namespace std;
+
+class Block {
+public:
+    string prevHash;
+    string data;
+    string blockHash;
+    // Assume these fields are properly set in the constructor
+};
+
+class Node {
+private:
+    asio::io_context io_context;
+    tcp::acceptor acceptor;
+    vector&lt;Block&gt; blockchain;
+
+    void startAccepting() {
+        tcp::socket socket(io_context);
+        acceptor.async_accept(socket, this](std::error_code ec) {
+            if (!ec) {
+                handleNewConnection(std::move(socket));
+            }
+            startAccepting();
+        });
+    }
+
+    void handleNewConnection(tcp::socket socket) {
+        // For simplicity, assume each connection sends exactly one block,
+        // then closes the connection
+        Block newBlock;
+        asio::async_read(socket, asio::buffer(&amp;newBlock, sizeof(newBlock)), this, newBlock](std::error_code ec, std::size_t /*length*/) {
+            if (!ec) {
+                handleNewBlock(newBlock);
+            }
+        });
+    }
+
+    void handleNewBlock(const Block&amp; newBlock) {
+        // In a real blockchain node, you would validate the block here,
+        // update your UTXO database, handle forks, etc.
+        // This example simply prints the block and adds it to a vector.
+        cout &lt;&lt; "Received a new block with data: " &lt;&lt; newBlock.data &lt;&lt; endl;
+        blockchain.push_back(newBlock);
+    }
+public:
+    Node(unsigned short port)
+    : acceptor(io_context, tcp::endpoint(tcp::v4(), port)) {
+        startAccepting();
+        io_context.run();
+    }
+};
+
+int main() {
+    Node node(12345);
+    return 0;
+}
+</code></pre></div></div>
+
+<p>This is a very simple and unrealistic example. In reality, you would need to implement many more features, and you would also need to use a serialization format for sending and receiving blocks. You would also need to connect to multiple peers and handle incoming and outgoing connections simultaneously.</p>
+
+<p>As you can see, building a blockchain from scratch is a substantial task that requires a solid understanding of many areas including network programming, cryptography, databases, and multithreaded programming. It’s recommended to study existing open source blockchain implementations to understand how they work in detail.</p>
+
+<h2 id="3-transaction-design">3. Transaction Design</h2>
+
+<p>Transactions are the heart of a blockchain as they represent the actions carried out on the network. In Bitcoin, for example, a transaction is a transfer of value from one person to another. Designing a transaction involves defining its structure (inputs, outputs) and how it’s validated (signature verification).</p>
+
+<p>Creating a transaction in a blockchain network involves dealing with cryptography, specifically with cryptographic signatures and hash functions. The C++ Standard Library doesn’t have cryptographic functions, so you’ll need to use a library like OpenSSL or Crypto++.</p>
+
+<p>In this simplified example, I’ll illustrate a basic structure of a transaction and its validation using Crypto++. However, bear in mind that a real-world blockchain transaction would be much more complex, would include additional checks and balances, and would be part of a larger system that includes blocks, a network of nodes, consensus mechanisms, etc.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;string&gt;
+#include &lt;crypto++/secblock.h&gt;
+#include &lt;crypto++/osrng.h&gt;
+#include &lt;crypto++/eccrypto.h&gt;
+#include &lt;crypto++/oids.h&gt;
+
+using namespace std;
+using namespace CryptoPP;
+
+class Transaction {
+public:
+    string senderPublicKey;
+    string receiverPublicKey;
+    double amount;
+    string signature;
+
+    bool Validate() {
+        // We'll use the secp256k1 curve, like Bitcoin.
+        ECDSA&lt;ECP, SHA256&gt;::PublicKey publicKey;
+        publicKey.Load(StringSource(senderPublicKey, true).Ref());
+
+        ECDSA&lt;ECP, SHA256&gt;::Verifier verifier(publicKey);
+        return verifier.VerifyMessage((const byte*)&amp;amount, sizeof(amount), (const byte*)signature.data(), signature.size());
+    }
+};
+
+class Wallet {
+public:
+    ECDSA&lt;ECP, SHA256&gt;::PrivateKey privateKey;
+    ECDSA&lt;ECP, SHA256&gt;::PublicKey publicKey;
+
+    Wallet() {
+        AutoSeededRandomPool rng;
+        privateKey.Initialize(rng, ASN1::secp256k1());
+        publicKey = ECDSA&lt;ECP, SHA256&gt;::PublicKey(privateKey);
+    }
+
+    Transaction SendFunds(string receiverPublicKey, double amount) {
+        Transaction tx;
+        tx.senderPublicKey = publicKey.Save(StringSink().Ref());
+        tx.receiverPublicKey = receiverPublicKey;
+        tx.amount = amount;
+
+        AutoSeededRandomPool rng;
+        ECDSA&lt;ECP, SHA256&gt;::Signer signer(privateKey);
+        size_t siglen = signer.MaxSignatureLength();
+        tx.signature.resize(siglen);
+        siglen = signer.SignMessage(rng, (const byte*)&amp;amount, sizeof(amount), (byte*)tx.signature.data());
+        tx.signature.resize(siglen);
+
+        return tx;
+    }
+};
+</code></pre></div></div>
+
+<p>In this example, a <code class="language-plaintext highlighter-rouge">Transaction</code> has a sender’s public key, a receiver’s public key, and the amount to be transferred. The <code class="language-plaintext highlighter-rouge">Validate</code> function checks the signature of the transaction to ensure that it has indeed been created by the sender. A <code class="language-plaintext highlighter-rouge">Wallet</code> has a private and a public key and can create a <code class="language-plaintext highlighter-rouge">Transaction</code> to send funds.</p>
+
+<p>A transaction is valid if the message (in this case, the amount being sent) signed with the sender’s private key can be verified with the sender’s public key. This is the essence of digital signatures, and it is how transactions are validated in many blockchains.</p>
+
+<p>It’s important to note that a real transaction system would also need to include measures to prevent double spending, to keep track of balances, and to handle transaction fees, among other things. Implementing such a system securely and efficiently is a significant task.</p>
+
+<p>From a mathematical perspective, digital signatures are based on the mathematics of elliptic curves. The secp256k1 curve used by Bitcoin, for example, is defined by the equation <code class="language-plaintext highlighter-rouge">y^2 = x^3 + 7</code> over a finite field. The private key is a random number, and the public key is a point on the curve derived from the private key. The signature is a pair of numbers (r, s) derived from the private key, the message being signed, and a random number. The verification process uses the public key, the message, and the signature (r, s) to confirm that the signature was generated by someone with access to the corresponding private key. The details of this process involve complex mathematics including modular arithmetic, the properties of elliptic curves, and the discrete logarithm problem.</p>
+
+<h2 id="4-block-design">4. Block Design</h2>
+
+<p>A block is a container for transactions. Designing a block involves understanding its structure, which typically includes the following:</p>
+
+<ul>
+  <li>
+    <p>Block Header: This includes metadata, such as a version number, the hash of the previous block (linking it to this block), a timestamp, and a nonce used in PoW.</p>
+  </li>
+  <li>
+    <p>Transaction Counter: An indicator of the number of transactions in the block.</p>
+  </li>
+  <li>
+    <p>Transactions: The transactions themselves.</p>
+  </li>
+</ul>
+
+<p>The process of creating a new block, often known as mining in PoW blockchains, involves validating and adding transactions to the block, and finding a value that, when hashed with the block’s contents, produces a hash that meets certain criteria.</p>
+
+<p>Here’s a simplified example of a block structure in C++. We’re not dealing with actual mining in this example, just the basic structure of a block.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;ctime&gt;
+#include &lt;crypto++/sha.h&gt;
+#include &lt;crypto++/hex.h&gt;
+
+using namespace std;
+using namespace CryptoPP;
+
+class Transaction { /* As previously defined */ };
+
+class Block {
+public:
+    string previousHash;
+    int nonce = 0;
+    time_t timestamp;
+    vector&lt;Transaction&gt; transactions;
+
+    Block(string previousHash, vector&lt;Transaction&gt; transactions) {
+        this-&gt;previousHash = previousHash;
+        this-&gt;timestamp = time(NULL);
+        this-&gt;transactions = transactions;
+    }
+
+    string GetBlockHash() {
+        SHA256 hash;
+        string src = to_string(timestamp) + to_string(nonce) + previousHash + GetTransactionsData();
+        string digest;
+        StringSource s(src, true, new HashFilter(hash, new HexEncoder(new StringSink(digest))));
+        return digest;
+    }
+
+    string GetTransactionsData() {
+        // Concatenate transaction data
+        string transactionData = "";
+        for (auto &amp;transaction : transactions) {
+            // Here we would typically include transaction-specific data
+            transactionData += transaction.amount; // Simplified for this example
+        }
+        return transactionData;
+    }
+
+    void MineBlock(int difficulty) {
+        string target(difficulty, '0');
+        while (GetBlockHash().substr(0, difficulty) != target) {
+            nonce++;
+        }
+    }
+};
+</code></pre></div></div>
+
+<p>In this code:</p>
+
+<ul>
+  <li>
+    <p>Each <code class="language-plaintext highlighter-rouge">Block</code> contains a previous block hash, a nonce (which is used during mining), a timestamp, and a list of transactions.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">GetBlockHash()</code> generates a SHA-256 hash of the block data.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">GetTransactionsData()</code> is a simplified example of how you might gather data from the block’s transactions.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">MineBlock(int difficulty)</code> is a basic example of mining. It increments the nonce until the first <code class="language-plaintext highlighter-rouge">difficulty</code> characters of the block’s hash are zeros. This isn’t how real mining works, but it serves to illustrate the basic concept of trying different nonce values until you find one that makes the hash meet certain criteria.</p>
+  </li>
+</ul>
+
+<p>Bear in mind that this code is extremely simplified and should not be used for any real-world purposes. A production blockchain would include many more checks and balances, a mechanism for distributing blocks to other nodes, more complex transaction data, and much more. The code is provided to illustrate the fundamental concepts of a block in a blockchain and how it might be represented in code.</p>
+
+<p>For the mathematical part, the fundamental operation here is the SHA-256 hash function, which transforms any input data into a 256-bit number in such a way that even a tiny change to the input will produce a dramatically different output. The ‘mining’ process can be seen as a search for a specific input that will produce an output with certain properties (in this case, beginning with a certain number of zeros). The only way to find such an input is to try different possibilities one after another, which is why it requires a lot of computational work.</p>
+
+<h2 id="5-security-measures">5. Security Measures</h2>
+
+<p>Blockchain’s value proposition hinges on its security and immutability. Here are key security aspects to consider:</p>
+
+<ul>
+  <li>
+    <p><strong>Cryptography</strong>: Blockchains use cryptographic algorithms (like SHA-256 in Bitcoin) for various purposes, such as creating a digital signature or generating a block’s hash.</p>
+  </li>
+  <li>
+    <p><strong>Consensus Mechanism</strong>: The consensus mechanism ensures that all nodes agree on the validity of transactions, preventing double-spending and maintaining consistency across the network.</p>
+  </li>
+  <li>
+    <p><strong>Incentive Mechanism</strong>: This includes rewarding nodes (through mining rewards or transaction fees) to encourage honest behavior and secure the network.</p>
+  </li>
+</ul>
+
+<h2 id="6-smart-contracts">6. Smart Contracts</h2>
+
+<p>For blockchains like Ethereum, smart contracts are crucial. They are self-executing contracts with the terms of the agreement directly written into code. They enable complex applications and automate the enforcement of their rules. Building a blockchain with smart contract functionality involves designing the contract structure and the associated programming language.</p>
+
+<h2 id="7-interfacing-api-and-gui">7. Interfacing: API and GUI</h2>
+
+<p>To interact with your blockchain, you’ll need to create interfaces:</p>
+
+<ul>
+  <li>
+    <p><strong>Application Programming Interface (API)</strong>: This allows other software (like applications or other nodes) to interact with your blockchain. It defines functions that command the node to perform certain actions like creating a transaction or fetching a block.</p>
+  </li>
+  <li>
+    <p><strong>Graphical User Interface (GUI)</strong>: A GUI allows humans to interact with your blockchain more easily. This could be a wallet application that allows users to send transactions, view their balance, or any number of other interactions with the blockchain.</p>
+  </li>
+</ul>
+
+<p>Understanding and implementing these fundamental components will put you on the path to becoming proficient in blockchain development. As your knowledge deepens, you can explore more complex aspects like cross-chain interoperability, Layer-2 solutions, and privacy enhancements. Remember, learning is an iterative process, so continue experimenting and building. The world of blockchain awaits your innovations!</p>
+
+
+        
+      </div>
+
+      <!-- Tags + Share -->
+      <div class="gl-post-footer">
+        
+        <div class="gl-post-tags">
+          
+          <a href="/tag/block-design" class="gl-post-tag">block-design</a>
+          
+          <a href="/tag/blockchain" class="gl-post-tag">blockchain</a>
+          
+          <a href="/tag/blockchain-mathematical-principles" class="gl-post-tag">blockchain-mathematical-principles</a>
+          
+          <a href="/tag/c-blockchain-implementation" class="gl-post-tag">c-blockchain-implementation</a>
+          
+        </div>
+        
+        <div class="gl-post-share">
+          <span class="gl-post-share-label">Share</span>
+          <a href="https://twitter.com/intent/tweet?url=%2Ffundamentals-building-blockchain%2F&text=Fundamentals+of+Building+a+Blockchain" target="_blank" rel="noopener" aria-label="Share on X">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=%2Ffundamentals-building-blockchain%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Back to writing -->
+      <div class="gl-post-back">
+        <a href="/writing" class="gl-post-back-link">← Back to Field Notes</a>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+
+<footer class="gl-footer">
+  <div class="gl-nav-inner">
+    <span class="gl-footer-copy">© 2026 Guillaume Lauzier</span>
+
+    <div class="gl-footer-social">
+      <a href="https://www.linkedin.com/in/guillaumelauzier/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/guilauzier/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://x.com/guilauzier" target="_blank" rel="noopener" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://github.com/guillaumelauzier" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <a href="https://www.instagram.com/guillaumelauzier" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@guillaumelauzier" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+      </a>
+      <a href="https://medium.com/@guillaumelauzier" target="_blank" rel="noopener" aria-label="Medium">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+      </a>
+    </div>
+
+    <div class="gl-footer-links">
+      <a href="/advisory">Advisory</a>
+      <a href="/writing">Writing</a>
+      <a href="/pitch">Pitch</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/gl.js"></script>
+</body>
+</html>
