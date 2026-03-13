@@ -973,8 +973,13 @@ img { max-width: 100%; display: block; }
   /* Investments */
   .gl-investments-grid { grid-template-columns: 1fr; }
 
-  /* Sectors */
+  /* Sectors — always show body text on touch/mobile */
   .gl-sectors-grid { grid-template-columns: 1fr; }
+  .gl-sector-body {
+    max-height: 300px;
+    opacity: 1;
+  }
+  .gl-sector-icon { display: none; }
 }
 
 @media (max-width: 480px) {
