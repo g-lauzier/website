@@ -54,6 +54,37 @@ document.addEventListener('DOMContentLoaded', function () {
     updateToggle();
   }
 
+  /* Post hero carousel */
+  const carousel = document.querySelector('.gl-post-carousel');
+  if (carousel) {
+    const slides = carousel.querySelectorAll('.gl-post-carousel-slide');
+    const dots   = carousel.querySelectorAll('.gl-post-carousel-dot');
+    const prev   = carousel.querySelector('.gl-post-carousel-prev');
+    const next   = carousel.querySelector('.gl-post-carousel-next');
+    let current  = 0;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      if (dots[current]) dots[current].classList.remove('active');
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      if (dots[current]) dots[current].classList.add('active');
+    }
+
+    if (prev) prev.addEventListener('click', function () { goTo(current - 1); });
+    if (next) next.addEventListener('click', function () { goTo(current + 1); });
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () { goTo(i); });
+    });
+
+    /* Auto-advance every 5s */
+    let timer = setInterval(function () { goTo(current + 1); }, 5000);
+    carousel.addEventListener('mouseenter', function () { clearInterval(timer); });
+    carousel.addEventListener('mouseleave', function () {
+      timer = setInterval(function () { goTo(current + 1); }, 5000);
+    });
+  }
+
   /* Pitch form success state */
   const pitchForm = document.getElementById('gl-pitch-form');
   if (pitchForm) {
