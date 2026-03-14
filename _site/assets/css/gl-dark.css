@@ -296,23 +296,22 @@ img { max-width: 100%; display: block; }
   color: #3B82F6;
   text-shadow: 0 0 15px rgba(59, 130, 246, 0.7), 0 0 30px rgba(59, 130, 246, 0.4);
 }
-.gl-hero-name.gl-hero-handwritten {
-  font-family: "Mr Dafoe", cursive;
-  font-size: clamp(3.5rem, 10vw, 7rem);
-  letter-spacing: 0.02em;
+.gl-hero-name.gl-hero-editorial {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
   line-height: 1.1;
   display: flex;
   flex-direction: column;
   width: fit-content;
 }
-.gl-hero-handwritten .handwritten-first {
+.gl-hero-editorial .hero-first {
   color: #ffffff;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
-.gl-hero-handwritten .handwritten-last {
+.gl-hero-editorial .hero-last {
   color: #3B82F6;
-  text-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
-  margin-left: 20px;
+  font-style: italic;
 }
 .gl-hero-sub {
   font-size: clamp(1rem, 2vw, 1.3rem);
