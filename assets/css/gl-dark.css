@@ -266,19 +266,28 @@ img { max-width: 100%; display: block; }
   margin-bottom: 2rem;
 }
 .gl-hero-name {
-  font-family: "DM Serif Display", serif;
-  font-size: clamp(3.5rem, 9vw, 8rem);
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
 }
-.gl-hero-first {
-  color: #F3F4F6;
+.gl-hero-name.gl-hero-brutalist {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  width: fit-content;
+}
+.gl-hero-brutalist .gl-hero-first {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #ffffff;
+  text-stroke: 1.5px #ffffff;
   font-style: normal;
 }
-.gl-hero-last {
-  color: #3A5BFF;
+.gl-hero-brutalist .gl-hero-last {
+  color: #3B82F6;
   font-style: normal;
 }
 .gl-hero-sub {
