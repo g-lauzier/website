@@ -2,7 +2,8 @@
    Guillaume Lauzier — Dark Mode Premium Stylesheet
    ===================================================== */
 
-:root {
+:root,
+[data-theme="dark"] {
   --bg:        #0a0a0a;
   --bg-2:      #111111;
   --bg-3:      #1a1a1a;
@@ -12,11 +13,38 @@
   --muted:     #888;
   --accent:    #4f8ef7;
   --accent-glow: rgba(79,142,247,0.15);
+  --nav-bg:    rgba(10,10,10,0.92);
   --serif:     'Playfair Display', Georgia, serif;
   --sans:      'Inter', system-ui, sans-serif;
   --mono:      'JetBrains Mono', 'Courier New', monospace;
   --radius:    4px;
   --transition: 0.3s ease;
+}
+
+[data-theme="grey"] {
+  --bg:        #1c1c1c;
+  --bg-2:      #252525;
+  --bg-3:      #2f2f2f;
+  --border:    rgba(255,255,255,0.1);
+  --border-h:  rgba(255,255,255,0.22);
+  --text:      #e0e0e0;
+  --muted:     #999;
+  --accent:    #4f8ef7;
+  --accent-glow: rgba(79,142,247,0.15);
+  --nav-bg:    rgba(28,28,28,0.92);
+}
+
+[data-theme="light"] {
+  --bg:        #f8f8f6;
+  --bg-2:      #efefed;
+  --bg-3:      #e4e4e2;
+  --border:    rgba(0,0,0,0.1);
+  --border-h:  rgba(0,0,0,0.22);
+  --text:      #111111;
+  --muted:     #666666;
+  --accent:    #2563eb;
+  --accent-glow: rgba(37,99,235,0.12);
+  --nav-bg:    rgba(248,248,246,0.92);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,6 +61,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 /* ── GLOBAL TYPOGRAPHY ── */
@@ -71,10 +100,43 @@ img { max-width: 100%; display: block; }
   top: 0; left: 0; right: 0;
   z-index: 100;
   padding: 0 2.5rem;
-  background: rgba(10,10,10,0.9);
+  background: var(--nav-bg);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
+  transition: background 0.4s ease, border-color 0.4s ease;
 }
+
+/* ── THEME SWITCHER ── */
+.gl-theme-switcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3px;
+  flex-shrink: 0;
+}
+.gl-theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  padding: 0;
+}
+.gl-theme-btn:hover { color: var(--text); }
+.gl-theme-btn.active {
+  background: var(--bg-3);
+  color: var(--text);
+}
+.gl-theme-btn svg { display: block; }
 .gl-nav-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -919,22 +981,22 @@ img { max-width: 100%; display: block; }
   align-items: start;
 }
 .gl-contact-heading {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--serif);
   font-size: clamp(2.5rem, 5vw, 3.75rem);
   font-weight: 600;
-  color: #ededed;
+  color: var(--text);
   line-height: 1.1;
   letter-spacing: -0.02em;
   margin: 0.5rem 0 1.25rem;
 }
 .gl-contact-heading em {
   font-style: italic;
-  color: #4f8ef7;
+  color: var(--accent);
 }
 .gl-contact-sub {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--sans);
   font-size: 0.95rem;
-  color: #888;
+  color: var(--muted);
   line-height: 1.7;
   margin: 0 0 2.5rem;
   max-width: 300px;
@@ -948,14 +1010,14 @@ img { max-width: 100%; display: block; }
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.75rem;
   letter-spacing: 0.06em;
-  color: #888;
+  color: var(--muted);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color var(--transition);
 }
-.gl-contact-link:hover { color: #ededed; }
+.gl-contact-link:hover { color: var(--text); }
 /* ── Contact Form (gl-cf) ── */
 .gl-cf {
   display: flex;
@@ -974,34 +1036,34 @@ img { max-width: 100%; display: block; }
 }
 .gl-cf-label {
   display: block;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.65rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #888;
+  color: var(--muted);
   margin-bottom: 0.4rem;
 }
 .gl-cf-input {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  background-color: #111111;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 4px;
+  background-color: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   padding: 0.85rem 1rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--sans);
   font-size: 0.9rem;
-  color: #ededed;
+  color: var(--text);
   outline: none;
   -webkit-appearance: none;
   appearance: none;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
+  transition: border-color var(--transition), background-color var(--transition), color var(--transition);
   box-shadow: none;
 }
-.gl-cf-input::placeholder { color: #555; }
+.gl-cf-input::placeholder { color: var(--muted); opacity: 0.6; }
 .gl-cf-input:focus {
-  border-color: #4f8ef7;
-  background-color: #161616;
+  border-color: var(--accent);
+  background-color: var(--bg-3);
 }
 .gl-cf-textarea {
   resize: vertical;

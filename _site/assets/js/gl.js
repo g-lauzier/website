@@ -1,5 +1,32 @@
 /* Guillaume Lauzier — Site Scripts */
 
+/* ── THEME SWITCHER ── */
+(function () {
+  var html = document.documentElement;
+  var STORE = 'gl-theme';
+  var THEMES = ['light', 'grey', 'dark'];
+
+  function applyTheme(theme) {
+    if (!THEMES.includes(theme)) theme = 'dark';
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem(STORE, theme);
+    document.querySelectorAll('.gl-theme-btn').forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-gl-theme') === theme);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var saved = localStorage.getItem(STORE) || 'dark';
+    applyTheme(saved);
+
+    document.querySelectorAll('.gl-theme-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        applyTheme(btn.getAttribute('data-gl-theme'));
+      });
+    });
+  });
+})();
+
 document.addEventListener('DOMContentLoaded', function () {
 
   /* Mobile hamburger menu */
