@@ -265,29 +265,51 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   margin-bottom: 2rem;
 }
+@keyframes glitch {
+  0% { text-shadow: -2px 0 #ff0080, 2px 0 #0080ff; }
+  25% { text-shadow: 2px 0 #ff0080, -2px 0 #0080ff; }
+  50% { text-shadow: -2px 0 #00ff41, 2px 0 #0080ff; }
+  75% { text-shadow: 2px 0 #00ff41, -2px 0 #ff0080; }
+  100% { text-shadow: -2px 0 #ff0080, 2px 0 #0080ff; }
+}
+
+@keyframes scanlines {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100px; }
+}
+
 .gl-hero-name {
   margin-bottom: 1.5rem;
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(3.5rem, 10vw, 7rem);
   line-height: 1.1;
 }
-.gl-hero-name.gl-hero-developer {
+.gl-hero-name.gl-hero-cyberpunk {
+  font-family: "Share Tech Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
   display: flex;
   flex-direction: column;
   width: fit-content;
 }
-.gl-hero-developer .serif-name {
-  font-family: "Playfair Display", serif;
-  font-style: italic;
-  font-weight: 700;
+.gl-hero-cyberpunk .hacker-first {
   color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  font-weight: 400;
 }
-.gl-hero-developer .mono-name {
-  font-family: "JetBrains Mono", monospace;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  color: #3B82F6;
-  margin-left: 0.5rem;
+.gl-hero-cyberpunk .hacker-last {
+  color: #00ff41;
+  font-weight: 400;
+  position: relative;
+  animation: glitch 3s infinite;
+}
+.gl-hero-cyberpunk .hacker-last::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #00f3ff;
+  opacity: 0.8;
+  animation: glitch 2s infinite reverse;
 }
 .gl-hero-sub {
   font-size: clamp(1rem, 2vw, 1.3rem);
