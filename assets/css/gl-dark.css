@@ -307,7 +307,8 @@ img { max-width: 100%; display: block; }
   width: fit-content;
 }
 .gl-hero-editorial .hero-first {
-  color: #ffffff;
+  color: #3B82F6;
+  font-style: italic;
 }
 .gl-hero-editorial .hero-last {
   color: #3B82F6;
