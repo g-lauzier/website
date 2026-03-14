@@ -523,6 +523,9 @@ img { max-width: 100%; display: block; }
   padding: 1.5rem 0;
   border-bottom: 1px solid var(--border);
   transition: background var(--transition);
+  text-decoration: none !important;
+  width: 100%;
+  box-sizing: border-box;
 }
 .gl-post-row:hover .gl-post-title { color: var(--text); }
 
