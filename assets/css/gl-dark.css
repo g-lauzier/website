@@ -1772,14 +1772,32 @@ img { max-width: 100%; display: block; }
 
   /* Footer */
   .gl-footer-inner {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
     padding: 2rem 1.25rem 1.75rem;
-    gap: 1.25rem;
+    gap: 1rem 0;
   }
-  .gl-footer-social { flex: none; gap: 1rem; flex-wrap: wrap; justify-content: flex-start; }
-  .gl-footer-copy { flex: none; }
-  .gl-footer-links { flex: none; justify-content: flex-start; gap: 1.25rem; }
+  .gl-footer-social {
+    flex: 0 0 100%;
+    order: 1;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 0.5rem;
+  }
+  .gl-footer-copy {
+    flex: 1 1 auto;
+    order: 2;
+    align-self: center;
+  }
+  .gl-footer-links {
+    flex: none;
+    order: 3;
+    justify-content: flex-end;
+    gap: 1.25rem;
+    align-self: center;
+  }
 
   /* Posts list */
   .gl-post-row { grid-template-columns: 1fr; gap: 0.25rem; }
