@@ -267,28 +267,27 @@ img { max-width: 100%; display: block; }
 }
 .gl-hero-name {
   margin-bottom: 1.5rem;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1.1;
 }
-.gl-hero-name.gl-hero-brutalist {
-  font-family: "Inter", sans-serif;
-  font-size: clamp(3.5rem, 10vw, 7rem);
-  font-weight: 900;
-  line-height: 0.85;
-  letter-spacing: 0;
-  text-transform: uppercase;
+.gl-hero-name.gl-hero-developer {
   display: flex;
   flex-direction: column;
-  word-wrap: break-word;
   width: fit-content;
 }
-.gl-hero-brutalist .gl-hero-first {
-  color: transparent;
-  -webkit-text-stroke: 1.5px #ffffff;
-  text-stroke: 1.5px #ffffff;
-  font-style: normal;
+.gl-hero-developer .serif-name {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 700;
+  color: #ffffff;
 }
-.gl-hero-brutalist .gl-hero-last {
+.gl-hero-developer .mono-name {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
   color: #3B82F6;
-  font-style: normal;
+  margin-left: 0.5rem;
 }
 .gl-hero-sub {
   font-size: clamp(1rem, 2vw, 1.3rem);
