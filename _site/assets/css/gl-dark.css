@@ -1783,7 +1783,7 @@ img { max-width: 100%; display: block; }
     order: 1;
     gap: 1rem;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     margin-bottom: 0.5rem;
   }
   .gl-footer-copy {
