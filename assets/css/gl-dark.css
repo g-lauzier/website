@@ -1790,8 +1790,17 @@ img { max-width: 100%; display: block; }
   .gl-post-footer { flex-direction: column; align-items: flex-start; }
   .gl-post-gallery-grid { grid-template-columns: 1fr 1fr; }
 
-  /* Toggle */
+  /* Toggle — fix absolute-panel overlap on mobile */
   .gl-toggle-wrap { padding: 1.5rem 1rem; }
+  .gl-toggle-content { position: static; min-height: 0; }
+  .gl-toggle-panel {
+    position: static;
+    width: 100%;
+    transform: none !important;
+    transition: none;
+  }
+  .gl-toggle-panel.hidden { display: none; opacity: 1; }
+  .gl-toggle-disclaimer { margin-top: 1.5rem; }
 
   /* Investments */
   .gl-investments-grid { grid-template-columns: 1fr; }

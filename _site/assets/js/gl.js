@@ -10,7 +10,7 @@
     if (!THEMES.includes(theme)) theme = 'dark';
     html.setAttribute('data-theme', theme);
     localStorage.setItem(STORE, theme);
-    document.querySelectorAll('.gl-theme-btn').forEach(function (btn) {
+    document.querySelectorAll('.gl-theme-btn, .gl-theme-btn-mobile').forEach(function (btn) {
       btn.classList.toggle('active', btn.getAttribute('data-gl-theme') === theme);
     });
   }
@@ -19,7 +19,7 @@
     var saved = localStorage.getItem(STORE) || 'dark';
     applyTheme(saved);
 
-    document.querySelectorAll('.gl-theme-btn').forEach(function (btn) {
+    document.querySelectorAll('.gl-theme-btn, .gl-theme-btn-mobile').forEach(function (btn) {
       btn.addEventListener('click', function () {
         applyTheme(btn.getAttribute('data-gl-theme'));
       });
