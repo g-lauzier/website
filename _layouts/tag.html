@@ -18,10 +18,10 @@ layout: gl-default
     {% if page.posts.size > 0 %}
       {% assign sorted_posts = page.posts | sort: "date" | reverse %}
       {% for post in sorted_posts %}
-      <a href="{{ post.url }}" class="gl-post-row gl-post-row--feed" style="text-decoration:none;">
+      <a href="{{ post.url }}" class="gl-post-row">
+        <span class="gl-post-date">{{ post.date | date: "%b %d, %Y" }}</span>
         <span class="gl-post-title">{{ post.title }}</span>
-        <span class="gl-post-tag-pill">{% if post.categories.first %}{{ post.categories.first }}{% elsif post.tags.first %}{{ post.tags.first }}{% endif %}</span>
-        <span class="gl-read-more">Read More →</span>
+        <span class="gl-post-tag">{% if post.categories.first %}{{ post.categories.first }}{% elsif post.tags.first %}{{ post.tags.first }}{% endif %}</span>
       </a>
       {% endfor %}
     {% else %}

@@ -10,12 +10,12 @@ description: "Essays on Digital Infrastructure, AI, Cybersecurity, and the archi
     <h1 class="gl-section-title">Field Notes.</h1>
     <p class="gl-section-body">Non-consensus thinking on the primitives that matter. Infrastructure, intelligence, and the architecture of what's inevitable.</p>
 
-    <div class="gl-posts-list" style="margin-top: 3rem;">
+    <div class="gl-posts-list" id="gl-posts-list" style="margin-top: 3rem;">
       {% for post in site.posts %}
-      <a href="{{ post.url }}" class="gl-post-row gl-post-row--feed" style="text-decoration:none;">
+      <a href="{{ post.url }}" class="gl-post-row" data-post-index="{{ forloop.index0 }}">
+        <span class="gl-post-date">{{ post.date | date: "%b %d, %Y" }}</span>
         <span class="gl-post-title">{{ post.title }}</span>
         <span class="gl-post-tag">{% if post.categories.first %}{{ post.categories.first }}{% endif %}</span>
-        <span class="gl-read-more">Read More →</span>
       </a>
       {% endfor %}
 
@@ -23,5 +23,37 @@ description: "Essays on Digital Infrastructure, AI, Cybersecurity, and the archi
       <p class="gl-text-muted" style="padding: 3rem 0; font-family: var(--mono); font-size: 0.85rem;">— No entries yet. The signal is building.</p>
       {% endif %}
     </div>
+
+    <div class="gl-load-more-wrap" id="gl-load-more-wrap">
+      <button class="gl-load-more-btn" id="gl-load-more">Load more</button>
+    </div>
   </div>
 </main>
+
+<script>
+(function () {
+  var BATCH = 10;
+  var list  = document.getElementById('gl-posts-list');
+  var btn   = document.getElementById('gl-load-more');
+  var wrap  = document.getElementById('gl-load-more-wrap');
+  if (!list || !btn) return;
+
+  var rows = Array.from(list.querySelectorAll('.gl-post-row'));
+  var shown = 0;
+
+  function showNext() {
+    var end = Math.min(shown + BATCH, rows.length);
+    for (var i = shown; i < end; i++) {
+      rows[i].classList.remove('gl-post-hidden');
+    }
+    shown = end;
+    if (shown >= rows.length) wrap.style.display = 'none';
+  }
+
+  /* Hide all initially */
+  rows.forEach(function (r) { r.classList.add('gl-post-hidden'); });
+  showNext();
+
+  btn.addEventListener('click', showNext);
+})();
+</script>

@@ -524,26 +524,34 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid var(--border);
   transition: background var(--transition);
 }
-.gl-post-row--feed {
-  grid-template-columns: 1fr auto auto;
-  align-items: center;
-}
 .gl-post-row:hover .gl-post-title { color: var(--text); }
-.gl-post-row--feed:hover .gl-read-more {
-  color: var(--accent);
-  border-color: var(--accent);
+
+/* Posts hidden until "Load more" is clicked */
+.gl-post-hidden { display: none !important; }
+
+/* Load more button */
+.gl-load-more-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0 1rem;
 }
-.gl-read-more {
+.gl-load-more-btn {
   font-family: var(--mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
+  background: transparent;
   border: 1px solid var(--border);
-  padding: 0.3rem 0.75rem;
   border-radius: var(--radius);
-  white-space: nowrap;
-  transition: color var(--transition), border-color var(--transition);
+  padding: 0.7rem 2rem;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.gl-load-more-btn:hover {
+  color: var(--text);
+  border-color: var(--border-h);
+  background: var(--bg-2);
 }
 .gl-post-date {
   font-family: var(--mono);
@@ -1738,9 +1746,6 @@ img { max-width: 100%; display: block; }
 
   /* Posts list */
   .gl-post-row { grid-template-columns: 1fr; gap: 0.25rem; }
-  .gl-post-row--feed { grid-template-columns: 1fr auto; }
-  .gl-post-row--feed .gl-post-tag,
-  .gl-post-row--feed .gl-post-tag-pill { display: none; }
   .gl-post-tag { display: none; }
   /* Individual post */
   .gl-post-hero-img,
