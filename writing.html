@@ -12,10 +12,10 @@ description: "Essays on Digital Infrastructure, AI, Cybersecurity, and the archi
 
     <div class="gl-posts-list" style="margin-top: 3rem;">
       {% for post in site.posts %}
-      <a href="{{ post.url }}" class="gl-post-row" style="text-decoration:none; display:grid; grid-template-columns: 120px 1fr auto; gap: 2rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--border); transition: all 0.3s ease;">
-        <span class="gl-post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+      <a href="{{ post.url }}" class="gl-post-row gl-post-row--feed" style="text-decoration:none;">
         <span class="gl-post-title">{{ post.title }}</span>
         <span class="gl-post-tag">{% if post.categories.first %}{{ post.categories.first }}{% endif %}</span>
+        <span class="gl-read-more">Read More →</span>
       </a>
       {% endfor %}
 

@@ -281,4 +281,61 @@ description: "Guillaume Lauzier — Venture Partner backing product-obsessed fou
   </div>
 </section>
 
+
+<div class="gl-divider"></div>
+
+<!-- ── CONTACT ── -->
+<section class="gl-section gl-contact-section" id="contact">
+  <div class="gl-contact-grid">
+
+    <div class="gl-contact-copy">
+      <p class="gl-section-label">Contact</p>
+      <h2 class="gl-contact-title">Start a Conversation.</h2>
+      <p class="gl-contact-body">Not pitching? Reach out anyway — for introductions, collaborations, or press enquiries.</p>
+      <ul class="gl-contact-list">
+        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/guillaumelauzier/" target="_blank" rel="noopener">guillaumelauzier</a></li>
+        <li><span>X</span><a href="https://x.com/guilauzier" target="_blank" rel="noopener">@guilauzier</a></li>
+      </ul>
+    </div>
+
+    <div class="gl-contact-form-wrap">
+      <!--
+      ════════════════════════════════════════════════════════
+      EMAIL SETUP (takes 2 minutes, completely free)
+      ────────────────────────────────────────────────────────
+      1. Go to https://formspree.io and sign up (free)
+      2. Click "+ New Form", name it "Contact"
+      3. Copy the form ID from the URL (looks like: xpwzabcd)
+      4. Replace YOUR_FORM_ID below with that ID
+      5. Rebuild — you'll get an email on every submission
+      ════════════════════════════════════════════════════════
+      -->
+      <form
+        class="gl-contact-form"
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST">
+
+        <div class="gl-form-row">
+          <div class="gl-form-group">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" type="text" name="name" placeholder="Your name" required />
+          </div>
+          <div class="gl-form-group">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" type="email" name="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+
+        <div class="gl-form-group">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" rows="6" placeholder="What's on your mind?" required></textarea>
+        </div>
+
+        <button type="submit" class="gl-btn gl-btn-primary">Send Message →</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
 </main>

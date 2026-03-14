@@ -462,7 +462,27 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid var(--border);
   transition: background var(--transition);
 }
+.gl-post-row--feed {
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+}
 .gl-post-row:hover .gl-post-title { color: var(--text); }
+.gl-post-row--feed:hover .gl-read-more {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.gl-read-more {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius);
+  white-space: nowrap;
+  transition: color var(--transition), border-color var(--transition);
+}
 .gl-post-date {
   font-family: var(--mono);
   font-size: 0.75rem;
@@ -883,6 +903,109 @@ img { max-width: 100%; display: block; }
   color: var(--muted);
 }
 .gl-post-back a:hover { color: var(--accent); }
+
+/* ── CONTACT SECTION ── */
+.gl-contact-section { padding-bottom: 5rem; }
+.gl-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 5rem;
+  align-items: start;
+}
+.gl-contact-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: var(--text);
+  margin: 0.5rem 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+.gl-contact-body {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0 0 2rem;
+  max-width: 340px;
+}
+.gl-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.gl-contact-list li {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+.gl-contact-list li span {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  min-width: 60px;
+}
+.gl-contact-list li a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.gl-contact-list li a:hover { color: var(--accent); }
+.gl-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.gl-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.gl-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.gl-form-group label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.gl-form-group input,
+.gl-form-group textarea {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--text);
+  transition: border-color var(--transition), background var(--transition);
+  outline: none;
+  resize: vertical;
+  width: 100%;
+  box-sizing: border-box;
+}
+.gl-form-group input::placeholder,
+.gl-form-group textarea::placeholder { color: var(--muted); }
+.gl-form-group input:focus,
+.gl-form-group textarea:focus {
+  border-color: var(--accent);
+  background: var(--bg-3);
+}
+@media (max-width: 768px) {
+  .gl-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .gl-form-row { grid-template-columns: 1fr; }
+  .gl-contact-body { max-width: none; }
+}
 
 /* ── TESTIMONIALS / WHAT PEOPLE SAY ── */
 .gl-testimonials {
@@ -1544,6 +1667,9 @@ img { max-width: 100%; display: block; }
 
   /* Posts list */
   .gl-post-row { grid-template-columns: 1fr; gap: 0.25rem; }
+  .gl-post-row--feed { grid-template-columns: 1fr auto; }
+  .gl-post-row--feed .gl-post-tag,
+  .gl-post-row--feed .gl-post-tag-pill { display: none; }
   .gl-post-tag { display: none; }
   /* Individual post */
   .gl-post-hero-img,
