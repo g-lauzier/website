@@ -296,38 +296,23 @@ img { max-width: 100%; display: block; }
   color: #3B82F6;
   text-shadow: 0 0 15px rgba(59, 130, 246, 0.7), 0 0 30px rgba(59, 130, 246, 0.4);
 }
-.gl-hero-name.gl-hero-calligraphy {
-  font-family: "UnifrakturMaguntia", cursive;
-  font-size: clamp(4rem, 12vw, 8rem);
-  letter-spacing: -0.02em;
+.gl-hero-name.gl-hero-handwritten {
+  font-family: "Mr Dafoe", cursive;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
   display: flex;
   flex-direction: column;
   width: fit-content;
-  margin-top: -1.5rem;
 }
-.gl-hero-calligraphy .cyber-calligraphy-first {
+.gl-hero-handwritten .handwritten-first {
   color: #ffffff;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
-  position: relative;
-  z-index: 2;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
-.gl-hero-calligraphy .cyber-calligraphy-last {
+.gl-hero-handwritten .handwritten-last {
   color: #3B82F6;
-  text-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 2px 2px 0px #000;
-  position: relative;
-  margin-top: -0.3em;
-  z-index: 1;
-}
-.gl-hero-calligraphy .cyber-calligraphy-last::before {
-  content: "";
-  position: absolute;
-  top: 45%;
-  left: -0.5em;
-  right: -0.5em;
-  height: 2px;
-  background: rgba(59, 130, 246, 0.5);
-  pointer-events: none;
-  z-index: 3;
+  text-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+  margin-left: 20px;
 }
 .gl-hero-sub {
   font-size: clamp(1rem, 2vw, 1.3rem);
