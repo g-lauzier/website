@@ -266,17 +266,20 @@ img { max-width: 100%; display: block; }
   margin-bottom: 2rem;
 }
 .gl-hero-name {
-  font-family: var(--serif);
+  font-family: "DM Serif Display", serif;
   font-size: clamp(3.5rem, 9vw, 8rem);
-  font-weight: 900;
+  font-weight: 400;
   line-height: 0.95;
   letter-spacing: -0.02em;
-  color: var(--text);
   margin-bottom: 1.5rem;
 }
-.gl-hero-name em {
-  font-style: italic;
-  color: var(--accent);
+.gl-hero-first {
+  color: #F3F4F6;
+  font-style: normal;
+}
+.gl-hero-last {
+  color: #3A5BFF;
+  font-style: normal;
 }
 .gl-hero-sub {
   font-size: clamp(1rem, 2vw, 1.3rem);
