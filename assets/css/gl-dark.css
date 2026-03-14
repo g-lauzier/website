@@ -884,6 +884,78 @@ img { max-width: 100%; display: block; }
 }
 .gl-post-back a:hover { color: var(--accent); }
 
+/* ── TESTIMONIALS / WHAT PEOPLE SAY ── */
+.gl-testimonials {
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+  padding: 5rem 0 4rem;
+}
+.gl-testimonials-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.gl-testimonials-header {
+  margin-bottom: 3rem;
+}
+.gl-testimonials-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: var(--text);
+  margin: 0.5rem 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+.gl-testimonials-sub {
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.65;
+  margin: 0;
+}
+.gl-testimonials-widget {
+  width: 100%;
+}
+/* Override Elfsight widget fonts/colours to match GL theme */
+.gl-testimonials-widget .eapps-widget,
+.gl-testimonials-widget [class*="elfsight"] {
+  font-family: var(--sans) !important;
+  color: var(--text) !important;
+}
+/* Placeholder shown until real widget code is pasted */
+.gl-widget-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  border: 1px dashed var(--border-h);
+  border-radius: calc(var(--radius) * 2);
+  text-align: center;
+  color: var(--muted);
+  background: var(--bg-2);
+}
+.gl-widget-placeholder svg { opacity: 0.4; }
+.gl-widget-placeholder p {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+  max-width: none;
+}
+.gl-widget-placeholder a {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+.gl-widget-placeholder a:hover { opacity: 0.7; }
+
 /* ── TAG PAGES ── */
 .gl-tag-hero {
   padding-top: 9rem !important;
