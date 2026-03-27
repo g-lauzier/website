@@ -4,7 +4,7 @@ title: "How Crypto Mining Can Help Power the Clean Energy Revolution"
 date: 2022-10-23 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["carbon-credits", "carbon-emissions", "clean-energy", "clean-energy-policies"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/1663194772633-envionberlinbusinesswireweb.png.webp"
+post_image: "/assets/images/crypto-mining-clean-energy.png"
 description: "Cryptocurrency mining has been in the spotlight in recent years for its energy-intensive nature and its potential impact on the environment. However, the energy consumption of crypto mining operations"
 permalink: "/crypto-mining-clean-energy-revolution/"
 ---

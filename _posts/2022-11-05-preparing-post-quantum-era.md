@@ -4,7 +4,7 @@ title: "Preparing for the Post-Quantum Era"
 date: 2022-11-05 00:00:00 +0000
 categories: ["cybersecurity"]
 tags: ["algorithms", "code-based"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2022/11/generatedart_post-quantum_cryptography_90768640-b324-49ab-9cb0-5ed042856072.png"
+post_image: "/assets/images/preparing-post-quantum-era.png"
 description: "An Introduction to Quantum-Resistant Cryptography Post-quantum cryptography is a field of study focused on developing and implementing cryptographic algorithms that are resistant to attacks by quantum"
 permalink: "/preparing-post-quantum-era/"
 ---

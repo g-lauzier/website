@@ -4,15 +4,14 @@ title: "Expanding Human Perception through Generative Art and Technology"
 date: 2022-12-01 00:00:00 +0000
 categories: ["ai"]
 tags: []
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_infinity_sense.png"
+post_image: "/assets/images/expanding-human-perception.png"
 description: "Generative art is a medium of artistic expression that relies on algorithms, code, and technology to create unique and often unpredictable works of art. One of the key features of generative art is it"
 permalink: "/expanding-human-perception/"
 ---
 
 Generative art is a medium of artistic expression that relies on algorithms, code, and technology to create unique and often unpredictable works of art. One of the key features of generative art is its ability to generate visual and auditory patterns that can be perceived by humans, and the range of such patterns can be extended by technology. However, with the help of technology, generative art can go beyond human sensory experience and represent a range of vision, hearing, touch, smell, and taste that cannot normally be perceived by humans but by machines.
 
-## 
-Vision
+## Vision
 
 The range of vision that can be perceived by machines, but not by humans, includes infrared and ultraviolet light. Infrared radiation has longer wavelengths than visible light and is commonly used in thermal imaging and remote sensing. Ultraviolet radiation has shorter wavelengths and is often used in medical imaging, germicidal lamps, and forensic investigations. By using specialized cameras or sensors that are sensitive to these wavelengths, generative artists can create visual representations of non-visible light that can be perceived by humans. For example, an installation could use lasers to create abstract shapes or patterns that are based on the data collected from sensors that detect non-visible light.
 
@@ -28,7 +27,6 @@ The range of touch that can be perceived by machines, but not by humans, include
 
 The range of taste and smell that can be perceived by machines, but not by humans, is vast. The human senses of taste and smell are limited compared to the range of chemical compounds that exist in the natural world. However, by using gas chromatography and mass spectrometry, generative artists can detect and identify a much wider range of chemical compounds than the human senses can. By using sonification, generative artists can convert this data into sound, allowing viewers to experience the data in a new way.
 
-## 
-Conclusion
+## Conclusion
 
 Generative art provides a unique medium for exploring the limits of human perception and extending it with technology. By using technology to create novel ways of representing non-visible and non-audible phenomena, generative art can provide new insights into the world around us and create unique and immersive experiences for viewers. Through generative art, the range of vision, hearing, touch, smell, and taste that cannot normally be perceived by humans can be transformed into a form that can be experienced in new and exciting ways.
