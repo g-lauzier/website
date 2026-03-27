@@ -23,27 +23,18 @@ Bootstrapping is an effective method to circumvent the pitfalls of equity traps.
 
 Bootstrapping doesn't necessarily mean completely avoiding external funding; instead, it encourages a more strategic approach to raising capital. Here are a few ways to bootstrap your startup:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 ## **Equity Management**
 
 While bootstrapping can maintain control and ownership, there might come a time when seeking external investment is necessary for growth. When this time comes, you should aim for equity management, ensuring that you avoid giving away more ownership than necessary. Here are some steps to achieve effective equity management:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
 The journey of starting a venture is exhilarating but fraught with challenges. As an entrepreneur, understanding the implications of equity distribution and effectively leveraging bootstrapping can prove vital in ensuring the long-term success of your startup. Striking a balance between securing necessary funding and retaining a substantial stake in your venture's future might be tricky but will lay the foundation for a sustainable and scalable business model.
 

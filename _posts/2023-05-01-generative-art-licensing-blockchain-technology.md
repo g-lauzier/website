@@ -15,45 +15,29 @@ Generative art, created through the use of algorithms and technology, has gained
 
 Blockchain technology is a decentralized digital ledger that provides an immutable and transparent record of transactions. By applying blockchain technology to generative art licensing, several key benefits can be realized:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 ## Challenges in Implementing Blockchain for Art Licensing
 
 Despite its potential benefits, implementing blockchain technology for generative art licensing involves several challenges:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 ## Implementing Blockchain for Generative Art Licensing
 
 To successfully implement a blockchain-based system for generative art licensing, consider the following steps:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
-7. $1
 
-8. $1
 
 ## Conclusion
 

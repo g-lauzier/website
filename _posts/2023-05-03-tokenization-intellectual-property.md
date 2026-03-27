@@ -17,15 +17,10 @@ Tokenization is the process of converting rights to an asset, such as real estat
 
 Benefits of IP Tokenization
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
 ## Impact on Stakeholders and Shareholders
 
