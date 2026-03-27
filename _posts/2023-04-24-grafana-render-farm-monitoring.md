@@ -11,11 +11,9 @@ permalink: "/grafana-render-farm-monitoring/"
 
 Render farms are essential for handling complex 3D rendering and film visual effects (VFX) tasks. As the number of render nodes increases, managing and monitoring their performance becomes increasingly critical. Grafana, a popular open-source visualization and analytics platform, can be an invaluable tool for monitoring the performance and resource utilization of render farms. In this article, we'll explore how to leverage Grafana to create a comprehensive monitoring solution for your render farm.
 
-1. $1
 
 Grafana is a powerful, customizable visualization platform that allows you to create dynamic, interactive dashboards to monitor and analyze data from various sources. With its built-in support for numerous data sources, such as Prometheus, InfluxDB, and Graphite, Grafana is an excellent choice for monitoring render farm performance.
 
-1. $1
 
 To effectively manage your render farm, you'll need to collect and visualize relevant metrics. Some key metrics to monitor include:
 
@@ -31,7 +29,6 @@ To effectively manage your render farm, you'll need to collect and visualize rel
 
 - Custom metrics: Metrics specific to your render farm's setup or workflow, such as utilization of specific features, plugins, or optimizations
 
-1. $1
 
 To get started with Grafana, you'll need to install the software on a compatible server and configure it to connect to your desired data sources. Grafana supports a wide range of data sources, but for render farm monitoring, you may choose to use Prometheus, InfluxDB, or Graphite.
 
@@ -43,7 +40,6 @@ To get started with Grafana, you'll need to install the software on a compatible
 
 - Add the data sources to Grafana and verify the connection
 
-1. $1
 
 With Grafana and your data sources connected, it's time to create a dashboard for your render farm. You can either build a dashboard from scratch or import existing templates from the Grafana community. When designing your dashboard, consider the following best practices:
 
@@ -57,7 +53,6 @@ With Grafana and your data sources connected, it's time to create a dashboard fo
 
 - Regularly review and update your dashboard to ensure it remains relevant and useful for your render farm's needs
 
-1. $1
 
 Monitoring your render farm with Grafana is an ongoing process. Continually refine and optimize your dashboard to keep up with changing requirements, hardware upgrades, and software updates. Regularly review performance metrics and alerts to identify potential issues and address them before they impact your render farm's productivity.
 

@@ -13,34 +13,20 @@ Do you have a passion for generative art, AI art, creative coding, or generative
 
 ## Getting started with Medium
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
 ## Guidelines
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
-7. $1
 
-8. $1
 
 Generative art is a rapidly growing field that offers a unique blend of creativity, innovation, and technology. As an author, your work is a reflection of your unique perspective on the world around you, and your writing can provide valuable insights into your creative process and the challenges you face. By following these tips for writing Medium articles for GeneratedArt publications, you can create content that engages and inspires your readers, establishes you as a thought leader in the field of generative art, and builds your reputation as an expert in the industry. So, take the time to craft compelling introductions, do your research, master your headlines, find your own creative voice, and avoid overly aggressive calls to action. By doing so, you can create content that resonates with your audience and helps to push the boundaries of generative art even further.

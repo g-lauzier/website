@@ -21,45 +21,25 @@ We will also discuss the various types of vulnerabilities that can occur on bloc
 
 ## Contents
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
-7. $1
 
-8. $1
 
-9. $1
 
-10. $1
 
-11. $1
 
-12. $1
 
-13. $1
 
-14. $1
 
-15. $1
 
-16. $1
 
-17. $1
 
-18. $1
 
-19. $1
 
-20. $1
 
 ## 51% attacks
 
@@ -77,15 +57,10 @@ It's worth noting that the occurrence of 51% attack is more likely on smaller bl
 
 Here are a few examples of 51% attacks that have occurred in the past:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
 ## Replay attacks
 
@@ -101,15 +76,10 @@ Replay attacks are more likely to occur in cases where there is a lack of commun
 
 Here are a few examples of replay attacks that have occurred in the past:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
 ## Front-running
 
@@ -127,13 +97,9 @@ Front-running attacks can undermine the integrity of the network and can lead to
 
 Here are a few examples of front-running that have occurred in the past:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 ## Race condition attacks
 
@@ -147,15 +113,10 @@ It's worth noting that Race condition attacks are a common type of vulnerability
 
 Here are a few examples of Race condition attacks that have occurred in the past:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
 ## Time-jacking attacks
 
@@ -179,13 +140,9 @@ To mitigate the risk of data injection attacks, it is important to implement mea
 
 Here are a few examples of data injection attacks that have occurred in the past:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 ## Distributed Denial of Service (DDoS)
 
@@ -201,13 +158,9 @@ It's worth noting that DDoS attacks are one of the most frequent types of attack
 
 Here are a few examples of Distributed Denial of Service (DDoS) attacks that have occurred in the past:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 ## Malicious node attacks
 
@@ -223,13 +176,9 @@ To mitigate the risk of malicious node attacks, it is important to implement mea
 
 Here are a few examples of malicious node attacks that have occurred in the past:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 ## Oracle attacks
 
@@ -245,13 +194,9 @@ To mitigate the risk of Oracle attacks, it is important to use multiple, indepen
 
 Here are a few examples of Oracle attacks that have occurred in the past:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 ## Smart contract vulnerabilities
 
@@ -265,15 +210,10 @@ Smart contract vulnerabilities are a common type of vulnerability in the blockch
 
 Here are a few examples of Smart contract vulnerabilities that have occurred in the past:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
 ## Wallet vulnerabilities
 
@@ -287,13 +227,9 @@ Wallet vulnerabilities are a common type of vulnerability in the blockchain indu
 
 Examples:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 ## Private key vulnerabilities
 
@@ -307,15 +243,10 @@ Private key vulnerabilities are a common type of vulnerability in the blockchain
 
 Examples:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
 ## Phishing attacks
 
@@ -331,13 +262,9 @@ Phishing attacks are a common type of vulnerability in the blockchain industry, 
 
 Examples:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 ## Sybil attacks
 
@@ -353,11 +280,8 @@ Sybil attacks are relatively rare, and it's hard to execute them, however, it's 
 
 Examples:
 
-1. $1
 
-2. $1
 
-3. $1
 
 ## Eclipse attacks
 
@@ -373,9 +297,7 @@ Eclipse attacks are relatively rare and it's hard to execute them, however, it's
 
 Examples:
 
-1. $1
 
-2. $1
 
 ## BGP hijacking attacks
 
@@ -399,13 +321,9 @@ One of the most significant risks associated with side-channel attacks is that t
 
 To mitigate the risk of side-channel attacks, it is important to use secure hardware and to implement countermeasures such as constant-time algorithms, masking, and randomization. Additionally, it is important to monitor the network for any unusual activity and have incident response plans in place. It is also important to have a proper evaluation and due diligence of the hardware used before integrating them in the network.
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 ## Quantum computing attacks
 
@@ -437,11 +355,8 @@ To mitigate the risk of blockchain governance attacks, it is important to have a
 
 Blockchain governance attacks are a type of vulnerability in the blockchain industry, and it's crucial to have measures in place to prevent them from happening. It's also important to be aware of the best practices for blockchain governance, such as having a decentralized and transparent governance structure, and having a robust system in place for detecting and responding to suspicious activity.
 
-1. $1
 
-2. $1
 
-3. $1
 
 ## Conclusion
 

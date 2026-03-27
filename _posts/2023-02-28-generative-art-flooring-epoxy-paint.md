@@ -15,17 +15,11 @@ Generative art, a captivating fusion of technology and creativity, has taken the
 
 Epoxy flooring stenciling is a technique that uses vinyl or plastic negatives to add epoxy paint to floors, creating generative art designs. The process involves the following steps:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
 ## Benefits of Generative Art Flooring Using Epoxy Paint
 
