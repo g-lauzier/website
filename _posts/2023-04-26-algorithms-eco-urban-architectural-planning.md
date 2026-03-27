@@ -15,27 +15,18 @@ As the world faces an increasing number of environmental challenges, architects 
 
 Generative art algorithms are mathematical and computational processes that simulate the organic growth and development of natural forms. These algorithms often employ fractals, cellular automata, agent-based models, and artificial life systems to create complex, evolving patterns that mirror the beauty and efficiency of nature.
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 ## Generative Art Algorithms in Urban and Architectural Planning
 
 By employing generative art algorithms, architects and urban planners can create spaces that are not only aesthetically pleasing but also environmentally friendly. Some key applications include:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
 ## Conclusion
 
