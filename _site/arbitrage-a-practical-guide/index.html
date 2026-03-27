@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arbitrage - A Practical Guide — Guillaume Lauzier</title>
+  <meta name="description" content="Decentralized Finance (DeFi) has transformed the financial landscape, offering traders innovative ways to profit from inefficiencies in decentralized marke" />
+  <link rel="shortcut icon" href="/assets/images/favicon.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700;0,700;1,700&family=JetBrains+Mono:wght@400;500;700&family=Share+Tech+Mono&family=Space+Mono:wght@400;700&family=Mr+Dafoe&display=swap" />
+  <link rel="stylesheet" href="/assets/css/gl-dark.css" />
+  <!-- Apply saved theme before first paint to prevent flash -->
+  <script>
+    (function(){
+      var t = localStorage.getItem('gl-theme');
+      if (t === 'light' || t === 'grey' || t === 'dark') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    })();
+  </script>
+</head>
+<body>
+
+<nav class="gl-nav">
+  <div class="gl-nav-inner">
+    <a href="/" class="gl-nav-logo">GL<span>.</span></a>
+    <button class="gl-nav-hamburger" id="gl-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="gl-nav-links" id="gl-nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/#investments">Investments</a></li>
+      <li><a href="/writing">Writing</a></li>
+      <li><a href="/advisory">Advisory</a></li>
+      <li class="nav-cta"><a href="/pitch">Pitch</a></li>
+      <li class="gl-nav-mobile-theme" style="display:none;">
+        <div class="gl-theme-switcher-mobile">
+          <button class="gl-theme-btn-mobile" data-gl-theme="light" title="Light" aria-label="Light theme">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </button>
+          <button class="gl-theme-btn-mobile" data-gl-theme="grey" title="Grey" aria-label="Grey theme">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="8" x2="20" y2="8"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="4" y1="16" x2="20" y2="16"/></svg>
+          </button>
+          <button class="gl-theme-btn-mobile" data-gl-theme="dark" title="Dark" aria-label="Dark theme">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── POST HERO ── -->
+  <div class="gl-post-hero">
+    
+      <div class="gl-post-hero-media">
+        <img src="/assets/images/arbitrage-a-practical-guide.png" alt="Arbitrage - A Practical Guide" class="gl-post-hero-img" />
+      </div>
+    
+
+    <div class="gl-post-hero-content">
+      <div class="gl-section">
+        
+        <div class="gl-post-cats">
+          
+          <a href="/category/fintech" class="gl-post-cat-badge">fintech</a>
+          
+        </div>
+        
+        <h1 class="gl-post-hero-title">Arbitrage - A Practical Guide</h1>
+        <div class="gl-post-meta">
+          <span class="gl-post-meta-item">August 12, 2024</span>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gl-divider"></div>
+
+  <!-- ── POST BODY ── -->
+  <div class="gl-section">
+    <div class="gl-post-body">
+
+      <div class="gl-post-content">
+        <p>Decentralized Finance (DeFi) has transformed the financial landscape, offering traders innovative ways to profit from inefficiencies in decentralized markets. Among these, <strong>arbitrage</strong> stands out as a compelling strategy—exploiting price discrepancies across decentralized exchanges (DEXs) like Uniswap, Sushiswap, and others. This guide dives deep into the world of DeFi arbitrage, covering the essentials, advanced techniques, challenges, and tools to help you succeed. Whether you’re a beginner or an experienced trader, this article will provide actionable insights to navigate this fast-evolving space.</p>
+
+<hr />
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ol>
+  <li>What is Arbitrage in DEXs?</li>
+  <li>Types of Arbitrage Opportunities in DeFi</li>
+  <li>Common Arbitrage Techniques in DEXs</li>
+  <li>How to Identify Arbitrage Opportunities in DEXs</li>
+  <li>Challenges in DEX Arbitrage</li>
+  <li>Tools and Platforms for Automating Arbitrage Strategies</li>
+  <li>The Future of Arbitrage in DeFi</li>
+  <li>Conclusion</li>
+</ol>
+
+<hr />
+
+<h2 id="what-is-arbitrage-in-dexs">What is Arbitrage in DEXs?</h2>
+
+<p>At its heart, arbitrage in DEXs is about <strong>buying and selling the same asset on different platforms to profit from price differences</strong>. In DeFi, liquidity is spread across numerous decentralized exchanges, leading to temporary price variations for the same token. These gaps create opportunities for traders to buy low on one DEX and sell high on another.</p>
+
+<p>For instance, suppose Ethereum (ETH) is priced at $2,500 on Uniswap but $2,510 on Sushiswap. By purchasing ETH on Uniswap and selling it on Sushiswap, you could earn a $10 profit per ETH (after accounting for fees). This process not only benefits traders but also helps stabilize prices across platforms, enhancing market efficiency.</p>
+
+<p>Unlike traditional markets, where arbitrage is often reserved for well-funded institutions, DeFi levels the playing field. Open protocols and tools like flash loans make it possible for anyone with the right know-how to participate, regardless of their starting capital.</p>
+
+<h2 id="types-of-arbitrage-opportunities-in-defi">Types of Arbitrage Opportunities in DeFi</h2>
+
+<p>Arbitrage in DeFi isn’t one-size-fits-all—there are several distinct approaches to explore. Understanding these can help you pinpoint the best opportunities for your goals.</p>
+
+<h3 id="1-cross-dex-arbitrage">1. Cross-DEX Arbitrage</h3>
+
+<p>The most straightforward type, this involves capitalizing on price differences for the same token pair across different DEXs. For example, you might buy a token on Uniswap and sell it on Balancer if the price is higher there.</p>
+
+<h3 id="2-triangular-arbitrage">2. Triangular Arbitrage</h3>
+
+<p>This strategy entails trading between three tokens within a single DEX to exploit pricing inconsistencies. Imagine trading ETH to DAI, DAI to USDC, and USDC back to ETH on Uniswap—if the loop yields more ETH than you started with, you’ve profited.</p>
+
+<h3 id="3-cross-chain-arbitrage">3. Cross-Chain Arbitrage</h3>
+
+<p>With DeFi spanning multiple blockchains (e.g., Ethereum, Binance Smart Chain, Solana), price differences can arise between DEXs on separate chains. Cross-chain arbitrage involves transferring assets via bridges to take advantage of these gaps, though it comes with added costs and complexity.</p>
+
+<h3 id="4-stablecoin-arbitrage">4. Stablecoin Arbitrage</h3>
+
+<p>Stablecoins like USDC, DAI, and USDT are designed to hold a steady $1 value, but slight deviations occur due to liquidity imbalances. Trading these assets can be less risky than volatile tokens like ETH, making it an attractive entry point for cautious arbitrageurs.</p>
+
+<h2 id="common-arbitrage-techniques-in-dexs">Common Arbitrage Techniques in DEXs</h2>
+
+<p>Spotting price differences is just the beginning—executing trades efficiently is where the real skill lies. One standout technique in DeFi is <strong>flash loan arbitrage</strong>, which harnesses the ecosystem’s unique features.</p>
+
+<h3 id="flash-loan-arbitrage">Flash Loan Arbitrage</h3>
+
+<p>Flash loans let traders <strong>borrow large sums without collateral</strong>, execute trades, and repay the loan—all in one transaction. This eliminates the need for personal capital, broadening access to arbitrage.</p>
+
+<p>Here’s how it works:</p>
+
+<ol>
+  <li><strong>Borrow</strong>: Secure a flash loan, say 10,000 DAI, from a platform like Aave.</li>
+  <li><strong>Buy</strong>: Use the DAI to buy ETH on a DEX where it’s cheaper (e.g., $2,500/ETH on Uniswap).</li>
+  <li><strong>Sell</strong>: Sell the ETH on another DEX where it’s pricier (e.g., $2,510/ETH on Sushiswap).</li>
+  <li><strong>Repay</strong>: Return the 10,000 DAI plus a fee, pocketing the profit (e.g., $100 for 10 ETH).</li>
+</ol>
+
+<p>Flash loans demand precision—if any step fails, the transaction reverts, and you’re out the gas fees. It’s a high-stakes, high-reward approach that’s revolutionized DeFi arbitrage.</p>
+
+<h2 id="how-to-identify-arbitrage-opportunities-in-dexs">How to Identify Arbitrage Opportunities in DEXs</h2>
+
+<p>Finding profitable arbitrage opportunities requires speed, data, and strategy. The aim is to <strong>track price disparities across DEXs</strong> and act before they vanish. Here’s a practical approach:</p>
+
+<ol>
+  <li><strong>Use Aggregators and Price Trackers</strong>: Tools like <a href="https://dexscreener.com/">Dex Screener</a>, <a href="https://www.coingecko.com/">CoinGecko</a>, or <a href="https://1inch.io/">1inch</a> offer real-time price comparisons. Focus on liquid pairs like ETH/USDC or DAI/WETH.</li>
+  <li><strong>Set Custom Alerts</strong>: Configure notifications for significant price gaps using platforms that support thresholds, so you’re alerted instantly.</li>
+  <li><strong>Check Liquidity</strong>: A price difference is only viable if there’s enough liquidity to avoid slippage (when your trade shifts the price). Review pool sizes first.</li>
+  <li><strong>Factor in Fees</strong>: Gas fees (especially on Ethereum) and DEX trading fees can eat into profits. A $10 gain isn’t worth it if fees are $15—always calculate net profit.</li>
+</ol>
+
+<p>Speed is critical—arbitrage windows close fast as other traders and bots move in.</p>
+
+<h2 id="challenges-in-dex-arbitrage">Challenges in DEX Arbitrage</h2>
+
+<p>Arbitrage promises profits, but it’s not without pitfalls. Here’s a deeper look at the obstacles and how to tackle them.</p>
+
+<h3 id="1-high-transaction-fees-and-network-congestion">1. High Transaction Fees and Network Congestion</h3>
+
+<p>On Ethereum, <strong>gas fees</strong> can spike during busy periods, and <strong>network congestion</strong> can delay trades, making arbitrage unviable. To counter this:</p>
+
+<ul>
+  <li>Trade during quieter times (e.g., early UTC mornings).</li>
+  <li>Explore Layer 2 networks like Polygon or Optimism for lower costs.</li>
+</ul>
+
+<h3 id="2-slippage-and-liquidity-issues">2. Slippage and Liquidity Issues</h3>
+
+<p><strong>Slippage</strong> happens when your trade impacts the price due to low liquidity, shrinking your margins. For example, buying from a small pool might raise the price mid-trade. Mitigate this by:</p>
+
+<ul>
+  <li>Targeting high-liquidity pools.</li>
+  <li>Splitting large trades into smaller ones.</li>
+</ul>
+
+<h3 id="3-execution-risks">3. Execution Risks</h3>
+
+<p>DeFi relies on smart contracts, which can fail due to bugs, delays, or <strong>front-running</strong> (bots beating you to the punch). Use audited platforms and consider <a href="https://docs.flashbots.net/">Flashbots</a> to shield against front-running.</p>
+
+<h3 id="4-smart-contract-vulnerabilities">4. Smart Contract Vulnerabilities</h3>
+
+<p>Interacting with multiple protocols increases exposure to <strong>smart contract risks</strong>. A flaw in any contract could lead to losses—think of the 2020 <a href="https://www.coindesk.com/harvest-finance-24m-attack-triggers-massive-defi-sell-off">Harvest Finance exploit</a>, where arbitrageurs lost funds. Research platform audits before diving in.</p>
+
+<h3 id="5-market-volatility">5. Market Volatility</h3>
+
+<p>Sudden price drops or spikes can erase profits mid-trade, especially with volatile assets. Stablecoin arbitrage can reduce this risk, but timing remains key.</p>
+
+<h2 id="tools-and-platforms-for-automating-arbitrage-strategies">Tools and Platforms for Automating Arbitrage Strategies</h2>
+
+<p>Arbitrage opportunities disappear in seconds, making manual trading a losing battle. <strong>Automation</strong> is the key to staying ahead—here are the top tools and platforms to consider.</p>
+
+<h3 id="1-arbitrage-bots">1. Arbitrage Bots</h3>
+
+<p>Bots scan DEXs for price gaps and execute trades instantly. Options include:</p>
+
+<ul>
+  <li><strong>Open-source</strong>: <a href="https://hummingbot.org/">Hummingbot</a> lets you customize strategies for free.</li>
+  <li><strong>Proprietary</strong>: Services like <a href="https://arbitragedao.com/">ArbitrageDAO</a> offer turnkey solutions for a fee.</li>
+</ul>
+
+<p>Optimize bots for speed and fee efficiency to maximize gains.</p>
+
+<h3 id="2-flash-loan-contracts">2. Flash Loan Contracts</h3>
+
+<p>For flash loan arbitrage, use pre-built contracts from <a href="https://aave.com/">Aave</a> or <a href="https://dydx.exchange/">dYdX</a>, or code your own in Solidity. These handle the borrow-trade-repay cycle seamlessly.</p>
+
+<h3 id="3-aggregators-with-built-in-arbitrage">3. Aggregators with Built-in Arbitrage</h3>
+
+<p>Aggregators like <a href="https://1inch.io/">1inch</a> route trades through optimal paths, sometimes capturing arbitrage-like profits across DEXs without extra effort.</p>
+
+<h3 id="4-custom-scripts">4. Custom Scripts</h3>
+
+<p>Tech-savvy traders can write Python or Solidity scripts, integrating DEX APIs to monitor prices and trigger trades. This offers full control but requires coding skills.</p>
+
+<p><strong>Automation Best Practices</strong>:</p>
+
+<ul>
+  <li><strong>Test First</strong>: Run on testnets (e.g., Ropsten) to iron out kinks.</li>
+  <li><strong>Beat the Bots</strong>: Optimize for speed to outpace competitors.</li>
+  <li><strong>Stay Current</strong>: Update tools as DeFi protocols evolve.</li>
+</ul>
+
+<p>Automation boosts efficiency but demands vigilance—missteps can be costly.</p>
+
+<h2 id="the-future-of-arbitrage-in-defi">The Future of Arbitrage in DeFi</h2>
+
+<p>DeFi is a moving target, and arbitrage will evolve with it. Here’s what lies ahead:</p>
+
+<h3 id="1-cross-chain-interoperability">1. Cross-Chain Interoperability</h3>
+
+<p>Bridges and protocols like <a href="https://polkadot.network/">Polkadot</a> and <a href="https://cosmos.network/">Cosmos</a> are expanding cross-chain arbitrage. While opportunities will grow, so will challenges like bridge fees and delays.</p>
+
+<h3 id="2-layer-2-expansion">2. Layer 2 Expansion</h3>
+
+<p>As DEXs shift to Layer 2 (e.g., Arbitrum, Optimism), lower fees could make smaller price gaps profitable, intensifying competition. Adapt early to stay ahead.</p>
+
+<h3 id="3-advanced-dex-models">3. Advanced DEX Models</h3>
+
+<p>Innovations like Uniswap V3’s concentrated liquidity or Curve’s stablecoin pools create new arbitrage dynamics. Keeping up with these changes will uncover fresh opportunities.</p>
+
+<h3 id="4-regulatory-considerations">4. Regulatory Considerations</h3>
+
+<p>Growing regulatory scrutiny may affect arbitrage, especially for large-scale or cross-border trades. Staying compliant will be vital as DeFi matures.</p>
+
+<h2 id="conclusion-mastering-arbitrage-in-defi">Conclusion: Mastering Arbitrage in DeFi</h2>
+
+<p>Arbitrage in DeFi blends market insight, technical prowess, and rapid execution into a powerful strategy. To excel:</p>
+
+<ul>
+  <li><strong>Stay Informed</strong>: Track new DEXs, tools, and trends.</li>
+  <li><strong>Manage Risks</strong>: Weigh fees, slippage, and vulnerabilities in every trade.</li>
+  <li><strong>Embrace Automation</strong>: Use bots and contracts to compete in real time.</li>
+</ul>
+
+<p>With diligence and the right tools, you can turn DeFi’s inefficiencies into consistent profits. Dive into the strategies and resources here, and start seizing arbitrage opportunities today!</p>
+
+
+        
+      </div>
+
+      <!-- Tags + Share -->
+      <div class="gl-post-footer">
+        
+        <div class="gl-post-tags">
+          
+          <a href="/tag/strategy" class="gl-post-tag">strategy</a>
+          
+          <a href="/tag/tokenomic" class="gl-post-tag">tokenomic</a>
+          
+        </div>
+        
+        <div class="gl-post-share" id="gl-share-bar" data-title="Arbitrage+-+A+Practical+Guide">
+  <span class="gl-post-share-label">Share</span>
+
+  <!-- X / Twitter -->
+  <a data-share="https://twitter.com/intent/tweet?url={URL}&text=Arbitrage+-+A+Practical+Guide"
+     href="#" target="_blank" rel="noopener" aria-label="Share on X" class="gl-share-btn" data-tooltip="X / Twitter">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+  </a>
+
+  <!-- LinkedIn -->
+  <a data-share="https://www.linkedin.com/sharing/share-offsite/?url={URL}"
+     href="#" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="gl-share-btn" data-tooltip="LinkedIn">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+  </a>
+
+  <!-- Facebook -->
+  <a data-share="https://www.facebook.com/sharer/sharer.php?u={URL}"
+     href="#" target="_blank" rel="noopener" aria-label="Share on Facebook" class="gl-share-btn" data-tooltip="Facebook">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+  </a>
+
+  <!-- Reddit -->
+  <a data-share="https://reddit.com/submit?url={URL}&title=Arbitrage+-+A+Practical+Guide"
+     href="#" target="_blank" rel="noopener" aria-label="Share on Reddit" class="gl-share-btn" data-tooltip="Reddit">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+  </a>
+
+  <!-- WhatsApp -->
+  <a data-share="https://api.whatsapp.com/send?text=Arbitrage+-+A+Practical+Guide%20{URL}"
+     href="#" target="_blank" rel="noopener" aria-label="Share on WhatsApp" class="gl-share-btn" data-tooltip="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- Email -->
+  <a data-share="mailto:?subject=Arbitrage+-+A+Practical+Guide&body={URL}"
+     href="#" aria-label="Share via Email" class="gl-share-btn" data-tooltip="Email">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+  </a>
+
+  <!-- Copy Link -->
+  <button class="gl-share-btn gl-share-copy" aria-label="Copy link" data-tooltip="Copy link"
+          onclick="(function(b){navigator.clipboard.writeText(window.location.href).then(function(){b.setAttribute('data-tooltip','Copied!');setTimeout(function(){b.setAttribute('data-tooltip','Copy link')},2000)})})(this)">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17 7h-4v2h4c1.65 0 3 1.35 3 3s-1.35 3-3 3h-4v2h4c2.76 0 5-2.24 5-5s-2.24-5-5-5zm-6 8H7c-1.65 0-3-1.35-3-3s1.35-3 3-3h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-2zm1-4H8v2h8v-2z"/></svg>
+  </button>
+</div>
+
+<script>
+(function() {
+  var bar = document.getElementById('gl-share-bar');
+  if (!bar) return;
+  var url = encodeURIComponent(window.location.href);
+  bar.querySelectorAll('a[data-share]').forEach(function(a) {
+    a.href = a.getAttribute('data-share').replace('{URL}', url);
+  });
+})();
+</script>
+
+      </div>
+
+      <!-- Back to writing -->
+      <div class="gl-post-back">
+        <a href="/writing" class="gl-post-back-link">← Back to Field Notes</a>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+
+<footer class="gl-footer">
+  <div class="gl-footer-inner">
+
+    <span class="gl-footer-copy">© 2026 Guillaume Lauzier</span>
+
+    <div class="gl-footer-social">
+      <a href="https://www.linkedin.com/in/guillaumelauzier/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/guilauzier/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://x.com/guilauzier" target="_blank" rel="noopener" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://github.com/guillaumelauzier" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@guillaumelauzier" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+      </a>
+      <a href="https://medium.com/@guillaumelauzier" target="_blank" rel="noopener" aria-label="Medium">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/guillaumelauzier/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m0 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2m3.5 11c0 1.933-1.567 3.5-3.5 3.5S8.5 14.933 8.5 13 10.067 9.5 12 9.5s3.5 1.567 3.5 3.5m1.5-5c0 .828-.672 1.5-1.5 1.5S14 8.828 14 8s.672-1.5 1.5-1.5S17 7.172 17 8m-5 6.5c-1.379 0-2.5-1.121-2.5-2.5s1.121-2.5 2.5-2.5 2.5 1.121 2.5 2.5-1.121 2.5-2.5 2.5"/></svg>
+      </a>
+      <a href="https://www.crunchbase.com/person/guillaume-lauzier" target="_blank" rel="noopener" aria-label="Crunchbase">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m5 9h-4v4h4v4h-8v-4h-4V9h4V5h4v4z"/></svg>
+      </a>
+      <a href="https://www.reddit.com/user/guillaumelauzier/" target="_blank" rel="noopener" aria-label="Reddit">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m5 12.5c0 .828-.672 1.5-1.5 1.5S14 13.328 14 12.5s.672-1.5 1.5-1.5 1.5.672 1.5 1.5m3-6H4v8h16v-8zM7 12.5c0 .828-.672 1.5-1.5 1.5S4 13.328 4 12.5 4.672 11 5.5 11s1.5.672 1.5 1.5"/></svg>
+      </a>
+    </div>
+
+    <div class="gl-footer-links">
+      <a href="/advisory">Advisory</a>
+      <a href="/writing">Writing</a>
+      <a href="/pitch">Pitch</a>
+    </div>
+
+  </div>
+</footer>
+
+<script src="/assets/js/gl.js"></script>
+</body>
+</html>
