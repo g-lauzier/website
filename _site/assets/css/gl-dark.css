@@ -1897,6 +1897,17 @@ img { max-width: 100%; display: block; }
   margin: 0 auto;
 }
 
+.gl-about-tagline {
+  font-family: var(--mono);
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text);
+  opacity: 0.75;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
 .gl-about-block {
   margin-bottom: 4rem;
 }
