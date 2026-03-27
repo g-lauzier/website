@@ -4,7 +4,7 @@ title: "Decentralized Data Storage: An Overview of Techniques and Algorithms"
 date: 2023-01-07 00:00:00 +0000
 categories: ["infrastructure"]
 tags: ["algorithms"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/generatedart_decentralized_storage_47cdddf4-fefd-44e7-bf90-d09e50b66a33.png"
+post_image: "/assets/images/decentralized-data-storage.png"
 description: "Decentralized data storage is a distributed computing paradigm that allows users to store and retrieve data in a decentralized manner, without the need for a central authority or coordinator. This app"
 permalink: "/decentralized-data-storage/"
 ---
