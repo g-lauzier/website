@@ -1890,3 +1890,86 @@ img { max-width: 100%; display: block; }
   .gl-tier-title { font-size: 1.4rem; }
   .gl-form-row { grid-template-columns: 1fr; }
 }
+
+/* ── ABOUT PAGE ── */
+.gl-about-content {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.gl-about-block {
+  margin-bottom: 3rem;
+}
+
+.gl-about-block h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.gl-about-block p {
+  color: var(--text);
+  opacity: 0.88;
+  margin-bottom: 1rem;
+}
+
+.gl-about-block p strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.gl-about-families {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.gl-about-family {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: border-color var(--transition);
+}
+
+.gl-about-family:hover {
+  border-color: var(--accent);
+}
+
+.gl-about-family-name {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.gl-about-family p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 0;
+}
+
+.gl-about-cta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .gl-about-families {
+    grid-template-columns: 1fr;
+  }
+  .gl-about-cta {
+    flex-direction: column;
+  }
+  .gl-about-cta .gl-btn {
+    text-align: center;
+  }
+}

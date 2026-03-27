@@ -23,7 +23,8 @@ A premium dark-mode portfolio site for Guillaume Lauzier, Venture Partner. Built
 - `_layouts/single.html` — Rewritten to use gl-default; editorial post style
 
 ## Pages
-- `index.html` — Full homepage: hero, bio, 10-sector accordion grid, investments, filter section
+- `index.html` — Full homepage: hero, bio, 12-sector accordion grid, investments, filter section
+- `about.html` — Editorial bio: origin story, investment thesis (3 families), philosophy, CTAs
 - `advisory.html` — 3-tier engagement models (The Roadmap / Architecture / Partner) + alignment toggle
 - `pitch.html` — Terminal-style high-friction pitch filter form
 - `writing.html` — Editorial blog listing
@@ -43,8 +44,8 @@ Server runs on port 80 (required for Replit proxy routing). Restart workflow to 
 - **Public directory:** `_site`
 - **Custom domain:** Configure `guillaumelauzier.com` via Replit deployment dashboard after publishing
 
-## Navigation (simplified)
-Home · Investments · Writing · Advisory · **Pitch** (bordered CTA)
+## Navigation (6 links)
+Home · About · Investments · Writing · Advisory · **Pitch** (bordered CTA)
 
 ## Sectors (10 primitives, pure CSS hover-reveal)
 The Backbone: Digital Infrastructure, Cybersecurity, Blockchain Software
