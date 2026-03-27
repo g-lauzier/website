@@ -19,17 +19,11 @@ PixelRNNs are primarily engineered for image generation and completion tasks. Th
 
 The architecture of PixelRNNs is built upon the principles of recurrent neural networks (RNNs), renowned for their ability to handle sequential data. In PixelRNNs, the sequence is the pixels of an image, processed in an orderly fashion, typically row-wise or diagonally. This sequential processing allows PixelRNNs to capture the intricate dependencies between pixels, which is crucial for generating coherent and visually appealing images.
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
 ## Pixel-by-Pixel Generation
 
@@ -60,33 +54,21 @@ Row LSTM**:
 
 A remarkable feature of PixelRNNs is their ability to be conditioned on additional information, such as class labels or parts of images. This conditioning enables the network to direct the image generation process more precisely, which is particularly beneficial for tasks like targeted image editing or generating images that need to meet specific criteria.
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
 ## Training and Data Requirements
 
 As with other neural networks, PixelRNNs require a significant volume of training data to learn effectively. They are trained on large datasets of images, where they learn to model the distribution of pixel values. This extensive training is necessary for the networks to capture the diverse range of patterns and nuances present in visual data.
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
 ## Challenges and Limitations
 
@@ -154,13 +136,9 @@ For real-world applications, you would need to expand this structure significant
 
 Pixel Recurrent Neural Networks (PixelRNNs) offer significant potential in the field of generative art. Here's how they can be utilized:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 ## Recent Developments
 
@@ -170,23 +148,14 @@ Pixel Recurrent Neural Networks represent a fascinating intersection of artifici
 
 ## 🗒️ Sources
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
-7. $1
 
-8. $1
 
-9. $1
 
 10. $1
 

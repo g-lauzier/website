@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="/index.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2026-03-25T13:57:35+00:00</updated><id>/index.xml</id><title type="html">Guillaume Lauzier</title><subtitle>Venture Partner. Backing product-obsessed founders at the frontier of Digital Infrastructure, Cybersecurity, AI, and Blockchain.</subtitle><entry><title type="html">The World of Pixel Recurrent Neural Networks (PixelRNNs)</title><link href="/the-world-pixelrnns/" rel="alternate" type="text/html" title="The World of Pixel Recurrent Neural Networks (PixelRNNs)" /><published>2023-12-19T00:00:00+00:00</published><updated>2023-12-19T00:00:00+00:00</updated><id>/the-world-pixelrnns</id><content type="html" xml:base="/the-world-pixelrnns/"><![CDATA[<p>Pixel Recurrent Neural Networks (PixelRNNs) have emerged as a groundbreaking approach in the field of image generation and processing. These sophisticated neural network architectures are reshaping how machines understand and generate visual content. This article delves into the core aspects of PixelRNNs, exploring their purpose, architecture, variants, and the challenges they face.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="/index.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2026-03-27T10:44:24+00:00</updated><id>/index.xml</id><title type="html">Guillaume Lauzier</title><subtitle>Venture Partner. Backing product-obsessed founders at the frontier of Digital Infrastructure, Cybersecurity, AI, and Blockchain.</subtitle><entry><title type="html">The World of Pixel Recurrent Neural Networks (PixelRNNs)</title><link href="/the-world-pixelrnns/" rel="alternate" type="text/html" title="The World of Pixel Recurrent Neural Networks (PixelRNNs)" /><published>2023-12-19T00:00:00+00:00</published><updated>2023-12-19T00:00:00+00:00</updated><id>/the-world-pixelrnns</id><content type="html" xml:base="/the-world-pixelrnns/"><![CDATA[<p>Pixel Recurrent Neural Networks (PixelRNNs) have emerged as a groundbreaking approach in the field of image generation and processing. These sophisticated neural network architectures are reshaping how machines understand and generate visual content. This article delves into the core aspects of PixelRNNs, exploring their purpose, architecture, variants, and the challenges they face.</p>
 
 <h2 id="purpose-and-application">Purpose and Application</h2>
 
@@ -7,27 +7,6 @@
 <h2 id="architecture">Architecture</h2>
 
 <p>The architecture of PixelRNNs is built upon the principles of recurrent neural networks (RNNs), renowned for their ability to handle sequential data. In PixelRNNs, the sequence is the pixels of an image, processed in an orderly fashion, typically row-wise or diagonally. This sequential processing allows PixelRNNs to capture the intricate dependencies between pixels, which is crucial for generating coherent and visually appealing images.</p>
-
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>
 
 <h2 id="pixel-by-pixel-generation">Pixel-by-Pixel Generation</h2>
 
@@ -70,51 +49,9 @@ Row LSTM**:</p>
 
 <p>A remarkable feature of PixelRNNs is their ability to be conditioned on additional information, such as class labels or parts of images. This conditioning enables the network to direct the image generation process more precisely, which is particularly beneficial for tasks like targeted image editing or generating images that need to meet specific criteria.</p>
 
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>
-
 <h2 id="training-and-data-requirements">Training and Data Requirements</h2>
 
 <p>As with other neural networks, PixelRNNs require a significant volume of training data to learn effectively. They are trained on large datasets of images, where they learn to model the distribution of pixel values. This extensive training is necessary for the networks to capture the diverse range of patterns and nuances present in visual data.</p>
-
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>
 
 <h2 id="challenges-and-limitations">Challenges and Limitations</h2>
 
@@ -180,21 +117,6 @@ pixel_rnn.summary()
 
 <p>Pixel Recurrent Neural Networks (PixelRNNs) offer significant potential in the field of generative art. Here’s how they can be utilized:</p>
 
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>
-
 <h2 id="recent-developments">Recent Developments</h2>
 
 <p>Over time, the field of PixelRNNs has seen significant advancements. Newer architectures, such as PixelCNNs, have been developed, offering improvements in computational efficiency and the quality of generated images. These developments are indicative of the ongoing evolution in the field, as researchers and practitioners continue to push the boundaries of what is possible with PixelRNNs.</p>
@@ -204,33 +126,6 @@ pixel_rnn.summary()
 <h2 id="️-sources">🗒️ Sources</h2>
 
 <ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
   <li>
     <p>$1</p>
   </li>
@@ -617,21 +512,6 @@ Trends and Innovations in Neural Style Transfer (NST)</p>
 
 <p>Neural Style Transfer (NST) offers a transformative approach to generative art, combining deep learning techniques to create visually striking and unique artworks. Its application in generative art can be understood through the following points:</p>
 
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>
-
 <h2 id="-sources">🌐 Sources</h2>
 
 <ul>
@@ -1000,27 +880,6 @@ Trends and Innovations in Neural Style Transfer (NST)</p>
 
 <p>A major advantage of transfer learning is its ability to use pre-trained models. These models, trained on extensive datasets, contain a wealth of learned features and patterns, which can be effectively applied to new tasks. This reuse is especially beneficial in scenarios where training data is limited or when the new task is somewhat similar to the one the model was originally trained on.</p>
 
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>
-
 <h2 id="enhanced-learning-efficiency">Enhanced Learning Efficiency</h2>
 
 <p>Transfer learning greatly reduces the time and resources required for training new models. By leveraging existing models, it circumvents the need for extensive computation and large datasets, which is a boon in resource-constrained scenarios or when dealing with rare or expensive-to-label data.</p>
@@ -1058,48 +917,18 @@ Trends and Innovations in Neural Style Transfer (NST)</p>
 
 <p>Transfer Learning is playing a pivotal role in the field of generative art, opening new avenues for creativity and innovation. Here’s how it’s being utilized:</p>
 
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>
-
 <h2 id="set-up-transfer-learning-in-python">Set up transfer learning in Python</h2>
 
 <p>To set up transfer learning in Python using Keras, you can leverage a pre-trained model like VGG16. Here’s a basic example to demonstrate this process:</p>
-
-<ol>
-  <li>$1</li>
-</ol>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   from keras.applications.vgg16 import VGG16, preprocess_input, decode_predictions
    from keras.preprocessing.image import img_to_array, load_img
    from keras.models import Model
 </code></pre></div></div>
 
-<ol>
-  <li>$1</li>
-</ol>
-
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   # Load the VGG16 model pre-trained on ImageNet data
    vgg16_model = VGG16(weights='imagenet')
 </code></pre></div></div>
-
-<ol>
-  <li>$1</li>
-</ol>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   # Remove the last layer
    vgg16_model.layers.pop()
@@ -1113,10 +942,6 @@ Trends and Innovations in Neural Style Transfer (NST)</p>
        print(layer, layer.trainable)
 </code></pre></div></div>
 
-<ol>
-  <li>$1</li>
-</ol>
-
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   from keras.layers import Dense, GlobalAveragePooling2D
    from keras.models import Sequential
 
@@ -1127,25 +952,13 @@ Trends and Innovations in Neural Style Transfer (NST)</p>
    custom_model.add(Dense(1, activation='sigmoid'))  # For binary classification
 </code></pre></div></div>
 
-<ol>
-  <li>$1</li>
-</ol>
-
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   custom_model.compile(loss='binary_crossentropy',
                         optimizer='rmsprop',
                         metrics='accuracy'])
 </code></pre></div></div>
 
-<ol>
-  <li>$1</li>
-</ol>
-
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   # custom_model.fit(train_data, train_labels, epochs=10, batch_size=32)
 </code></pre></div></div>
-
-<ol>
-  <li>$1</li>
-</ol>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   img = load_img('path_to_your_image.jpg', target_size=(224, 224))
    img = img_to_array(img)
@@ -1186,33 +999,6 @@ Trends and Innovations in Neural Style Transfer (NST)</p>
   <li>
     <p>$1</p>
   </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
 </ol>]]></content><author><name></name></author><category term="ai" /><category term="artificial-neural-networks" /><summary type="html"><![CDATA[Transfer Learning has emerged as a transformative approach in the realm of machine learning and deep learning, enabling more efficient and adaptable model training. Here's an in-depth exploration of t]]></summary></entry><entry><title type="html">Graph Neural Networks: Revolutionizing Data Analysis in Graph-Structured Domains</title><link href="/graph-neural-networks/" rel="alternate" type="text/html" title="Graph Neural Networks: Revolutionizing Data Analysis in Graph-Structured Domains" /><published>2023-08-01T00:00:00+00:00</published><updated>2023-08-01T00:00:00+00:00</updated><id>/graph-neural-networks</id><content type="html" xml:base="/graph-neural-networks/"><![CDATA[<p>Graph Neural Networks (GNNs) represent a paradigm shift in the realm of neural networks, uniquely tailored for graph-structured data. They are pivotal in addressing complex data scenarios where traditional neural networks fall short. This comprehensive article delves into the core functionalities, applications, and future potential of GNNs.</p>
 
 <h2 id="understanding-graph-neural-networks">Understanding Graph Neural Networks</h2>
@@ -1221,73 +1007,13 @@ Trends and Innovations in Neural Style Transfer (NST)</p>
 
 <p>GNNs’ foremost strength lies in their direct application to graphs, facilitating node-level, edge-level, and graph-level prediction tasks. This flexibility proves invaluable across various fields where data is intrinsically relational, such as analyzing social networks, understanding molecular structures, and optimizing communication networks [1].</p>
 
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>
-
 <h3 id="processing-complex-graph-structured-data">Processing Complex Graph-Structured Data</h3>
 
 <p>GNNs excel at processing and analyzing intricate graph-structured data. This capacity unlocks new avenues in numerous domains, including network analysis, computational biology, and the development of advanced recommender systems [<a href="https://arxiv.org/abs/2108.10733">2</a>].</p>
 
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>
-
 <h3 id="dependence-on-graph-structure">Dependence on Graph Structure</h3>
 
 <p>Central to GNNs’ functionality is their ability to capture the dependence of graphs through message passing between nodes. By leveraging the inherent structural information of graphs, GNNs can make more accurate predictions and analyses, a critical aspect in fields like network security and structural health monitoring [<a href="https://www.sciencedirect.com/science/article/pii/S2666651021000012">4</a>].</p>
-
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>
 
 <h2 id="expansive-applications-of-gnns">Expansive Applications of GNNs</h2>
 
@@ -1302,21 +1028,6 @@ Trends and Innovations in Neural Style Transfer (NST)</p>
 <h1 id="how-can-graph-neural-networks-be-used-in-generative-art">How can Graph Neural Networks be used in Generative Art?</h1>
 
 <p>Graph Neural Networks (GNNs) have significant potential in the realm of generative art, leveraging their unique capabilities in understanding and manipulating graph-structured data. Here are some ways GNNs can be applied in this field:</p>
-
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>
 
 <h1 id="python-code-example-of-a-graph-neural-networks">Python code example of a Graph Neural Networks</h1>
 
@@ -1361,33 +1072,6 @@ model = GCN(num_features, num_classes)
 <h2 id="-sources">🌐 Sources</h2>
 
 <ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
   <li>
     <p>$1</p>
   </li>

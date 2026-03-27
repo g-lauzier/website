@@ -17,47 +17,30 @@ Graph Neural Networks (GNNs) represent a paradigm shift in the realm of neural n
 
 GNNs' foremost strength lies in their direct application to graphs, facilitating node-level, edge-level, and graph-level prediction tasks. This flexibility proves invaluable across various fields where data is intrinsically relational, such as analyzing social networks, understanding molecular structures, and optimizing communication networks [1].
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
 ### Processing Complex Graph-Structured Data
 
 GNNs excel at processing and analyzing intricate graph-structured data. This capacity unlocks new avenues in numerous domains, including network analysis, computational biology, and the development of advanced recommender systems [[2](https://arxiv.org/abs/2108.10733)].
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
 ### Dependence on Graph Structure
 
 Central to GNNs' functionality is their ability to capture the dependence of graphs through message passing between nodes. By leveraging the inherent structural information of graphs, GNNs can make more accurate predictions and analyses, a critical aspect in fields like network security and structural health monitoring [[4](https://www.sciencedirect.com/science/article/pii/S2666651021000012)].
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
 ## Expansive Applications of GNNs
 
@@ -73,13 +56,9 @@ Spanning from basic concepts to cutting-edge advancements, GNNs are continually 
 
 Graph Neural Networks (GNNs) have significant potential in the realm of generative art, leveraging their unique capabilities in understanding and manipulating graph-structured data. Here are some ways GNNs can be applied in this field:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 # Python code example of a Graph Neural Networks
 
@@ -124,23 +103,14 @@ This code defines a simple two-layer Graph Convolutional Network (GCN) using PyT
 
 ## 🌐 Sources
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
-7. $1
 
-8. $1
 
-9. $1
 
 10. $1
 

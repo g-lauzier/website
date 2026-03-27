@@ -291,13 +291,9 @@ These trends and innovations are propelling NST into new realms of creativity an
 
 Neural Style Transfer (NST) offers a transformative approach to generative art, combining deep learning techniques to create visually striking and unique artworks. Its application in generative art can be understood through the following points:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 ## 🌐 Sources
 

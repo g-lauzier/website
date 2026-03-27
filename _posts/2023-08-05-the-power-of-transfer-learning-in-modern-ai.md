@@ -19,17 +19,11 @@ Transfer Learning is a technique where a model developed for a specific task is 
 
 A major advantage of transfer learning is its ability to use pre-trained models. These models, trained on extensive datasets, contain a wealth of learned features and patterns, which can be effectively applied to new tasks. This reuse is especially beneficial in scenarios where training data is limited or when the new task is somewhat similar to the one the model was originally trained on.
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
 ## Enhanced Learning Efficiency
 
@@ -59,21 +53,15 @@ Transfer learning exhibits remarkable adaptability, being applicable to a wide a
 
 Transfer Learning is playing a pivotal role in the field of generative art, opening new avenues for creativity and innovation. Here's how it's being utilized:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
 ## Set up transfer learning in Python
 
 To set up transfer learning in Python using Keras, you can leverage a pre-trained model like VGG16. Here's a basic example to demonstrate this process:
 
-1. $1
 
 ```
    from keras.applications.vgg16 import VGG16, preprocess_input, decode_predictions
@@ -81,14 +69,12 @@ To set up transfer learning in Python using Keras, you can leverage a pre-traine
    from keras.models import Model
 ```
 
-1. $1
 
 ```
    # Load the VGG16 model pre-trained on ImageNet data
    vgg16_model = VGG16(weights='imagenet')
 ```
 
-1. $1
 
 ```
    # Remove the last layer
@@ -103,7 +89,6 @@ To set up transfer learning in Python using Keras, you can leverage a pre-traine
        print(layer, layer.trainable)
 ```
 
-1. $1
 
 ```
    from keras.layers import Dense, GlobalAveragePooling2D
@@ -116,7 +101,6 @@ To set up transfer learning in Python using Keras, you can leverage a pre-traine
    custom_model.add(Dense(1, activation='sigmoid'))  # For binary classification
 ```
 
-1. $1
 
 ```
    custom_model.compile(loss='binary_crossentropy',
@@ -124,13 +108,11 @@ To set up transfer learning in Python using Keras, you can leverage a pre-traine
                         metrics='accuracy'])
 ```
 
-1. $1
 
 ```
    # custom_model.fit(train_data, train_labels, epochs=10, batch_size=32)
 ```
 
-1. $1
 
 ```
    img = load_img('path_to_your_image.jpg', target_size=(224, 224))
@@ -153,23 +135,14 @@ Transfer learning stands as a cornerstone technique in the field of artificial i
 
 ## 🌐 Sources
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
-7. $1
 
-8. $1
 
-9. $1
 
 10. $1
 

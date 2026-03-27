@@ -98,27 +98,6 @@
 
 <p>A major advantage of transfer learning is its ability to use pre-trained models. These models, trained on extensive datasets, contain a wealth of learned features and patterns, which can be effectively applied to new tasks. This reuse is especially beneficial in scenarios where training data is limited or when the new task is somewhat similar to the one the model was originally trained on.</p>
 
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>
-
 <h2 id="enhanced-learning-efficiency">Enhanced Learning Efficiency</h2>
 
 <p>Transfer learning greatly reduces the time and resources required for training new models. By leveraging existing models, it circumvents the need for extensive computation and large datasets, which is a boon in resource-constrained scenarios or when dealing with rare or expensive-to-label data.</p>
@@ -156,48 +135,18 @@
 
 <p>Transfer Learning is playing a pivotal role in the field of generative art, opening new avenues for creativity and innovation. Here’s how it’s being utilized:</p>
 
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>
-
 <h2 id="set-up-transfer-learning-in-python">Set up transfer learning in Python</h2>
 
 <p>To set up transfer learning in Python using Keras, you can leverage a pre-trained model like VGG16. Here’s a basic example to demonstrate this process:</p>
-
-<ol>
-  <li>$1</li>
-</ol>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   from keras.applications.vgg16 import VGG16, preprocess_input, decode_predictions
    from keras.preprocessing.image import img_to_array, load_img
    from keras.models import Model
 </code></pre></div></div>
 
-<ol>
-  <li>$1</li>
-</ol>
-
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   # Load the VGG16 model pre-trained on ImageNet data
    vgg16_model = VGG16(weights='imagenet')
 </code></pre></div></div>
-
-<ol>
-  <li>$1</li>
-</ol>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   # Remove the last layer
    vgg16_model.layers.pop()
@@ -211,10 +160,6 @@
        print(layer, layer.trainable)
 </code></pre></div></div>
 
-<ol>
-  <li>$1</li>
-</ol>
-
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   from keras.layers import Dense, GlobalAveragePooling2D
    from keras.models import Sequential
 
@@ -225,25 +170,13 @@
    custom_model.add(Dense(1, activation='sigmoid'))  # For binary classification
 </code></pre></div></div>
 
-<ol>
-  <li>$1</li>
-</ol>
-
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   custom_model.compile(loss='binary_crossentropy',
                         optimizer='rmsprop',
                         metrics='accuracy'])
 </code></pre></div></div>
 
-<ol>
-  <li>$1</li>
-</ol>
-
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   # custom_model.fit(train_data, train_labels, epochs=10, batch_size=32)
 </code></pre></div></div>
-
-<ol>
-  <li>$1</li>
-</ol>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   img = load_img('path_to_your_image.jpg', target_size=(224, 224))
    img = img_to_array(img)
@@ -266,33 +199,6 @@
 <h2 id="-sources">🌐 Sources</h2>
 
 <ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
   <li>
     <p>$1</p>
   </li>
