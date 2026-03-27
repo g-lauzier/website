@@ -4,7 +4,7 @@ title: "VJs TV: An Online Platform for Global Artists and Creatives"
 date: 2012-12-15 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["ad-free-tv"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/1672417588553.jpeg"
+post_image: "/assets/images/vjs-tv-online-platform.png"
 description: "The VJs TV project was developed on WordPress CMS using PHP, MySQL, JavaScript, and Bootstrap framework. A form was created on the website to allow artists from across the world to submit their projec"
 permalink: "/vjs-tv-project-an-online-platform-for-global-artists-and-creatives/"
 ---
