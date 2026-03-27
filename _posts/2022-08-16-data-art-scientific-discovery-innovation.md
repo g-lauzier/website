@@ -4,7 +4,7 @@ title: "Impact of Data-Driven Art on Scientific Discovery and Innovation"
 date: 2022-08-16 00:00:00 +0000
 categories: ["digital-art"]
 tags: ["algorithm", "bias"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2022/12/generatedart_generative_art_824a55a2-7793-43dc-a3a1-44934dbac998.png"
+post_image: "/assets/images/data-art-scientific-discovery.png"
 description: "Data-driven art is an emerging form of art that utilizes data and technology as a medium for creating and expressing ideas. This type of art challenges traditional notions of art and artist, and it pu"
 permalink: "/data-art-scientific-discovery-innovation/"
 ---
