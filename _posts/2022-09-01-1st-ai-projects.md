@@ -4,7 +4,7 @@ title: "1st AI projects"
 date: 2022-09-01 00:00:00 +0000
 categories: ["ai"]
 tags: ["ai", "artificial-intelligence"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2022/12/0sawrTdROOtCkFSXA..png"
+post_image: "/assets/images/1st-ai-projects.png"
 description: "The first artificial intelligence (AI) projects were developed in the 1950s and 1960s, and focused on creating simple programs that could mimic basic human cognitive functions such as learning and pro"
 permalink: "/1st-ai-projects/"
 ---
@@ -13,8 +13,7 @@ The first artificial intelligence (AI) projects were developed in the 1950s and 
 
 One of the first AI projects was the Logic Theorist, developed by Allen Newell and Herbert Simon in 1955.
 
-## 
-Logic Theorist 
+## Logic Theorist 
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2022/12/4-Figure1-1.png)
 
@@ -26,8 +25,7 @@ The Logic Theorist was a significant achievement in the field of AI because it d
 
 The Logic Theorist was an important influence on the development of other AI programs and helped to lay the foundation for the development of more advanced AI systems in the following decades. It also contributed to the development of the field of artificial intelligence as a whole and helped to establish it as a serious area of study and research.
 
-## 
-GPS
+## GPS
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2022/12/school-gps.png)
 
@@ -39,9 +37,7 @@ GPS was a significant achievement in the field of AI because it demonstrated tha
 
 While GPS was a promising early AI project, it had several limitations and was not able to solve all problems. It was also quite resource-intensive, as it required a large amount of computing power to run. Despite these limitations, GPS was an important influence on the development of other AI programs and helped to pave the way for the development of more advanced AI systems in the following decades.
 
-## 
-
-ELIZA
+## ELIZA
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2022/12/4-Figure2-1.png)
 
