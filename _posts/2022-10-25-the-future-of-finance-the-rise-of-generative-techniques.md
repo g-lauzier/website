@@ -19,13 +19,9 @@ Generative finance has the potential to revolutionize the financial industry by 
 
 Generative finance is being used in a variety of applications within the financial industry, including:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 Generative finance is likely to continue to grow in importance as machine learning and other computational techniques become more prevalent in finance, and it is likely to be used in an increasingly wide range of applications within the industry.
 
@@ -59,10 +55,7 @@ Regulation: The use of generative finance may be subject to regulatory constrain
 
 The future of generative finance is likely to be shaped by a number of factors, including the increasing use of artificial intelligence, the availability of data, and the evolution of regulatory frameworks. Some potential developments in generative finance include:
 
-1. $1
 
-2. $1
 
-3. $1
 
 The future of generative finance is likely to involve a balance of opportunities and challenges, and will be shaped by the interplay of technological, economic, and regulatory forces.

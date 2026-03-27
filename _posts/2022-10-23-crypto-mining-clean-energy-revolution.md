@@ -59,59 +59,39 @@ But innovation doesn’t happen without questions, asking the right questions dr
 
 **How can cryptocurrency mining operations invest in and support the development of renewable energy infrastructure?**
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
-6. $1
 
-7. $1
 
 **Forbes **
 Publication by [Sean Stein Smith](https://www.forbes.com/sites/seansteinsmith/) on Forbes says there is ongoing debate about the amount of power and energy consumed by crypto transactions, with some saying that crypto mining consumes significant amounts of power and energy. However, every large industry consumes large amounts of electricity, and the question of whether the power consumed by crypto is worth it must be answered. Crypto can encourage green innovation by working with energy producers to find market-based solutions and already leverages green and renewable energy sources, with some studies showing that crypto mining and operators use more renewable energy than the average organization. The rise of proof-of-stake (PoS) blockchain protocols could also decrease energy consumption in the crypto industry, as PoS requires users to show ownership of a certain number of tokens to validate transactions, rather than requiring energy-intensive proof-of-work (PoW). Full article here : [https://www.forbes.com/sites/seansteinsmith/2022/06/05/crypto-power-usage-is-helping-to-spur-renewable-energy-investments/?sh=358917ad2cb6](https://www.forbes.com/sites/seansteinsmith/2022/06/05/crypto-power-usage-is-helping-to-spur-renewable-energy-investments/?sh=358917ad2cb6)
 
 **What role can cryptocurrency mining play in driving the adoption and development of energy storage technologies?**
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 **Publication by [Jonathan Spencer Jones](https://www.smart-energy.com/author/jonathan/) on Smart Energy International**
 Canadian battery tech companies Extreme Vehicle Battery Technologies and its subsidiary IONiX Pro Battery Technologies have launched the Smart Miner, an energy storage system that claims to be the world’s first carbon-negative crypto-miner. The Smart Miner is based on IONiX’s Pro Home SmartWall battery and uses advanced battery management system and artificial intelligence to verify the generation and consumption of renewable energy using the Renewable Obligation Base energy economy (ROBe2) protocol, which is based on blockchain smart contracts that create an obligation to generate renewable energy each time the underlying token is mined and transacted. The Smart Miner is designed to be compact, affordable and easy to install, and is aimed at households looking to store renewable energy or generate passive income from mining cryptocurrency, particularly in developing countries where access to electricity is limited. Full article here : [https://www.smart-energy.com/storage/energy-storage-cryptocurrency-miner-launched/](https://www.smart-energy.com/storage/energy-storage-cryptocurrency-miner-launched/)
 
 **How can the energy demand of cryptocurrency mining be balanced with the need to reduce carbon emissions and address climate change?**
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 **What policies and regulations could be put in place to encourage the use of renewable energy in cryptocurrency mining operations?**
 
 There are several policy and regulatory measures that could be put in place to encourage the use of renewable energy in cryptocurrency mining operations:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
 There are a variety of policy and regulatory measures that could be put in place to encourage the use of renewable energy in cryptocurrency mining operations. By adopting a combination of these measures, governments can help to drive the adoption of renewable energy in the mining sector and reduce its carbon footprint.
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="/index.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2026-03-27T10:55:23+00:00</updated><id>/index.xml</id><title type="html">Guillaume Lauzier</title><subtitle>Venture Partner. Backing product-obsessed founders at the frontier of Digital Infrastructure, Cybersecurity, AI, and Blockchain.</subtitle><entry><title type="html">The World of Pixel Recurrent Neural Networks (PixelRNNs)</title><link href="/the-world-pixelrnns/" rel="alternate" type="text/html" title="The World of Pixel Recurrent Neural Networks (PixelRNNs)" /><published>2023-12-19T00:00:00+00:00</published><updated>2023-12-19T00:00:00+00:00</updated><id>/the-world-pixelrnns</id><content type="html" xml:base="/the-world-pixelrnns/"><![CDATA[<p>Pixel Recurrent Neural Networks (PixelRNNs) have emerged as a groundbreaking approach in the field of image generation and processing. These sophisticated neural network architectures are reshaping how machines understand and generate visual content. This article delves into the core aspects of PixelRNNs, exploring their purpose, architecture, variants, and the challenges they face.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="/index.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2026-03-27T10:59:21+00:00</updated><id>/index.xml</id><title type="html">Guillaume Lauzier</title><subtitle>Venture Partner. Backing product-obsessed founders at the frontier of Digital Infrastructure, Cybersecurity, AI, and Blockchain.</subtitle><entry><title type="html">The World of Pixel Recurrent Neural Networks (PixelRNNs)</title><link href="/the-world-pixelrnns/" rel="alternate" type="text/html" title="The World of Pixel Recurrent Neural Networks (PixelRNNs)" /><published>2023-12-19T00:00:00+00:00</published><updated>2023-12-19T00:00:00+00:00</updated><id>/the-world-pixelrnns</id><content type="html" xml:base="/the-world-pixelrnns/"><![CDATA[<p>Pixel Recurrent Neural Networks (PixelRNNs) have emerged as a groundbreaking approach in the field of image generation and processing. These sophisticated neural network architectures are reshaping how machines understand and generate visual content. This article delves into the core aspects of PixelRNNs, exploring their purpose, architecture, variants, and the challenges they face.</p>
 
 <h2 id="purpose-and-application">Purpose and Application</h2>
 
@@ -123,37 +123,7 @@ pixel_rnn.summary()
 
 <p>Pixel Recurrent Neural Networks represent a fascinating intersection of artificial intelligence and image processing. Their ability to generate and complete images with remarkable accuracy opens up a plethora of possibilities in areas ranging from digital art to practical applications like medical imaging. As this technology continues to evolve, we can expect to see even more innovative uses and enhancements in the future.</p>
 
-<h2 id="️-sources">🗒️ Sources</h2>
-
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>]]></content><author><name></name></author><category term="ai" /><category term="artificial-intelligence" /><summary type="html"><![CDATA[Pixel Recurrent Neural Networks (PixelRNNs) have emerged as a groundbreaking approach in the field of image generation and processing. These sophisticated neural network architectures are reshaping ho]]></summary></entry><entry><title type="html">Neural Style Transfer (NST)</title><link href="/neural-style-transfer-nst/" rel="alternate" type="text/html" title="Neural Style Transfer (NST)" /><published>2023-12-10T00:00:00+00:00</published><updated>2023-12-10T00:00:00+00:00</updated><id>/neural-style-transfer-nst</id><content type="html" xml:base="/neural-style-transfer-nst/"><![CDATA[<p>Neural Style Transfer (NST) is a captivating intersection of artificial intelligence and artistic creativity. This technology leverages the capabilities of deep learning to merge the essence of one image with the aesthetic style of another.</p>
+<h2 id="️-sources">🗒️ Sources</h2>]]></content><author><name></name></author><category term="ai" /><category term="artificial-intelligence" /><summary type="html"><![CDATA[Pixel Recurrent Neural Networks (PixelRNNs) have emerged as a groundbreaking approach in the field of image generation and processing. These sophisticated neural network architectures are reshaping ho]]></summary></entry><entry><title type="html">Neural Style Transfer (NST)</title><link href="/neural-style-transfer-nst/" rel="alternate" type="text/html" title="Neural Style Transfer (NST)" /><published>2023-12-10T00:00:00+00:00</published><updated>2023-12-10T00:00:00+00:00</updated><id>/neural-style-transfer-nst</id><content type="html" xml:base="/neural-style-transfer-nst/"><![CDATA[<p>Neural Style Transfer (NST) is a captivating intersection of artificial intelligence and artistic creativity. This technology leverages the capabilities of deep learning to merge the essence of one image with the aesthetic style of another.</p>
 
 <h2 id="basic-concept-of-neural-style-transfer-nst">Basic Concept of Neural Style Transfer (NST)</h2>
 
@@ -978,28 +948,7 @@ Trends and Innovations in Neural Style Transfer (NST)</p>
 
 <p>Transfer learning stands as a cornerstone technique in the field of artificial intelligence, revolutionizing how models are trained and applied. Its efficiency, adaptability, and wide-ranging applications make it a key strategy in overcoming some of the most pressing challenges in machine learning and deep learning.</p>
 
-<h2 id="-sources">🌐 Sources</h2>
-
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>]]></content><author><name></name></author><category term="ai" /><category term="artificial-neural-networks" /><summary type="html"><![CDATA[Transfer Learning has emerged as a transformative approach in the realm of machine learning and deep learning, enabling more efficient and adaptable model training. Here's an in-depth exploration of t]]></summary></entry><entry><title type="html">Graph Neural Networks: Revolutionizing Data Analysis in Graph-Structured Domains</title><link href="/graph-neural-networks/" rel="alternate" type="text/html" title="Graph Neural Networks: Revolutionizing Data Analysis in Graph-Structured Domains" /><published>2023-08-01T00:00:00+00:00</published><updated>2023-08-01T00:00:00+00:00</updated><id>/graph-neural-networks</id><content type="html" xml:base="/graph-neural-networks/"><![CDATA[<p>Graph Neural Networks (GNNs) represent a paradigm shift in the realm of neural networks, uniquely tailored for graph-structured data. They are pivotal in addressing complex data scenarios where traditional neural networks fall short. This comprehensive article delves into the core functionalities, applications, and future potential of GNNs.</p>
+<h2 id="-sources">🌐 Sources</h2>]]></content><author><name></name></author><category term="ai" /><category term="artificial-neural-networks" /><summary type="html"><![CDATA[Transfer Learning has emerged as a transformative approach in the realm of machine learning and deep learning, enabling more efficient and adaptable model training. Here's an in-depth exploration of t]]></summary></entry><entry><title type="html">Graph Neural Networks: Revolutionizing Data Analysis in Graph-Structured Domains</title><link href="/graph-neural-networks/" rel="alternate" type="text/html" title="Graph Neural Networks: Revolutionizing Data Analysis in Graph-Structured Domains" /><published>2023-08-01T00:00:00+00:00</published><updated>2023-08-01T00:00:00+00:00</updated><id>/graph-neural-networks</id><content type="html" xml:base="/graph-neural-networks/"><![CDATA[<p>Graph Neural Networks (GNNs) represent a paradigm shift in the realm of neural networks, uniquely tailored for graph-structured data. They are pivotal in addressing complex data scenarios where traditional neural networks fall short. This comprehensive article delves into the core functionalities, applications, and future potential of GNNs.</p>
 
 <h2 id="understanding-graph-neural-networks">Understanding Graph Neural Networks</h2>
 
@@ -1069,40 +1018,7 @@ model = GCN(num_features, num_classes)
 
 <p><strong>Note</strong>: This is a basic example. For a real-world application, you would need to provide graph data (nodes, edges, node features) to the model and train it on a specific task like node classification, link prediction, etc.</p>
 
-<h2 id="-sources">🌐 Sources</h2>
-
-<ol>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-  <li>
-    <p>$1</p>
-  </li>
-</ol>]]></content><author><name></name></author><category term="ai" /><summary type="html"><![CDATA[Graph Neural Networks (GNNs) represent a paradigm shift in the realm of neural networks, uniquely tailored for graph-structured data. They are pivotal in addressing complex data scenarios where tradit]]></summary></entry><entry><title type="html">Understanding Web 3.0: A Shift Towards Decentralization and User Sovereignty</title><link href="/understanding-web-3-0/" rel="alternate" type="text/html" title="Understanding Web 3.0: A Shift Towards Decentralization and User Sovereignty" /><published>2023-07-25T00:00:00+00:00</published><updated>2023-07-25T00:00:00+00:00</updated><id>/understanding-web-3-0</id><content type="html" xml:base="/understanding-web-3-0/"><![CDATA[<p>The digital world is on the brink of a paradigm shift as we transition from Web 2.0 to Web 3.0, also known as Web3. This shift promises a more decentralized, transparent, and user-centric version of the internet, profoundly changing our online interactions.</p>
+<h2 id="-sources">🌐 Sources</h2>]]></content><author><name></name></author><category term="ai" /><summary type="html"><![CDATA[Graph Neural Networks (GNNs) represent a paradigm shift in the realm of neural networks, uniquely tailored for graph-structured data. They are pivotal in addressing complex data scenarios where tradit]]></summary></entry><entry><title type="html">Understanding Web 3.0: A Shift Towards Decentralization and User Sovereignty</title><link href="/understanding-web-3-0/" rel="alternate" type="text/html" title="Understanding Web 3.0: A Shift Towards Decentralization and User Sovereignty" /><published>2023-07-25T00:00:00+00:00</published><updated>2023-07-25T00:00:00+00:00</updated><id>/understanding-web-3-0</id><content type="html" xml:base="/understanding-web-3-0/"><![CDATA[<p>The digital world is on the brink of a paradigm shift as we transition from Web 2.0 to Web 3.0, also known as Web3. This shift promises a more decentralized, transparent, and user-centric version of the internet, profoundly changing our online interactions.</p>
 
 <h2 id="decentralization-power-to-the-people"><strong>Decentralization: Power to the People</strong></h2>
 

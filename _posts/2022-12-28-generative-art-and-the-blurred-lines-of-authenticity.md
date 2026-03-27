@@ -27,13 +27,9 @@ Meanwhile creative coding is a form of programming that is specifically designed
 
 While creative coding can be an exciting and rewarding form of artistic expression, it can also be challenging, especially for those who are new to programming. Some of the difficulties of creative coding include:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 Despite these challenges, creative coding can be a rewarding and fulfilling form of artistic expression for those who are willing to put in the time and effort to learn and master it. With practice and persistence, it is possible to overcome these challenges and create innovative and expressive digital media using code.
 

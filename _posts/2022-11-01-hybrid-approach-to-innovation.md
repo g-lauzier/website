@@ -25,15 +25,10 @@ Design thinking is a problem-solving approach that combines creative and analyti
 
 The design thinking process typically involves the following steps:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
 Design thinking is often used in conjunction with agile development methodologies, which focus on rapid iteration and continuous improvement. It is a user-centered approach that helps designers create solutions that are tailored to the needs and desires of the people they are designing for.
 
@@ -47,15 +42,10 @@ The lean startup approach is based on the idea that traditional business plannin
 
 The lean startup process typically involves the following steps:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
-5. $1
 
 The goal of the lean startup approach is to minimize the risk and uncertainty associated with launching a new product or business, and to increase the chances of success by quickly learning what works and what doesn't.
 
@@ -69,13 +59,9 @@ The agile approach is based on the idea that traditional, Waterfall-style projec
 
 The agile process typically involves the following steps:
 
-1. $1
 
-2. $1
 
-3. $1
 
-4. $1
 
 The agile approach is designed to be flexible and adaptable, and encourages teams to continuously improve their processes and work together in a collaborative way. It is often used in conjunction with agile development methodologies such as Scrum and Kanban, which provide a structured framework for implementing agile principles.
 
@@ -97,11 +83,8 @@ During the execution and solution phase of a project, agile teams focus on deliv
 
 In order to deliver the work in each sprint, agile teams typically follow a set of iterative and incremental development principles, including:
 
-1. $1
 
-2. $1
 
-3. $1
 
 By following these principles, agile teams are able to deliver high-quality solutions in a flexible and adaptable way that is responsive to change and continuously improving. Agile methodologies such as Scrum and Kanban provide a structured framework for implementing agile principles in a project.
 
