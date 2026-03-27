@@ -4,7 +4,7 @@ title: "GVA PoGo: Real-Time Pokemon Spawns Map for Geneva"
 date: 2017-02-24 00:00:00 +0000
 categories: ["entertainment"]
 tags: []
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/308783020_470723948416408_8785533923023993806_n.jpg"
+post_image: "/assets/images/gva-pogo-pokemon-map.png"
 description: "In 2017, I launched GVA PoGo, a real-time map for Pokemon spawns across Geneva, designed specifically for Pokemon GO players. The web application showed the location of all Pokemon, PokéStops, Pokemon"
 permalink: "/gva-pogo-real-time-pokemon-spawns-map-for-geneva/"
 ---
