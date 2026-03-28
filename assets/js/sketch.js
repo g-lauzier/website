@@ -57,8 +57,16 @@ window.preload = function() {
 
 window.setup = function() {
   getHeroDimensions();
-  let cnv = createCanvas(canvasW, canvasH);
+  var cnv = createCanvas(canvasW, canvasH);
   cnv.parent('canvas-container');
+  var ce = cnv.elt || cnv.canvas;
+  if (ce) {
+    ce.style.position = 'absolute';
+    ce.style.top = '0';
+    ce.style.left = '0';
+    ce.style.width = '100%';
+    ce.style.height = '100%';
+  }
   pixelDensity(1);
   noSmooth();
   frameRate(CONFIG.targetFPS);
@@ -71,6 +79,10 @@ window.setup = function() {
       canvasW = newW;
       canvasH = newH;
       resizeCanvas(canvasW, canvasH);
+      if (ce) {
+        ce.style.width = '100%';
+        ce.style.height = '100%';
+      }
       computeImageTransform();
       buildGrid();
     }
@@ -229,6 +241,14 @@ window.windowResized = function() {
   resizeTimer = setTimeout(function() {
     getHeroDimensions();
     resizeCanvas(canvasW, canvasH);
+    var c = document.querySelector('#canvas-container canvas');
+    if (c) {
+      c.style.position = 'absolute';
+      c.style.top = '0';
+      c.style.left = '0';
+      c.style.width = '100%';
+      c.style.height = '100%';
+    }
     computeImageTransform();
     buildGrid();
     resizeTimer = null;

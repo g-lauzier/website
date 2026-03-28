@@ -255,11 +255,12 @@ img { max-width: 100%; display: block; }
   z-index: 0;
   overflow: hidden;
 }
-.gl-hero-canvas canvas {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
+.gl-hero-canvas canvas,
+#canvas-container canvas {
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
   width: 100% !important;
   height: 100% !important;
 }
