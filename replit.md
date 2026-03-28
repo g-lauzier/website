@@ -50,8 +50,8 @@ A premium dark-mode portfolio site for Guillaume Lauzier, Venture Partner. Built
 - `assets/js/sketch.js` — p5.js pixel animation for hero background
 
 ## Development
-- **Workflow:** `node serve.js` — serves `_site/` on port 5000
-- **Build:** `jekyll build` (temporarily rename Gemfile to bypass Bundler version issues)
+- **Workflow:** `bundle exec jekyll build && node serve.js` — builds the site then serves `_site/` on port 5000
+- **Build:** `bundle exec jekyll build` (requires bundler gems installed via `bundle install`)
 - **Restart workflow** to rebuild after file changes
 
 ## Deployment
