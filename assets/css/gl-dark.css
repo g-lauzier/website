@@ -253,9 +253,15 @@ img { max-width: 100%; display: block; }
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
 }
 .gl-hero-canvas canvas {
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
 }
 .gl-hero-overlay {
   position: absolute;

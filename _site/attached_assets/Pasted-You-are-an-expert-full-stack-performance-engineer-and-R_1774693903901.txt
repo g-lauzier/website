@@ -1,0 +1,37 @@
+You are an expert full-stack performance engineer and Replit specialist.
+
+Analyze the entire current project and perform the following tasks in this exact order:
+
+1. **Fix all errors and bugs**  
+   - Identify and fix any runtime errors, console errors, TypeScript/JavaScript errors, dependency issues, or broken functionality.  
+   - Provide clear explanations of what was wrong and how you fixed it.
+
+2. **Optimize for speed and performance**  
+   - Make the app load significantly faster, especially the initial page load and sidebar / side panel.  
+   - Implement code splitting, lazy loading, memoization, and efficient rendering where applicable (React/Vue/Svelte/etc.).  
+   - Reduce bundle size, eliminate unnecessary re-renders, optimize images/assets, and minimize blocking operations.  
+   - Optimize any heavy loops, API calls, or data processing.
+
+3. **Improve sidebar / side load speed specifically**  
+   - Focus on making the sidebar (or any side panel, navigation, or secondary UI) load and respond much faster.  
+   - Use techniques like virtualization (if listing many items), lazy loading of sidebar content, deferred loading, or caching.
+
+4. **General code optimizations**  
+   - Refactor for better efficiency, cleaner code, and best practices.  
+   - Reduce memory usage and prevent potential leaks.  
+   - Improve overall responsiveness and smoothness.  
+   - Add proper error handling and loading states where missing.
+
+5. **Replit-specific improvements**  
+   - Ensure the project runs efficiently within Replit's environment limits.  
+   - Suggest or apply any Replit best practices for faster dev server, deployments, and workspace performance.
+
+**Instructions:**
+- First, summarize the key issues you found (errors + performance bottlenecks).
+- Then propose a clear step-by-step plan before making changes.
+- Make changes incrementally and test after major fixes.
+- Keep all existing functionality intact unless it directly improves performance or fixes a bug.
+- After optimizations, run the project and show any remaining console errors or performance metrics if possible.
+- Finally, give a summary of improvements made and any further recommendations (e.g., upgrading plan for more RAM/CPU, using Turbo mode, etc.).
+
+Start now by analyzing the codebase.

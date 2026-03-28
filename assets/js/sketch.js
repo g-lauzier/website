@@ -37,12 +37,14 @@ let canvasW, canvasH;
 function getHeroDimensions() {
   heroWrapper = document.querySelector('.gl-hero-wrapper') || document.getElementById('canvas-container');
   if (heroWrapper) {
-    canvasW = heroWrapper.offsetWidth;
-    canvasH = heroWrapper.offsetHeight;
+    canvasW = heroWrapper.offsetWidth || window.innerWidth;
+    canvasH = heroWrapper.offsetHeight || window.innerHeight;
   } else {
     canvasW = window.innerWidth;
     canvasH = window.innerHeight;
   }
+  if (!canvasW) canvasW = window.innerWidth;
+  if (!canvasH) canvasH = window.innerHeight;
 }
 
 window.preload = function() {
@@ -57,6 +59,18 @@ window.setup = function() {
   noSmooth();
   computeImageTransform();
   buildGrid();
+  // Re-read dimensions after layout settles and rebuild if needed
+  setTimeout(function() {
+    var newW = (heroWrapper && heroWrapper.offsetWidth) || window.innerWidth;
+    var newH = (heroWrapper && heroWrapper.offsetHeight) || window.innerHeight;
+    if (Math.abs(newW - canvasW) > 4 || Math.abs(newH - canvasH) > 4) {
+      canvasW = newW;
+      canvasH = newH;
+      resizeCanvas(canvasW, canvasH);
+      computeImageTransform();
+      buildGrid();
+    }
+  }, 200);
 };
 
 function computeImageTransform() {
