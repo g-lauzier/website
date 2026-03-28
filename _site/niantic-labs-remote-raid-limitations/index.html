@@ -8,8 +8,10 @@
   <link rel="shortcut icon" href="/assets/images/favicon.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700;0,700;1,700&family=JetBrains+Mono:wght@400;500;700&family=Share+Tech+Mono&family=Space+Mono:wght@400;700&family=Mr+Dafoe&display=swap" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   <link rel="stylesheet" href="/assets/css/gl-dark.css" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Mr+Dafoe&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Mr+Dafoe&display=swap" /></noscript>
   <!-- Apply saved theme before first paint to prevent flash -->
   <script>
     (function(){
@@ -59,7 +61,7 @@
   <div class="gl-post-hero">
     
       <div class="gl-post-hero-media">
-        <img src="https://old.guillaumelauzier.com/wp-content/uploads/2023/04/169.jpg" alt="Niantic Labs' Remote Raid Limitations in Pokémon GO: A Contradiction to Sustainability, Inclusion, and Player Concerns" class="gl-post-hero-img" />
+        <img src="https://old.guillaumelauzier.com/wp-content/uploads/2023/04/169.jpg" alt="Niantic Labs' Remote Raid Limitations in Pokémon GO: A Contradiction to Sustainability, Inclusion, and Player Concerns" class="gl-post-hero-img" loading="eager" fetchpriority="high" />
       </div>
     
 
@@ -234,6 +236,6 @@
   </div>
 </footer>
 
-<script src="/assets/js/gl.js"></script>
+<script src="/assets/js/gl.js" defer></script>
 </body>
 </html>

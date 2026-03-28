@@ -4,7 +4,7 @@
   <h3 class="widget-title">About Me</h3>
   {% if author_info.image %}
   <figure class="rounded mb-20">
-    <img src="{{author_info.image}}" alt="{{author_info.title}}"/>
+    <img src="{{author_info.image}}" alt="{{author_info.title}}" loading="lazy"/>
   </figure>
   {% endif %}
   {% if author_info.bio %}
@@ -29,7 +29,7 @@
     <li>
       {% if post.post_image %}
       <figure class="rounded"><a href="blog-post.html">
-        <img src="{{post.post_image}}" alt="{{post.title}}"/></a>
+        <img src="{{post.post_image}}" alt="{{post.title}}" loading="lazy"/></a>
       </figure>
       {% endif %}
       <div class="post-content">

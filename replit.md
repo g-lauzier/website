@@ -49,6 +49,14 @@ A premium dark-mode portfolio site for Guillaume Lauzier, Venture Partner. Built
 - `assets/js/gl.js` — Vanilla JS: alignment toggle, pitch form success state, sector card toggle, mobile nav
 - `assets/js/sketch.js` — p5.js pixel animation for hero background
 
+## Performance Optimizations
+- **Server (serve.js):** Gzip compression for text assets (HTML/CSS/JS/SVG/XML), async file reads, `Cache-Control` headers (immutable for assets, must-revalidate for HTML), `X-Content-Type-Options: nosniff`
+- **Google Fonts:** Trimmed from 7 families to 4 (Inter, JetBrains Mono, Playfair Display, Mr Dafoe), reduced weights, async loading via `preload` + `onload` pattern to prevent render-blocking
+- **Images:** `loading="lazy"` on all gallery, sidebar, and trending-post images; `fetchpriority="high"` on hero images
+- **p5.js sketch:** Frame rate capped at 30fps, debounced resize handler (150ms), inlined Math functions replacing p5 wrappers, reduced per-frame allocations
+- **Script loading:** `defer` attribute on p5.js CDN, sketch.js, and gl.js to prevent parser blocking
+- **Resource hints:** `preconnect` to fonts.googleapis.com, fonts.gstatic.com, and cdnjs.cloudflare.com
+
 ## Development
 - **Workflow:** `bundle exec jekyll build && node serve.js` — builds the site then serves `_site/` on port 5000
 - **Build:** `bundle exec jekyll build` (requires bundler gems installed via `bundle install`)

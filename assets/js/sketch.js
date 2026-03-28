@@ -21,6 +21,7 @@ const CONFIG = {
   textNoiseAmp: 0.8,
   textDarken: 0.55,
   glowThreshold: 180,
+  targetFPS: 30,
 };
 
 let img;
@@ -33,6 +34,9 @@ let parallaxX = 0;
 let parallaxY = 0;
 let heroWrapper;
 let canvasW, canvasH;
+let lastMouseX = 0;
+let lastMouseY = 0;
+let resizeTimer = null;
 
 function getHeroDimensions() {
   heroWrapper = document.querySelector('.gl-hero-wrapper') || document.getElementById('canvas-container');
@@ -57,9 +61,9 @@ window.setup = function() {
   cnv.parent('canvas-container');
   pixelDensity(1);
   noSmooth();
+  frameRate(CONFIG.targetFPS);
   computeImageTransform();
   buildGrid();
-  // Re-read dimensions after layout settles and rebuild if needed
   setTimeout(function() {
     var newW = (heroWrapper && heroWrapper.offsetWidth) || window.innerWidth;
     var newH = (heroWrapper && heroWrapper.offsetHeight) || window.innerHeight;
@@ -74,8 +78,8 @@ window.setup = function() {
 };
 
 function computeImageTransform() {
-  let scaleX = canvasW / img.width;
-  let scaleY = canvasH / img.height;
+  var scaleX = canvasW / img.width;
+  var scaleY = canvasH / img.height;
   imgScale = max(scaleX, scaleY);
   imgOffX = (canvasW - img.width * imgScale) / 2;
   imgOffY = (canvasH - img.height * imgScale) / 2;
@@ -88,39 +92,47 @@ function buildGrid() {
   grid = [];
   img.loadPixels();
 
-  let step = CONFIG.baseStep;
-  let cols = ceil(canvasW / step);
-  let rows = ceil(canvasH / step);
+  var step = CONFIG.baseStep;
+  var cols = ceil(canvasW / step);
+  var rows = ceil(canvasH / step);
+  var imgW = img.width;
+  var imgH = img.height;
+  var pixels = img.pixels;
+  var textZoneX = canvasW * CONFIG.textZoneRatio;
+  var maxDistScaled = maxDist * 0.55;
 
-  for (let row = 0; row < rows; row++) {
-    for (let col = 0; col < cols; col++) {
-      let cx = col * step + step * 0.5;
-      let cy = row * step + step * 0.5;
+  for (var row = 0; row < rows; row++) {
+    for (var col = 0; col < cols; col++) {
+      var cx = col * step + step * 0.5;
+      var cy = row * step + step * 0.5;
 
-      let imgX = floor((cx - imgOffX) / imgScale);
-      let imgY = floor((cy - imgOffY) / imgScale);
-      imgX = constrain(imgX, 0, img.width - 1);
-      imgY = constrain(imgY, 0, img.height - 1);
+      var imgX = floor((cx - imgOffX) / imgScale);
+      var imgY = floor((cy - imgOffY) / imgScale);
+      if (imgX < 0) imgX = 0; else if (imgX >= imgW) imgX = imgW - 1;
+      if (imgY < 0) imgY = 0; else if (imgY >= imgH) imgY = imgH - 1;
 
-      let idx = (imgY * img.width + imgX) * 4;
-      let r = img.pixels[idx];
-      let g = img.pixels[idx + 1];
-      let b = img.pixels[idx + 2];
+      var idx = (imgY * imgW + imgX) * 4;
+      var r = pixels[idx];
+      var g = pixels[idx + 1];
+      var b = pixels[idx + 2];
 
-      let d = dist(cx, cy, focalX, focalY);
-      let nd = constrain(d / (maxDist * 0.55), 0, 1);
-      let pxSize = lerp(CONFIG.minPxSize, CONFIG.maxPxSize, nd * nd);
+      var ddx = cx - focalX;
+      var ddy = cy - focalY;
+      var d = Math.sqrt(ddx * ddx + ddy * ddy);
+      var nd = d / maxDistScaled;
+      if (nd > 1) nd = 1;
+      var pxSize = CONFIG.minPxSize + (CONFIG.maxPxSize - CONFIG.minPxSize) * nd * nd;
 
-      let inTextZone = cx < canvasW * CONFIG.textZoneRatio;
+      var inTextZone = cx < textZoneX;
 
       grid.push({
         tx: cx, ty: cy,
         x: cx, y: cy,
         vx: 0, vy: 0,
-        r, g, b,
+        r: r, g: g, b: b,
         size: pxSize,
-        noiseOff: random(10000),
-        inTextZone,
+        noiseOff: Math.random() * 10000,
+        inTextZone: inTextZone,
       });
     }
   }
@@ -130,64 +142,79 @@ window.draw = function() {
   background(8, 8, 12);
   noiseT += CONFIG.noiseSpeed;
 
-  let mx = mouseX;
-  let my = mouseY;
+  var mx = mouseX;
+  var my = mouseY;
 
-  parallaxX += (mouseX - canvasW * 0.5) * 0.00003 - parallaxX * 0.05;
-  parallaxY += (mouseY - canvasH * 0.5) * 0.00003 - parallaxY * 0.05;
+  parallaxX += (mx - canvasW * 0.5) * 0.00003 - parallaxX * 0.05;
+  parallaxY += (my - canvasH * 0.5) * 0.00003 - parallaxY * 0.05;
 
   noStroke();
 
-  for (let i = 0; i < grid.length; i++) {
-    let p = grid[i];
+  var len = grid.length;
+  var repelR = CONFIG.repelRadius;
+  var repelRSq = repelR * repelR;
+  var repelRText = repelR * 0.35;
+  var repelRTextSq = repelRText * repelRText;
+  var repelF = CONFIG.repelForce;
+  var repelFText = repelF * 0.15;
+  var easing = CONFIG.easing;
+  var friction = CONFIG.friction;
+  var noiseAmpFull = CONFIG.noiseAmp;
+  var noiseAmpText = CONFIG.textNoiseAmp;
+  var textDarken = CONFIG.textDarken;
+  var glowThresh = CONFIG.glowThreshold;
+  var px18 = parallaxX * 18;
+  var py12 = parallaxY * 12;
 
-    let noiseAmp = p.inTextZone ? CONFIG.textNoiseAmp : CONFIG.noiseAmp;
-    let nx = (noise(p.noiseOff, noiseT) * 2 - 1) * noiseAmp;
-    let ny = (noise(p.noiseOff + 500, noiseT) * 2 - 1) * noiseAmp;
+  for (var i = 0; i < len; i++) {
+    var p = grid[i];
 
-    let parallaxFactor = p.inTextZone ? 0.15 : 1.0;
-    let targetX = p.tx + nx + parallaxX * 18 * parallaxFactor;
-    let targetY = p.ty + ny + parallaxY * 12 * parallaxFactor;
+    var noiseAmp = p.inTextZone ? noiseAmpText : noiseAmpFull;
+    var nx = (noise(p.noiseOff, noiseT) * 2 - 1) * noiseAmp;
+    var ny = (noise(p.noiseOff + 500, noiseT) * 2 - 1) * noiseAmp;
 
-    let repelRadius = p.inTextZone ? CONFIG.repelRadius * 0.35 : CONFIG.repelRadius;
-    let repelForce  = p.inTextZone ? CONFIG.repelForce * 0.15  : CONFIG.repelForce;
+    var parallaxFactor = p.inTextZone ? 0.15 : 1.0;
+    var targetX = p.tx + nx + px18 * parallaxFactor;
+    var targetY = p.ty + ny + py12 * parallaxFactor;
 
-    let dx = p.x - mx;
-    let dy = p.y - my;
-    let dSq = dx * dx + dy * dy;
-    let rSq = repelRadius * repelRadius;
+    var curRepelRSq = p.inTextZone ? repelRTextSq : repelRSq;
+    var curRepelR = p.inTextZone ? repelRText : repelR;
+    var curRepelF = p.inTextZone ? repelFText : repelF;
 
-    if (dSq < rSq) {
-      let d = sqrt(dSq);
-      let strength = (1 - d / repelRadius) * repelForce;
-      let angle = atan2(dy, dx);
-      p.vx += cos(angle) * strength;
-      p.vy += sin(angle) * strength;
+    var dx = p.x - mx;
+    var dy = p.y - my;
+    var dSq = dx * dx + dy * dy;
+
+    if (dSq < curRepelRSq) {
+      var d = Math.sqrt(dSq);
+      var strength = (1 - d / curRepelR) * curRepelF;
+      var angle = Math.atan2(dy, dx);
+      p.vx += Math.cos(angle) * strength;
+      p.vy += Math.sin(angle) * strength;
     }
 
-    p.vx += (targetX - p.x) * CONFIG.easing;
-    p.vy += (targetY - p.y) * CONFIG.easing;
-    p.vx *= CONFIG.friction;
-    p.vy *= CONFIG.friction;
+    p.vx += (targetX - p.x) * easing;
+    p.vy += (targetY - p.y) * easing;
+    p.vx *= friction;
+    p.vy *= friction;
     p.x += p.vx;
     p.y += p.vy;
 
-    let r = p.r, g = p.g, b = p.b;
+    var r = p.r, g = p.g, b = p.b;
 
     if (p.inTextZone) {
-      let t = CONFIG.textDarken;
-      r = lerp(r, 22, t);
-      g = lerp(g, 22, t);
-      b = lerp(b, 28, t);
+      r = r + (22 - r) * textDarken;
+      g = g + (22 - g) * textDarken;
+      b = b + (28 - b) * textDarken;
     }
 
-    let brightness = (r + g + b) / 3;
-    let half = p.size * 0.5;
+    var brightness = (r + g + b) * 0.333;
+    var half = p.size * 0.5;
 
-    if (!p.inTextZone && brightness > CONFIG.glowThreshold) {
-      let gAlpha = map(brightness, CONFIG.glowThreshold, 255, 12, 40);
-      let gs = p.size * 2.4;
-      let gh = gs * 0.5;
+    if (!p.inTextZone && brightness > glowThresh) {
+      var gAlpha = 12 + (brightness - glowThresh) * (28 / (255 - glowThresh));
+      var gs = p.size * 2.4;
+      var gh = gs * 0.5;
       fill(r, g, b, gAlpha);
       rect(p.x - gh, p.y - gh, gs, gs);
     }
@@ -198,10 +225,14 @@ window.draw = function() {
 };
 
 window.windowResized = function() {
-  getHeroDimensions();
-  resizeCanvas(canvasW, canvasH);
-  computeImageTransform();
-  buildGrid();
+  if (resizeTimer) clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function() {
+    getHeroDimensions();
+    resizeCanvas(canvasW, canvasH);
+    computeImageTransform();
+    buildGrid();
+    resizeTimer = null;
+  }, 150);
 };
 
 })();
