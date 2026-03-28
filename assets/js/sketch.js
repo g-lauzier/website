@@ -1,5 +1,9 @@
 'use strict';
 
+(function() {
+  var container = document.getElementById('canvas-container');
+  if (!container) return;
+
 const CONFIG = {
   baseStep: 12,
   minPxSize: 3,
@@ -27,29 +31,43 @@ let focalX, focalY;
 let maxDist;
 let parallaxX = 0;
 let parallaxY = 0;
+let heroWrapper;
+let canvasW, canvasH;
 
-function preload() {
-  img = loadImage('/assets/images/portrait.jpg');
+function getHeroDimensions() {
+  heroWrapper = document.querySelector('.gl-hero-wrapper') || document.getElementById('canvas-container');
+  if (heroWrapper) {
+    canvasW = heroWrapper.offsetWidth;
+    canvasH = heroWrapper.offsetHeight;
+  } else {
+    canvasW = window.innerWidth;
+    canvasH = window.innerHeight;
+  }
 }
 
-function setup() {
-  let cnv = createCanvas(windowWidth, windowHeight);
+window.preload = function() {
+  img = loadImage('/assets/images/portrait.jpg');
+};
+
+window.setup = function() {
+  getHeroDimensions();
+  let cnv = createCanvas(canvasW, canvasH);
   cnv.parent('canvas-container');
   pixelDensity(1);
   noSmooth();
   computeImageTransform();
   buildGrid();
-}
+};
 
 function computeImageTransform() {
-  let scaleX = width / img.width;
-  let scaleY = height / img.height;
+  let scaleX = canvasW / img.width;
+  let scaleY = canvasH / img.height;
   imgScale = max(scaleX, scaleY);
-  imgOffX = (width - img.width * imgScale) / 2;
-  imgOffY = (height - img.height * imgScale) / 2;
-  focalX = width * CONFIG.focalXRatio;
-  focalY = height * CONFIG.focalYRatio;
-  maxDist = dist(0, 0, width, height);
+  imgOffX = (canvasW - img.width * imgScale) / 2;
+  imgOffY = (canvasH - img.height * imgScale) / 2;
+  focalX = canvasW * CONFIG.focalXRatio;
+  focalY = canvasH * CONFIG.focalYRatio;
+  maxDist = dist(0, 0, canvasW, canvasH);
 }
 
 function buildGrid() {
@@ -57,8 +75,8 @@ function buildGrid() {
   img.loadPixels();
 
   let step = CONFIG.baseStep;
-  let cols = ceil(width / step);
-  let rows = ceil(height / step);
+  let cols = ceil(canvasW / step);
+  let rows = ceil(canvasH / step);
 
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
@@ -79,7 +97,7 @@ function buildGrid() {
       let nd = constrain(d / (maxDist * 0.55), 0, 1);
       let pxSize = lerp(CONFIG.minPxSize, CONFIG.maxPxSize, nd * nd);
 
-      let inTextZone = cx < width * CONFIG.textZoneRatio;
+      let inTextZone = cx < canvasW * CONFIG.textZoneRatio;
 
       grid.push({
         tx: cx, ty: cy,
@@ -94,15 +112,15 @@ function buildGrid() {
   }
 }
 
-function draw() {
+window.draw = function() {
   background(8, 8, 12);
   noiseT += CONFIG.noiseSpeed;
 
   let mx = mouseX;
   let my = mouseY;
 
-  parallaxX += (mouseX - width * 0.5) * 0.00003 - parallaxX * 0.05;
-  parallaxY += (mouseY - height * 0.5) * 0.00003 - parallaxY * 0.05;
+  parallaxX += (mouseX - canvasW * 0.5) * 0.00003 - parallaxX * 0.05;
+  parallaxY += (mouseY - canvasH * 0.5) * 0.00003 - parallaxY * 0.05;
 
   noStroke();
 
@@ -163,10 +181,13 @@ function draw() {
     fill(r, g, b);
     rect(p.x - half, p.y - half, p.size, p.size);
   }
-}
+};
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+window.windowResized = function() {
+  getHeroDimensions();
+  resizeCanvas(canvasW, canvasH);
   computeImageTransform();
   buildGrid();
-}
+};
+
+})();

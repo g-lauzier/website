@@ -1,0 +1,92 @@
+Here's the **updated Replit Master Prompt** tailored specifically for **guillaumelauzier.com**.
+
+I adjusted it based on your current live site:
+- Headline changed to **"Venture Partner — Guillaume Lauzier"**
+- Subtitle updated to your actual tagline: *"Backing product-obsessed founders building infrastructure we don't yet realize we're dependent on. From the mathematical certainty of Blockchain and Cybersecurity to the generative power of AI and Digital Art."*
+- Kept the premium VC-level minimalist aesthetic (clean, bold, high-contrast white text on dark overlay)
+
+### Updated REPLIT MASTER PROMPT (Copy & Paste this)
+
+```txt
+Build a modern, high-performance website hero section with an interactive pixelated background using p5.js for guillaumelauzier.com.
+
+PROJECT STRUCTURE:
+- index.html
+- style.css
+- sketch.js
+- portrait.jpg (use the uploaded image — crop so the face is slightly right of center, left side has breathing space)
+
+GOAL:
+Create a fullscreen hero section with a dynamic pixelated animated version of portrait.jpg in the background. The design must feel premium, minimalist, and VC-level. Keep all text perfectly readable with strong contrast. Match the sophisticated, conviction-driven tone of guillaumelauzier.com.
+
+FEATURES:
+
+1. CANVAS BACKGROUND
+- Use p5.js via CDN
+- Render portrait.jpg as a dynamic pixel grid (each "pixel" drawn as a rectangle)
+- Base pixel size: 10–14 px
+- Canvas fully responsive and fullscreen
+
+2. SMART PIXELATION
+- Pixel size varies based on distance from focal point (slightly right of center, where the face is)
+- Near focal point/face: smaller pixels for more detail (4–8 px)
+- Outer areas: larger, more abstract pixels (12–20 px)
+- Smooth distance-based transition
+
+3. INTERACTIVITY
+- Pixels gently repel from the mouse cursor within a radius
+- Smooth spring-like easing back to original positions
+- Add very subtle floating animation using Perlin noise (slow and elegant, not distracting)
+
+4. TEXT-SAFE ZONE (CRITICAL FOR READABILITY)
+- Left ~45% of the screen is a protected zone for text
+- In this zone: strongly reduce pixel movement/repulsion, slightly darken pixels, and lower contrast so text stays crisp
+
+5. READABILITY OVERLAY
+- CSS gradient overlay above the canvas:
+  • Left side: rgba(0,0,0,0.75) to rgba(0,0,0,0.55)
+  • Middle transition: rgba(0,0,0,0.35)
+  • Right side: transparent
+- This ensures excellent text legibility while preserving the artistic pixel background
+
+6. HERO CONTENT (HTML/CSS, above canvas with z-index)
+- Headline (H1): "Venture Partner — Guillaume Lauzier"
+- Subtitle: "Backing product-obsessed founders building infrastructure we don't yet realize we're dependent on. From the mathematical certainty of Blockchain and Cybersecurity to the generative power of AI and Digital Art."
+- Style:
+  • Clean, modern sans-serif typography (system fonts or Inter/Avenir-like)
+  • Large, bold white text with subtle text-shadow for depth
+  • Subtitle in a slightly lighter weight, good line height
+  • Max width ~680px
+  • Positioned left side, vertically centered
+  • Fully responsive (stack nicely on mobile)
+
+7. PERFORMANCE & POLISH
+- Target smooth 60fps
+- Optimize rendering (efficient grid, smart redraws)
+- Subtle parallax on mouse movement
+- Soft glow on brighter areas of the portrait (optional)
+- Elegant fade-in on page load
+- No jitter, buttery smooth animations
+
+OUTPUT:
+Provide complete, ready-to-run code for:
+- index.html (include p5.js from CDN)
+- style.css
+- sketch.js
+
+Make it work instantly in Replit with no extra setup or errors. Prioritize visual smoothness, readability, and premium feel.
+```
+
+### Quick Setup Reminder for Replit:
+1. Create a new **HTML, CSS, JS** Repl
+2. Upload your best professional portrait and rename it exactly to **`portrait.jpg`**
+   - Crop tip: Face slightly right of center, plenty of negative space on the left for text
+3. Paste the prompt above into Replit AI → Generate
+4. If the output is weak, reply with:  
+   `"Refactor this to improve performance and visual smoothness. Use requestAnimationFrame optimization and reduce pixel redraw cost."`
+
+Would you like the **Advanced version** of the prompt (with layered pixels, dynamic pixel size based on mouse speed, cinematic grain overlay, etc.)?
+
+Or paste whatever Replit generates here and I’ll review + upgrade it to production quality for you.
+
+Just say the word and we’ll make guillaumelauzier.com’s new hero look exceptional.

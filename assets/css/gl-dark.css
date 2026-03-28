@@ -243,6 +243,47 @@ img { max-width: 100%; display: block; }
 .gl-theme-btn-mobile svg { display: block; }
 
 /* ── HERO ── */
+.gl-hero-wrapper {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #08080c;
+}
+.gl-hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.gl-hero-canvas canvas {
+  display: block;
+}
+.gl-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    rgba(4, 4, 8, 0.72) 0%,
+    rgba(4, 4, 8, 0.52) 25%,
+    rgba(4, 4, 8, 0.30) 45%,
+    rgba(4, 4, 8, 0.10) 65%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+.gl-hero-over-canvas {
+  position: relative;
+  z-index: 2;
+}
+.gl-hero-over-canvas .gl-hero-eyebrow {
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+.gl-hero-over-canvas .gl-hero-name {
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.6), 0 0 60px rgba(0, 0, 0, 0.35);
+}
+.gl-hero-over-canvas .gl-hero-sub {
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+}
 .gl-hero {
   min-height: 100vh;
   display: flex;
