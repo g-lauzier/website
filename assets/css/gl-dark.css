@@ -630,6 +630,20 @@ img { max-width: 100%; display: block; }
   flex-direction: column;
   gap: 0;
 }
+.gl-writing-section {
+  padding-top: 9rem;
+}
+.gl-writing-latest-title {
+  margin-top: 2rem;
+}
+.gl-writing-posts-list {
+  margin-top: 3rem;
+}
+.gl-writing-empty {
+  padding: 3rem 0;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
 .gl-post-row {
   display: grid;
   grid-template-columns: 120px 1fr auto;

@@ -5,13 +5,13 @@ description: "Essays on Digital Infrastructure, AI, Cybersecurity, and the archi
 ---
 
 <main>
-  <div class="gl-section" style="padding-top: 9rem;">
+  <div class="gl-section gl-writing-section">
     <p class="gl-section-label">Writing</p>
     <h1 class="gl-section-title">Field Notes.</h1>
     <p class="gl-section-body">Non-consensus thinking on the primitives that matter. Infrastructure, intelligence, and the architecture of what's inevitable.</p>
-    <h2 class="gl-section-title" style="margin-top: 2rem;">Latest entries.</h2>
+    <h2 class="gl-section-title gl-writing-latest-title">Latest entries.</h2>
 
-    <div class="gl-posts-list" id="gl-posts-list" style="margin-top: 3rem;">
+    <div class="gl-posts-list gl-writing-posts-list" id="gl-posts-list">
       {% assign initial_posts = site.posts | slice: 0, 12 %}
       {% for post in initial_posts %}
       <a href="{{ post.url }}" class="gl-post-row" data-post-index="{{ forloop.index0 }}">
@@ -22,7 +22,7 @@ description: "Essays on Digital Infrastructure, AI, Cybersecurity, and the archi
       {% endfor %}
 
       {% if site.posts.size == 0 %}
-      <p class="gl-text-muted" style="padding: 3rem 0; font-family: var(--mono); font-size: 0.85rem;">— No entries yet. The signal is building.</p>
+      <p class="gl-text-muted gl-writing-empty">— No entries yet. The signal is building.</p>
       {% endif %}
     </div>
 
