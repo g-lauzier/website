@@ -1,6 +1,6 @@
 ---
 layout: posts/post
-title: "CHOCOLATE 2012: A Celebration of Electronic Music"
+title: "CHOCOLATE: A Celebration of Electronic Music"
 date: 2012-06-10 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["adana-twins", "after-party-at-d-club"]

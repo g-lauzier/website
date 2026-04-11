@@ -1,6 +1,6 @@
 ---
 layout: posts/post
-title: "Mapping Festival 2012: A Captivating Report"
+title: "Mapping Festival: A Captivating Report"
 date: 2012-05-10 00:00:00 +0000
 categories: ["design"]
 tags: []
