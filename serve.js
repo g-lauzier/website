@@ -133,6 +133,8 @@ http.createServer(function (req, res) {
   var headers = {
     'Content-Type': mime,
     'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'SAMEORIGIN',
+    'Content-Security-Policy': "frame-ancestors 'self'",
     'Vary': 'Accept-Encoding',
     'ETag': etag,
     'Last-Modified': fileStat.mtime.toUTCString(),
