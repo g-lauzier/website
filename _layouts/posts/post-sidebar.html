@@ -47,7 +47,7 @@ layout: gl-default
         {% if page.categories %}
         <div class="gl-post-cats">
           {% for cat in page.categories %}
-          <a href="/category/{{ cat | downcase }}" class="gl-post-cat-badge">{{ cat }}</a>
+          <a href="{{ '/category/' | append: cat | downcase | relative_url }}" class="gl-post-cat-badge">{{ cat }}</a>
           {% endfor %}
         </div>
         {% endif %}
@@ -87,7 +87,7 @@ layout: gl-default
         {% if page.tags %}
         <div class="gl-post-tags">
           {% for tag in page.tags %}
-          <a href="/tag/{{ tag | slugify }}" class="gl-post-tag">{{ tag }}</a>
+          <a href="{{ '/tag/' | append: tag | slugify | relative_url }}" class="gl-post-tag">{{ tag }}</a>
           {% endfor %}
         </div>
         {% endif %}
@@ -96,7 +96,7 @@ layout: gl-default
 
       <!-- Back to writing -->
       <div class="gl-post-back">
-        <a href="/writing" class="gl-post-back-link">← Back to Field Notes</a>
+        <a href="{{ '/writing' | relative_url }}" class="gl-post-back-link">← Back to Field Notes</a>
       </div>
 
     </div>
