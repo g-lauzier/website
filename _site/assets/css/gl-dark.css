@@ -1954,9 +1954,19 @@ img { max-width: 100%; display: block; }
 }
 
 /* ── ABOUT PAGE ── */
+.gl-about-section {
+  padding-top: 10rem;
+}
+
+.gl-about-hero {
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 6rem;
+}
+
 .gl-about-content {
   max-width: 780px;
-  margin: 0 auto;
 }
 
 .gl-about-tagline {
