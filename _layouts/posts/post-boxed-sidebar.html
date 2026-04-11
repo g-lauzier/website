@@ -11,7 +11,7 @@ layout: gl-default
         <div class="gl-post-carousel">
           {% for item in page.gallery %}
           <div class="gl-post-carousel-slide {% if forloop.first %}active{% endif %}">
-            <img src="{{ item.img }}" alt="{{ item.alt | default: item.caption | default: page.title }}" {% if forloop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %} />
+            <img src="{{ item.img }}" alt="{{ item.alt | default: item.caption | default: page.title }}" width="1600" height="900" {% if forloop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %} />
             {% if item.caption %}<div class="gl-post-carousel-caption">{{ item.caption }}</div>{% endif %}
           </div>
           {% endfor %}
@@ -30,15 +30,15 @@ layout: gl-default
       <div class="gl-post-hero-media">
         <div class="gl-post-video-wrapper">
           {% if page.header_video.provider == "youtube" %}
-          <iframe src="https://www.youtube.com/embed/{{ page.header_video.id }}" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/{{ page.header_video.id }}" width="1600" height="900" frameborder="0" allowfullscreen></iframe>
           {% elsif page.header_video.provider == "vimeo" %}
-          <iframe src="https://player.vimeo.com/video/{{ page.header_video.id }}" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://player.vimeo.com/video/{{ page.header_video.id }}" width="1600" height="900" frameborder="0" allowfullscreen></iframe>
           {% endif %}
         </div>
       </div>
     {% elsif page.post_image %}
       <div class="gl-post-hero-media">
-        <img src="{{ page.post_image }}" alt="{{ page.title }}" class="gl-post-hero-img" loading="eager" fetchpriority="high" />
+        <img src="{{ page.post_image }}" alt="{{ page.title }}" class="gl-post-hero-img" width="1600" height="900" loading="eager" fetchpriority="high" />
       </div>
     {% endif %}
 
@@ -74,7 +74,7 @@ layout: gl-default
         <div class="gl-post-gallery-grid">
           {% for photo in page.gallery %}
           <a href="{{ photo.img }}" class="gl-post-gallery-item" target="_blank" rel="noopener">
-            <img src="{{ photo.img }}" alt="{{ photo.alt | default: photo.caption }}" loading="lazy" />
+            <img src="{{ photo.img }}" alt="{{ photo.alt | default: photo.caption }}" width="1600" height="900" loading="lazy" />
             {% if photo.caption %}<div class="gl-post-gallery-caption">{{ photo.caption }}</div>{% endif %}
           </a>
           {% endfor %}
