@@ -12,7 +12,8 @@ description: "Essays on Digital Infrastructure, AI, Cybersecurity, and the archi
     <h2 class="gl-section-title" style="margin-top: 2rem;">Latest entries.</h2>
 
     <div class="gl-posts-list" id="gl-posts-list" style="margin-top: 3rem;">
-      {% for post in site.posts %}
+      {% assign initial_posts = site.posts | slice: 0, 12 %}
+      {% for post in initial_posts %}
       <a href="{{ post.url }}" class="gl-post-row" data-post-index="{{ forloop.index0 }}">
         <span class="gl-post-date">{{ post.date | date: "%b %d, %Y" }}</span>
         <span class="gl-post-title">{{ post.title }}</span>
@@ -33,7 +34,7 @@ description: "Essays on Digital Infrastructure, AI, Cybersecurity, and the archi
 
 <script>
 (function () {
-  var BATCH = 10;
+  var BATCH = 12;
   var list  = document.getElementById('gl-posts-list');
   var btn   = document.getElementById('gl-load-more');
   var wrap  = document.getElementById('gl-load-more-wrap');
