@@ -1,0 +1,203 @@
+Page has no strong importance elements
+Category: Content relevance
+Pages that have no <strong> elements in the code. The <strong> HTML element indicates that its contents have strong importance, seriousness, or urgency. Browsers typically render the contents in bold type. Using this element you can manage user attention better and improve user engagement on the page.
+https://guillaumelauzier.com/writing 
+56.4
+200
+11 Apr
+https://guillaumelauzier.com/pitch 
+50.97
+200
+11 Apr
+https://guillaumelauzier.com/generative-art-flooring-epoxy-paint/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/gva-pogo-real-time-pokemon-spawns-map-for-geneva/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/exploring-the-world-of-robotics/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/emotional-xyz-sound-wave/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/challenging-traditional-art/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/mapping-festival-2012-a-captivating-report/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/noctune-a-nightlife-and-music-videos-website/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/expanding-human-perception/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/nft-2-0-future-of-digital-asset-ownership/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/play-draw-an-interactive-installation-and-scenography/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/niantic-labs-remote-raid-limitations/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/generative-art-the-algorithmic-touch/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/get-off-ur-g-j-lauzier-remix-remix-competition-entry-for-drc-and-dj-denise/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/raiffeisen-lausanne-street-bowl-contest-2011-video-report/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/grafana-render-farm-monitoring/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/remix-contest-martinez-paradigm-shift-g-j-lauziers-synth-tech-house-remix/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/monte-carlo-simulation-finance/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/milan-design-week-2012-a-look-at-the-latest-in-industrial-design/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/first-nights-in-tokyo-showcasing-the-citys-nightlife-and-beautiful-landscapes/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/tokenization-intellectual-property/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/data-privacy-homomorphic-encryption/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/d-club-geneva-lake-parade/ 
+5.13
+200
+11 Apr
+https://guillaumelauzier.com/blockchain-ios-app/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/exploring-copyright-licenses-for-ai-art/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/data-art-scientific-discovery-innovation/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/1er-aout-people-in-the-city-2012/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/understanding-20-blockchain-vulnerabilities/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/offering-cryptocurrency-as-a-service/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/bom-bang-remix-competition-entry-by-8th-apartment/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/1st-ai-projects/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/montreux-lausanne-r3hab/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/london-lausanne-konekshan-an-afro-fusion-vjing-gig/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/medium-generatedart-publications/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/leadership-banking-industry/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/generative-art-for-philanthropy/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/vjs-mag-audio-visual-art-forms/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/generative-art-licensing-blockchain-technology/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/chain-data-solidity-chainlink-oracles/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/vjs-tv-project-an-online-platform-for-global-artists-and-creatives/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/supply-chain-generative-assets/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/chocolate-2012-celebration/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/axal-a-sustainable-it-revolution/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/future-of-finance-with-generativefinance/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/niantic-labs-call-for-inclusivity-sustainability/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/federated-learning-privacy/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/ethical-guidelines-ai/ 
+5.1
+200
+11 Apr
+https://guillaumelauzier.com/algorithms-eco-urban-architectural-planning/ 
+5.07
+200
+11 Apr
+https://guillaumelauzier.com/generative-artists-criteria-generatedart/ 
+5.07
+200
+11 Apr
