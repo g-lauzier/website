@@ -1,0 +1,96 @@
+{% comment %}
+  JSON-LD Structured Data — Venture Partner profile
+  ─────────────────────────────────────────────────
+  Rendered only on post pages (layout: posts/post).
+  All author / organisation data flows from _config.yml.
+  Page-level overrides come from each post's YAML front matter.
+
+  Three linked entities inside a single @graph:
+    • BlogPosting  — the individual article
+    • Person       — Guillaume Lauzier, Venture Partner
+    • Organization — his professional brand / site
+{% endcomment %}
+
+{% if page.layout == "posts/post" %}
+
+{% assign _site_url  = site.url | default: "https://guillaumelauzier.com" %}
+{% assign _page_url  = _site_url | append: page.url %}
+{% assign _au        = site.author %}
+{% assign _org       = site.organization %}
+{% assign _post_desc = page.description | default: site.description %}
+{% assign _post_img  = page.post_image  | default: _au.image %}
+{% unless _post_img contains "http" %}
+  {% assign _post_img = _site_url | append: _post_img %}
+{% endunless %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+
+    {
+      "@type": "BlogPosting",
+      "@id": {{ _page_url | jsonify }},
+      "headline": {{ page.title | strip_html | jsonify }},
+      "description": {{ _post_desc | strip_html | truncate: 200 | jsonify }},
+      "url": {{ _page_url | jsonify }},
+      "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+      "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }},
+      "image": {
+        "@type": "ImageObject",
+        "url": {{ _post_img | jsonify }}
+      },
+      "author": {
+        "@id": {{ _au.url | jsonify }}
+      },
+      "publisher": {
+        "@id": {{ _org.url | jsonify }}
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": {{ _page_url | jsonify }}
+      }{% if page.tags and page.tags.size > 0 %},
+      "keywords": {{ page.tags | join: ", " | jsonify }}{% endif %}{% if page.categories and page.categories.size > 0 %},
+      "articleSection": {{ page.categories | first | jsonify }}{% endif %}
+    },
+
+    {
+      "@type": "Person",
+      "@id": {{ _au.url | jsonify }},
+      "name": {{ _au.name | jsonify }},
+      "jobTitle": {{ _au.job_title | jsonify }},
+      "description": {{ _au.description | jsonify }},
+      "url": {{ _au.url | jsonify }},
+      "image": {
+        "@type": "ImageObject",
+        "url": {{ _au.image | jsonify }}
+      },
+      "sameAs": {{ _au.same_as | jsonify }},
+      "knowsAbout": {{ _au.knows_about | jsonify }},
+      "worksFor": {
+        "@id": {{ _org.url | jsonify }}
+      }
+    },
+
+    {
+      "@type": "Organization",
+      "@id": {{ _org.url | jsonify }},
+      "name": {{ _org.name | jsonify }},
+      "description": {{ _org.description | jsonify }},
+      "url": {{ _org.url | jsonify }},
+      "logo": {
+        "@type": "ImageObject",
+        "url": {{ _org.logo | jsonify }}
+      },
+      "foundingDate": {{ _org.founding_date | jsonify }},
+      "sameAs": {{ _org.same_as | jsonify }},
+      "founder": {
+        "@id": {{ _au.url | jsonify }}
+      }
+    }
+
+  ]
+}
+</script>
+
+{% endif %}

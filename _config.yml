@@ -1,7 +1,48 @@
 title: "Guillaume Lauzier"
 description: "Venture Partner. Backing product-obsessed founders at the frontier of Digital Infrastructure, Cybersecurity, AI, and Blockchain."
 baseurl: ""
-url: ""
+url: "https://guillaumelauzier.com"
+
+# ── Structured data — pulled into JSON-LD schema at build time ──────────────
+
+author:
+  name: "Guillaume Lauzier"
+  job_title: "Venture Partner"
+  url: "https://guillaumelauzier.com/about"
+  image: "https://guillaumelauzier.com/assets/images/meta-image.webp"
+  description: "Venture Partner backing product-obsessed founders at the frontier of Digital Infrastructure, Cybersecurity, AI, and Blockchain."
+  same_as:
+    - "https://www.linkedin.com/in/guillaumelauzier/"
+    - "https://x.com/guilauzier"
+    - "https://github.com/guillaumelauzier"
+    - "https://medium.com/@guillaumelauzier"
+    - "https://www.instagram.com/guillaumelauzier/"
+    - "https://www.facebook.com/guilauzier/"
+    - "https://www.tiktok.com/@guillaumelauzier"
+    - "https://www.crunchbase.com/person/guillaume-lauzier"
+    - "https://www.reddit.com/user/guillaumelauzier/"
+  knows_about:
+    - "Venture Capital"
+    - "Digital Infrastructure"
+    - "Cybersecurity"
+    - "Artificial Intelligence"
+    - "Blockchain"
+    - "Decentralized Finance"
+    - "Web3"
+    - "DeFi"
+
+organization:
+  name: "Guillaume Lauzier"
+  url: "https://guillaumelauzier.com"
+  logo: "https://guillaumelauzier.com/assets/images/favicon.webp"
+  description: "Venture Partner backing product-obsessed founders at the frontier of Digital Infrastructure, Cybersecurity, AI, and Blockchain."
+  founding_date: "2008"
+  same_as:
+    - "https://www.linkedin.com/in/guillaumelauzier/"
+    - "https://x.com/guilauzier"
+    - "https://github.com/guillaumelauzier"
+    - "https://www.crunchbase.com/person/guillaume-lauzier"
+
 permalink: "/:title"
 
 # Build settings
