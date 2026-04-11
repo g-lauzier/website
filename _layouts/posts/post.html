@@ -38,7 +38,7 @@ layout: gl-default
       </div>
     {% elsif page.post_image %}
       <div class="gl-post-hero-media">
-        <img src="{{ page.post_image }}" alt="{{ page.image_alt | default: page.alt | default: page.title | append: ' image' }}" class="gl-post-hero-img" width="1600" height="900" loading="eager" fetchpriority="high" />
+        <img src="{{ page.post_image }}" alt="{{ page.image_alt | default: page.alt | default: page.title | append: ' featured image' }}" class="gl-post-hero-img" width="1600" height="900" loading="eager" fetchpriority="high" />
       </div>
     {% endif %}
 
