@@ -4,7 +4,24 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% if page.title %}{{ page.title }} — {% endif %}Guillaume Lauzier</title>
-  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}Venture Partner backing product-obsessed founders at the frontier of Digital Infrastructure, Cybersecurity, AI, and Blockchain.{% endif %}" />
+  {% assign meta_description = page.description | default: site.description %}
+  {% assign og_title = page.title | default: site.title %}
+  {% assign og_url = site.url | append: page.url %}
+  {% assign og_image = page.post_image | default: site.author.image %}
+  {% unless og_image contains "http" %}
+  {% assign og_image = site.url | append: og_image %}
+  {% endunless %}
+  <meta name="description" content="{{ meta_description | escape }}" />
+  <meta property="og:site_name" content="Guillaume Lauzier" />
+  <meta property="og:type" content="{% if page.layout == 'posts/post' %}article{% else %}website{% endif %}" />
+  <meta property="og:title" content="{{ og_title | escape }}" />
+  <meta property="og:description" content="{{ meta_description | escape }}" />
+  <meta property="og:url" content="{{ og_url | escape }}" />
+  <meta property="og:image" content="{{ og_image | escape }}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ og_title | escape }}" />
+  <meta name="twitter:description" content="{{ meta_description | escape }}" />
+  <meta name="twitter:image" content="{{ og_image | escape }}" />
   <link rel="shortcut icon" href="/assets/images/favicon.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

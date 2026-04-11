@@ -5,7 +5,7 @@ date: 2012-04-22 00:00:00 +0000
 categories: ["design"]
 tags: []
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/milan-design-week-2012.png"
-description: "\"Milan Design Week 2012\" is a video report of one of Europe's most recognized industrial design fairs that took place from April 17th to 22nd in Milan, including Salone Internazionale del Mobile, Salo"
+description: "\"Milan Design Week 2012\" is a video report of Milan's major industrial design fair, featuring Salone del Mobile, SaloneSatellite, Zona Tortona, and standout designers and products from the 2012 edition."
 permalink: "/milan-design-week-2012-a-look-at-the-latest-in-industrial-design/"
 ---
 
