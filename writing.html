@@ -12,9 +12,8 @@ description: "Essays on Digital Infrastructure, AI, Cybersecurity, and the archi
     <h2 class="gl-section-title gl-writing-latest-title">Latest entries.</h2>
 
     <div class="gl-posts-list gl-writing-posts-list" id="gl-posts-list">
-      {% assign initial_posts = site.posts | slice: 0, 12 %}
-      {% for post in initial_posts %}
-      <a href="{{ post.url }}" class="gl-post-row" data-post-index="{{ forloop.index0 }}">
+      {% for post in site.posts %}
+      <a href="{{ post.url }}" class="gl-post-row gl-post-hidden" data-post-index="{{ forloop.index0 }}">
         <span class="gl-post-date">{{ post.date | date: "%b %d, %Y" }}</span>
         <span class="gl-post-title">{{ post.title }}</span>
         <span class="gl-post-tag">{% if post.categories.first %}{{ post.categories.first }}{% endif %}</span>
@@ -26,9 +25,11 @@ description: "Essays on Digital Infrastructure, AI, Cybersecurity, and the archi
       {% endif %}
     </div>
 
+    {% if site.posts.size > 12 %}
     <div class="gl-load-more-wrap" id="gl-load-more-wrap">
       <button class="gl-load-more-btn" id="gl-load-more">Load more</button>
     </div>
+    {% endif %}
   </div>
 </main>
 
@@ -38,7 +39,7 @@ description: "Essays on Digital Infrastructure, AI, Cybersecurity, and the archi
   var list  = document.getElementById('gl-posts-list');
   var btn   = document.getElementById('gl-load-more');
   var wrap  = document.getElementById('gl-load-more-wrap');
-  if (!list || !btn) return;
+  if (!list) return;
 
   var rows = Array.from(list.querySelectorAll('.gl-post-row'));
   var shown = 0;
@@ -49,13 +50,11 @@ description: "Essays on Digital Infrastructure, AI, Cybersecurity, and the archi
       rows[i].classList.remove('gl-post-hidden');
     }
     shown = end;
-    if (shown >= rows.length) wrap.style.display = 'none';
+    if (shown >= rows.length && wrap) wrap.style.display = 'none';
   }
 
-  /* Hide all initially */
-  rows.forEach(function (r) { r.classList.add('gl-post-hidden'); });
   showNext();
 
-  btn.addEventListener('click', showNext);
+  if (btn) btn.addEventListener('click', showNext);
 })();
 </script>
