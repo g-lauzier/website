@@ -313,6 +313,36 @@ description: "Guillaume Lauzier — Venture Partner backing product-obsessed fou
 
 <div class="gl-divider"></div>
 
+<!-- ── TESTIMONIALS ── -->
+<section class="gl-section" id="testimonials">
+  <p class="gl-section-label">Signal · Not Noise</p>
+  <h2 class="gl-section-title">What Operators Say.</h2>
+  <p class="gl-section-body">Founders, directors, and engineers who've shipped alongside me — across <strong>Fintech, AI, Cybersecurity, and Creative Tech</strong>.</p>
+
+  <div class="gl-testimonials-grid">
+    {% for t in site.data.testimonials %}
+    <article class="gl-testimonial-card">
+      <div class="gl-testimonial-mark" aria-hidden="true">&ldquo;</div>
+      <p class="gl-testimonial-quote">{{ t.quote }}</p>
+      <div class="gl-testimonial-meta">
+        <span class="gl-testimonial-initials" aria-hidden="true">{{ t.initials }}</span>
+        <div>
+          <div class="gl-testimonial-name">{{ t.name }}</div>
+          <div class="gl-testimonial-role">{{ t.role }}</div>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+
+  <div class="gl-testimonial-aside">
+    <span class="gl-testimonial-aside-text">// Sourced from public LinkedIn recommendations</span>
+    <a href="https://www.linkedin.com/in/guillaumelauzier" target="_blank" rel="noopener" class="gl-btn gl-btn-outline">View on LinkedIn →</a>
+  </div>
+</section>
+
+<div class="gl-divider"></div>
+
 <!-- ── FILTER ── -->
 <section class="gl-section-full" style="background: var(--bg-2); padding-top: 6rem; padding-bottom: 6rem;">
   <div class="gl-container">
