@@ -45,17 +45,27 @@ organization:
 
 permalink: "/:title"
 
+# ── Third-party integrations ────────────────────────────────────────────────
+# hCaptcha sitekey for forms (pitch, advisory). When unset, captcha is hidden.
+# Register a free sitekey at https://www.hcaptcha.com/ and paste it here.
+hcaptcha_sitekey: ""
+
+# Google Tag Manager container ID (e.g. "GTM-AB12CD3"). When unset, GTM does
+# not load — preferred for privacy and to avoid shipping placeholder requests.
+google_tag_manager_id: ""
+
 # Build settings
 plugins:
   - jekyll-feed
   - jekyll-paginate-v2
   - jekyll-archives
+  - jekyll-sitemap
 
-collections:
-  portfolio:
-      output: true
-      permalink: /portfolio/:name
-      
+# collections:
+#   portfolio:
+#       output: true
+#       permalink: /portfolio/:name
+
 
 ############################################################
 # Site configuration for the Jekyll 3 Pagination Gem
@@ -128,13 +138,10 @@ pagination:
 jekyll-archives:
   enabled:
     - tags
-    - categories
   layouts:
     tag: tag
-    category: category
   permalinks:
     tag: '/tag/:name/'
-    category: '/category/:name/'
 
 feed:
   collections:
@@ -147,8 +154,42 @@ exclude:
   - .local
   - .git
   - .cache
+  - .jekyll-cache
+  - vendor
+  - node_modules
   - Gemfile
   - Gemfile.lock
   - README.md
   - replit.md
   - "*.toml"
+  # Vestigial Snowlake demo theme — orphan pages, components, layouts, assets
+  - home-pages
+  - elements
+  - features
+  - portfolios
+  - portfolio
+  - blogs
+  - contact
+  - shop
+  - services
+  - screenshots
+  - portfolio-fullscreen
+  - portfolio-masonry
+  - portfolio-mosaic
+  - hero.html
+  - _authors
+  - _shop_items
+  - assets/revolution
+  - assets/type
+  # Vestigial scripts / stubs
+  - main.py
+  - pyproject.toml
+  - fix_frontmatter.rb
+  # Operational files that must NOT be served publicly
+  - serve.js
+  - seo_crawler.py
+  - package.json
+  - package-lock.json
+  - node_modules
+  # Heavy attachments (PDFs, screenshots) — not for public site
+  - attached_assets

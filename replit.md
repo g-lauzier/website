@@ -26,10 +26,10 @@ A premium dark-mode portfolio site for Guillaume Lauzier, Venture Partner. Built
 ## Pages
 - `index.html` — Full homepage: interactive pixelated hero (p5.js), bio, 12-sector accordion grid, investments, filter section
 - `about.html` — Editorial bio: origin story, investment thesis (3 families), philosophy, CTAs
-- `advisory.html` — 3-tier engagement models (The Roadmap / Architecture / Partner) + alignment toggle
-- `pitch.html` — Terminal-style high-friction pitch filter form
+- `advisory.html` — 3-tier engagement models (The Roadmap / Architecture / Partner) + alignment toggle, with hCaptcha + honeypot
+- `pitch.html` — Terminal-style high-friction pitch filter form, with hCaptcha + honeypot
 - `writing.html` — Editorial blog listing
-- `hero.html` — Standalone hero demo page at `/hero/`
+- `404.html` — Branded "Signal Lost" 404 (uses gl-default layout)
 
 ## Interactive Hero Background (`assets/js/sketch.js`)
 - p5.js renders `assets/images/portrait.jpg` as a dynamic pixel grid behind homepage hero
@@ -50,12 +50,27 @@ A premium dark-mode portfolio site for Guillaume Lauzier, Venture Partner. Built
 - `assets/js/sketch.js` — p5.js pixel animation for hero background
 
 ## Performance Optimizations
-- **Server (serve.js):** Gzip compression for text assets (HTML/CSS/JS/SVG/XML), async file reads, `Cache-Control` headers (immutable for assets, must-revalidate for HTML), `X-Content-Type-Options: nosniff`
+- **Server (serve.js):** LRU-bounded gzip cache (100 entries / 32 MB), HTTP Range support, streaming for files >1 MB, async file reads, `Cache-Control` headers (immutable for assets, must-revalidate for HTML)
 - **Google Fonts:** Trimmed from 7 families to 4 (Inter, JetBrains Mono, Playfair Display, Mr Dafoe), reduced weights, async loading via `preload` + `onload` pattern to prevent render-blocking
 - **Images:** `loading="lazy"` on all gallery, sidebar, and trending-post images; `fetchpriority="high"` on hero images
-- **p5.js sketch:** Frame rate capped at 30fps, debounced resize handler (150ms), inlined Math functions replacing p5 wrappers, reduced per-frame allocations
-- **Script loading:** `defer` attribute on p5.js CDN, sketch.js, and gl.js to prevent parser blocking
-- **Resource hints:** `preconnect` to fonts.googleapis.com, fonts.gstatic.com, and cdnjs.cloudflare.com
+- **p5.js sketch:** Frame rate capped at 30fps, debounced resize handler (150ms), inlined Math functions replacing p5 wrappers, reduced per-frame allocations; respects `prefers-reduced-motion`; pauses via `IntersectionObserver` when off-screen
+- **p5.js library:** Self-hosted at `/assets/vendor/p5.min.js` with SRI integrity hash (no third-party CDN dependency)
+- **Script loading:** `defer` attribute on p5.js, sketch.js, and gl.js to prevent parser blocking
+- **Resource hints:** `preconnect` to fonts.googleapis.com, fonts.gstatic.com
+
+## Security
+- **CSP:** Strict Content-Security-Policy (default-src 'self') with explicit allowlist for Google Fonts, hCaptcha, GTM, and Formspree; `frame-ancestors 'self'`, `object-src 'none'`, `base-uri 'self'`
+- **Headers:** `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`
+- **Forms:** Honeypot field (`_gotcha`) + hCaptcha on `pitch.html` and `advisory.html`; sitekey driven from `_config.yml site.hcaptcha_sitekey` (script + widget only render when set)
+- **Analytics:** GTM only injected when `site.google_tag_manager_id` is set in `_config.yml` (no placeholder leakage)
+- **CSP also configured** in `cloudflare.toml` for parity with edge deployment
+
+## Repo Hygiene
+- All Snowlake demo content removed: `home-pages/`, `elements/`, `features/`, `portfolios/`, `blogs/`, `contact/`, `shop/`, `services/`, `screenshots/`, `_shop_items/`, `_authors/`, `_portfolio/`, plus all unused layouts/includes/CSS/JS/Bootstrap/jQuery/RevSlider
+- Build output is 87 MB / 185 HTML pages (down from ~172 MB / 472 pages)
+- `_config.yml excludes` lists all removed dirs as a defense-in-depth against re-introduction
+- `jekyll-sitemap` plugin enabled — `sitemap.xml` is generated automatically (184 entries)
+- `robots.txt`, `.gitignore`, `.ruby-version` present
 
 ## Development
 - **Workflow:** `bundle exec jekyll build && node serve.js` — builds the site then serves `_site/` on port 5000

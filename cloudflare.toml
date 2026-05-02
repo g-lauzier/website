@@ -1,9 +1,9 @@
 [build]
-  command = "jekyll build"
+  command = "bundle exec jekyll build"
   publish = "_site"
 
 [build.environment]
-  RUBY_VERSION = "3.1.2"
+  RUBY_VERSION = "3.2.2"
   JEKYLL_ENV = "production"
 
 [[headers]]
@@ -13,23 +13,19 @@
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=()"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://js.hcaptcha.com https://*.hcaptcha.com https://www.googletagmanager.com; frame-src https://*.hcaptcha.com https://www.googletagmanager.com; connect-src 'self' https://formspree.io https://*.hcaptcha.com https://www.google-analytics.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'; frame-ancestors 'self'"
 
 [context.production]
-  command = "jekyll build"
+  command = "bundle exec jekyll build"
 
 [context.preview]
-  command = "jekyll build --drafts --future"
+  command = "bundle exec jekyll build --drafts --future"
 
 [context.branch-deploy]
-  command = "jekyll build --drafts --future"
+  command = "bundle exec jekyll build --drafts --future"
 
-# Caching and Performance Optimizations
+# Caching — long-lived for hashed/static assets, short-lived for HTML
 [[headers]]
   for = "*.css"
   [headers.values]
@@ -51,6 +47,16 @@
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
+  for = "*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
   for = "*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.woff2"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"

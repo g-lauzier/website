@@ -47,7 +47,7 @@ layout: gl-default
         {% if page.categories %}
         <div class="gl-post-cats">
           {% for cat in page.categories %}
-          <a href="/category/{{ cat | downcase }}" class="gl-post-cat-badge">{{ cat }}</a>
+          <span class="gl-post-cat-badge">{{ cat }}</span>
           {% endfor %}
         </div>
         {% endif %}

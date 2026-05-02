@@ -21,7 +21,6 @@
   <meta name="twitter:description" content="A high-friction filter for Contrarian Builders. Do not pitch unless you are right — but currently alone." />
   <meta name="twitter:image" content="https://guillaumelauzier.com/assets/images/meta-image.webp" />
   
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
   <link rel="shortcut icon" href="/assets/images/favicon.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -44,7 +43,7 @@
 
 </head>
 <body>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
 
 <nav class="gl-nav">
   <div class="gl-nav-inner">
@@ -86,6 +85,9 @@
 </div>
 
 <form class="gl-form" id="gl-pitch-form" action="https://formspree.io/f/mpqylkaw" method="POST">
+
+  <!-- Honeypot — bots fill it; humans cannot see it. Formspree honors _gotcha. -->
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:0;height:0;opacity:0;" />
 
   <div class="gl-form-row">
     <div class="gl-form-group">
@@ -144,7 +146,7 @@
     <input class="gl-form-input" type="url" id="pitch-deck" name="deck_url" placeholder="Link to document" />
   </div>
 
-  <div class="h-captcha" data-sitekey="10000000-ffff-ffff-ffff-000000000001" data-theme="dark" style="margin-bottom: 1.5rem;"></div>
+  
 
   <button type="submit" class="gl-form-submit">[ TRANSMIT ]</button>
 
@@ -156,7 +158,7 @@
 
 </main>
 
-<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+
 
 
 <footer class="gl-footer">

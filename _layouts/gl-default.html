@@ -22,8 +22,9 @@
   <meta name="twitter:title" content="{{ og_title | escape }}" />
   <meta name="twitter:description" content="{{ meta_description | escape }}" />
   <meta name="twitter:image" content="{{ og_image | escape }}" />
-  {% assign gtm_id = site.google_tag_manager_id | default: "GTM-XXXXXXX" %}
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','{{ gtm_id }}');</script>
+  {% if site.google_tag_manager_id and site.google_tag_manager_id != "" %}
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','{{ site.google_tag_manager_id }}');</script>
+  {% endif %}
   <link rel="shortcut icon" href="/assets/images/favicon.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,7 +44,9 @@
   {% include seo/json-ld.html %}
 </head>
 <body>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ gtm_id }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+{% if site.google_tag_manager_id and site.google_tag_manager_id != "" %}
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.google_tag_manager_id }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+{% endif %}
 
 <nav class="gl-nav">
   <div class="gl-nav-inner">

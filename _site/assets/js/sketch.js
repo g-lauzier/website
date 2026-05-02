@@ -4,6 +4,32 @@
   var container = document.getElementById('canvas-container');
   if (!container) return;
 
+  // Respect prefers-reduced-motion — skip the animation entirely.
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) {
+    // Render a single static portrait fallback for accessibility.
+    var fallback = document.createElement('img');
+    fallback.src = '/assets/images/portrait.jpg';
+    fallback.alt = 'Guillaume Lauzier';
+    fallback.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;';
+    container.appendChild(fallback);
+    return;
+  }
+
+  // Pause the animation when the hero scrolls offscreen — saves CPU/battery.
+  var paused = false;
+  if (typeof IntersectionObserver !== 'undefined') {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        paused = !entry.isIntersecting;
+        if (typeof noLoop === 'function' && typeof loop === 'function') {
+          if (paused) noLoop(); else loop();
+        }
+      });
+    }, { threshold: 0.01 });
+    io.observe(container);
+  }
+
 const CONFIG = {
   baseStep: 12,
   minPxSize: 3,

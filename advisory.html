@@ -123,6 +123,9 @@ description: "Strategic Architecture engagements for founders building the primi
 
   <form id="gl-pitch-form" action="https://formspree.io/f/mpqylkaw" method="POST" style="margin-top: 3rem; max-width: 680px;">
 
+    <!-- Honeypot — bots fill it; humans cannot see it. Formspree honors _gotcha. -->
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:0;height:0;opacity:0;" />
+
     <div class="gl-form-row">
       <div class="gl-form-group">
         <label class="gl-form-label" for="adv-name">Name</label>
@@ -164,7 +167,9 @@ description: "Strategic Architecture engagements for founders building the primi
       <input class="gl-form-input" type="url" id="adv-url" name="url" placeholder="https://" />
     </div>
 
-    <div class="h-captcha" data-sitekey="10000000-ffff-ffff-ffff-000000000001" data-theme="dark" style="margin-bottom: 1.5rem;"></div>
+    {% if site.hcaptcha_sitekey and site.hcaptcha_sitekey != "" %}
+    <div class="h-captcha" data-sitekey="{{ site.hcaptcha_sitekey }}" data-theme="dark" style="margin-bottom: 1.5rem;"></div>
+    {% endif %}
 
     <button type="submit" class="gl-form-submit">[ SUBMIT ENGAGEMENT REQUEST ]</button>
 
@@ -178,4 +183,6 @@ description: "Strategic Architecture engagements for founders building the primi
 
 </main>
 
+{% if site.hcaptcha_sitekey and site.hcaptcha_sitekey != "" %}
 <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+{% endif %}

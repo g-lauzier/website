@@ -9,9 +9,11 @@
   function applyTheme(theme) {
     if (!THEMES.includes(theme)) theme = 'dark';
     html.setAttribute('data-theme', theme);
-    localStorage.setItem(STORE, theme);
+    try { localStorage.setItem(STORE, theme); } catch (e) { /* private mode / quota */ }
     document.querySelectorAll('.gl-theme-btn, .gl-theme-btn-mobile').forEach(function (btn) {
-      btn.classList.toggle('active', btn.getAttribute('data-gl-theme') === theme);
+      var active = btn.getAttribute('data-gl-theme') === theme;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
     });
   }
 

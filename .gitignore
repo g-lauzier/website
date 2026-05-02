@@ -1,0 +1,30 @@
+# Jekyll build output and caches
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.cache/
+
+# Bundler / Ruby
+vendor/
+.bundle/
+Gemfile.lock.bak
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Local-only / Replit
+.local/
+attached_assets/
