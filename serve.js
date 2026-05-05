@@ -38,17 +38,33 @@ const COMPRESS_MAX_SIZE = 5 * 1024 * 1024;     // 5 MB → don't try to gzip
 const GZIP_CACHE_MAX_ENTRIES = 100;            // bounded LRU
 const GZIP_CACHE_MAX_BYTES = 32 * 1024 * 1024; // 32 MB total cap
 
-// Canonical CSP — kept in sync with cloudflare.toml.
-const CSP = "default-src 'self'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://js.hcaptcha.com https://*.hcaptcha.com https://www.googletagmanager.com; frame-src https://*.hcaptcha.com https://www.googletagmanager.com; connect-src 'self' https://formspree.io https://*.hcaptcha.com https://www.google-analytics.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'; frame-ancestors 'self'";
+// In the Replit dev environment the site is served inside the workspace
+// preview iframe, so we must allow framing. In production we keep the strict
+// `frame-ancestors 'self'` / `X-Frame-Options: DENY` posture (also enforced
+// at the edge via cloudflare.toml).
+const IS_REPLIT_DEV = !!process.env.REPL_ID || !!process.env.REPLIT_DEV_DOMAIN;
+const FRAME_ANCESTORS = IS_REPLIT_DEV
+  ? "frame-ancestors 'self' https://*.replit.com https://*.replit.dev https://*.repl.co https://replit.com"
+  : "frame-ancestors 'self'";
+
+// Canonical CSP — kept in sync with cloudflare.toml (frame-ancestors clause
+// is environment-specific; everything else is identical).
+const CSP = "default-src 'self'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://js.hcaptcha.com https://*.hcaptcha.com https://www.googletagmanager.com; frame-src https://*.hcaptcha.com https://www.googletagmanager.com; connect-src 'self' https://formspree.io https://*.hcaptcha.com https://www.google-analytics.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'; " + FRAME_ANCESTORS;
 
 // Security headers applied to every response (200/206/304/404/405/500).
 function securityHeaders() {
-  return {
+  const headers = {
     'X-Content-Type-Options': 'nosniff',
-    'X-Frame-Options': 'DENY',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'Content-Security-Policy': CSP,
   };
+  // X-Frame-Options has no value that allows specific origins, so we omit it
+  // in the dev environment and rely on CSP frame-ancestors. In production we
+  // keep the strict DENY.
+  if (!IS_REPLIT_DEV) {
+    headers['X-Frame-Options'] = 'DENY';
+  }
+  return headers;
 }
 
 // ── Bounded LRU gzip cache, keyed by filePath + mtimeMs ─────────────────────
