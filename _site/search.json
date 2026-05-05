@@ -1,6 +1,33 @@
 [
   
     {
+      "title"    : "Big-O isn&#39;t the bottleneck. It&#39;s allocation.",
+      "category" : "",
+      "tags"     : "performance, profiling, gc",
+      "url"      : "/big-o-isnt-the-bottleneck-its-allocation/",
+      "date"     : "2026-05-01 00:00:00 +0000",
+      "desc"     : "Big-O isn't the bottleneck. It's allocation."
+    } ,
+  
+    {
+      "title"    : "Lockfile vulns: the 95% you can fix in one PR",
+      "category" : "",
+      "tags"     : "security, vuln-scanning, ci",
+      "url"      : "/lockfile-vulns-the-95-percent-you-can-fix-in-one-pr/",
+      "date"     : "2026-04-22 00:00:00 +0000",
+      "desc"     : "Lockfile vulns: the 95% you can fix in one PR"
+    } ,
+  
+    {
+      "title"    : "How to spot AWS Savings Plan gaps before the bill arrives",
+      "category" : "",
+      "tags"     : "cloud-cost, aws, finops",
+      "url"      : "/how-to-spot-aws-savings-plan-gaps/",
+      "date"     : "2026-04-08 00:00:00 +0000",
+      "desc"     : "How to spot AWS Savings Plan gaps before the bill arrives"
+    } ,
+  
+    {
       "title"    : "Understanding Iron Condor and Butterfly Spread",
       "category" : "",
       "tags"     : "strategy, tokenomic",

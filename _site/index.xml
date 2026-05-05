@@ -1,4 +1,414 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://guillaumelauzier.com/index.xml" rel="self" type="application/atom+xml" /><link href="https://guillaumelauzier.com/" rel="alternate" type="text/html" /><updated>2026-05-05T11:44:22+00:00</updated><id>https://guillaumelauzier.com/index.xml</id><title type="html">Guillaume Lauzier</title><subtitle>Venture Partner. Backing product-obsessed founders at the frontier of Digital Infrastructure, Cybersecurity, AI, and Blockchain.</subtitle><author><name>Guillaume Lauzier</name></author><entry><title type="html">Understanding Iron Condor and Butterfly Spread</title><link href="https://guillaumelauzier.com/iron-condor-butterfly-spread/" rel="alternate" type="text/html" title="Understanding Iron Condor and Butterfly Spread" /><published>2025-01-11T00:00:00+00:00</published><updated>2025-01-11T00:00:00+00:00</updated><id>https://guillaumelauzier.com/iron-condor-butterfly-spread</id><content type="html" xml:base="https://guillaumelauzier.com/iron-condor-butterfly-spread/"><![CDATA[<p><em>Estimated reading time: 10 minutes</em></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://guillaumelauzier.com/index.xml" rel="self" type="application/atom+xml" /><link href="https://guillaumelauzier.com/" rel="alternate" type="text/html" /><updated>2026-05-05T11:56:14+00:00</updated><id>https://guillaumelauzier.com/index.xml</id><title type="html">Guillaume Lauzier</title><subtitle>Venture Partner. Backing product-obsessed founders at the frontier of Digital Infrastructure, Cybersecurity, AI, and Blockchain.</subtitle><author><name>Guillaume Lauzier</name></author><entry><title type="html">Big-O isn’t the bottleneck. It’s allocation.</title><link href="https://guillaumelauzier.com/big-o-isnt-the-bottleneck-its-allocation/" rel="alternate" type="text/html" title="Big-O isn’t the bottleneck. It’s allocation." /><published>2026-05-01T00:00:00+00:00</published><updated>2026-05-01T00:00:00+00:00</updated><id>https://guillaumelauzier.com/big-o-isnt-the-bottleneck-its-allocation</id><content type="html" xml:base="https://guillaumelauzier.com/big-o-isnt-the-bottleneck-its-allocation/"><![CDATA[<p><em>Originally published on <a href="https://algosize.com/blog/big-o-isnt-the-bottleneck-its-allocation/">Algosize</a> — service provisioning by <a href="https://algosize.com">algosize.com</a>.</em></p>
+
+<p>The first instinct of every engineer who reads a hot-path is to check the algorithm. <em>Is this nested loop O(n²) when it could be O(n log n)?</em> It almost never is. The function has been there for two years, the team has reviewed it twice, and Big-O is the kind of correctness problem that gets caught on the second pass, not the hundredth.</p>
+
+<p>The thing that <em>does</em> get worse over time, silently, in code reviews nobody flags, is <strong>allocation per iteration</strong>. A <code class="language-plaintext highlighter-rouge">.map().filter().slice()</code> chain that allocates four arrays where the original code allocated one. A closure pulled out into a “cleaner” inner function that captures a reference and prevents an escape analysis. A logger that builds a structured object on every call site, even on the call sites where the log line is below the active level.</p>
+
+<p>Each one is invisible in a CPU profile until the day the GC pause hits 200ms and your p99 goes vertical. Then a postmortem discovers the cliff, and someone writes a Slack message that begins “actually it’s not the algorithm, it’s…”</p>
+
+<p>This post is the field guide we use when we get a “this loop got slow” ticket. It does not assume you’ve ever read a flame graph. It assumes you’ve shipped working code and now the working code is slow.</p>
+
+<h2 id="the-shape-of-the-cliff">The shape of the cliff</h2>
+
+<p>Plot p50 latency against <code class="language-plaintext highlighter-rouge">n</code> for a hot path that allocates per iteration. Up until you hit some threshold, the line is roughly linear in <code class="language-plaintext highlighter-rouge">n</code> and roughly flat per-call — you’re spending CPU on actual work, the allocator is fast, GC is happening between calls, all is well.</p>
+
+<p>Cross the threshold — your nursery (young-generation heap) fills mid-call, GC fires, and the call has to wait for the collection to finish. Now your line jumps from “linear in <code class="language-plaintext highlighter-rouge">n</code>” to “linear in <code class="language-plaintext highlighter-rouge">n</code> with periodic 50–200ms cliffs” and your p99 looks like a barbed-wire fence.</p>
+
+<p>The shape matters because it is <em>not</em> what you’d expect from an algorithmic problem. Algorithmic problems give you a smooth curve — <code class="language-plaintext highlighter-rouge">n²</code> looks parabolic, <code class="language-plaintext highlighter-rouge">n log n</code> looks like <code class="language-plaintext highlighter-rouge">n</code> with a gentle warp. Allocation cliffs give you a flat-then-spike profile, where p50 is fine and p99 is a disaster.</p>
+
+<p>If you take one thing away from this post: <strong>a flat p50 and a spiky p99 is almost always allocation, not algorithm</strong>.</p>
+
+<h2 id="where-the-allocations-hide">Where the allocations hide</h2>
+
+<p>Every language has its own allocator quirks, but the categories of “allocation that gets written without anyone noticing” are remarkably stable across languages. Here’s what we look for, in roughly the order they bite.</p>
+
+<h3 id="1-method-chain-landmines">1. Method-chain landmines</h3>
+
+<p>The same data transformation, written two ways:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Allocates: 1 array.</span>
+<span class="kd">const</span> <span class="nx">out</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="nx">item</span> <span class="k">of</span> <span class="nx">items</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">item</span><span class="p">.</span><span class="nx">active</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+  <span class="nx">out</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">value</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Allocates: 2 arrays. (filter result, then map result.)</span>
+<span class="kd">const</span> <span class="nx">out</span> <span class="o">=</span> <span class="nx">items</span>
+  <span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">active</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">value</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>For <code class="language-plaintext highlighter-rouge">n=10</code>, who cares. For <code class="language-plaintext highlighter-rouge">n=100,000</code> called inside an event handler that fires fifty times a second, the second version makes 100 intermediate arrays a second the GC has to walk and collect. Same Big-O. Different performance.</p>
+
+<p>The fix isn’t “stop using <code class="language-plaintext highlighter-rouge">.map().filter()</code>” — it’s to know which paths are hot. You can leave the chain in a request handler that runs once per request. You should rewrite it in the inner loop of a parser or a render pipeline.</p>
+
+<h3 id="2-closures-that-capture-too-much">2. Closures that capture too much</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">processBatch</span><span class="p">(</span><span class="nx">records</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">records</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">record</span> <span class="o">=&gt;</span> <span class="nf">transform</span><span class="p">(</span><span class="nx">record</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">));</span>   <span class="c1">// closure allocated per call</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In V8 specifically, the inner arrow function above will often be re-created on every call to <code class="language-plaintext highlighter-rouge">processBatch</code>, <em>and</em> prevented from being inlined because it captures <code class="language-plaintext highlighter-rouge">ctx</code>. If <code class="language-plaintext highlighter-rouge">processBatch</code> is on the hot path, the inner closure is now an allocation per call multiplied by the call frequency.</p>
+
+<p>Lifting the inner function out:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">transformOne</span> <span class="o">=</span> <span class="p">(</span><span class="nx">record</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nf">transform</span><span class="p">(</span><span class="nx">record</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nf">processBatch</span><span class="p">(</span><span class="nx">records</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">records</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">record</span> <span class="o">=&gt;</span> <span class="nf">transformOne</span><span class="p">(</span><span class="nx">record</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>…doesn’t help — you’ve just moved the problem. The real fix is to drop <code class="language-plaintext highlighter-rouge">.map()</code> for a manual loop in this hot path and let the optimiser inline <code class="language-plaintext highlighter-rouge">transform</code> directly. Five lines longer, zero allocations per record.</p>
+
+<h3 id="3-string-concatenation-in-logs">3. String concatenation in logs</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">logger</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="dl">"</span><span class="s2">processed </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">record</span><span class="p">.</span><span class="nx">id</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> in </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">ms</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">ms with </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">meta</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>Every call to that line allocates a string, calls <code class="language-plaintext highlighter-rouge">JSON.stringify</code> (which allocates a much larger string), and then <em>throws it all away</em> if the logger’s level is above <code class="language-plaintext highlighter-rouge">debug</code>. On a hot path running ten thousand times per second, that’s ten thousand JSON serializations of <code class="language-plaintext highlighter-rouge">meta</code> per second, none of which were ever written to disk.</p>
+
+<p>The fix is the well-known guard pattern:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if </span><span class="p">(</span><span class="nx">logger</span><span class="p">.</span><span class="nf">isDebugEnabled</span><span class="p">())</span> <span class="p">{</span>
+  <span class="nx">logger</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="dl">"</span><span class="s2">processed </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">record</span><span class="p">.</span><span class="nx">id</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> in </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">ms</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">ms with </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">meta</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>…or, better, lazy logger APIs that take a function and only call it if the level is active. Most modern logging libraries (<code class="language-plaintext highlighter-rouge">pino</code>, <code class="language-plaintext highlighter-rouge">winston</code>’s structured mode, etc.) handle this for you if you stop concatenating strings and start passing structured objects:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">logger</span><span class="p">.</span><span class="nf">debug</span><span class="p">({</span> <span class="na">id</span><span class="p">:</span> <span class="nx">record</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nx">ms</span><span class="p">,</span> <span class="nx">meta</span> <span class="p">},</span> <span class="dl">"</span><span class="s2">processed record</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The library short-circuits before allocation if the level is below <code class="language-plaintext highlighter-rouge">debug</code>.</p>
+
+<h3 id="4-buffers-and-slices">4. Buffers and slices</h3>
+
+<p>Once you go past the script-level languages and into Go / Rust / Node-with-typed-arrays, the killer allocation is usually a slice or a buffer that gets created fresh every iteration when it could have been pooled.</p>
+
+<p>In Go:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">record</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">records</span> <span class="p">{</span>
+  <span class="n">buf</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1024</span><span class="p">)</span>         <span class="c">// fresh slice every iteration</span>
+  <span class="n">buf</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span>
+  <span class="n">out</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">buf</span><span class="o">...</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">make</code> inside the loop allocates 1KB on every iteration. For a million records that’s 1GB of garbage the GC has to walk. Lift the buffer out and reset it:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buf</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1024</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">record</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">records</span> <span class="p">{</span>
+  <span class="n">buf</span> <span class="o">=</span> <span class="n">buf</span><span class="p">[</span><span class="o">:</span><span class="m">0</span><span class="p">]</span>
+  <span class="n">buf</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span>
+  <span class="n">out</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">buf</span><span class="o">...</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Same Big-O. One allocation instead of a million.</p>
+
+<p>The Node equivalent uses <code class="language-plaintext highlighter-rouge">Buffer.allocUnsafe</code> plus a reusable scratch buffer; the Rust equivalent uses <code class="language-plaintext highlighter-rouge">Vec::with_capacity</code> once and <code class="language-plaintext highlighter-rouge">clear()</code> per iteration.</p>
+
+<h3 id="5-iterator-protocol-overhead">5. Iterator-protocol overhead</h3>
+
+<p>JavaScript’s iterator protocol (<code class="language-plaintext highlighter-rouge">for...of</code>, generator functions, <code class="language-plaintext highlighter-rouge">[Symbol.iterator]</code>) is <em>not</em> free. Every iteration allocates an <code class="language-plaintext highlighter-rouge">IteratorResult</code> object — <code class="language-plaintext highlighter-rouge">{ value: T, done: boolean }</code> — that the GC then has to clean up.</p>
+
+<p>For the vast majority of code this is irrelevant. For the inner loop of a streaming JSON parser running a hundred million times per process lifetime, it adds up to a measurable chunk of GC pressure. The fix in the hottest paths is to abandon the iterator protocol and use index-based iteration over a typed array. Less elegant. Significantly faster.</p>
+
+<p>The point is not “don’t use iterators”. The point is “iterators have a cost, and the cost is almost always invisible until you measure it.”</p>
+
+<h2 id="how-to-actually-measure">How to actually measure</h2>
+
+<p>Profilers love showing you CPU. Profilers do not, by default, show you allocation rate. So we want a different lens.</p>
+
+<p>In Node, the simplest one-line measurement is <code class="language-plaintext highlighter-rouge">--trace-gc</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ node --trace-gc app.js
+[12345:0x1] 12 ms: Scavenge 24.5 (28.0) -&gt; 4.3 (28.5) MB, 2.4 ms ...
+</code></pre></div></div>
+
+<p>The frequency of those lines is what you care about. If you see a <code class="language-plaintext highlighter-rouge">Scavenge</code> every 50ms, you’re allocating roughly 24MB every 50ms — half a gigabyte per second. That’s a <em>lot</em> of garbage, and even though scavenges are fast, the cumulative pause time will move p99.</p>
+
+<p>In Go, run with <code class="language-plaintext highlighter-rouge">GODEBUG=gctrace=1</code> for the same effect. In the JVM, <code class="language-plaintext highlighter-rouge">-Xlog:gc*</code>. In Rust, you have to opt into instrumentation explicitly because the default doesn’t have a GC, but <code class="language-plaintext highlighter-rouge">dhat</code> will tell you allocation counts and sizes.</p>
+
+<p>Once you know you have an allocation problem, get a heap profile. <code class="language-plaintext highlighter-rouge">node --inspect</code>, then “Memory” panel in Chrome DevTools, “Allocation sampling”. Run your hot path. The flame graph will rank functions by <em>bytes allocated</em>, not CPU spent. The function that’s allocating the most is almost never the function that’s slowest in a CPU profile, because the allocator itself is fast — it’s the GC pauses <em>between</em> calls that hurt.</p>
+
+<h2 id="a-worked-example">A worked example</h2>
+
+<p>A customer last year had a JSON-over-HTTP service whose p50 was 8ms and whose p99 was 320ms. The team had spent a week on the algorithm — was the JSON parser quadratic? Were they accidentally <code class="language-plaintext highlighter-rouge">JSON.parse</code>-ing twice? — and found nothing.</p>
+
+<p><code class="language-plaintext highlighter-rouge">--trace-gc</code> showed a major GC every 1.2s, lasting 90–110ms each. Heap profile showed 78% of the bytes allocated were going to a single function: a request-shape validator that took the inbound payload, ran a recursive <code class="language-plaintext highlighter-rouge">Object.entries().map(…)</code> on it, then <code class="language-plaintext highlighter-rouge">JSON.stringify</code>‘d the result for an audit log nobody read.</p>
+
+<p>The fix was three lines: cache the validator’s known-good schema once, replace the recursive <code class="language-plaintext highlighter-rouge">.map()</code> with a manual loop that wrote into a pre-allocated array, and remove the <code class="language-plaintext highlighter-rouge">JSON.stringify</code> for the audit log (which was a debug feature from 2018 that nobody had remembered to delete).</p>
+
+<p>The algorithm was identical before and after. p99 dropped from 320ms to 14ms.</p>
+
+<p>That’s the shape of every allocation-bound performance bug we’ve ever seen. The Big-O is fine. The diff is “fewer intermediate objects”. The result is dramatic.</p>
+
+<h2 id="when-the-algorithm-is-the-bottleneck">When the algorithm <em>is</em> the bottleneck</h2>
+
+<p>To be clear: algorithmic problems exist. We’ve seen <code class="language-plaintext highlighter-rouge">O(n²)</code> written into a billing-line aggregator, an <code class="language-plaintext highlighter-rouge">O(2ⁿ)</code> regex used as a cache key, and a fascinating hash-table implementation that rehashed on every insert. Big-O matters.</p>
+
+<p>But — and this is the point — if you have not yet <em>measured</em> whether you’re CPU-bound or allocation-bound, <strong>start with measurement, not algorithm</strong>. The reason “rewrite the algorithm” feels productive is that it’s tractable engineering work. The reason it usually doesn’t help is that the actual cost lives somewhere the engineer didn’t look.</p>
+
+<p>The decision tree we use:</p>
+
+<ol>
+  <li>Profile p50 vs p99. <strong>Smooth-and-rising</strong> → likely algorithm. <strong>Flat-then-spiky</strong> → likely allocation.</li>
+  <li>If algorithm: read the inner loop, count the comparisons, check the data structure, optimise.</li>
+  <li>If allocation: enable GC tracing, identify the call site, eliminate or pool the allocation, re-measure.</li>
+  <li>If both: fix allocation first. It’s almost always cheaper, and the algorithm work goes faster on a quiet GC.</li>
+</ol>
+
+<blockquote>
+  <p>Spend the hour reading a flame graph before you spend the week rewriting the algorithm.</p>
+</blockquote>
+
+<p>The bias toward “improve Big-O” is the bias toward the kind of work that sounds smart in a performance review. The bias toward “eliminate allocation” is the bias toward the work that ships a faster service. Most of the time you want the second one.</p>
+
+<hr />
+
+<p><em>Service provisioning by <a href="https://algosize.com">algosize.com</a> — algorithm and allocation profiling, vulnerability scanning, and cloud cost analysis for engineering teams.</em></p>]]></content><author><name>Guillaume Lauzier</name></author><category term="infrastructure" /><category term="performance" /><category term="profiling" /><category term="gc" /><summary type="html"><![CDATA[Most slow code in production isn't slow because the algorithm is wrong. It's slow because every iteration is allocating, and the allocator (and the GC behind it) is doing the work nobody profiled. Here's how to spot the cliff.]]></summary></entry><entry><title type="html">Lockfile vulns: the 95% you can fix in one PR</title><link href="https://guillaumelauzier.com/lockfile-vulns-the-95-percent-you-can-fix-in-one-pr/" rel="alternate" type="text/html" title="Lockfile vulns: the 95% you can fix in one PR" /><published>2026-04-22T00:00:00+00:00</published><updated>2026-04-22T00:00:00+00:00</updated><id>https://guillaumelauzier.com/lockfile-vulns-the-95-percent-you-can-fix-in-one-pr</id><content type="html" xml:base="https://guillaumelauzier.com/lockfile-vulns-the-95-percent-you-can-fix-in-one-pr/"><![CDATA[<p><em>Originally published on <a href="https://algosize.com/blog/lockfile-vulns-the-95-percent-you-can-fix-in-one-pr/">Algosize</a> — service provisioning by <a href="https://algosize.com">algosize.com</a>.</em></p>
+
+<p>Open <code class="language-plaintext highlighter-rouge">npm audit</code> on any non-trivial Node project and you will see a wall of red. Forty-six high-severity, twelve critical, three hundred moderate. The nightly CI job flags them. The security dashboard at your shop counts them. Three sprints later the count has gone up, not down, because the team that’s “supposed to” fix them is the same team trying to ship features.</p>
+
+<p>Here’s the thing nobody says out loud: <strong>the overwhelming majority of those CVEs are patch-version bumps with no breaking changes</strong>. The reason your audit count is still climbing isn’t that the fixes are hard. It’s that the workflow for applying them is. People pattern-match on “security work = scary, careful, slow” and so each individual bump becomes a careful, slow, scary three-day investigation.</p>
+
+<p>We’ve watched dozens of teams clear their lockfile vulnerability backlog in a single afternoon. The trick is to stop doing it one CVE at a time, and to be honest about which fixes deserve scrutiny and which deserve a rubber stamp.</p>
+
+<h2 id="the-9541-split">The 95/4/1 split</h2>
+
+<p>Run <code class="language-plaintext highlighter-rouge">npm audit --json</code> (or the pnpm/yarn equivalent) on any production codebase that’s been around for more than a year. Pipe the output through <code class="language-plaintext highlighter-rouge">jq</code> and group findings by the <em>type</em> of fix the audit recommends. Almost every codebase we’ve checked lands in the same shape:</p>
+
+<ul>
+  <li><strong>~95% are patch bumps.</strong> Same major, same minor, fixed patch. <code class="language-plaintext highlighter-rouge">4.17.15</code> → <code class="language-plaintext highlighter-rouge">4.17.21</code>. No API changes by definition (under semver), and the fix is usually a one-line escape, parser tightening, or DoS guard.</li>
+  <li><strong>~4% are minor bumps.</strong> New API surface available, old API still works, behaviour preserved. Slightly more risk because library authors occasionally interpret “minor” loosely.</li>
+  <li><strong>~1% are major bumps.</strong> Breaking API changes, possibly deprecations, possibly a rewrite. These are real engineering work.</li>
+</ul>
+
+<p>The reason the audit feels endless is that teams treat all three buckets identically — every CVE gets the same triage meeting, the same hand-wringing, the same Slack thread. The 1% that needs the meeting is buried under the 95% that doesn’t, and so the meeting never gets the depth it actually deserves.</p>
+
+<p>The fix is to <em>separate</em> the buckets, then apply different processes to each.</p>
+
+<h2 id="the-bump-everything-pr">The bump-everything PR</h2>
+
+<p>The 95% bucket — patch-only, in-range, semver-safe — gets one PR, every two weeks, that bumps every patch. You do not read the changelog of every library. You do not write a test plan for each CVE. You read the diff <em>of the fix’s commit list</em>, run the existing test suite, and merge.</p>
+
+<p>The mechanics in npm:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout <span class="nt">-b</span> chore/lockfile-bumps-<span class="si">$(</span><span class="nb">date</span> +%Y-%m-%d<span class="si">)</span>
+npm update           <span class="c"># applies patch+minor bumps respecting your semver ranges</span>
+npm audit fix        <span class="c"># adds explicit overrides for transitive CVEs</span>
+npm <span class="nb">test
+</span>git add package.json package-lock.json
+git commit <span class="nt">-m</span> <span class="s2">"chore(deps): scheduled patch bumps + audit fixes"</span>
+</code></pre></div></div>
+
+<p>That’s the whole PR. It will move dozens to hundreds of versions in a single sweep. The tests either pass or they don’t. If they pass, you ship it.</p>
+
+<p>The objection at this point is always the same: <em>“What if a patch bump silently breaks something the tests don’t catch?”</em> And yes, occasionally a library author misunderstands semver and ships a behavioural change in a patch release. We have seen it. It happens roughly once every two-to-three years per codebase. The risk is real but it is <em>small</em>, and it is dramatically smaller than the risk of running known-vulnerable versions in production for nine more months because the team is paralysed by the size of the audit list.</p>
+
+<p>You also recover from the bad-patch case in fifteen minutes — <code class="language-plaintext highlighter-rouge">npm install library@previous-version</code>, commit, deploy, file an issue with the upstream. Compare to the cost of every team running CVE bingo for the next quarter and the trade is obvious.</p>
+
+<h2 id="the-fixturesnapshot-trap">The fixture/snapshot trap</h2>
+
+<p>There’s exactly one common failure mode for the bump-everything PR, and it’s worth calling out so you can pre-empt it: <strong>fixture and snapshot tests built against pinned upstream behaviour</strong>.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li>A snapshot of an HTTP request body, where the underlying library bumped its default <code class="language-plaintext highlighter-rouge">User-Agent</code> between patch versions and now the snapshot diff is one line of metadata.</li>
+  <li>A test that asserts an exact stack trace string and the library’s error formatter changed.</li>
+  <li>A regex against an exported JSON config that gained a new optional field.</li>
+</ul>
+
+<p>These show up as test failures in your bump PR. They are <em>not</em> real regressions. They’re test-suite tech debt the bump merely surfaced. Resist the urge to revert the bump; instead, loosen the assertion to focus on the behaviour that actually matters and re-record the snapshot. (If you do need to assert exact bytes — for, say, a deterministic build artifact — pin the specific dependency in <code class="language-plaintext highlighter-rouge">package.json</code> with <code class="language-plaintext highlighter-rouge">"library": "1.2.3"</code> and add a comment explaining why.)</p>
+
+<h2 id="ci-lockfile-drift-not-just-audit">CI: lockfile drift, not just audit</h2>
+
+<p>The bump-PR workflow only works if your CI catches <em>new</em> vulnerabilities the next time the schedule runs. The way most teams set this up is <code class="language-plaintext highlighter-rouge">npm audit --audit-level=high</code> in CI, which fails the build the moment a new high-severity CVE drops.</p>
+
+<p>This sounds great until you realise that <em>new high-severity CVEs drop on dependencies you don’t directly control all the time</em>. A perfectly stable PR can suddenly fail CI because a transitive dependency four levels down published a patch with a CVE the day before. Now your “always-green main” branch goes red until somebody runs the bump PR.</p>
+
+<p>Better: split the check into two jobs.</p>
+
+<ol>
+  <li><strong>Block-on-new</strong> — fail the PR build only if <em>this PR</em> introduces a new vulnerability versus <code class="language-plaintext highlighter-rouge">main</code>. This catches developers adding a new dep with a known issue.</li>
+  <li><strong>Notify-on-existing</strong> — run nightly against <code class="language-plaintext highlighter-rouge">main</code>, post the diff to a Slack channel the security team owns. New CVEs get triaged, not enforced — they go onto the backlog the next bump PR will sweep.</li>
+</ol>
+
+<p>This separates “this PR is making things worse” (a hard block, deserves attention) from “the world changed under us” (a notification, batched for the next sweep).</p>
+
+<p>In practice it means the developer who’s trying to ship a feature stops getting paged for vulnerabilities they didn’t introduce, and the security backlog stops being shaped by whoever happened to push commits last Tuesday.</p>
+
+<h2 id="the-4-bucket-minor-bumps">The 4% bucket: minor bumps</h2>
+
+<p>Minor bumps go into a separate PR per library, queued and reviewed sequentially. Same scheduled cadence (every two weeks works well), same person doing the queuing, but each one gets its own PR so the changelog can be read and the smoke-test plan can be written. We have a Slack template:</p>
+
+<blockquote>
+  <p><strong>Minor bump:</strong> <code class="language-plaintext highlighter-rouge">axios 0.21.0 → 0.27.2</code> <strong>Changelog:</strong> [link] <strong>Surface area used in this codebase:</strong> 4 files, all in <code class="language-plaintext highlighter-rouge">src/api/</code>. Calls <code class="language-plaintext highlighter-rouge">axios.get</code>, <code class="language-plaintext highlighter-rouge">axios.post</code>, <code class="language-plaintext highlighter-rouge">axios.create</code>, <code class="language-plaintext highlighter-rouge">axios.defaults</code>. <strong>Verified against:</strong> unit tests, integration smoke (<code class="language-plaintext highlighter-rouge">scripts/smoke-axios.mjs</code>), staging soak (24h). <strong>Rollback plan:</strong> revert PR, redeploy. Lockfile is the only artifact.</p>
+</blockquote>
+
+<p>That’s still a small amount of work — maybe 30 minutes per library — but it’s <em>manageable</em> work, and it doesn’t fight for time with the 95% bucket.</p>
+
+<h2 id="the-1-bucket-major-bumps">The 1% bucket: major bumps</h2>
+
+<p>Major bumps are real engineering. They go on the roadmap. They get a story, an estimate, a code-search of every consumer, and a feature flag if the library spans a system boundary. They do not get done in the audit-clearing sweep, and they don’t get done by whoever happens to draw the short straw at security stand-up.</p>
+
+<p>Counter-intuitively, <em>separating</em> the major bumps from the patch bumps means the major bumps actually get done. When everything is on the same backlog, “the audit list” never goes down, the team gives up, and the major bumps pile up forever. When the audit list is a sweep that completes every two weeks, the major bumps stand out, get prioritised, and ship.</p>
+
+<h2 id="worked-example-a-240-cve-backlog">Worked example: a 240-CVE backlog</h2>
+
+<p>A customer came to us last quarter with <code class="language-plaintext highlighter-rouge">npm audit</code> showing 241 vulnerabilities (24 critical, 89 high, 128 moderate). Their security team had been chipping at it for six months and the count had gone <em>up</em> by 14 in that time.</p>
+
+<p>We pulled their lockfile and ran the 95/4/1 split. The actual numbers:</p>
+
+<ul>
+  <li><strong>228</strong> were patch bumps inside their existing semver ranges. <code class="language-plaintext highlighter-rouge">npm audit fix</code> resolved all 228 in one command.</li>
+  <li><strong>9</strong> were minor bumps. Two were Express middleware (read changelog, no surface change), four were utility libraries with deprecation warnings, three were dev-only build tooling.</li>
+  <li><strong>4</strong> were major bumps: a new major of <code class="language-plaintext highlighter-rouge">node-fetch</code>, a major of <code class="language-plaintext highlighter-rouge">react-router</code>, and two ORM majors. None had usable patches available within the existing major.</li>
+</ul>
+
+<p>Total time spent: one engineer-day for the bump-everything PR (most of it waiting for CI), four engineer-days spread across the next sprint for the minors, and the four majors went onto the roadmap. The audit dropped from 241 to 4 in eleven days.</p>
+
+<p>The four remaining issues weren’t a problem to be solved. They were a list of clearly-scoped engineering tasks. That’s the whole point.</p>
+
+<h2 id="a-workflow-you-can-paste-into-a-runbook">A workflow you can paste into a runbook</h2>
+
+<p>Here is the workflow we hand to teams. Copy-paste it.</p>
+
+<ol>
+  <li><strong>Every other Monday:</strong> open the bump-everything PR. Run <code class="language-plaintext highlighter-rouge">npm update &amp;&amp; npm audit fix</code>, run tests, push. If green in 24h, merge. No standalone review meeting required for in-range bumps.</li>
+  <li><strong>Same day:</strong> triage anything <code class="language-plaintext highlighter-rouge">npm audit fix</code> couldn’t resolve into the 4% (minor) or 1% (major) bucket.</li>
+  <li><strong>Within the sprint:</strong> ship the minor-bump PRs, one per library, with the Slack template above.</li>
+  <li><strong>At sprint planning:</strong> any major-version bump becomes a story with an estimate. It is real work; treat it as real work.</li>
+  <li><strong>In CI:</strong> block-on-new on PRs, notify-on-existing on <code class="language-plaintext highlighter-rouge">main</code> nightly.</li>
+</ol>
+
+<p>That’s it. The 95% gets cleared on a schedule, the 4% gets careful per-library attention, and the 1% gets real engineering. The audit count goes down monotonically and stays down.</p>
+
+<blockquote>
+  <p>Most security work isn’t risky. Most security work is just unscheduled.</p>
+</blockquote>
+
+<p>When you stop treating “security” as a special category that demands special process for every line item, and start treating it like any other recurring chore — payroll, dependency updates, secret rotation — the backlog becomes a workflow instead of a wall. And the few items that genuinely deserve scrutiny actually get it.</p>
+
+<hr />
+
+<p><em>Service provisioning by <a href="https://algosize.com">algosize.com</a> — algorithm and allocation profiling, vulnerability scanning, and cloud cost analysis for engineering teams.</em></p>]]></content><author><name>Guillaume Lauzier</name></author><category term="cybersecurity" /><category term="security" /><category term="vuln-scanning" /><category term="ci" /><summary type="html"><![CDATA[Most CVEs in your npm or pnpm audit are patch-version bumps with no breaking changes. Here's how to clear the backlog in a single, safe pull request — and why the remaining 5% deserves a different process entirely.]]></summary></entry><entry><title type="html">How to spot AWS Savings Plan gaps before the bill arrives</title><link href="https://guillaumelauzier.com/how-to-spot-aws-savings-plan-gaps/" rel="alternate" type="text/html" title="How to spot AWS Savings Plan gaps before the bill arrives" /><published>2026-04-08T00:00:00+00:00</published><updated>2026-04-08T00:00:00+00:00</updated><id>https://guillaumelauzier.com/how-to-spot-aws-savings-plan-gaps</id><content type="html" xml:base="https://guillaumelauzier.com/how-to-spot-aws-savings-plan-gaps/"><![CDATA[<p><em>Originally published on <a href="https://algosize.com/blog/how-to-spot-aws-savings-plan-gaps/">Algosize</a> — service provisioning by <a href="https://algosize.com">algosize.com</a>.</em></p>
+
+<p>You bought a 1-year, no-upfront Compute Savings Plan twelve months ago. The Cost Explorer card says “94% utilization” and you stop reading. Next month the same card says 88%, the month after 81%, and by the end of the renewal cycle you’re paying On-Demand prices on a third of your fleet <em>and</em> a separate fixed commitment for capacity nobody is using.</p>
+
+<p>The dashboard isn’t lying. It’s just answering a different question than the one you actually care about. <strong>Utilization</strong> measures how much of your <em>commitment</em> you spent. <strong>Coverage</strong> measures how much of your <em>spend</em> was at the discounted rate. Most teams stare at the first number, miss the second, and pay the gap in cash.</p>
+
+<p>This post is the four-gap checklist we run on every customer’s Cost &amp; Usage Report (CUR). It takes about an hour the first time, twenty minutes a month after that, and we’ve yet to run it on an account where it didn’t pay for the engineer’s whole afternoon.</p>
+
+<h2 id="the-metric-you-actually-want">The metric you actually want</h2>
+
+<p>Open a fresh tab and write this on a sticky note: <strong>uncovered eligible spend</strong>. Not utilization. Not effective savings rate. Not commitment used.</p>
+
+<p>Uncovered eligible spend is the dollar amount you paid On-Demand for resources a Savings Plan <em>would have</em> discounted if the math had lined up. It’s the part of the bill nobody sends you a Slack alert about, because from AWS’s point of view nothing went wrong — you used a service, you paid for it, end of story.</p>
+
+<p>A Savings Plan is a futures contract. You pre-commit to $X per hour of compute and AWS gives you up to 66% off the published rate on anything that fits the contract. The contract has fine print, the fine print has edges, and the gaps live on those edges.</p>
+
+<p>There are exactly four edges that matter in practice. We list them in order of how often they bite, not how big they are.</p>
+
+<h2 id="gap-1-family-mismatch">Gap 1: family-mismatch</h2>
+
+<p>A Compute Savings Plan covers EC2, Fargate, and Lambda usage <em>across instance families</em>, but only if AWS can re-price the family at the same hourly rate as your commitment. An EC2 Instance Savings Plan does not — it’s locked to a single family in a single region.</p>
+
+<p>The trap is the EC2 Instance Savings Plan. You bought it back when the team was running c5 boxes for everything. Two quarters later someone read a benchmark, the platform team flipped the auto-scaling group to c6i, and the new boxes are 8% cheaper at On-Demand prices. Your old commitment now covers nothing they’re running. Utilization on the dashboard reads 100% (you’re “using” all of it on the few c5 boxes still in the fleet) and coverage on c6i reads 0%.</p>
+
+<p>How to find it: pull the CUR for the last full month, group by <code class="language-plaintext highlighter-rouge">pricing/Term</code> and <code class="language-plaintext highlighter-rouge">lineItem/UsageType</code>, and look for any usage type with a non-trivial On-Demand spend that <em>also</em> has a sibling family covered by an Instance Savings Plan. We use this query as a starting point:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">line_item_usage_type</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">line_item_unblended_cost</span><span class="p">)</span> <span class="k">AS</span> <span class="n">od_spend</span>
+<span class="k">FROM</span> <span class="n">cur_table</span>
+<span class="k">WHERE</span> <span class="n">line_item_line_item_type</span> <span class="o">=</span> <span class="s1">'Usage'</span>
+  <span class="k">AND</span> <span class="n">pricing_term</span> <span class="o">=</span> <span class="s1">'OnDemand'</span>
+  <span class="k">AND</span> <span class="n">product_product_family</span> <span class="o">=</span> <span class="s1">'Compute Instance'</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="mi">1</span>
+<span class="k">HAVING</span> <span class="k">SUM</span><span class="p">(</span><span class="n">line_item_unblended_cost</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">2</span> <span class="k">DESC</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Any row in the output that lives in a family adjacent to one you’ve already committed to is a candidate. The fix is almost always to convert the Instance Savings Plan to a Compute Savings Plan at renewal — same dollar commitment, much wider coverage, ~6% smaller discount. We’ve never had a customer regret the trade.</p>
+
+<h2 id="gap-2-region-mismatch">Gap 2: region-mismatch</h2>
+
+<p>Compute Savings Plans are region-agnostic across EC2 and Fargate. They are <em>not</em> region-agnostic across services in the way you’d think. Sagemaker Savings Plans? Region-locked. RDS Reserved Instances? Region-locked. The new Bedrock provisioned-throughput commitment? Region-locked.</p>
+
+<p>The bite happens when your platform team runs a DR exercise, fails over to a secondary region for two days, and the bill for those two days runs at On-Demand rates on top of your existing commitment in the primary region. We’ve seen this pattern most often in financial-services customers who rehearse failover quarterly — the rehearsal is excellent practice, the surprise spend afterwards is not.</p>
+
+<p>How to find it: in the same CUR, group by <code class="language-plaintext highlighter-rouge">product/region</code> and <code class="language-plaintext highlighter-rouge">pricing/Term</code>. Anything On-Demand in a region where you don’t hold a regional commitment is a candidate.</p>
+
+<p>The fix is policy, not procurement. Pick one of:</p>
+
+<ul>
+  <li>Buy a small Compute Savings Plan in the DR region sized to a 24-hour failover.</li>
+  <li>Run the DR exercise on Spot to keep the unplanned spend bounded.</li>
+  <li>Accept the cost of the rehearsal and budget for it explicitly. (“Surprise” spend is much worse than budgeted spend, even if the dollar amount is identical.)</li>
+</ul>
+
+<h2 id="gap-3-instance-class-skew">Gap 3: instance-class skew</h2>
+
+<p>Some of the largest gaps we see are inside a single family. You have a Compute Savings Plan, you’re running c6i across the fleet, and you assume coverage is 100%. Then someone provisions a c6i_d_.4xlarge for a stateful workload that needs the local NVMe and the SP rate doesn’t match the d-suffix variant 1:1 — there’s a small premium for the local storage, and that premium is uncovered.</p>
+
+<p>The same thing happens between regular and <code class="language-plaintext highlighter-rouge">n</code> (high-network) variants, between <code class="language-plaintext highlighter-rouge">g</code> (graviton) and non-graviton, and between metal and virtualised within the same family. Each is a single-digit-percent variance in coverage. They add up.</p>
+
+<p>How to find it: split coverage reports by full instance type, not just family. AWS’s own coverage report defaults to family-level rollups, which is exactly the rollup that hides this gap. In the CUR, group by <code class="language-plaintext highlighter-rouge">product/instanceType</code> rather than <code class="language-plaintext highlighter-rouge">product/instanceFamily</code> and you’ll see the skew immediately.</p>
+
+<p>The fix is to either (a) re-quote your commitment with the heavier-variant rate factored in, or (b) standardise on the base variant for the workload and only deviate when there’s a measured reason. The standardisation play is usually the cheaper one — most teams discover the d-suffix wasn’t actually needed.</p>
+
+<h2 id="gap-4-sandbox-and-dev-burn">Gap 4: sandbox and dev burn</h2>
+
+<p>The most common gap we see is also the most embarrassing one. The platform team buys a tight Compute Savings Plan sized to production traffic. The data team spins up a 32-vCPU Notebooks instance for a Friday-afternoon experiment, leaves it running over the weekend, and Monday morning you’ve paid On-Demand on a workload that wasn’t part of the commitment plan.</p>
+
+<p>You can’t predict experiments. You can predict that there will be experiments. So size the commitment with a 10–15% headroom buffer over the production baseline, <em>then</em> set up a budget alert at the buffer-line so the platform team gets pinged the moment dev burn pushes utilization into the buffer.</p>
+
+<p>How to find it: tag every non-prod resource with an <code class="language-plaintext highlighter-rouge">env=dev|staging|sandbox</code> tag (you should be doing this anyway for a thousand other reasons). In the CUR, group by <code class="language-plaintext highlighter-rouge">resourceTags/user_env</code> and look at the On-Demand fraction by environment. If <code class="language-plaintext highlighter-rouge">dev</code> or <code class="language-plaintext highlighter-rouge">sandbox</code> shows up with five-figure monthly On-Demand spend, you have a gap.</p>
+
+<p>The fix has two halves: (1) buy a small Savings Plan sized to typical dev burn, and (2) put a hard cap on instance size in non-prod via Service Control Policies. Most teams won’t <em>consciously</em> spin up an x1e.16xlarge for a Friday notebook, but somebody will eventually click the wrong dropdown.</p>
+
+<h2 id="a-weekly-review-that-takes-20-minutes">A weekly review that takes 20 minutes</h2>
+
+<p>Once you’ve found and fixed the gaps once, the maintenance loop is short:</p>
+
+<ol>
+  <li><strong>Monday morning</strong>, pull the CUR for last week, run the four group-bys above.</li>
+  <li>Note any row where uncovered eligible spend exceeds your alert threshold (we use $1,000/week as a starting point — adjust to your bill size).</li>
+  <li>For each row, decide: is this a one-off (DR rehearsal, weekend experiment) or a trend (a new family rolling out across the fleet)?</li>
+  <li>One-offs go in a “watch” list. Trends become a procurement ticket — convert, top up, or reshape the commitment.</li>
+  <li><strong>Last business day of the quarter</strong>, review the watch list. Anything that became a trend during the quarter joins the procurement ticket queue. Anything that didn’t gets archived.</li>
+</ol>
+
+<p>That’s it. Twenty minutes, every Monday. The first time you run it you’ll find six-to-twelve months of accumulated gap. The discipline after that catches the next gap inside a week instead of a year.</p>
+
+<h2 id="what-this-looks-like-end-to-end">What this looks like end-to-end</h2>
+
+<p>The customer who prompted this checklist had a 3-year all-upfront Compute Savings Plan that the dashboard showed at 96% utilization. We pulled their CUR and ran the four queries. Findings:</p>
+
+<ul>
+  <li><strong>Family-mismatch:</strong> $14,200/mo of On-Demand c6i spend that the SP wasn’t routing to (their commitment was Instance-flavoured, not Compute-flavoured).</li>
+  <li><strong>Region-mismatch:</strong> $3,400/mo of On-Demand in eu-west-2, which they only used for a customer-specific compliance workload nobody had told the platform team about.</li>
+  <li><strong>Instance-class skew:</strong> $1,800/mo on the d-suffix variant.</li>
+  <li><strong>Sandbox burn:</strong> $6,100/mo on a single g5.12xlarge instance an ML researcher had provisioned and forgotten about three weeks earlier.</li>
+</ul>
+
+<p>Total gap: $25,500/month, or $306,000/year, on a Savings Plan the dashboard had told them was working perfectly.</p>
+
+<p>The gaps were all closed within a sprint. The instance-class skew got reshaped at the next renewal, the dev burn got a Service Control Policy and a Slack alert, and we left the team with the four queries in a SQL file they run every Monday.</p>
+
+<blockquote>
+  <p>Utilization is the wrong question. The right question is: how much eligible spend slipped past the discount last month?</p>
+</blockquote>
+
+<p>Either way: stop reading utilization, start reading coverage, and run the checklist on Monday morning. The bill arrives on the 3rd.</p>
+
+<hr />
+
+<p><em>Service provisioning by <a href="https://algosize.com">algosize.com</a> — algorithm and allocation profiling, vulnerability scanning, and cloud cost analysis for engineering teams.</em></p>]]></content><author><name>Guillaume Lauzier</name></author><category term="infrastructure" /><category term="cloud-cost" /><category term="aws" /><category term="finops" /><summary type="html"><![CDATA[AWS Savings Plans look great in the dashboard until you read them line by line. Here's the four-gap checklist we run on every Cost & Usage Report — and how to fix each one before next month's invoice.]]></summary></entry><entry><title type="html">Understanding Iron Condor and Butterfly Spread</title><link href="https://guillaumelauzier.com/iron-condor-butterfly-spread/" rel="alternate" type="text/html" title="Understanding Iron Condor and Butterfly Spread" /><published>2025-01-11T00:00:00+00:00</published><updated>2025-01-11T00:00:00+00:00</updated><id>https://guillaumelauzier.com/iron-condor-butterfly-spread</id><content type="html" xml:base="https://guillaumelauzier.com/iron-condor-butterfly-spread/"><![CDATA[<p><em>Estimated reading time: 10 minutes</em></p>
 
 <p>Decentralized Finance (DeFi) has transformed how we interact with financial tools, bringing traditional strategies like options trading into a blockchain-based, intermediary-free world. Among the many options strategies, <strong>Iron Condor</strong> and <strong>Butterfly Spread</strong> are two advanced techniques that allow traders to profit from specific market conditions. This article explores these strategies, how they function in DeFi, their benefits, risks, and practical implementation. Whether you’re hedging risk or seeking income, understanding these tools can elevate your DeFi trading game.</p>
 
@@ -1548,792 +1958,4 @@ Engaging with regulators to develop clear and supportive regulatory frameworks c
 
 <p>However, arbitrage in DeFi is not without risks. Smart contract vulnerabilities, front-running by competing bots, and high gas fees on networks like Ethereum can erode profits or lead to losses. As the DeFi landscape evolves, arbitrage strategies will become more competitive, demanding increasingly sophisticated approaches.</p>
 
-<p>Looking ahead, the rise of cross-chain DEXs, Layer 2 solutions, and advanced trading algorithms will shape the future of arbitrage. For traders willing to navigate these complexities, the rewards can be substantial—but success will always favor those who combine preparation with precision.</p>]]></content><author><name>Guillaume Lauzier</name></author><category term="fintech" /><category term="strategy" /><category term="tokenomic" /><summary type="html"><![CDATA[Decentralized exchanges (DEXs) have become a cornerstone of the DeFi ecosystem, offering traders the ability to swap tokens without intermediaries. However]]></summary></entry><entry><title type="html">The World of Pixel Recurrent Neural Networks (PixelRNNs)</title><link href="https://guillaumelauzier.com/the-world-pixelrnns/" rel="alternate" type="text/html" title="The World of Pixel Recurrent Neural Networks (PixelRNNs)" /><published>2023-12-19T00:00:00+00:00</published><updated>2023-12-19T00:00:00+00:00</updated><id>https://guillaumelauzier.com/the-world-pixelrnns</id><content type="html" xml:base="https://guillaumelauzier.com/the-world-pixelrnns/"><![CDATA[<p>Pixel Recurrent Neural Networks (PixelRNNs) have emerged as a groundbreaking approach in the field of image generation and processing. These sophisticated neural network architectures are reshaping how machines understand and generate visual content. This article delves into the core aspects of PixelRNNs, exploring their purpose, architecture, variants, and the challenges they face.</p>
-
-<h2 id="purpose-and-application">Purpose and Application</h2>
-
-<p>PixelRNNs are primarily engineered for image generation and completion tasks. Their prowess lies in understanding and generating pixel-level patterns. This makes them exceptionally suitable for tasks like image inpainting, where they fill in missing parts of an image, and super-resolution, which involves enhancing the quality of images. Moreover, PixelRNNs are capable of generating entirely new images based on learned patterns, showcasing their versatility in the realm of image synthesis.</p>
-
-<h2 id="architecture">Architecture</h2>
-
-<p>The architecture of PixelRNNs is built upon the principles of recurrent neural networks (RNNs), renowned for their ability to handle sequential data. In PixelRNNs, the sequence is the pixels of an image, processed in an orderly fashion, typically row-wise or diagonally. This sequential processing allows PixelRNNs to capture the intricate dependencies between pixels, which is crucial for generating coherent and visually appealing images.</p>
-
-<h2 id="pixel-by-pixel-generation">Pixel-by-Pixel Generation</h2>
-
-<p>At the heart of PixelRNNs lies the concept of generating pixels one at a time, following a specified order. Each prediction of a new pixel is informed by the pixels generated previously, allowing the network to construct an image in a step-by-step manner. This pixel-by-pixel approach is fundamental to the network’s ability to produce detailed and accurate images.</p>
-
-<h2 id="two-variants">Two Variants</h2>
-
-<p>PixelRNNs come in two main variants: Row LSTM and Diagonal BiLSTM. The Row LSTM variant processes the image row by row, making it efficient for certain types of image patterns. In contrast, the Diagonal BiLSTM processes the image diagonally, offering a different perspective in understanding and generating image data. The choice between these two depends largely on the specific requirements of the task at hand.</p>
-
-<p>**
-Row LSTM**:</p>
-
-<ul>
-  <li>
-    <p><strong>Row-by-Row Processing</strong>: The Row LSTM variant of PixelRNN processes images row by row. This method is akin to reading a text in a book, where the understanding of each row is built upon the previous ones.</p>
-  </li>
-  <li>
-    <p><strong>Efficiency</strong>: It’s particularly efficient for image patterns where horizontal relationships between pixels are more significant. The sequential row processing allows the network to capture these horizontal dependencies effectively.</p>
-  </li>
-  <li>
-    <p><strong>Applications</strong>: Best suited for images where horizontal features and patterns play a crucial role, such as landscapes or images with strong horizontal structures.</p>
-  </li>
-</ul>
-
-<p><strong>Diagonal BiLSTM</strong>:</p>
-
-<ul>
-  <li>
-    <p><strong>Diagonal Processing</strong>: In contrast, the Diagonal BiLSTM processes images diagonally, considering pixels in a diagonal fashion from both directions. This approach allows it to capture a more comprehensive set of relationships between pixels.</p>
-  </li>
-  <li>
-    <p><strong>Broader Context</strong>: By processing diagonally, Diagonal BiLSTM captures a broader context, considering both horizontal and vertical dependencies in the image. This can be particularly beneficial for complex images where these relationships are more nuanced.</p>
-  </li>
-  <li>
-    <p><strong>Applications</strong>: Ideal for images with complex patterns and textures, where both vertical and horizontal pixel relationships are important, such as intricate designs or detailed portraits.</p>
-  </li>
-</ul>
-
-<h2 id="conditional-generation">Conditional Generation</h2>
-
-<p>A remarkable feature of PixelRNNs is their ability to be conditioned on additional information, such as class labels or parts of images. This conditioning enables the network to direct the image generation process more precisely, which is particularly beneficial for tasks like targeted image editing or generating images that need to meet specific criteria.</p>
-
-<h2 id="training-and-data-requirements">Training and Data Requirements</h2>
-
-<p>As with other neural networks, PixelRNNs require a significant volume of training data to learn effectively. They are trained on large datasets of images, where they learn to model the distribution of pixel values. This extensive training is necessary for the networks to capture the diverse range of patterns and nuances present in visual data.</p>
-
-<h2 id="challenges-and-limitations">Challenges and Limitations</h2>
-
-<p>Despite their capabilities, PixelRNNs face certain challenges and limitations. They are computationally intensive due to their sequential processing nature, which can be a bottleneck in applications requiring high-speed image generation. Additionally, they tend to struggle with generating high-resolution images, as the complexity increases exponentially with the number of pixels.</p>
-
-<p>Creating a PixelRNN for image generation involves several steps, including setting up the neural network architecture and training it on a dataset of images. Here’s an example in Python using TensorFlow and Keras, two popular libraries for building and training neural networks.</p>
-
-<p>This example will focus on a simple PixelRNN structure using LSTM (Long Short-Term Memory) units, a common choice for RNNs. The code will outline the basic structure, but please note that for a complete and functional PixelRNN, additional components and fine-tuning are necessary.</p>
-
-<h2 id="pixrnn-using-tensorflow">PixRNN using TensorFlow</h2>
-
-<p>First, ensure you have TensorFlow installed:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install tensorflow
-</code></pre></div></div>
-
-<p>Now, let’s proceed with the Python code:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import tensorflow as tf
-from tensorflow.keras import layers
-
-def build_pixel_rnn(image_height, image_width, image_channels):
-    # Define the input shape
-    input_shape = (image_height, image_width, image_channels)
-
-    # Create a Sequential model
-    model = tf.keras.Sequential()
-
-    # Adding LSTM layers - assuming image_height is the sequence length
-    # and image_width * image_channels is the feature size per step
-    model.add(layers.LSTM(256, return_sequences=True, input_shape=input_shape))
-    model.add(layers.LSTM(256, return_sequences=True))
-
-    # PixelRNNs usually have more complex structures, but this is a basic example
-
-    # Output layer - predicting the pixel values
-    model.add(layers.TimeDistributed(layers.Dense(image_channels, activation='softmax')))
-
-    return model
-
-# Example parameters for a grayscale image (height, width, channels)
-image_height = 64
-image_width = 64
-image_channels = 1  # For grayscale, this would be 1; for RGB images, it would be 3
-
-# Build the model
-pixel_rnn = build_pixel_rnn(image_height, image_width, image_channels)
-
-# Compile the model
-pixel_rnn.compile(optimizer='adam', loss='categorical_crossentropy')
-
-# Summary of the model
-pixel_rnn.summary()
-</code></pre></div></div>
-
-<p>This code sets up a basic PixelRNN model with two LSTM layers. The model’s output is a sequence of pixel values for each step in the sequence. Remember, this example is quite simplified. In practice, PixelRNNs are more complex and may involve techniques such as masking to handle different parts of the image generation process.</p>
-
-<p>Training this model requires a dataset of images, which should be preprocessed to match the input shape expected by the network. The training process involves feeding the images to the network and optimizing the weights using a loss function (in this case, categorical crossentropy) and an optimizer (Adam).</p>
-
-<p>For real-world applications, you would need to expand this structure significantly, adjust hyperparameters, and possibly integrate additional features like convolutional layers or different RNN structures, depending on the specific requirements of your task.</p>
-
-<h1 id="how-can-pixel-recurrent-neural-networks-pixelrnns-be-used-for-generative-art">How can Pixel Recurrent Neural Networks (PixelRNNs) be used for Generative art?</h1>
-
-<p>Pixel Recurrent Neural Networks (PixelRNNs) offer significant potential in the field of generative art. Here’s how they can be utilized:</p>
-
-<h2 id="recent-developments">Recent Developments</h2>
-
-<p>Over time, the field of PixelRNNs has seen significant advancements. Newer architectures, such as PixelCNNs, have been developed, offering improvements in computational efficiency and the quality of generated images. These developments are indicative of the ongoing evolution in the field, as researchers and practitioners continue to push the boundaries of what is possible with PixelRNNs.</p>
-
-<p>Pixel Recurrent Neural Networks represent a fascinating intersection of artificial intelligence and image processing. Their ability to generate and complete images with remarkable accuracy opens up a plethora of possibilities in areas ranging from digital art to practical applications like medical imaging. As this technology continues to evolve, we can expect to see even more innovative uses and enhancements in the future.</p>
-
-<h2 id="️-sources">🗒️ Sources</h2>]]></content><author><name>Guillaume Lauzier</name></author><category term="ai" /><category term="artificial-intelligence" /><summary type="html"><![CDATA[Pixel Recurrent Neural Networks (PixelRNNs) have emerged as a groundbreaking approach in the field of image generation and processing. These sophisticated neural network architectures are reshaping ho]]></summary></entry><entry><title type="html">Neural Style Transfer (NST)</title><link href="https://guillaumelauzier.com/neural-style-transfer-nst/" rel="alternate" type="text/html" title="Neural Style Transfer (NST)" /><published>2023-12-10T00:00:00+00:00</published><updated>2023-12-10T00:00:00+00:00</updated><id>https://guillaumelauzier.com/neural-style-transfer-nst</id><content type="html" xml:base="https://guillaumelauzier.com/neural-style-transfer-nst/"><![CDATA[<p>Neural Style Transfer (NST) is a captivating intersection of artificial intelligence and artistic creativity. This technology leverages the capabilities of deep learning to merge the essence of one image with the aesthetic style of another.</p>
-
-<h2 id="basic-concept-of-neural-style-transfer-nst">Basic Concept of Neural Style Transfer (NST)</h2>
-
-<p><strong>Combining Content and Style</strong>: NST works by taking two images – a content image (like a photograph) and a style image (usually a famous painting) – and combining them. The goal is to produce a new image that retains the original content but is rendered in the artistic style of the second image.</p>
-
-<p><strong>Deep Learning at its Core</strong>: This process is made possible through deep learning techniques, specifically using Convolutional Neural Networks (CNNs). These networks are adept at recognizing and processing visual information.</p>
-
-<p><strong>Content Representation</strong>: The CNN captures the content of the target image at its deeper layers, where the network understands higher-level features (like objects and their arrangements).</p>
-
-<p><strong>Style Representation</strong>: The style of the source image is captured from the correlations between different layers of the CNN. These layers encode textural and color patterns characteristic of the artistic style.</p>
-
-<p><strong>Image Transformation</strong>: The NST algorithm iteratively adjusts a third, initially random image to minimize the differences in content with the target image and in style with the source image.</p>
-
-<p><strong>Resulting Image</strong>: The result is a fascinating blend that looks like the original photograph (content) ‘painted’ in the style of the artwork (style).</p>
-
-<h2 id="how-neural-style-transfer-works-with-python-example">How Neural Style Transfer Works with Python Example</h2>
-
-<p>**
-Content and Style Images**: The process begins with two images: a content image (the subject you want to transform) and a style image (the artistic style to be transferred).</p>
-
-<p><strong>Using a Pre-Trained CNN</strong>: Typically, a pre-trained CNN like VGG19 is used. This network has been trained on a vast dataset of images and can effectively extract and represent features from these images.</p>
-
-<p><strong>Feature Extraction</strong>: The CNN extracts content features from the content image and style features from the style image. These features are essentially patterns and textures that define the image’s content and style.</p>
-
-<p><strong>Combining Features</strong>: The NST algorithm then creates a new image that combines the content features of the content image with the style features of the style image.</p>
-
-<p><strong>Optimization</strong>: This new image is gradually refined through an optimization process, minimizing the loss between its content and the content image, and its style and the style image.</p>
-
-<p><strong>Result</strong>: The final output is a new image that retains the essence of the content image but is rendered in the style of the style image.</p>
-
-<p>Python Code Example:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import tensorflow as tf
-import tensorflow_hub as hub
-import matplotlib.pyplot as plt
-import numpy as np
-
-# Load content and style images
-content_image = plt.imread('path_to_content_image.jpg')
-style_image = plt.imread('path_to_style_image.jpg')
-
-# Load a style transfer model from TensorFlow Hub
-hub_model = hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
-
-# Preprocess images and run the style transfer
-content_image = tf.image.convert_image_dtype(content_image, tf.float32)tf.newaxis, ...]
-style_image = tf.image.convert_image_dtype(style_image, tf.float32)tf.newaxis, ...]
-stylized_image = hub_model(tf.constant(content_image), tf.constant(style_image))0]
-
-# Display the output
-plt.imshow(np.squeeze(stylized_image))
-plt.show()
-</code></pre></div></div>
-
-<p>This code snippet uses TensorFlow and TensorFlow Hub to apply a style transfer model, merging the content of one image with the style of another.</p>
-
-<h2 id="detailed-section-on-content-and-style-representations-in-neural-style-transfer">Detailed Section on Content and Style Representations in Neural Style Transfer</h2>
-
-<p><strong>Feature Extraction Using Pre-Trained CNN</strong>: VGG19, a CNN model pre-trained on a large dataset (like ImageNet), is often used. This model effectively extracts features from images.</p>
-
-<p><strong>Content Representation</strong>:</p>
-
-<ul>
-  <li>
-    <p>The content of an image is represented by the feature maps of higher layers in the CNN.</p>
-  </li>
-  <li>
-    <p>These layers capture the high-level content of the image, such as objects and their spatial arrangement, but not the finer details or style aspects.</p>
-  </li>
-</ul>
-
-<p><strong>Style Representation</strong>:</p>
-
-<ul>
-  <li>
-    <p>The style of an image is captured by examining the correlations across different layers’ feature maps.</p>
-  </li>
-  <li>
-    <p>These correlations are represented as a Gram matrix, which effectively captures the texture and visual patterns that define the image’s style.</p>
-  </li>
-</ul>
-
-<p><strong>Combining Content and Style</strong>:</p>
-
-<ul>
-  <li>
-    <p>NST algorithms aim to preserve the content from the content image while adopting the style of the style image.</p>
-  </li>
-  <li>
-    <p>This is done by minimizing a loss function that measures the difference in content and style representations between the generated image and the respective content and style images.</p>
-  </li>
-</ul>
-
-<p>Python Code Example:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import numpy as np
-import tensorflow as tf
-from tensorflow.keras.applications import vgg19
-from tensorflow.keras.preprocessing.image import load_img, img_to_array
-
-# Function to preprocess the image for VGG19
-def preprocess_image(image_path, target_size=(224, 224)):
-    img = load_img(image_path, target_size=target_size)
-    img = img_to_array(img)
-    img = np.expand_dims(img, axis=0)
-    img = vgg19.preprocess_input(img)
-    return img
-
-# Load your content and style images
-content_image = preprocess_image('path_to_your_content_image.jpg')
-style_image = preprocess_image('path_to_your_style_image.jpg')
-
-# Load the VGG19 model
-model = vgg19.VGG19(weights='imagenet', include_top=False)
-
-# Define a function to get content and style features
-def get_features(image, model):
-    layers = {
-        'content': 'block5_conv2'], 
-        'style': 'block1_conv1', 'block2_conv1', 'block3_conv1', 'block4_conv1', 'block5_conv1']
-    }
-    features = {}
-    outputs = model.get_layer(name).output for name in layers'content'] + layers'style']]
-    model = tf.keras.Model(model.input], outputs)
-    image_features = model(image)
-    for name, output in zip(layers'content'] + layers'style'], image_features):
-        featuresname] = output
-    return features
-
-# Extract features
-content_features = get_features(content_image, model)
-style_features = get_features(style_image, model)
-</code></pre></div></div>
-
-<p>This code provides a basic structure for extracting content and style features using VGG19 in Python. Further steps would involve defining and optimizing the loss functions to generate the stylized image.</p>
-
-<h2 id="applications-of-neural-style-transfer">Applications of Neural Style Transfer</h2>
-
-<p><strong>Video Styling</strong>: NST can be applied to video content, allowing filmmakers and content creators to impart artistic styles to their videos. This can transform ordinary footage into visually stunning sequences that resemble paintings or other art forms.</p>
-
-<p><strong>Website Design</strong>: In web design, NST can be used to create unique, visually appealing backgrounds and elements. Designers can apply specific artistic styles to images, aligning them with the overall aesthetic of the website.</p>
-
-<p><strong>Fashion and Textile Design</strong>: NST has been explored in the fashion industry for designing fabrics and garments. By transferring artistic styles onto textile patterns, designers can create innovative and unique clothing lines.</p>
-
-<p><strong>Augmented Reality (AR) and Virtual Reality (VR)</strong>: In AR and VR environments, NST can enhance the visual experience by applying artistic styles in real-time, creating immersive and engaging worlds for users.</p>
-
-<p><strong>Product Design</strong>: NST can be used in product design to create visually appealing prototypes and presentations, allowing designers to experiment with different artistic styles quickly.</p>
-
-<p><strong>Therapeutic Settings for Mental Health</strong>: There’s growing interest in using NST in therapeutic settings. By creating soothing and pleasant images, it can be used as a tool for relaxation and stress relief, contributing positively to mental health and well-being.</p>
-
-<p><strong>Educational Tools</strong>: NST can also be used as an educational tool in art and design schools, helping students understand the nuances of different artistic styles and techniques.</p>
-
-<p>These diverse applications showcase the versatility of NST, demonstrating its potential beyond the realm of digital art creation.</p>
-
-<h2 id="limitations-and-challenges-of-neural-style-transfer">Limitations and Challenges of Neural Style Transfer</h2>
-
-<p><strong>Computational Intensity</strong>:</p>
-
-<ul>
-  <li>NST, especially when using deep learning models like VGG19, is computationally demanding. It requires significant processing power, often necessitating the use of GPUs to achieve reasonable processing times.</li>
-</ul>
-
-<p><strong>Balancing Content and Style</strong>:</p>
-
-<ul>
-  <li>Achieving the right balance between content and style in the output image can be challenging. It often requires careful tuning of the algorithm’s parameters and may involve a lot of trial and error.</li>
-</ul>
-
-<p><strong>Unpredictability of Results</strong>:</p>
-
-<ul>
-  <li>The outcome of NST can be unpredictable. The results may vary widely based on the chosen content and style images and the specific configurations of the neural network.</li>
-</ul>
-
-<p><strong>Quality of Output</strong>:</p>
-
-<ul>
-  <li>The quality of the generated image can sometimes be lower than expected, with issues like distortions in the content or the style not being accurately captured.</li>
-</ul>
-
-<p><strong>Training Data Limitations</strong>:</p>
-
-<ul>
-  <li>The effectiveness of NST is also influenced by the variety and quality of images used to train the underlying model. Limited or biased training data can affect the versatility and effectiveness of the style transfer.</li>
-</ul>
-
-<p><strong>Overfitting</strong>:</p>
-
-<ul>
-  <li>There’s a risk of overfitting, especially when the style transfer model is trained on a narrow set of images. This can limit the model’s ability to generalize across different styles and contents.</li>
-</ul>
-
-<p>These challenges highlight the need for ongoing research and development in the field of NST to enhance its efficiency, versatility, and accessibility.</p>
-
-<p>## 
-Necessary Hardware Resources for AI and Machine Learning in Art Generation</p>
-
-<p>To effectively work with AI and machine learning algorithms for art generation, which can be computationally intensive, certain hardware resources are essential:</p>
-
-<p><strong>High-Performance GPUs</strong>:</p>
-
-<ul>
-  <li>
-    <p>Graphics Processing Units (GPUs) are crucial for their ability to handle parallel tasks, making them ideal for the intensive computations required in training and running neural networks.</p>
-  </li>
-  <li>
-    <p>GPUs significantly reduce the time required for training models and generating art, compared to traditional CPUs.</p>
-  </li>
-</ul>
-
-<p><strong>Sufficient RAM</strong>:</p>
-
-<ul>
-  <li>
-    <p>Adequate Random Access Memory (RAM) is important for handling large datasets and the high memory requirements of deep learning models.</p>
-  </li>
-  <li>
-    <p>A minimum of 16GB RAM is recommended, but 32GB or higher is preferable for more complex tasks.</p>
-  </li>
-</ul>
-
-<p><strong>Fast Storage Solutions</strong>:</p>
-
-<ul>
-  <li>Solid State Drives (SSDs) are preferred over Hard Disk Drives (HDDs) for their faster data access speeds, which is beneficial when working with large datasets and models.</li>
-</ul>
-
-<p><strong>High-Performance CPUs</strong>:</p>
-
-<ul>
-  <li>
-    <p>While GPUs handle most of the heavy lifting, a good CPU can improve overall system performance and efficiency.</p>
-  </li>
-  <li>
-    <p>Multi-core processors with high clock speeds are recommended.</p>
-  </li>
-</ul>
-
-<p><strong>Cloud Computing Platforms</strong>:</p>
-
-<ul>
-  <li>
-    <p>Cloud computing resources like AWS, Google Cloud Platform, or Microsoft Azure offer powerful hardware for AI and machine learning tasks without the need for local installation.</p>
-  </li>
-  <li>
-    <p>These platforms provide scalability, allowing you to choose resources as per the project’s requirements.</p>
-  </li>
-</ul>
-
-<p><strong>Adequate Cooling Solutions</strong>:</p>
-
-<ul>
-  <li>High computational tasks generate significant heat. Therefore, a robust cooling solution is necessary to maintain optimal hardware performance and longevity.</li>
-</ul>
-
-<p><strong>Reliable Power Supply</strong>:</p>
-
-<ul>
-  <li>A stable and reliable power supply is crucial, especially for desktop setups, to ensure uninterrupted processing and to protect the hardware from power surges.</li>
-</ul>
-
-<p>Investing in these hardware resources can greatly enhance the efficiency and capabilities of AI and machine learning algorithms in art generation and other computationally demanding tasks.</p>
-
-<h2 id="limitations-and-challenges-of-neural-style-transfer-1">Limitations and Challenges of Neural Style Transfer</h2>
-
-<p>Neural Style Transfer (NST), despite its innovative applications in art and technology, faces several limitations and challenges:</p>
-
-<p><strong>Computational Resource Intensity</strong>:</p>
-
-<ul>
-  <li>NST is computationally demanding, often requiring powerful GPUs and significant processing power. This can be a barrier for individuals or organizations without access to high-end computing resources.</li>
-</ul>
-
-<p><strong>Quality and Resolution of Output</strong>:</p>
-
-<ul>
-  <li>The quality and resolution of the output images can sometimes be less than satisfactory. High-resolution images may lose detail or suffer from distortions after the style transfer.</li>
-</ul>
-
-<p><strong>Balancing Act Between Content and Style</strong>:</p>
-
-<ul>
-  <li>Achieving a harmonious balance between the content and style in the output image can be challenging. It often requires fine-tuning of parameters and multiple iterations.</li>
-</ul>
-
-<p><strong>Generalization and Diversity</strong>:</p>
-
-<ul>
-  <li>NST models might struggle with generalizing across vastly different styles or content types. This can limit the diversity of styles that can be effectively transferred.</li>
-</ul>
-
-<p><strong>Training Data Biases</strong>:</p>
-
-<ul>
-  <li>The effectiveness of NST can be limited by the biases present in the training data. A model trained on a narrow range of styles may not perform well with radically different artistic styles.</li>
-</ul>
-
-<p><strong>Overfitting Risks</strong>:</p>
-
-<ul>
-  <li>There’s a risk of overfitting when the style transfer model is exposed to a limited set of images, leading to reduced effectiveness on a broader range of styles.</li>
-</ul>
-
-<p><strong>Real-Time Processing Challenges</strong>:</p>
-
-<ul>
-  <li>Implementing NST in real-time applications, such as video styling, can be particularly challenging due to the intensive computational requirements.</li>
-</ul>
-
-<p>Understanding and addressing these limitations and challenges is crucial for the advancement and wider application of NST technologies.</p>
-
-<p>## 
-Trends and Innovations in Neural Style Transfer (NST)</p>
-
-<p>Neural Style Transfer (NST) is an evolving field with continuous advancements and innovations. These developments are broadening its applications and enhancing its efficiency:</p>
-
-<p><strong>Improving Efficiency</strong>:</p>
-
-<ul>
-  <li>Research is focused on making NST algorithms faster and more resource-efficient. This includes optimizing existing neural network architectures and developing new methods to reduce computational requirements.</li>
-</ul>
-
-<p><strong>Adapting to Various Artistic Styles</strong>:</p>
-
-<ul>
-  <li>Innovations in NST are enabling the adaptation to a wider range of artistic styles. This includes the ability to mimic more complex and abstract art forms, providing artists and designers with more diverse creative tools.</li>
-</ul>
-
-<p><strong>Extending Applications Beyond Visual Art</strong>:</p>
-
-<ul>
-  <li>NST is finding applications in areas beyond traditional visual art. This includes video game design, film production, interior design, and even fashion, where NST can be used to create unique patterns and designs.</li>
-</ul>
-
-<p><strong>Real-Time Style Transfer</strong>:</p>
-
-<ul>
-  <li>Advances in real-time processing capabilities are enabling NST to be applied in dynamic environments, such as live video feeds, augmented reality (AR), and virtual reality (VR).</li>
-</ul>
-
-<p><strong>Integration with Other AI Technologies</strong>:</p>
-
-<ul>
-  <li>NST is being combined with other AI technologies like Generative Adversarial Networks (GANs) and reinforcement learning to create more sophisticated and versatile style transfer tools.</li>
-</ul>
-
-<p><strong>User-Friendly Tools and Platforms</strong>:</p>
-
-<ul>
-  <li>The development of more user-friendly NST tools and platforms is democratizing access, allowing artists and non-technical users to experiment with style transfer without deep technical knowledge.</li>
-</ul>
-
-<p>These trends and innovations are propelling NST into new realms of creativity and practical application, making it a rapidly growing area in the field of AI and machine learning.</p>
-
-<h1 id="how-can-neural-style-transfer-nst-be-used-in-generative-art">How can Neural Style Transfer (NST) be used in Generative Art?</h1>
-
-<p>Neural Style Transfer (NST) offers a transformative approach to generative art, combining deep learning techniques to create visually striking and unique artworks. Its application in generative art can be understood through the following points:</p>
-
-<h2 id="-sources">🌐 Sources</h2>
-
-<ul>
-  <li>
-    <p><a href="https://www.linkedin.com/advice/3/what-latest-trends-innovations-neural-style-transfer">Neural Style Transfer: Trends, Innovations, and Benefits</a></p>
-  </li>
-  <li>
-    <p><a href="https://www.linkedin.com/advice/0/what-current-challenges-limitations-deep-learning">Challenges and Limitations of Deep Learning for Style Transfer</a></p>
-  </li>
-  <li>
-    <p><a href="https://ieeexplore.ieee.org/document/9539183/">Neural Style Transfer: A Critical Review</a></p>
-  </li>
-  <li>
-    <p><a href="https://inst.eecs.berkeley.edu/~cs194-26/fa18/upload/files/projFinalProposed/cs194-26-adv/docs/">Neural Style Transfer for So Long, and Thanks for all the Fish</a></p>
-  </li>
-  <li>
-    <p><a href="https://www.researchgate.net/figure/Advantages-and-disadvantages-of-the-two-methods-presented-a-Content-image-from-Fig-1_fig3_304163747">Advantages and disadvantages of two methods of Neural Style Transfer</a></p>
-  </li>
-  <li>
-    <p><a href="https://www.sciencedirect.com/science/article/abs/pii/S1077314221000473">Evaluate and improve the quality of neural style transfer</a></p>
-  </li>
-  <li>
-    <p><a href="https://medium.com/@zhonghong9998/neural-style-transfer-creating-artistic-images-with-deep-learning-803409fc64c0">Neural Style Transfer: Creating Artistic Images with Deep Learning</a></p>
-  </li>
-  <li>
-    <p><a href="https://rcorin.medium.com/transforming-photos-into-art-automatically-classic-algorithms-neural-style-transfer-gan-and-a3cac3124916">Classic algorithms, neural style transfer, GAN – Ricardo Corin</a></p>
-  </li>
-  <li>
-    <p><a href="https://www.ikomia.ai/blog/neural-style-transfer-guide">Mastering Neural Style Transfer</a></p>
-  </li>
-  <li>
-    <p><a href="https://github.com/ycjing/Neural-Style-Transfer-Papers">Neural Style Transfer Papers on GitHub</a></p>
-  </li>
-  <li>
-    <p><a href="https://towardsdatascience.com/how-to-make-artistic-images-with-neural-style-transfer-345a376d56cf">How to Make Artistic Images with Neural Style Transfer</a></p>
-  </li>
-  <li>
-    <p><a href="https://www.linkedin.com/pulse/artificial-intelligence-applications-neural-style-transfer-mohan">Artificial Intelligence and Applications: Neural Style Transfer</a></p>
-  </li>
-  <li>
-    <p><a href="https://medium.com/@mirzezadeh.elvin/neural-style-transfer-with-deep-vgg-model-26b11ea06b7e">Neural Style Transfer with Deep VGG model</a></p>
-  </li>
-  <li>
-    <p><a href="https://medium.com/udacity-pytorch-challengers/style-transfer-using-deep-nural-network-and-pytorch-3fae1c2dd73e">Style Transfer using Deep Neural Network and PyTorch</a></p>
-  </li>
-  <li>
-    <p><a href="https://towardsdatascience.com/neural-style-transfer-on-real-time-video-with-full-implementable-code-ac2dbc0e9822">Neural Style Transfer on Real Time Video (With Full Implementable Code)</a></p>
-  </li>
-  <li>
-    <p><a href="https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/">How to Code Neural Style Transfer in Python?</a></p>
-  </li>
-  <li>
-    <p><a href="https://www.datacamp.com/tutorial/implementing-neural-style-transfer-using-tensorflow">Implementing Neural Style Transfer Using TensorFlow 2.0</a></p>
-  </li>
-  <li>
-    <p><a href="https://heartbeat.comet.ml/neural-style-transfer-nst-1ba877165179">Neural Style Transfer (NST). Using Deep Learning Algorithms</a></p>
-  </li>
-  <li>
-    <p><a href="https://medium.com/@mirzezadeh.elvin/neural-style-transfer-with-deep-vgg-model-26b11ea06b7e">Neural Style Transfer with Deep VGG model</a></p>
-  </li>
-  <li>
-    <p><a href="https://medium.com/udacity-pytorch-challengers/style-transfer-using-deep-nural-network-and-pytorch-3fae1c2dd73e">Style Transfer using Deep Neural Network and PyTorch</a></p>
-  </li>
-  <li>
-    <p><a href="https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/">How to Code Neural Style Transfer in Python?</a></p>
-  </li>
-  <li>
-    <p><a href="https://www.datacamp.com/tutorial/implementing-neural-style-transfer-using-tensorflow">Implementing Neural Style Transfer Using TensorFlow 2.0</a></p>
-  </li>
-  <li>
-    <p><a href="https://towardsdatascience.com/neural-style-transfer-on-real-time-video-with-full-implementable-code-ac2dbc0e9822">Neural Style Transfer on Real Time Video (With Full Implementable Code)</a></p>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Neural style transfer</td>
-          <td>TensorFlow Core](https://www.tensorflow.org/tutorials/generative/style_transfer)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <p><a href="https://medium.com/@mirzezadeh.elvin/neural-style-transfer-with-deep-vgg-model-26b11ea06b7e">Neural Style Transfer with Deep VGG model</a></p>
-  </li>
-  <li>
-    <p><a href="https://medium.com/udacity-pytorch-challengers/style-transfer-using-deep-nural-network-and-pytorch-3fae1c2dd73e">Style Transfer using Deep Neural Network and PyTorch</a></p>
-  </li>
-  <li>
-    <p><a href="https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/">Introduction and Implementation to Neural Style Transfer</a></p>
-  </li>
-  <li>
-    <p><a href="https://www.datacamp.com/tutorial/implementing-neural-style-transfer-using-tensorflow">Implementing Neural Style Transfer Using TensorFlow 2.0</a></p>
-  </li>
-  <li>
-    <p><a href="https://towardsdatascience.com/making-deep-learning-your-artist-with-style-transfer-4854055f79b7">Making deep learning your artist with Style Transfer</a></p>
-  </li>
-  <li>
-    <p><a href="https://towardsdatascience.com/neural-style-transfer-on-real-time-video-with-full-implementable-code-ac2dbc0e9822">Neural Style Transfer on Real Time Video</a></p>
-  </li>
-  <li>
-    <p><a href="https://anderfernandez.com/en/blog/how-to-code-neural-style-transfer-in-python/">How to code Neural Style Transfer in Python</a></p>
-  </li>
-  <li>
-    <p><a href="https://github.com/superb20/Image-Style-Transfer-Using-Convolutional-Neural-Networks">Image-Style-Transfer-Using-Convolutional-Neural-Networks on GitHub</a></p>
-  </li>
-  <li>
-    <p><a href="https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/">Introduction and Implementation to Neural Style Transfer</a></p>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[How to do Image Style Transfer in Python</td>
-          <td>Medium](https://medium.com/analytics-vidhya/how-to-do-neural-style-transfer-in-python-bee3f0d1008b)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Implementing Neural Style Transfer Using TensorFlow 2.0</td>
-          <td>DataCamp](https://www.datacamp.com/tutorial/implementing-neural-style-transfer-using-tensorflow)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Fast Neural Style Transfer Using TensorFlow 2</td>
-          <td>Towards Data Science](https://towardsdatascience.com/python-for-art-fast-neural-style-transfer-using-tensorflow-2-d5e7662061be)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Neural style transfer</td>
-          <td>TensorFlow Core](https://www.tensorflow.org/tutorials/generative/style_transfer)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Neural Style Transfer (NST) — theory and implementation</td>
-          <td>Medium](https://medium.com/@ferlatti.aldo/neural-style-transfer-nst-theory-and-implementation-c26728cf969d)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[How Do Neural Style Transfers Work?</td>
-          <td>Towards Data Science](https://towardsdatascience.com/how-do-neural-style-transfers-work-b76de101eb3)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Neural Style Transfer: Using Deep Learning to Generate Art</td>
-          <td>V7 Labs](https://www.v7labs.com/blog/neural-style-transfer)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Intuitive Guide to Neural Style Transfer</td>
-          <td>Towards Data Science](https://towardsdatascience.com/light-on-math-machine-learning-intuitive-guide-to-neural-style-transfer-ef88e46697ee)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[How to Code Neural Style Transfer in Python?</td>
-          <td>Analytics Vidhya](https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[How Do Neural Style Transfers Work?</td>
-          <td>Towards Data Science](https://towardsdatascience.com/how-do-neural-style-transfers-work-b76de101eb3)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Neural Style Transfer: Using Deep Learning to Generate Art</td>
-          <td>V7 Labs](https://www.v7labs.com/blog/neural-style-transfer)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[A brief introduction to Neural Style Transfer</td>
-          <td>Towards Data Science](https://towardsdatascience.com/a-brief-introduction-to-neural-style-transfer-d05d0403901d)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Neural Style Transfer (NST) — theory and implementation</td>
-          <td>Medium](https://medium.com/@ferlatti.aldo/neural-style-transfer-nst-theory-and-implementation-c26728cf969d)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Shrinking Neural Style Transfer Model with Knowledge</td>
-          <td>IEEE Xplore](https://ieeexplore.ieee.org/document/9918806)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Neural Style Transfer: Trends, Innovations, and Benefits</td>
-          <td>LinkedIn](https://www.linkedin.com/advice/3/what-latest-trends-innovations-neural-style-transfer)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <p><a href="https://www.linkedin.com/advice/0/what-most-effective-techniques-style-transfer-afgzf">LinkedIn – How to Use Generative AI for Style Transfer</a></p>
-  </li>
-  <li>
-    <p>Medium – Neural Style Transfer: Creating Artistic Images with Deep Learning</p>
-  </li>
-  <li>
-    <p><a href="https://www.ikomia.ai/blog/neural-style-transfer-guide">Ikomia – Mastering Neural Style Transfer: Techniques and</a></p>
-  </li>
-  <li>
-    <p><a href="https://github.com/deepeshdm/Neural-Style-Transfer">GitHub – deepeshdm/Neural-Style-Transfer: Creating digital art</a></p>
-  </li>
-  <li><a href="https://heartbeat.comet.ml/neural-style-transfer-nst-1ba877165179">Heartbeat – Neural Style Transfer (NST). Using Deep Learning Algorithms</a></li>
-</ul>]]></content><author><name>Guillaume Lauzier</name></author><category term="ai" /><category term="ai" /><category term="art" /><category term="artistic-style" /><summary type="html"><![CDATA[Neural Style Transfer (NST) is a captivating intersection of artificial intelligence and artistic creativity. This technology leverages the capabilities of deep learning to merge the essence of one im]]></summary></entry><entry><title type="html">AXAL: A Sustainable IT Revolution</title><link href="https://guillaumelauzier.com/axal-a-sustainable-it-revolution/" rel="alternate" type="text/html" title="AXAL: A Sustainable IT Revolution" /><published>2023-11-27T00:00:00+00:00</published><updated>2023-11-27T00:00:00+00:00</updated><id>https://guillaumelauzier.com/axal-a-sustainable-it-revolution</id><content type="html" xml:base="https://guillaumelauzier.com/axal-a-sustainable-it-revolution/"><![CDATA[<p>As a part of my diverse project portfolio, I am proud to introduce <a href="https://axal.io">AXAL</a>, a groundbreaking initiative that stands at the forefront of sustainable IT solutions. This project embodies my commitment to integrating technology with ecological responsibility, creating a resilient and self-sufficient future.</p>
-
-<h2 id="project-overview">Project Overview</h2>
-
-<p><a href="https://axal.io">AXAL</a> is not just an IT project; it’s a comprehensive sustainable ecosystem that marries high-performance technology with environmental stewardship. The project is designed to serve various industries, offering tailored IT solutions that prioritize both efficiency and ecological impact.</p>
-
-<h2 id="key-features-of-axal">Key Features of AXAL</h2>
-
-<h3 id="sustainable-ecosystem-integration">Sustainable Ecosystem Integration</h3>
-
-<p><a href="https://axal.io">AXAL</a> integrates IT, agriculture, and energy solutions to foster self-sufficiency and resilience, particularly crucial during natural disasters. This integration reduces reliance on external resources and enhances community resilience.</p>
-
-<h3 id="localized-sustainable-solutions">Localized Sustainable Solutions</h3>
-
-<p>The project focuses on localizing information systems, agriculture, and energy solutions, significantly reducing transportation costs and CO2 emissions. This approach not only boosts efficiency but also advances environmental sustainability.</p>
-
-<h3 id="sovereignty-and-community-empowerment">Sovereignty and Community Empowerment</h3>
-
-<p><a href="https://axal.io">AXAL</a> empowers communities by providing control over essential resources like information, food, and energy, facilitating effective decision-making and sustainable resource management.</p>
-
-<h3 id="innovative-green-it-infrastructure">Innovative Green IT Infrastructure</h3>
-
-<p>At the core of <a href="https://axal.io">AXAL</a> is a green approach to IT infrastructure. The project harnesses solar and hydro energy to power servers, which in turn support agricultural practices through innovative heat reuse strategies.</p>
-
-<h2 id="our-commitment-to-sustainability">Our Commitment to Sustainability</h2>
-
-<p><a href="https://axal.io">AXAL</a> is more than just a project; it’s a testament to our commitment to creating a sustainable future. We have taken a holistic approach to sustainability, focusing on renewable energy, eco-efficient solutions, and responsible consumption. Our team is dedicated to ethical decision-making, community collaboration, and environmental advocacy.</p>
-
-<h2 id="join-us-in-our-sustainable-journey">Join Us in Our Sustainable Journey</h2>
-
-<p><a href="https://axal.io">AXAL</a> represents a significant step in my ongoing journey to integrate sustainable practices across various sectors. This project not only showcases my commitment to innovation and sustainability but also demonstrates how technology and nature can work in harmony for a better future.</p>
-
-<p><a href="https://axal.io">Discover more about AXAL</a> and join us in shaping a more sustainable and resilient world.</p>]]></content><author><name>Guillaume Lauzier</name></author><category term="infrastructure" /><category term="agriculture-integration" /><category term="axal" /><category term="community-resilience" /><summary type="html"><![CDATA[As a part of my diverse project portfolio, I am proud to introduce AXAL, a groundbreaking initiative that stands at the forefront of sustainable IT solutions. This project embodies my commitment to in]]></summary></entry></feed>
+<p>Looking ahead, the rise of cross-chain DEXs, Layer 2 solutions, and advanced trading algorithms will shape the future of arbitrage. For traders willing to navigate these complexities, the rewards can be substantial—but success will always favor those who combine preparation with precision.</p>]]></content><author><name>Guillaume Lauzier</name></author><category term="fintech" /><category term="strategy" /><category term="tokenomic" /><summary type="html"><![CDATA[Decentralized exchanges (DEXs) have become a cornerstone of the DeFi ecosystem, offering traders the ability to swap tokens without intermediaries. However]]></summary></entry></feed>
