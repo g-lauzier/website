@@ -1,0 +1,1 @@
+- [Vendored assets & SRI](vendored-assets.md) — self-hosted vendor scripts must be committed & land in _site; skip SRI (edge minify → prod-only breakage).

@@ -54,7 +54,7 @@ A premium dark-mode portfolio site for Guillaume Lauzier, Venture Partner. Built
 - **Google Fonts:** Trimmed from 7 families to 4 (Inter, JetBrains Mono, Playfair Display, Mr Dafoe), reduced weights, async loading via `preload` + `onload` pattern to prevent render-blocking
 - **Images:** `loading="lazy"` on all gallery, sidebar, and trending-post images; `fetchpriority="high"` on hero images
 - **p5.js sketch:** Frame rate capped at 30fps, debounced resize handler (150ms), inlined Math functions replacing p5 wrappers, reduced per-frame allocations; respects `prefers-reduced-motion`; pauses via `IntersectionObserver` when off-screen
-- **p5.js library:** Self-hosted at `/assets/vendor/p5.min.js` with SRI integrity hash (no third-party CDN dependency)
+- **p5.js library:** Self-hosted at `/assets/vendor/p5.min.js` (no third-party CDN dependency). SRI integrity hash intentionally omitted — a self-hosted asset gains little from SRI, and hash mismatches (e.g. via edge JS minification) silently break the script in production while working in dev.
 - **Script loading:** `defer` attribute on p5.js, sketch.js, and gl.js to prevent parser blocking
 - **Resource hints:** `preconnect` to fonts.googleapis.com, fonts.gstatic.com
 
