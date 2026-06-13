@@ -1159,8 +1159,8 @@ img { max-width: 100%; display: block; }
   margin: 3rem 0 1rem;
   line-height: 1.2;
 }
-.gl-post-content h2 { font-size: 1.8rem; }
-.gl-post-content h3 { font-size: 1.3rem; }
+.gl-post-content h2 { font-size: 1.3rem; }
+.gl-post-content h3 { font-size: 1.1rem; }
 .gl-post-content p { margin-bottom: 1.75rem; }
 .gl-post-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .gl-post-content blockquote {
@@ -1627,9 +1627,9 @@ img { max-width: 100%; display: block; }
   margin-bottom: 0.75rem;
   line-height: 1.2;
 }
-.gl-post-content h2 { font-size: 1.75rem; }
-.gl-post-content h3 { font-size: 1.35rem; }
-.gl-post-content h4 { font-size: 1.1rem; }
+.gl-post-content h2 { font-size: 1.3rem; }
+.gl-post-content h3 { font-size: 1.1rem; }
+.gl-post-content h4 { font-size: 1.0rem; }
 .gl-post-content p  { margin-bottom: 1.5rem; }
 .gl-post-content a  {
   color: var(--accent);
