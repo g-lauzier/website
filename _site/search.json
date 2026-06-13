@@ -1,6 +1,33 @@
 [
   
     {
+      "title"    : "How AI is changing startup investment and venture support",
+      "category" : "",
+      "tags"     : "venture capital, AI, portfolio support",
+      "url"      : "/how-ai-is-changing-startup-investment-and-venture-support/",
+      "date"     : "2026-05-28 09:00:00 +0000",
+      "desc"     : "How AI is changing startup investment and venture support"
+    } ,
+  
+    {
+      "title"    : "Why I avoid consensus and invest early",
+      "category" : "",
+      "tags"     : "venture capital, early stage, conviction",
+      "url"      : "/why-i-avoid-consensus-and-invest-early/",
+      "date"     : "2026-05-20 09:00:00 +0000",
+      "desc"     : "Why I avoid consensus and invest early"
+    } ,
+  
+    {
+      "title"    : "Cybersecurity and zero-trust systems",
+      "category" : "",
+      "tags"     : "cybersecurity, zero trust, security",
+      "url"      : "/cybersecurity-and-zero-trust-systems/",
+      "date"     : "2026-05-12 09:00:00 +0000",
+      "desc"     : "Cybersecurity and zero-trust systems"
+    } ,
+  
+    {
       "title"    : "Big-O isn&#39;t the bottleneck. It&#39;s allocation.",
       "category" : "",
       "tags"     : "performance, profiling, gc",

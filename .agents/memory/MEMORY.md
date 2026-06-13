@@ -1,1 +1,2 @@
 - [Vendored assets & SRI](vendored-assets.md) — self-hosted vendor scripts must be committed & land in _site; skip SRI (edge minify → prod-only breakage).
+- [Sourcing axal.vc articles](axal-content-source.md) — axal.vc is a JS SPA; scrapers see blank pages. Pull full text from its `/api/articles/<slug>` JSON (`body_markdown`).
