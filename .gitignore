@@ -5,7 +5,9 @@ _site/
 .cache/
 
 # Bundler / Ruby
-vendor/
+# Anchored to repo root so it only ignores Bundler's vendor dir,
+# NOT the app's vendored front-end libs in assets/vendor/.
+/vendor/
 .bundle/
 Gemfile.lock.bak
 

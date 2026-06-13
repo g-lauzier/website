@@ -29,3 +29,27 @@ the p5.js tag plain (no `integrity`).
 **How to apply:** if re-adding any vendored script, ship the file, leave SRI
 off, and verify in a real browser (app_preview screenshot) that the console is
 clean — not just that the build succeeds.
+
+## .gitignore `vendor/` swallowed the app's vendored JS
+The library file also could not reach production because `.gitignore` had an
+unanchored `vendor/` rule (intended for Bundler) that ALSO matched
+`assets/vendor/`. Git silently ignored the new `assets/vendor/p5.min.js`, so it
+was never committed/pushed. Fix: anchor Bundler's rule as `/vendor/` (root-only)
+so it stops catching `assets/vendor/`.
+
+**Why:** an unanchored dir name in `.gitignore` matches that name at EVERY
+level. Confirm with `git check-ignore -v <path>` when a file mysteriously won't
+stage.
+
+## Hosting / deploy model (production is NOT Replit)
+Production is **GitHub Pages**, repo `origin = github.com/g-lauzier/website`,
+served by building Jekyll from source on `main` (root has index.html/_config/
+CNAME, no `.nojekyll`, no Actions). A stale prebuilt `_site/` is committed (788
+files) but GitHub ignores it as Jekyll's output dir. Replit is the dev env only;
+the `.replit` static-deploy block is unused. Changes go live by **pushing
+`main` to GitHub** (Replit Git pane), then GitHub Pages rebuilds.
+
+`guillaumelauzier.com` sits behind **Cloudflare** (proxied). A persistent HTTP
+**526** = Cloudflare can't validate the GitHub Pages origin cert; fix by setting
+the DNS records to DNS-only (grey cloud) or Cloudflare SSL mode to "Full" (not
+Strict), and enabling GitHub Pages "Enforce HTTPS".
