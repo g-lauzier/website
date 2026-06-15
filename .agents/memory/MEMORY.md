@@ -1,2 +1,3 @@
 - [Vendored assets & SRI](vendored-assets.md) — self-hosted vendor scripts must be committed & land in _site; skip SRI (edge minify → prod-only breakage).
 - [Sourcing axal.vc articles](axal-content-source.md) — axal.vc is a JS SPA; scrapers see blank pages. Pull full text from its `/api/articles/<slug>` JSON (`body_markdown`).
+- [Hero animation perf](hero-animation-perf.md) — p5.js hero is interaction-gated lazy-load (poster at rest); eager load caused TTI~35s/TBT~12s. Don't regress to eager/timer.

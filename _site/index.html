@@ -553,8 +553,58 @@
 
 </main>
 
-<script src="/assets/vendor/p5.min.js"></script>
-<script src="/assets/js/sketch.js"></script>
+<script>
+/*
+ * Hero performance loader.
+ * The p5.js library (~1MB) and the perpetual pixel animation are the dominant
+ * cause of high TBT/TTI/Speed Index. We show a static portrait poster instantly
+ * and only load p5 + the animation on the first real user interaction. The
+ * animation is inherently mouse/scroll driven, so deferring it costs nothing
+ * visually at rest while keeping the main thread idle during page load.
+ */
+(function () {
+  var container = document.getElementById('canvas-container');
+  if (!container) return;
+
+  var poster = new Image();
+  poster.src = '/assets/images/portrait.jpg';
+  poster.alt = '';
+  poster.decoding = 'async';
+  poster.className = 'gl-hero-poster';
+  poster.setAttribute('aria-hidden', 'true');
+  poster.setAttribute('fetchpriority', 'high');
+  container.appendChild(poster);
+
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) return;
+
+  var started = false;
+  var events = ['pointermove', 'pointerdown', 'touchstart', 'scroll', 'keydown', 'wheel'];
+
+  function loadScript(src, cb) {
+    var s = document.createElement('script');
+    s.src = src;
+    s.async = true;
+    if (cb) s.onload = cb;
+    document.body.appendChild(s);
+  }
+
+  function start() {
+    if (started) return;
+    started = true;
+    events.forEach(function (e) { window.removeEventListener(e, start); });
+    // sketch.js defines window.preload/setup/draw first; p5 (global mode)
+    // then auto-initializes immediately because document is already loaded.
+    loadScript('/assets/js/sketch.js', function () {
+      loadScript('/assets/vendor/p5.min.js');
+    });
+  }
+
+  events.forEach(function (e) {
+    window.addEventListener(e, start, { passive: true });
+  });
+})();
+</script>
 
 
 <footer class="gl-footer">

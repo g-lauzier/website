@@ -41,6 +41,7 @@ A premium dark-mode portfolio site for Guillaume Lauzier, Venture Partner. Built
 - Glow effect on bright image areas
 - Hero wrapper (`.gl-hero-wrapper`) contains canvas, overlay, and hero content with proper z-indexing
 - Only loads on pages with `#canvas-container` element (safe for non-homepage pages)
+- **Lazy-loaded for performance:** p5.js + sketch.js are NOT loaded at page load. An inline loader in `index.html` shows a static portrait poster (`.gl-hero-poster`, `object-position: 63% 40%` to match the focal point) immediately, then injects sketch.js → p5.min.js only on the first user interaction (`pointermove`/`pointerdown`/`touchstart`/`scroll`/`keydown`/`wheel`). The animation is mouse/scroll-driven, so this costs nothing visually at rest. `prefers-reduced-motion` users keep the static poster and never download p5.js (~1 MB saved). This eliminated the TTI/TBT/Speed-Index blowup (perpetual 30fps long tasks kept the main thread from ever going quiet).
 
 ## Key Files
 - `_config.yml` — Site title: "Guillaume Lauzier", shop/author collections removed
@@ -55,7 +56,7 @@ A premium dark-mode portfolio site for Guillaume Lauzier, Venture Partner. Built
 - **Images:** `loading="lazy"` on all gallery, sidebar, and trending-post images; `fetchpriority="high"` on hero images
 - **p5.js sketch:** Frame rate capped at 30fps, debounced resize handler (150ms), inlined Math functions replacing p5 wrappers, reduced per-frame allocations; respects `prefers-reduced-motion`; pauses via `IntersectionObserver` when off-screen
 - **p5.js library:** Self-hosted at `/assets/vendor/p5.min.js` (no third-party CDN dependency). SRI integrity hash intentionally omitted — a self-hosted asset gains little from SRI, and hash mismatches (e.g. via edge JS minification) silently break the script in production while working in dev.
-- **Script loading:** `defer` attribute on p5.js, sketch.js, and gl.js to prevent parser blocking
+- **Script loading:** `gl.js` uses `defer`. p5.js + sketch.js are interaction-gated lazy-loads (see Interactive Hero Background) — they never touch the critical path, so the main thread stays idle during load.
 - **Resource hints:** `preconnect` to fonts.googleapis.com, fonts.gstatic.com
 
 ## Security

@@ -113,6 +113,10 @@ window.setup = function() {
       buildGrid();
     }
   }, 200);
+  // If the hero was already scrolled offscreen before the animation was lazily
+  // initialized (e.g. the triggering interaction was a scroll), honor the paused
+  // state the IntersectionObserver recorded so we don't animate offscreen.
+  if (paused && typeof noLoop === 'function') noLoop();
 };
 
 function computeImageTransform() {
