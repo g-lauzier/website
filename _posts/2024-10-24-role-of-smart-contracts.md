@@ -4,8 +4,8 @@ title: "The Role of Smart Contracts"
 date: 2024-10-24 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["technical", "tokenomic"]
-post_image: "/assets/images/role-of-smart-contracts.png"
-description: "Smart contracts are the foundation of Decentralized Finance (DeFi), a transformative movement that leverages blockchain technology to create financial syst"
+post_image: "/assets/images/role-of-smart-contracts.webp"
+description: "Smart contracts are the foundation of Decentralized Finance (DeFi), a transformative movement that leverages blockchain technology to create financial…"
 permalink: "/role-of-smart-contracts/"
 ---
 

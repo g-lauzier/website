@@ -5,7 +5,7 @@ date: 2023-08-30 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["blockchain", "client-demand"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/08/generatedart_crypto_as_a_service_81d358a8-5545-4b22-845b-767a0d7aed80-2.png"
-description: "As financial landscapes shift and technological innovations come to the forefront, small banks find themselves in an intriguing yet challenging position. Gone are the days when traditional banking met"
+description: "As financial landscapes shift and technological innovations come to the forefront, small banks find themselves in an intriguing yet challenging position."
 permalink: "/offering-cryptocurrency-as-a-service/"
 ---
 

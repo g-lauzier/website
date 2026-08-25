@@ -4,7 +4,7 @@ title: "Advanced Options Strategies in DeFi"
 date: 2025-01-01 00:00:00 +0000
 categories: ["fintech"]
 tags: ["strategy", "tokenomic"]
-post_image: "/assets/images/advanced-strategies-in-defi.png"
+post_image: "/assets/images/advanced-strategies-in-defi.webp"
 description: "A deep dive into advanced options strategies in decentralized finance, covering straddles, strangles, and complex multi-leg strategies for DeFi traders."
 permalink: "/advanced-strategies-in-defi/"
 ---

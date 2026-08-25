@@ -5,7 +5,7 @@ date: 2023-02-25 00:00:00 +0000
 categories: ["digital-art"]
 tags: []
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_generative_art_sound_frequency.png"
-description: "Sound is an important aspect of our daily lives, from the music we listen to, the sounds of nature, and even the spoken words we hear. Sound can evoke emotions and affect our mood and behavior. In rec"
+description: "Sound is an important aspect of our daily lives, from the music we listen to, the sounds of nature, and even the spoken words we hear."
 permalink: "/emotional-xyz-sound-wave/"
 ---
 

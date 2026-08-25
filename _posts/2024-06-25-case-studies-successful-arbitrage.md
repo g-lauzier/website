@@ -4,8 +4,8 @@ title: "Case Studies - Successful Arbitrage in DEXs"
 date: 2024-06-25 00:00:00 +0000
 categories: ["fintech"]
 tags: ["strategy", "tokenomic"]
-post_image: "/assets/images/case-studies-successful-arbitrage.png"
-description: "Decentralized exchanges (DEXs) have become a cornerstone of the DeFi ecosystem, offering traders the ability to swap tokens without intermediaries. However"
+post_image: "/assets/images/case-studies-successful-arbitrage.webp"
+description: "Decentralized exchanges (DEXs) have become a cornerstone of the DeFi ecosystem, offering traders the ability to swap tokens without intermediaries."
 permalink: "/case-studies-successful-arbitrage/"
 ---
 

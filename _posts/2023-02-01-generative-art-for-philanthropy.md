@@ -5,7 +5,7 @@ date: 2023-02-01 00:00:00 +0000
 categories: ["digital-art"]
 tags: ["algorithms", "charity-auctions", "collaborations"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_generative_art_philanthropy.png"
-description: "Generative art, a form of art created through the use of algorithms and rules, has been gaining popularity in recent years for its unique and mesmerizing aesthetics. However, it is not just the visual"
+description: "Generative art, a form of art created through the use of algorithms and rules, has been gaining popularity in recent years for its unique and mesmerizing…"
 permalink: "/generative-art-for-philanthropy/"
 ---
 

@@ -5,7 +5,7 @@ date: 2023-12-19 00:00:00 +0000
 categories: ["ai"]
 tags: ["artificial-intelligence"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/12/generatedart_Pixel_Recurrent_Neural_Networks_874142f3-17f1-4ba4-af7c-cc7e099163d1.png"
-description: "Pixel Recurrent Neural Networks (PixelRNNs) have emerged as a groundbreaking approach in the field of image generation and processing. These sophisticated neural network architectures are reshaping ho"
+description: "Pixel Recurrent Neural Networks (PixelRNNs) have emerged as a groundbreaking approach in the field of image generation and processing."
 permalink: "/the-world-pixelrnns/"
 ---
 

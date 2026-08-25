@@ -4,8 +4,8 @@ title: "Federated Learning: Privacy-Preserving Machine Learning"
 date: 2022-12-17 00:00:00 +0000
 categories: ["cybersecurity"]
 tags: ["biased-data", "collaborative-learning"]
-post_image: "/assets/images/federated-learning-privacy.png"
-description: "In today's data-driven world, machine learning has become an essential tool for many industries. However, traditional machine learning approaches often require large amounts of centralized data, which"
+post_image: "/assets/images/federated-learning-privacy.webp"
+description: "In today's data-driven world, machine learning has become an essential tool for many industries."
 permalink: "/federated-learning-privacy/"
 ---
 

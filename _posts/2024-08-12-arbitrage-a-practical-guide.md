@@ -4,8 +4,8 @@ title: "Arbitrage - A Practical Guide"
 date: 2024-08-12 00:00:00 +0000
 categories: ["fintech"]
 tags: ["strategy", "tokenomic"]
-post_image: "/assets/images/arbitrage-a-practical-guide.png"
-description: "Decentralized Finance (DeFi) has transformed the financial landscape, offering traders innovative ways to profit from inefficiencies in decentralized marke"
+post_image: "/assets/images/arbitrage-a-practical-guide.webp"
+description: "Decentralized Finance (DeFi) has transformed the financial landscape, offering traders innovative ways to profit from inefficiencies in decentralized…"
 permalink: "/arbitrage-a-practical-guide/"
 ---
 

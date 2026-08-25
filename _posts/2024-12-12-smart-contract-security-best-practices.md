@@ -4,8 +4,8 @@ title: "Smart Contract Security Best Practices"
 date: 2024-12-12 00:00:00 +0000
 categories: ["cybersecurity"]
 tags: ["technical", "tokenomic"]
-post_image: "/assets/images/smart-contract-security-best-practices.png"
-description: "Smart contracts, self-executing programs on blockchain networks such as Ethereum, automate transactions based on predefined rules encoded within them. Thei"
+post_image: "/assets/images/smart-contract-security-best-practices.webp"
+description: "Smart contracts, self-executing programs on blockchain networks such as Ethereum, automate transactions based on predefined rules encoded within them."
 permalink: "/smart-contract-security-best-practices/"
 ---
 

@@ -4,8 +4,8 @@ title: "Impact of Data-Driven Art on Scientific Discovery and Innovation"
 date: 2022-08-16 00:00:00 +0000
 categories: ["digital-art"]
 tags: ["algorithm", "bias"]
-post_image: "/assets/images/data-art-scientific-discovery.png"
-description: "Data-driven art is an emerging form of art that utilizes data and technology as a medium for creating and expressing ideas. This type of art challenges traditional notions of art and artist, and it pu"
+post_image: "/assets/images/data-art-scientific-discovery.webp"
+description: "Data-driven art is an emerging form of art that utilizes data and technology as a medium for creating and expressing ideas."
 permalink: "/data-art-scientific-discovery-innovation/"
 ---
 

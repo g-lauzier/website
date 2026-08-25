@@ -5,7 +5,7 @@ date: 2022-09-09 00:00:00 +0000
 categories: ["digital-art"]
 tags: ["algorithm"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/flat-abstract-glitched-generative-art.jpg"
-description: "Generative art is a form of digital art that is created using algorithms, mathematical equations, and computer programs. Unlike traditional art, where the artist is in complete control of the creative"
+description: "Generative art is a form of digital art that is created using algorithms, mathematical equations, and computer programs."
 permalink: "/challenging-traditional-art/"
 ---
 

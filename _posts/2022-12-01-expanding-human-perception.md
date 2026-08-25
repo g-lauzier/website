@@ -4,8 +4,8 @@ title: "Expanding Human Perception through Generative Art and Technology"
 date: 2022-12-01 00:00:00 +0000
 categories: ["ai"]
 tags: []
-post_image: "/assets/images/expanding-human-perception.png"
-description: "Generative art is a medium of artistic expression that relies on algorithms, code, and technology to create unique and often unpredictable works of art. One of the key features of generative art is it"
+post_image: "/assets/images/expanding-human-perception.webp"
+description: "Generative art is a medium of artistic expression that relies on algorithms, code, and technology to create unique and often unpredictable works of art."
 permalink: "/expanding-human-perception/"
 ---
 

@@ -5,7 +5,7 @@ date: 2023-02-16 00:00:00 +0000
 categories: ["blockchain"]
 tags: []
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_Ethereum_Rollups_speed.png"
-description: "Ethereum is one of the most popular blockchain networks, offering developers the ability to create and deploy decentralized applications (dApps) and smart contracts. However, as the number of users an"
+description: "Ethereum is one of the most popular blockchain networks, offering developers the ability to create and deploy decentralized applications (dApps) and smart…"
 permalink: "/scaling-ethereum-exploring-layer-2-solutions/"
 ---
 

@@ -4,7 +4,7 @@ title: "Understanding Iron Condor and Butterfly Spread"
 date: 2025-01-11 00:00:00 +0000
 categories: ["fintech"]
 tags: ["strategy", "tokenomic"]
-post_image: "/assets/images/iron-condor-butterfly-spread.png"
+post_image: "/assets/images/iron-condor-butterfly-spread.webp"
 description: "Explore advanced options strategies in DeFi including the Iron Condor and Butterfly Spread, their mechanics, risk profiles, and practical applications."
 permalink: "/iron-condor-butterfly-spread/"
 ---

@@ -5,11 +5,9 @@ date: 2023-05-24 00:00:00 +0000
 categories: ["infrastructure"]
 tags: ["auto-scaling", "caching", "cdn"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_internet_acf16c29-fa14-4956-b7ed-3efb3b984c13-2.png"
-description: "Web Server Architecture Techniques for High Volume Traffic A well-architected web server is crucial for managing and effectively distributing high-volume traffic to maintain a responsive and fast webs"
+description: "A well-architected web server is crucial for managing and effectively distributing high-volume traffic to maintain a responsive and fast website."
 permalink: "/web-server-architecture/"
 ---
-
-Web Server Architecture Techniques for High Volume Traffic
 
 A well-architected web server is crucial for managing and effectively distributing high-volume traffic to maintain a responsive and fast website. This article explores various techniques that can be used to balance high volume traffic to a website server, ensuring optimal performance and availability.
 
