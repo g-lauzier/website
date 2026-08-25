@@ -47,7 +47,6 @@ There are several code-based cryptography algorithms that are believed to be res
 
 It is difficult to say definitively which specific hash-based cryptographic algorithms will resist the post-quantum era, as the field is still in the early stages of research and development. However, it is generally believed that hash-based cryptography, which relies on the difficulty of finding a collision (i.e., two different inputs that produce the same hash output) in a given hash function, has the potential to be quantum-resistant. This is because it is thought that finding collisions in hash functions using quantum computers may still be computationally infeasible, even in the post-quantum era. Some examples of hash-based cryptographic algorithms that have been proposed as potential candidates for quantum resistance include the Merkle-Damgård construction, the Sponge construction, and the HMAC construction. It is important to note, however, that the security of these and other hash-based cryptographic algorithms has not yet been rigorously tested against quantum attacks, and further research is needed to determine their true quantum resistance.
 
-## 
-**Conclusion**
+## Conclusion
 
 In conclusion, the potential for quantum computers to break current cryptographic methods has led to the need for post-quantum cryptography. Several options exist, including lattice-based, multivariate, code-based, and hash-based algorithms, which are resistant to attacks from quantum computers. It is important for organizations and individuals to start considering the transition to post-quantum cryptographic methods in order to secure their data and communications in the future.

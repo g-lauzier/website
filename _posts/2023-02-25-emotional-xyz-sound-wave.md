@@ -49,51 +49,7 @@ The Emotional XYZ soundwave project is an innovative approach to creating a more
 
 [See Emotional XYZ soundwave Github repository ](https://github.com/guillaumelauzier/emotional-xyz-soundwave)
 
-	
-	
-		Dark Mode
-	
-	
-		![](https://avatars.githubusercontent.com/u/55703540?v=4)
-
-	
-	
-		
-			**
-				[
-					emotional-xyz-soundwave
-					(this link opens in a new window)
-				](https://github.com/guillaumelauzier/emotional-xyz-soundwave)
-			**
-			*
-				by[
-					guillaumelauzier
-					(this link opens in a new window)
-				](https://github.com/guillaumelauzier)
-			*
-		
-
-		The code computes the STFT of the audio signal using overlapping windows, and various features can be extracted from the resulting STFT matrix, which can then be used to train a machine learning model, such as an SVM, to classify the emotional state of the speaker.
-
-		
-			
-				
-				1 Subscriber			
-			
-				
-				0 Watchers			
-			
-				
-				0 Forks			
-			[
-				Check out this repository on GitHub.com				(this link opens in a new window)
-			](https://github.com/guillaumelauzier/emotional-xyz-soundwave)
-		
-
-	
-
-## 
-References
+## References
 
 - Moheimani SR, Fleming AJ. Piezoelectric transducers for vibration control and damping. London: Springer; 2006 Jun 29.
 

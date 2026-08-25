@@ -27,8 +27,7 @@ Neural Style Transfer (NST) is a captivating intersection of artificial intellig
 
 ## How Neural Style Transfer Works with Python Example
 
-**
-Content and Style Images**: The process begins with two images: a content image (the subject you want to transform) and a style image (the artistic style to be transferred).
+**Content and Style Images**: The process begins with two images: a content image (the subject you want to transform) and a style image (the artistic style to be transferred).
 
 **Using a Pre-Trained CNN**: Typically, a pre-trained CNN like VGG19 is used. This network has been trained on a vast dataset of images and can effectively extract and represent features from these images.
 
@@ -179,8 +178,7 @@ These diverse applications showcase the versatility of NST, demonstrating its po
 
 These challenges highlight the need for ongoing research and development in the field of NST to enhance its efficiency, versatility, and accessibility.
 
-## 
-Necessary Hardware Resources for AI and Machine Learning in Art Generation
+## Necessary Hardware Resources for AI and Machine Learning in Art Generation
 
 To effectively work with AI and machine learning algorithms for art generation, which can be computationally intensive, certain hardware resources are essential:
 
@@ -256,8 +254,7 @@ Neural Style Transfer (NST), despite its innovative applications in art and tech
 
 Understanding and addressing these limitations and challenges is crucial for the advancement and wider application of NST technologies.
 
-## 
-Trends and Innovations in Neural Style Transfer (NST)
+## Trends and Innovations in Neural Style Transfer (NST)
 
 Neural Style Transfer (NST) is an evolving field with continuous advancements and innovations. These developments are broadening its applications and enhancing its efficiency:
 
@@ -287,7 +284,7 @@ Neural Style Transfer (NST) is an evolving field with continuous advancements an
 
 These trends and innovations are propelling NST into new realms of creativity and practical application, making it a rapidly growing area in the field of AI and machine learning.
 
-# How can Neural Style Transfer (NST) be used in Generative Art?
+## How can Neural Style Transfer (NST) be used in Generative Art?
 
 Neural Style Transfer (NST) offers a transformative approach to generative art, combining deep learning techniques to create visually striking and unique artworks. Its application in generative art can be understood through the following points:
 

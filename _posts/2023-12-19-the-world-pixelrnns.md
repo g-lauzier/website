@@ -33,8 +33,7 @@ At the heart of PixelRNNs lies the concept of generating pixels one at a time, f
 
 PixelRNNs come in two main variants: Row LSTM and Diagonal BiLSTM. The Row LSTM variant processes the image row by row, making it efficient for certain types of image patterns. In contrast, the Diagonal BiLSTM processes the image diagonally, offering a different perspective in understanding and generating image data. The choice between these two depends largely on the specific requirements of the task at hand.
 
-**
-Row LSTM**:
+**Row LSTM**:
 
 - **Row-by-Row Processing**: The Row LSTM variant of PixelRNN processes images row by row. This method is akin to reading a text in a book, where the understanding of each row is built upon the previous ones.
 
@@ -132,7 +131,7 @@ Training this model requires a dataset of images, which should be preprocessed t
 
 For real-world applications, you would need to expand this structure significantly, adjust hyperparameters, and possibly integrate additional features like convolutional layers or different RNN structures, depending on the specific requirements of your task.
 
-# How can Pixel Recurrent Neural Networks (PixelRNNs) be used for Generative art?
+## How can Pixel Recurrent Neural Networks (PixelRNNs) be used for Generative art?
 
 Pixel Recurrent Neural Networks (PixelRNNs) offer significant potential in the field of generative art. Here's how they can be utilized:
 
