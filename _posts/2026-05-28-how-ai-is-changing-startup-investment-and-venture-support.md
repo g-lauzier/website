@@ -3,7 +3,7 @@ layout: posts/post
 title: "How AI is changing startup investment and venture support"
 date: 2026-05-28 09:00:00 +0000
 categories: ["ai"]
-tags: ["venture capital", "AI", "portfolio support"]
+tags: ["venture-capital", "ai", "portfolio-support"]
 description: "Why the firms that win will pair human judgment with machine speed."
 permalink: "/how-ai-is-changing-startup-investment-and-venture-support/"
 canonical_url: "https://axal.vc/articles/how-ai-is-changing-startup-investment-and-venture-support"

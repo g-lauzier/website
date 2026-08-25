@@ -3,7 +3,7 @@ layout: posts/post
 title: "Cybersecurity and zero-trust systems"
 date: 2026-05-12 09:00:00 +0000
 categories: ["cybersecurity"]
-tags: ["cybersecurity", "zero trust", "security"]
+tags: ["cybersecurity", "zero-trust", "security"]
 description: "Never trust by default, always verify — security for how business actually operates today."
 permalink: "/cybersecurity-and-zero-trust-systems/"
 canonical_url: "https://axal.vc/articles/cybersecurity-and-zero-trust-systems"
