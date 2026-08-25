@@ -1,58 +1,43 @@
 {% comment %}
-  JSON-LD Structured Data — Venture Partner profile
+  JSON-LD Structured Data
   ─────────────────────────────────────────────────
-  Rendered only on post pages (layout: posts/post).
-  All author / organisation data flows from _config.yml.
-  Page-level overrides come from each post's YAML front matter.
+  Rendered on every page. All author / organisation data flows from
+  _config.yml; page-level overrides come from each page's YAML front matter.
 
-  Three linked entities inside a single @graph:
-    • BlogPosting  — the individual article
+  Entities always present in the @graph:
     • Person       — Guillaume Lauzier, Venture Partner
     • Organization — his professional brand / site
-{% endcomment %}
+    • WebSite      — the site itself
 
-{% if page.layout == "posts/post" %}
+  Added conditionally:
+    • WebPage      — every page, as the generic container (mainEntity points
+                      at the Person on the About page specifically, giving
+                      Google an explicit "this page is about this person"
+                      signal — the ProfilePage pattern).
+    • BlogPosting  — post pages only (layout: posts/post)
+    • BreadcrumbList — post pages and tag/archive pages
+{% endcomment %}
 
 {% assign _site_url  = site.url | default: "https://guillaumelauzier.com" %}
 {% assign _page_url  = _site_url | append: page.url %}
 {% assign _au        = site.author %}
 {% assign _org       = site.organization %}
-{% assign _post_desc = page.description | default: site.description %}
-{% assign _post_img  = page.post_image  | default: _au.image %}
-{% unless _post_img contains "http" %}
-  {% assign _post_img = _site_url | append: _post_img %}
+{% assign _page_desc = page.description | default: site.description %}
+{% assign _page_img  = page.post_image  | default: _au.image %}
+{% unless _page_img contains "http" %}
+  {% assign _page_img = _site_url | append: _page_img %}
 {% endunless %}
+{% assign _is_post = false %}
+{% if page.layout == "posts/post" %}{% assign _is_post = true %}{% endif %}
+{% assign _is_tag = false %}
+{% if page.layout == "tag" %}{% assign _is_tag = true %}{% endif %}
+{% assign _is_about = false %}
+{% if page.url == "/about/" %}{% assign _is_about = true %}{% endif %}
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
-
-    {
-      "@type": "BlogPosting",
-      "@id": {{ _page_url | jsonify }},
-      "headline": {{ page.title | strip_html | jsonify }},
-      "description": {{ _post_desc | strip_html | truncate: 200 | jsonify }},
-      "url": {{ _page_url | jsonify }},
-      "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-      "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }},
-      "image": {
-        "@type": "ImageObject",
-        "url": {{ _post_img | jsonify }}
-      },
-      "author": {
-        "@id": {{ _au.url | jsonify }}
-      },
-      "publisher": {
-        "@id": {{ _org.url | jsonify }}
-      },
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": {{ _page_url | jsonify }}
-      }{% if page.tags and page.tags.size > 0 %},
-      "keywords": {{ page.tags | join: ", " | jsonify }}{% endif %}{% if page.categories and page.categories.size > 0 %},
-      "articleSection": {{ page.categories | first | jsonify }}{% endif %}
-    },
 
     {
       "@type": "Person",
@@ -87,10 +72,115 @@
       "founder": {
         "@id": {{ _au.url | jsonify }}
       }
-    }
+    },
+
+    {
+      "@type": "WebSite",
+      "@id": {{ _site_url | append: "/#website" | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "url": {{ _site_url | jsonify }},
+      "description": {{ site.description | jsonify }},
+      "publisher": {
+        "@id": {{ _org.url | jsonify }}
+      }
+    },
+
+    {
+      "@type": "WebPage",
+      "@id": {{ _page_url | jsonify }},
+      "url": {{ _page_url | jsonify }},
+      "name": {{ page.title | default: site.title | strip_html | jsonify }},
+      "description": {{ _page_desc | strip_html | truncate: 200 | jsonify }},
+      "isPartOf": {
+        "@id": {{ _site_url | append: "/#website" | jsonify }}
+      }{% if _is_about %},
+      "about": {
+        "@id": {{ _au.url | jsonify }}
+      },
+      "mainEntity": {
+        "@id": {{ _au.url | jsonify }}
+      }{% endif %},
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": {{ _page_img | jsonify }}
+      }
+    }{% if _is_post %},
+
+    {
+      "@type": "BlogPosting",
+      "@id": {{ _page_url | append: "#article" | jsonify }},
+      "headline": {{ page.title | strip_html | jsonify }},
+      "description": {{ _page_desc | strip_html | truncate: 200 | jsonify }},
+      "url": {{ _page_url | jsonify }},
+      "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+      "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }},
+      "image": {
+        "@type": "ImageObject",
+        "url": {{ _page_img | jsonify }}
+      },
+      "author": {
+        "@id": {{ _au.url | jsonify }}
+      },
+      "publisher": {
+        "@id": {{ _org.url | jsonify }}
+      },
+      "mainEntityOfPage": {
+        "@id": {{ _page_url | jsonify }}
+      }{% if page.tags and page.tags.size > 0 %},
+      "keywords": {{ page.tags | join: ", " | jsonify }}{% endif %}{% if page.categories and page.categories.size > 0 %},
+      "articleSection": {{ page.categories | first | jsonify }}{% endif %}
+    },
+
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ _page_url | append: "#breadcrumb" | jsonify }},
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": {{ _site_url | jsonify }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Writing",
+          "item": {{ _site_url | append: "/writing" | jsonify }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ page.title | strip_html | jsonify }},
+          "item": {{ _page_url | jsonify }}
+        }
+      ]
+    }{% elsif _is_tag %},
+
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ _page_url | append: "#breadcrumb" | jsonify }},
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": {{ _site_url | jsonify }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Writing",
+          "item": {{ _site_url | append: "/writing" | jsonify }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ page.title | capitalize | jsonify }},
+          "item": {{ _page_url | jsonify }}
+        }
+      ]
+    }{% endif %}
 
   ]
 }
 </script>
-
-{% endif %}
