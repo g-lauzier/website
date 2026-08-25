@@ -49,7 +49,7 @@ The applications of transfer learning are vast and varied. It has been successfu
 
 Transfer learning exhibits remarkable adaptability, being applicable to a wide array of tasks and compatible with various types of neural networks. Whether it's Convolutional Neural Networks (CNNs) for visual data or Recurrent Neural Networks (RNNs) for sequential data, transfer learning can enhance the performance of these models across different domains.
 
-# How Transfer Learning is Revolutionizing Generative Art
+## How Transfer Learning is Revolutionizing Generative Art
 
 Transfer Learning is playing a pivotal role in the field of generative art, opening new avenues for creativity and innovation. Here's how it's being utilized:
 

@@ -52,7 +52,7 @@ GNNs' adaptability to graph data makes them invaluable in areas where relationsh
 
 Spanning from basic concepts to cutting-edge advancements, GNNs are continually evolving. Ongoing research and development are likely to amplify their capabilities, making them even more effective in handling diverse, graph-related challenges [[5](https://www.frontiersin.org/articles/10.3389/fgene.2021.690049)].
 
-# How can Graph Neural Networks be used in Generative Art?
+## How can Graph Neural Networks be used in Generative Art?
 
 Graph Neural Networks (GNNs) have significant potential in the realm of generative art, leveraging their unique capabilities in understanding and manipulating graph-structured data. Here are some ways GNNs can be applied in this field:
 
@@ -60,7 +60,7 @@ Graph Neural Networks (GNNs) have significant potential in the realm of generati
 
 
 
-# Python code example of a Graph Neural Networks
+## Python code example of a Graph Neural Networks
 
 Here's a basic example of implementing a Graph Neural Network (GNN) using PyTorch. This code demonstrates the creation of a simple GNN for node classification on a graph:
 

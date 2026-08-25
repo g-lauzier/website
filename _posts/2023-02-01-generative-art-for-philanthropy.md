@@ -25,7 +25,6 @@ For example, a generative artist could use data on the number of meals provided 
 
 Similarly, data on the number of children vaccinated in a particular region could be used to create a generative artwork that visualizes the impact of the vaccination program. This artwork could be used to raise awareness about the importance of vaccinations and promote the work of the organization.
 
-## 
-Conclusion
+## Conclusion
 
 Generative art is a unique form of art that has the potential to support philanthropic causes in various ways. Through auctions, limited edition prints, collaborations, and by utilizing real-life data from charitable organizations, generative art can help raise funds and awareness for important causes. By combining creativity and innovation with philanthropy, generative art can make a meaningful contribution to society.

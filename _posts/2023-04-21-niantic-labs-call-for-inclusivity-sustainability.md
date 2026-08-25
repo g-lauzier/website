@@ -19,8 +19,7 @@ Moreover, the survey data emphasizes the importance of remote raiding in fosteri
 
 The overwhelmingly negative sentiment expressed by survey respondents indicates that the majority of players are unhappy with the remote raid limitations, which could lead to decreased engagement, reduced in-game purchases, and a weakened sense of community within the game. To maintain Pokémon GO's long-term appeal, Niantic Labs must address these concerns and prioritize the needs and sentiments of its player base.
 
-## 
-Conclusion
+## Conclusion
 
 Niantic Labs needs to actively listen to player feedback and adjust its policies to create a more inclusive and sustainable gaming experience for all players. Fostering a positive gaming environment and prioritizing the diverse needs of the player base are essential for the continued success of Pokémon GO.
 
