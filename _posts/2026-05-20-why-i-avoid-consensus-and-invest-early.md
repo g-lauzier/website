@@ -3,7 +3,7 @@ layout: posts/post
 title: "Why I avoid consensus and invest early"
 date: 2026-05-20 09:00:00 +0000
 categories: ["venture"]
-tags: ["venture capital", "early stage", "conviction"]
+tags: ["venture-capital", "early-stage", "conviction"]
 description: "Conviction before the market, and the system that makes moving early possible."
 permalink: "/why-i-avoid-consensus-and-invest-early/"
 canonical_url: "https://axal.vc/articles/why-i-avoid-consensus-and-invest-early"
