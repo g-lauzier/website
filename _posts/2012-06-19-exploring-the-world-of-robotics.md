@@ -5,7 +5,7 @@ date: 2012-06-19 00:00:00 +0000
 categories: ["ai"]
 tags: []
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/festival-robotique-epfl-2012.png"
-description: "A video covering the 5th edition of the EPFL Robotics Festival, which took place on May 5th. The video features different exhibitors and spectacles that were present at the festival. You filmed and ed"
+description: "A video covering the 5th edition of the EPFL Robotics Festival, which took place on May 5th."
 permalink: "/exploring-the-world-of-robotics/"
 ---
 

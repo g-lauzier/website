@@ -4,8 +4,8 @@ title: "Noctune: A Nightlife and Music Videos Website"
 date: 2013-01-13 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["bootstrap"]
-post_image: "/assets/images/noctune-nightlife-music.png"
-description: "The \"Nightlife and Music Videos\" website was developed on CMS WordPress using PHP, MySQL, Javascript, and Bootstrap framework. It showcased video reports that covered the night-life scene, artists, an"
+post_image: "/assets/images/noctune-nightlife-music.webp"
+description: "The \"Nightlife and Music Videos\" website was developed on CMS WordPress using PHP, MySQL, Javascript, and Bootstrap framework."
 permalink: "/noctune-a-nightlife-and-music-videos-website/"
 ---
 

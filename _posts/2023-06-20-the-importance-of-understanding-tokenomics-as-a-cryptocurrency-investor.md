@@ -5,7 +5,7 @@ date: 2023-06-20 00:00:00 +0000
 categories: ["fintech"]
 tags: ["blockchain"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/generatedart_blockchain_technology_db701dd4-1b82-4c06-a567-f46f0171f8b3-2.png"
-description: "In the world of cryptocurrencies and blockchain, \"tokenomics\" — a compound of tokens and economics — has emerged as a critical concept that every crypto investor must fully understand. Tokenomics desc"
+description: "In the world of cryptocurrencies and blockchain, \"tokenomics\" — a compound of tokens and economics — has emerged as a critical concept that every crypto…"
 permalink: "/the-importance-of-understanding-tokenomics-as-a-cryptocurrency-investor/"
 ---
 

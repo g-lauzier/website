@@ -4,8 +4,8 @@ title: "&#8220;Play + Draw&#8221;: An Interactive Installation and Scenography"
 date: 2013-06-10 00:00:00 +0000
 categories: ["design"]
 tags: []
-post_image: "/assets/images/play-draw-interactive-installation.png"
-description: "\"Play + Draw\" was an interactive installation and scenography project featured at the 2013 Figment Festival on Governors Island in New York, inviting participants to control sound and video live as VJs and DJs."
+post_image: "/assets/images/play-draw-interactive-installation.webp"
+description: "\"Play + Draw\" was an interactive installation and scenography project featured at the 2013 Figment Festival on Governors Island in New York."
 permalink: "/play-draw-an-interactive-installation-and-scenography/"
 ---
 

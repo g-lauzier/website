@@ -5,7 +5,7 @@ date: 2023-06-26 00:00:00 +0000
 categories: ["digital-art"]
 tags: ["cellular-automata"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/generatedart_fractal_art_7eeffb8b-eb2b-4e45-b8c2-9ac36d7d9c35-2.png"
-description: "Generative art represents an exciting merger of creativity and computation, where algorithms replace the brush, shaping intricate patterns and complex systems that transcend the bounds of traditional "
+description: "Generative art represents an exciting merger of creativity and computation, where algorithms replace the brush, shaping intricate patterns and complex…"
 permalink: "/generative-art-the-algorithmic-touch/"
 ---
 

@@ -5,7 +5,7 @@ date: 2023-02-28 00:00:00 +0000
 categories: ["design"]
 tags: []
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/generatedart_generative_floor_art_public_space_2f5f2fc1-ab95-42cb-a862-73f3bb7fe710-2.png"
-description: "Generative art, a captivating fusion of technology and creativity, has taken the world of interior design by storm. One of the most innovative applications of this artistic movement is generative art "
+description: "Generative art, a captivating fusion of technology and creativity, has taken the world of interior design by storm."
 permalink: "/generative-art-flooring-epoxy-paint/"
 ---
 

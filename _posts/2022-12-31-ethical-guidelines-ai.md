@@ -4,8 +4,8 @@ title: "Ethical guidelines for AI and machine learning"
 date: 2022-12-31 00:00:00 +0000
 categories: ["ai"]
 tags: ["accountability", "artificial-intelligence", "bias"]
-post_image: "/assets/images/ethical-guidelines-ai.png"
-description: "Artificial intelligence (AI) and machine learning have the potential to bring significant benefits to society, including improvements in healthcare, transportation, education, and other areas. However"
+post_image: "/assets/images/ethical-guidelines-ai.webp"
+description: "Artificial intelligence (AI) and machine learning have the potential to bring significant benefits to society, including improvements in healthcare…"
 permalink: "/ethical-guidelines-ai/"
 ---
 

@@ -5,7 +5,7 @@ date: 2020-02-26 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["blockchain-technology", "commoncrypto"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/blockchainiosapp.png"
-description: "The Basic Educative iOS App on the Logic of Blockchain Technology is a simple application designed to educate users on the workings of blockchain smart contract transactions. Users can enter the provi"
+description: "The Basic Educative iOS App on the Logic of Blockchain Technology is a simple application designed to educate users on the workings of blockchain smart…"
 permalink: "/blockchain-ios-app/"
 ---
 

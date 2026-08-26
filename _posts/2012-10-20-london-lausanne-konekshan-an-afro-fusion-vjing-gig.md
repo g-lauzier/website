@@ -5,7 +5,7 @@ date: 2012-10-20 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["african-dance", "afro-fusion"]
 post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/vj-gig-guillaume-lauzier.png"
-description: "Immerse yourself in the vibrant fusion of tradition and digital innovation in the “London Lausanne Konekshan” video teaser. Conceived and brought to life by my performance as the VJ, the video is an a"
+description: "Immerse yourself in the vibrant fusion of tradition and digital innovation in the “London Lausanne Konekshan” video teaser."
 permalink: "/london-lausanne-konekshan-an-afro-fusion-vjing-gig/"
 ---
 

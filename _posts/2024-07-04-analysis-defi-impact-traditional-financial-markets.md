@@ -4,8 +4,8 @@ title: "Analysis of DeFi's Impact on Traditional Financial Markets"
 date: 2024-07-04 00:00:00 +0000
 categories: ["fintech"]
 tags: ["market", "tokenomic"]
-post_image: "/assets/images/analysis-defi-impact.png"
-description: "Decentralized Finance (DeFi) has emerged as one of the most transformative trends in the financial sector. By leveraging blockchain technology, DeFi create"
+post_image: "/assets/images/analysis-defi-impact.webp"
+description: "Decentralized Finance (DeFi) has emerged as one of the most transformative trends in the financial sector."
 permalink: "/analysis-defi-impact-traditional-financial-markets/"
 ---
 

@@ -4,8 +4,8 @@ title: "The Basics of DeFi"
 date: 2023-01-07 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["technical", "tokenomic"]
-post_image: "/assets/images/the-basics-of-defi.png"
-description: "Decentralized Finance, or DeFi, is transforming the financial world by offering an open, transparent, and intermediary-free alternative to traditional fina"
+post_image: "/assets/images/the-basics-of-defi.webp"
+description: "Decentralized Finance, or DeFi, is transforming the financial world by offering an open, transparent, and intermediary-free alternative to traditional…"
 permalink: "/the-basics-of-defi/"
 ---
 

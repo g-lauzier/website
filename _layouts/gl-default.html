@@ -3,15 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{% if page.title %}{{ page.title }} — {% endif %}Guillaume Lauzier</title>
-  {% assign meta_description = page.description | default: site.description %}
-  {% assign og_title = page.title | default: site.title %}
+  {% if page.layout == "tag" %}
+    {% assign _tag_post_count = page.posts | size %}
+    {% capture _display_title %}{{ page.title | capitalize }}{% endcapture %}
+    {% capture meta_description %}{{ _tag_post_count }} field note{% if _tag_post_count != 1 %}s{% endif %} tagged “{{ page.title }}” — essays on Digital Infrastructure, Cybersecurity, Blockchain, AI, and the architecture of the new digital sovereign, by Guillaume Lauzier.{% endcapture %}
+  {% else %}
+    {% assign _display_title = page.title %}
+    {% assign meta_description = page.description | default: site.description %}
+  {% endif %}
+  <title>{% if _display_title %}{{ _display_title }} — {% endif %}Guillaume Lauzier</title>
+  {% assign og_title = _display_title | default: site.title %}
   {% assign og_url = site.url | append: page.url %}
   {% assign og_image = page.post_image | default: site.author.image %}
   {% unless og_image contains "http" %}
   {% assign og_image = site.url | append: og_image %}
   {% endunless %}
   <meta name="description" content="{{ meta_description | escape }}" />
+  {% comment %} Self-referencing canonical — prevents duplicate-content splitting across URL variants (trailing slash, query params, etc.) {% endcomment %}
+  <link rel="canonical" href="{{ og_url }}" />
+  {% if page.robots %}
+  <meta name="robots" content="{{ page.robots }}" />
+  {% endif %}
   <meta property="og:site_name" content="Guillaume Lauzier" />
   <meta property="og:type" content="{% if page.layout == 'posts/post' %}article{% else %}website{% endif %}" />
   <meta property="og:title" content="{{ og_title | escape }}" />

@@ -4,8 +4,8 @@ title: "VJs TV: An Online Platform for Global Artists and Creatives"
 date: 2012-12-15 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["ad-free-tv"]
-post_image: "/assets/images/vjs-tv-online-platform.png"
-description: "The VJs TV project was developed on WordPress CMS using PHP, MySQL, JavaScript, and Bootstrap framework. A form was created on the website to allow artists from across the world to submit their projec"
+post_image: "/assets/images/vjs-tv-online-platform.webp"
+description: "The VJs TV project was developed on WordPress CMS using PHP, MySQL, JavaScript, and Bootstrap framework."
 permalink: "/vjs-tv-project-an-online-platform-for-global-artists-and-creatives/"
 ---
 
