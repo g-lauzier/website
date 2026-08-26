@@ -9,7 +9,7 @@
   if (reducedMotion) {
     // Render a single static portrait fallback for accessibility.
     var fallback = document.createElement('img');
-    fallback.src = '/assets/images/portrait.jpg';
+    fallback.src = '/assets/images/portrait.webp';
     fallback.alt = 'Guillaume Lauzier';
     fallback.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;';
     container.appendChild(fallback);
@@ -78,7 +78,7 @@ function getHeroDimensions() {
 }
 
 window.preload = function() {
-  img = loadImage('/assets/images/portrait.jpg');
+  img = loadImage('/assets/images/portrait.webp');
 };
 
 window.setup = function() {
