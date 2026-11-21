@@ -4,9 +4,16 @@ title: "Neural Style Transfer (NST)"
 date: 2023-12-10 00:00:00 +0000
 categories: ["ai"]
 tags: ["ai", "art", "artistic-style"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/12/generatedart_super_computer_image_processor_-ar_32_-v_4_777b2e40-5906-4a23-868b-6976fb0cc7ee-3.png"
+post_image: "/assets/images/writing/neural-style-transfer-nst.webp"
 description: "Neural Style Transfer (NST) is a captivating intersection of artificial intelligence and artistic creativity."
 permalink: "/neural-style-transfer-nst/"
+image_alt: "One continuous ribbon changes from ceramic to metal and cobalt glass while preserving its shape, illustrating neural style transfer."
+post_image_small: "/assets/images/writing/neural-style-transfer-nst-640.webp"
+post_image_medium: "/assets/images/writing/neural-style-transfer-nst-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/12/generatedart_super_computer_image_processor_-ar_32_-v_4_777b2e40-5906-4a23-868b-6976fb0cc7ee-3.png"
 ---
 
 Neural Style Transfer (NST) is a captivating intersection of artificial intelligence and artistic creativity. This technology leverages the capabilities of deep learning to merge the essence of one image with the aesthetic style of another.

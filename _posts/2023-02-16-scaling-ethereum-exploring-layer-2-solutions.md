@@ -4,9 +4,16 @@ title: "Scaling Ethereum: Exploring Layer 2 Solutions"
 date: 2023-02-16 00:00:00 +0000
 categories: ["blockchain"]
 tags: []
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_Ethereum_Rollups_speed.png"
+post_image: "/assets/images/writing/scaling-ethereum-exploring-layer-2-solutions.webp"
 description: "Ethereum is one of the most popular blockchain networks, offering developers the ability to create and deploy decentralized applications (dApps) and smart…"
 permalink: "/scaling-ethereum-exploring-layer-2-solutions/"
+image_alt: "Silver beads travel along elevated glass ribbons above a dark foundation with a blue seam."
+post_image_small: "/assets/images/writing/scaling-ethereum-exploring-layer-2-solutions-640.webp"
+post_image_medium: "/assets/images/writing/scaling-ethereum-exploring-layer-2-solutions-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_Ethereum_Rollups_speed.png"
 ---
 
 Ethereum is one of the most popular blockchain networks, offering developers the ability to create and deploy decentralized applications (dApps) and smart contracts. However, as the number of users and transactions on the Ethereum network has grown, the network's capacity to process transactions has become increasingly limited. This has led to high transaction fees and slow confirmation times, limiting the network's scalability and usability.

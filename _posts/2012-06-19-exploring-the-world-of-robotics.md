@@ -4,9 +4,18 @@ title: "Exploring the World of Robotics: A Look into the EPFL Robotics Festival"
 date: 2012-06-19 00:00:00 +0000
 categories: ["ai"]
 tags: []
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/festival-robotique-epfl-2012.png"
+post_image: "/assets/images/writing/archive/exploring-the-world-of-robotics.webp"
 description: "A video covering the 5th edition of the EPFL Robotics Festival, which took place on May 5th."
 permalink: "/exploring-the-world-of-robotics/"
+post_image_small: "/assets/images/writing/archive/exploring-the-world-of-robotics-640.webp"
+post_image_medium: "/assets/images/writing/archive/exploring-the-world-of-robotics-960.webp"
+image_width: 1280
+image_height: 720
+image_alt: "Close view of a small humanoid robot at the EPFL Robotics Festival."
+image_caption: "Thumbnail from the original video."
+image_credit: "Guillaume J. Lauzier on Vimeo"
+image_source: "https://vimeo.com/42269464"
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/festival-robotique-epfl-2012.png"
 ---
 
 A video covering the 5th edition of the EPFL Robotics Festival, which took place on May 5th. The video features different exhibitors and spectacles that were present at the festival. You filmed and edited the video yourself using Final Cut Pro.

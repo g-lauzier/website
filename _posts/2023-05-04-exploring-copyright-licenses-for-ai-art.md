@@ -4,9 +4,16 @@ title: "Exploring Copyright Licenses for AI Art"
 date: 2023-05-04 00:00:00 +0000
 categories: ["digital-art"]
 tags: ["ai-art", "blockchain", "collaborative-royalty-distribution", "collective-licensing-models"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/generatedart_AI_Art_legal_7eb6dc1b-01e6-43b2-8108-efad70ae1228-2.png"
+post_image: "/assets/images/writing/exploring-copyright-licenses-for-ai-art.webp"
 description: "As AI-generated art becomes increasingly popular and sophisticated, questions surrounding copyright licenses for such works have become more pressing."
 permalink: "/exploring-copyright-licenses-for-ai-art/"
+image_alt: "Blue and violet woven threads pass through two metal frames with different openings."
+post_image_small: "/assets/images/writing/exploring-copyright-licenses-for-ai-art-640.webp"
+post_image_medium: "/assets/images/writing/exploring-copyright-licenses-for-ai-art-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/generatedart_AI_Art_legal_7eb6dc1b-01e6-43b2-8108-efad70ae1228-2.png"
 ---
 
 As AI-generated art becomes increasingly popular and sophisticated, questions surrounding copyright licenses for such works have become more pressing. This article examines various copyright licenses that could be used for AI art, taking into account the needs and intentions of the artist, as well as potential legal complexities.

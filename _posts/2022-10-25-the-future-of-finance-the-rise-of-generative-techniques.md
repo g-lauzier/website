@@ -4,9 +4,16 @@ title: "The future of finance: The rise of generative techniques"
 date: 2022-10-25 00:00:00 +0000
 categories: ["fintech"]
 tags: ["artificial-intelligence", "asset-pricing"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2022/12/1-s2.0-S0378437119307277-gr2.jpg"
+post_image: "/assets/images/writing/the-future-of-finance-the-rise-of-generative-techniques.webp"
 description: "Generative finance is a branch of finance that uses machine learning and other computational techniques to generate investment ideas, forecast asset prices…"
 permalink: "/the-future-of-finance-the-rise-of-generative-techniques/"
+post_image_small: "/assets/images/writing/the-future-of-finance-the-rise-of-generative-techniques-640.webp"
+post_image_medium: "/assets/images/writing/the-future-of-finance-the-rise-of-generative-techniques-960.webp"
+image_width: 1600
+image_height: 900
+image_alt: "Smoked-glass curves fan outward around a blue path, suggesting alternative financial futures."
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2022/12/1-s2.0-S0378437119307277-gr2.jpg"
 ---
 
 Generative finance is a branch of finance that uses machine learning and other computational techniques to generate investment ideas, forecast asset prices, and design financial products. It combines ideas from machine learning, computer science, and finance to create a new approach to financial analysis and decision-making.

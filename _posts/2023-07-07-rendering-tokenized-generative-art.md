@@ -4,9 +4,16 @@ title: "Demystifying the Technicalities of Rendering Tokenized Generative Art"
 date: 2023-07-07 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["blockchain"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_ethereum_smart_contract_8a8913a8-7ab4-40f5-bb5d-2fb3f2eca9b5-2.png"
+post_image: "/assets/images/writing/rendering-tokenized-generative-art.webp"
 description: "Art and technology have been gradually intertwining over the years, culminating in the emergence of tokenized generative art."
 permalink: "/rendering-tokenized-generative-art/"
+image_alt: "A cobalt filament passes through glass layers and unfolds into a metal artwork, suggesting generative art rendering."
+post_image_small: "/assets/images/writing/rendering-tokenized-generative-art-640.webp"
+post_image_medium: "/assets/images/writing/rendering-tokenized-generative-art-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_ethereum_smart_contract_8a8913a8-7ab4-40f5-bb5d-2fb3f2eca9b5-2.png"
 ---
 
 Art and technology have been gradually intertwining over the years, culminating in the emergence of tokenized generative art. It’s a fascinating convergence of creativity and computer science, involving the use of algorithms for art creation and blockchain technology for tokenization and provenance tracking. This article aims to break down the complex technicalities behind rendering tokenized generative art.

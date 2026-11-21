@@ -7,6 +7,13 @@ tags: ["venture-capital", "ai", "portfolio-support"]
 description: "Why the firms that win will pair human judgment with machine speed."
 permalink: "/how-ai-is-changing-startup-investment-and-venture-support/"
 canonical_url: "https://axal.vc/articles/how-ai-is-changing-startup-investment-and-venture-support"
+post_image: "/assets/images/writing/ai-venture-support.webp"
+post_image_small: "/assets/images/writing/ai-venture-support-640.webp"
+post_image_medium: "/assets/images/writing/ai-venture-support-960.webp"
+image_alt: "Graphite architectural modules linked by blue optical threads beneath a glass focusing lens."
+image_caption: "Editorial illustration."
+image_width: 1600
+image_height: 900
 ---
 
 _Originally published on [Axal VC](https://axal.vc/articles/how-ai-is-changing-startup-investment-and-venture-support)._

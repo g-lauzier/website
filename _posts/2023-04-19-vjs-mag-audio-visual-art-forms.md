@@ -4,9 +4,16 @@ title: "VJs Mag: Lighting the Path for Audio-Visual Art Forms"
 date: 2023-04-19 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["art-profiles", "audio-visual-art", "audio-visual-community"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/vjsmag-project.png"
+post_image: "/assets/images/writing/vjs-mag-audio-visual-art-forms.webp"
 description: "In 2013, spurred by an intense passion for VJing, I set out to create a digital space that would serve as a meeting point for sound and visual media."
 permalink: "/vjs-mag-audio-visual-art-forms/"
+image_alt: "Projection lenses cast blue and violet patterns through a row of translucent screens."
+post_image_small: "/assets/images/writing/vjs-mag-audio-visual-art-forms-640.webp"
+post_image_medium: "/assets/images/writing/vjs-mag-audio-visual-art-forms-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/vjsmag-project.png"
 ---
 
 In 2013, spurred by an intense passion for VJing, I set out to create a digital space that would serve as a meeting point for sound and visual media. This marked the birth of [VJs Mag](https://vjsmag.com). Since its inception, the publication has gone through three transformative phases in its quest to explore and amplify the multifaceted world of audio-visual art forms. After a hiatus in 2017, [VJs Mag](https://vjsmag.com) made a comeback in 2022, rejuvenated and ready to embark on new adventures in the ever-evolving realm of audio-visual artistry.

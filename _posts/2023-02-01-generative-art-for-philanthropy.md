@@ -4,9 +4,16 @@ title: "The Power of Generative Art for Philanthropy"
 date: 2023-02-01 00:00:00 +0000
 categories: ["digital-art"]
 tags: ["algorithms", "charity-auctions", "collaborations"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_generative_art_philanthropy.png"
+post_image: "/assets/images/writing/generative-art-for-philanthropy.webp"
 description: "Generative art, a form of art created through the use of algorithms and rules, has been gaining popularity in recent years for its unique and mesmerizing…"
 permalink: "/generative-art-for-philanthropy/"
+image_alt: "A branching metal sculpture scatters blue and amber petals into a circle of small bowls."
+post_image_small: "/assets/images/writing/generative-art-for-philanthropy-640.webp"
+post_image_medium: "/assets/images/writing/generative-art-for-philanthropy-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_generative_art_philanthropy.png"
 ---
 
 Generative art, a form of art created through the use of algorithms and rules, has been gaining popularity in recent years for its unique and mesmerizing aesthetics. However, it is not just the visual appeal of generative art that makes it stand out. Its potential for charitable purposes has also been recognized by artists, collectors, and organizations. Through various means, generative art can be used as a powerful tool to raise funds and awareness for important causes. In this context, generative art becomes a means to not only support an artist's vision but also contribute to the greater good. In this essay, we will explore how generative art can be used for philanthropic purposes and how it can have a positive impact on society.

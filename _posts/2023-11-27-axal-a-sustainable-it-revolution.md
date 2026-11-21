@@ -4,9 +4,16 @@ title: "AXAL: A Sustainable IT Revolution"
 date: 2023-11-27 00:00:00 +0000
 categories: ["infrastructure"]
 tags: ["agriculture-integration", "axal", "community-resilience"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/11/transformative.png"
+post_image: "/assets/images/writing/axal-a-sustainable-it-revolution.webp"
 description: "As a part of my diverse project portfolio, I am proud to introduce AXAL, a groundbreaking initiative that stands at the forefront of sustainable IT…"
 permalink: "/axal-a-sustainable-it-revolution/"
+image_alt: "Modular computing pavilions connect to a greenhouse through heat-exchange channels, illustrating a local sustainable IT ecosystem."
+post_image_small: "/assets/images/writing/axal-a-sustainable-it-revolution-640.webp"
+post_image_medium: "/assets/images/writing/axal-a-sustainable-it-revolution-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/11/transformative.png"
 ---
 
 As a part of my diverse project portfolio, I am proud to introduce [AXAL](https://axal.io), a groundbreaking initiative that stands at the forefront of sustainable IT solutions. This project embodies my commitment to integrating technology with ecological responsibility, creating a resilient and self-sufficient future.

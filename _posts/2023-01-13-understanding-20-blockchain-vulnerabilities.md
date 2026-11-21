@@ -4,9 +4,16 @@ title: "Understanding 20 Blockchain Vulnerabilities"
 date: 2023-01-13 00:00:00 +0000
 categories: ["cybersecurity"]
 tags: ["51-attacks", "blockchain"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/generatedart_blockchain_attack_3ae5c706-8a16-4238-808a-32eef2f3db8b.png"
+post_image: "/assets/images/writing/understanding-20-blockchain-vulnerabilities.webp"
 description: "Blockchain technology has been hailed as a revolutionary development in the field of digital transactions, offering a secure and transparent way to record…"
 permalink: "/understanding-20-blockchain-vulnerabilities/"
+post_image_small: "/assets/images/writing/understanding-20-blockchain-vulnerabilities-640.webp"
+post_image_medium: "/assets/images/writing/understanding-20-blockchain-vulnerabilities-960.webp"
+image_width: 1600
+image_height: 900
+image_alt: "A blue inspection light reveals hairline gaps in a ring of connected graphite blocks."
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/generatedart_blockchain_attack_3ae5c706-8a16-4238-808a-32eef2f3db8b.png"
 ---
 
 Blockchain technology has been hailed as a revolutionary development in the field of digital transactions, offering a secure and transparent way to record and transfer digital assets. However, despite its many advantages, blockchain technology is not immune to vulnerabilities and threats. 

@@ -7,6 +7,13 @@ tags: ["venture-capital", "early-stage", "conviction"]
 description: "Conviction before the market, and the system that makes moving early possible."
 permalink: "/why-i-avoid-consensus-and-invest-early/"
 canonical_url: "https://axal.vc/articles/why-i-avoid-consensus-and-invest-early"
+post_image: "/assets/images/writing/investing-before-consensus.webp"
+post_image_small: "/assets/images/writing/investing-before-consensus-640.webp"
+post_image_medium: "/assets/images/writing/investing-before-consensus-960.webp"
+image_alt: "A single blue glass path diverges from a field of parallel graphite ribbons."
+image_caption: "Editorial illustration."
+image_width: 1600
+image_height: 900
 ---
 
 _Originally published on [Axal VC](https://axal.vc/articles/why-i-avoid-consensus-and-invest-early)._

@@ -4,9 +4,16 @@ title: "Before Bitcoin"
 date: 2022-08-21 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["bitcoin", "blockchain"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2022/12/Logo-e-gold.png"
+post_image: "/assets/images/writing/before-bitcoin.webp"
 description: "Before Bitcoin, there were several attempts at creating digital currencies, but they were not as successful or widely adopted as Bitcoin."
 permalink: "/before-bitcoin/"
+post_image_small: "/assets/images/writing/before-bitcoin-640.webp"
+post_image_medium: "/assets/images/writing/before-bitcoin-960.webp"
+image_width: 1600
+image_height: 900
+image_alt: "Metallic discs and partial arcs form a progression toward a translucent blue disc."
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2022/12/Logo-e-gold.png"
 ---
 
 Before Bitcoin, there were several attempts at creating digital currencies, but they were not as successful or widely adopted as Bitcoin.

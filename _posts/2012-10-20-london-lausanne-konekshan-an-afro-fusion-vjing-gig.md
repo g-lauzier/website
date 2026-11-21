@@ -4,9 +4,18 @@ title: "London Lausanne Konekshan: An Afro-Fusion VJing Gig"
 date: 2012-10-20 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["african-dance", "afro-fusion"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/vj-gig-guillaume-lauzier.png"
+post_image: "/assets/images/writing/archive/london-lausanne-konekshan-an-afro-fusion-vjing-gig.webp"
 description: "Immerse yourself in the vibrant fusion of tradition and digital innovation in the “London Lausanne Konekshan” video teaser."
 permalink: "/london-lausanne-konekshan-an-afro-fusion-vjing-gig/"
+post_image_small: "/assets/images/writing/archive/london-lausanne-konekshan-an-afro-fusion-vjing-gig-640.webp"
+post_image_medium: "/assets/images/writing/archive/london-lausanne-konekshan-an-afro-fusion-vjing-gig-960.webp"
+image_width: 1280
+image_height: 720
+image_alt: "London Lausanne Konekshan teaser title card listing the Lausanne event."
+image_caption: "Thumbnail from the original video."
+image_credit: "Noctune on Vimeo"
+image_source: "https://vimeo.com/51304127"
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/vj-gig-guillaume-lauzier.png"
 ---
 
 Immerse yourself in the vibrant fusion of tradition and digital innovation in the “London Lausanne Konekshan” video teaser. Conceived and brought to life by my performance as the VJ, the video is an anticipation-builder for a much-awaited VJing gig at Le Bourge in Lausanne, Switzerland. The narrative skillfully weaves together two distinct worlds: the unfiltered charm of African villages and the dynamic rhythm of contemporary electronic dance culture.

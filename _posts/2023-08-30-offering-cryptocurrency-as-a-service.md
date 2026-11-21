@@ -4,9 +4,16 @@ title: "Offering Cryptocurrency as a Service"
 date: 2023-08-30 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["blockchain", "client-demand"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/08/generatedart_crypto_as_a_service_81d358a8-5545-4b22-845b-767a0d7aed80-2.png"
+post_image: "/assets/images/writing/offering-cryptocurrency-as-a-service.webp"
 description: "As financial landscapes shift and technological innovations come to the forefront, small banks find themselves in an intriguing yet challenging position."
 permalink: "/offering-cryptocurrency-as-a-service/"
+image_alt: "A glass module with a cobalt core fits into a graphite architectural structure, suggesting integrated cryptocurrency services."
+post_image_small: "/assets/images/writing/offering-cryptocurrency-as-a-service-640.webp"
+post_image_medium: "/assets/images/writing/offering-cryptocurrency-as-a-service-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/08/generatedart_crypto_as_a_service_81d358a8-5545-4b22-845b-767a0d7aed80-2.png"
 ---
 
 As financial landscapes shift and technological innovations come to the forefront, small banks find themselves in an intriguing yet challenging position. Gone are the days when traditional banking methods were sufficient to meet customer needs and compete effectively in the marketplace. With the rise of digital currencies, especially cryptocurrencies like Bitcoin, Ethereum, and a host of altcoins, the banking sector has reached a pivotal juncture. For small banks, the implementation of cryptocurrency services is not just a trend to observe; it's a business imperative. This article explores why it's crucial for small banks to integrate cryptocurrency into their business models to keep up with market challenges, technological advancements, and burgeoning client demand.

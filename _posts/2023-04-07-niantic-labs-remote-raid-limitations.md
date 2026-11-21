@@ -4,9 +4,16 @@ title: "Niantic Labs' Remote Raid Limitations in Pokémon GO: A Contradiction to
 date: 2023-04-07 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["communication"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/169.jpg"
+post_image: "/assets/images/writing/niantic-labs-remote-raid-limitations.webp"
 description: "Niantic Labs, the creator of the widely popular augmented reality (AR) game Pokémon GO, has recently decided to impose a remote raid limitation of 5 raids…"
 permalink: "/niantic-labs-remote-raid-limitations/"
+image_alt: "Blue bridges connect slate islands, while one isolated island remains beyond a broken connection."
+post_image_small: "/assets/images/writing/niantic-labs-remote-raid-limitations-640.webp"
+post_image_medium: "/assets/images/writing/niantic-labs-remote-raid-limitations-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/169.jpg"
 ---
 
 Niantic Labs, the creator of the widely popular augmented reality (AR) game Pokémon GO, has recently decided to impose a remote raid limitation of 5 raids per day. This controversial move has not only been met with discontent from the Pokémon GO community but also raises questions about the company's commitment to global sustainability objectives and the values they present to investors. Players argue that the imposed limitations will force them to use their cars to travel between raids, potentially increasing carbon emissions. Additionally, the decision seems to contradict Niantic Labs' focus on "inclusion," "empowerment of people," "social impact," and "diversity," as a significant portion of the player base consists of individuals living in rural areas, those with disabilities, or players who cannot participate in raids physically.

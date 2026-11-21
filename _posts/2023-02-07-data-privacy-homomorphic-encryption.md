@@ -4,9 +4,16 @@ title: "Data Privacy: Homomorphic Encryption"
 date: 2023-02-07 00:00:00 +0000
 categories: ["cybersecurity"]
 tags: []
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_homomorphic_encryption.png"
+post_image: "/assets/images/writing/data-privacy-homomorphic-encryption.webp"
 description: "In today's world, data privacy is becoming increasingly important as more and more sensitive information is being shared and stored online."
 permalink: "/data-privacy-homomorphic-encryption/"
+image_alt: "Metal rings surround a sealed smoked-glass capsule containing a blue threadlike form."
+post_image_small: "/assets/images/writing/data-privacy-homomorphic-encryption-640.webp"
+post_image_medium: "/assets/images/writing/data-privacy-homomorphic-encryption-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_homomorphic_encryption.png"
 ---
 
 In today's world, data privacy is becoming increasingly important as more and more sensitive information is being shared and stored online. At the same time, there is a growing need for computations to be performed on this data to gain insights and drive decision-making. Homomorphic encryption is a technique that can help bridge this gap by allowing computations to be performed on encrypted data, without the need for decryption.

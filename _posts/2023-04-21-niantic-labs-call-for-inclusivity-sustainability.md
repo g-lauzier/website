@@ -4,9 +4,16 @@ title: "Niantic Labs' Remote Raid Limitations: A Call for Greater Inclusivity an
 date: 2023-04-21 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["co%e2%82%82-emissions"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/generatedart_pikachu_saving_the_planet_6b5ee2d4-f95d-4cb6-9c77-094292beb042.png"
+post_image: "/assets/images/writing/niantic-labs-call-for-inclusivity-sustainability.webp"
 description: "Recent changes to remote raid limitations in Pokémon GO have raised concerns among players about Niantic Labs' commitment to global sustainability goals and…"
 permalink: "/niantic-labs-call-for-inclusivity-sustainability/"
+image_alt: "A transparent blue-lit ramp links distant stone terraces around a small moss garden."
+post_image_small: "/assets/images/writing/niantic-labs-call-for-inclusivity-sustainability-640.webp"
+post_image_medium: "/assets/images/writing/niantic-labs-call-for-inclusivity-sustainability-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/generatedart_pikachu_saving_the_planet_6b5ee2d4-f95d-4cb6-9c77-094292beb042.png"
 ---
 
 Recent changes to remote raid limitations in Pokémon GO have raised concerns among players about Niantic Labs' commitment to global sustainability goals and game inclusivity. Based on the Go Raiding Survey, the majority of players express negative sentiments towards the changes, which may have unintended consequences on CO₂ emissions and overall player engagement. Niantic Labs must prioritize the diverse needs of its player base to foster a more inclusive and sustainable gaming experience.

@@ -1,60 +1,65 @@
 ---
 layout: gl-default
 title: "Writing"
-description: "Essays on Digital Infrastructure, AI, Cybersecurity, and the architecture of the new digital sovereign."
+description: "Essays on AI, digital infrastructure, cybersecurity, and venture building by Guillaume Lauzier."
+writing_assets: true
 ---
 
-<main>
-  <div class="gl-section gl-writing-section">
-    <p class="gl-section-label">Writing</p>
-    <h1 class="gl-section-title">Field Notes.</h1>
-    <p class="gl-section-body">Non-consensus thinking on the primitives that matter. Infrastructure, intelligence, and the architecture of what's inevitable.</p>
-    <h2 class="gl-section-title gl-writing-latest-title">Latest entries.</h2>
+{% assign featured = site.posts.first %}
+{% assign oldest = site.posts.last %}
+{% assign archive_count = site.posts.size | minus: 1 | at_least: 0 %}
 
-    <div class="gl-posts-list gl-writing-posts-list" id="gl-posts-list">
-      {% for post in site.posts %}
-      <a href="{{ post.url }}" class="gl-post-row gl-post-hidden" data-post-index="{{ forloop.index0 }}">
-        <span class="gl-post-date">{{ post.date | date: "%b %d, %Y" }}</span>
-        <span class="gl-post-title">{{ post.title }}</span>
-        <span class="gl-post-tag">{% if post.categories.first %}{{ post.categories.first }}{% endif %}</span>
-      </a>
+<main class="gl-writing" id="main-content">
+  <header class="gl-writing-intro">
+    <div>
+      <p class="gl-writing-eyebrow">Writing{% if featured %}<span aria-hidden="true"> / </span>{{ oldest.date | date: "%Y" }}–{{ featured.date | date: "%Y" }}{% endif %}</p>
+      <h1 class="gl-writing-heading">Field Notes<span>.</span></h1>
+    </div>
+    <p class="gl-writing-intro-copy">Essays on AI, digital infrastructure, cybersecurity, and venture building. Ideas from the work, and questions worth pursuing.</p>
+  </header>
+
+  {% if featured %}
+  <section class="gl-writing-feature" aria-labelledby="featured-title">
+    <p class="gl-writing-section-label">The latest field note</p>
+    {% include writing-card.html post=featured featured=true index="featured" %}
+  </section>
+  {% else %}
+  <p class="gl-writing-empty">New field notes will appear here.</p>
+  {% endif %}
+
+  {% if archive_count > 0 %}
+  <section class="gl-writing-archive" aria-labelledby="archive-title">
+    <div class="gl-writing-archive-header">
+      <div>
+        <p class="gl-writing-section-label">Earlier writing</p>
+        <h2 class="gl-writing-archive-title" id="archive-title">Explore the archive.</h2>
+      </div>
+      <div class="gl-writing-filter" id="writing-filter" hidden>
+        <label for="writing-topic">Filter by topic</label>
+        <select id="writing-topic" aria-controls="writing-grid">
+          <option value="all">All topics</option>
+          {% assign categories = site.categories | sort %}
+          {% for category in categories %}
+          {% assign category_name = category[0] %}
+          <option value="{{ category_name | escape }}">{% if category_name == 'ai' %}AI{% else %}{{ category_name | replace: '-', ' ' | capitalize }}{% endif %}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <p class="gl-writing-results" id="writing-results" role="status" aria-live="polite" aria-atomic="true">{{ archive_count }} field notes</p>
+
+    <div class="gl-writing-grid" id="writing-grid">
+      {% for post in site.posts offset:1 %}
+        {% include writing-card.html post=post index=forloop.index %}
       {% endfor %}
-
-      {% if site.posts.size == 0 %}
-      <p class="gl-text-muted gl-writing-empty">— No entries yet. The signal is building.</p>
-      {% endif %}
     </div>
 
-    {% if site.posts.size > 12 %}
-    <div class="gl-load-more-wrap" id="gl-load-more-wrap">
-      <button class="gl-load-more-btn" id="gl-load-more">Load more</button>
+    <p class="gl-writing-empty" id="writing-empty" hidden>No earlier field notes in this topic. Choose another topic to continue exploring.</p>
+
+    <div class="gl-writing-more" id="writing-more" hidden>
+      <button class="gl-writing-more-button" id="writing-load-more" type="button" aria-controls="writing-grid">Load more field notes <span aria-hidden="true">↓</span></button>
     </div>
-    {% endif %}
-  </div>
+  </section>
+  {% endif %}
 </main>
-
-<script>
-(function () {
-  var BATCH = 12;
-  var list  = document.getElementById('gl-posts-list');
-  var btn   = document.getElementById('gl-load-more');
-  var wrap  = document.getElementById('gl-load-more-wrap');
-  if (!list) return;
-
-  var rows = Array.from(list.querySelectorAll('.gl-post-row'));
-  var shown = 0;
-
-  function showNext() {
-    var end = Math.min(shown + BATCH, rows.length);
-    for (var i = shown; i < end; i++) {
-      rows[i].classList.remove('gl-post-hidden');
-    }
-    shown = end;
-    if (shown >= rows.length && wrap) wrap.style.display = 'none';
-  }
-
-  showNext();
-
-  if (btn) btn.addEventListener('click', showNext);
-})();
-</script>

@@ -4,9 +4,18 @@ title: "CHOCOLATE: A Celebration of Electronic Music"
 date: 2012-06-10 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["adana-twins", "after-party-at-d-club"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/chocolate-festival-2012.png"
+post_image: "/assets/images/writing/archive/chocolate-2012-celebration.webp"
 description: "Dive into the electric atmosphere of CHOCOLATE 2012 through my vibrant video project, a dynamic representation of Lausanne's premier electronic music…"
 permalink: "/chocolate-2012-celebration/"
+post_image_small: "/assets/images/writing/archive/chocolate-2012-celebration-640.webp"
+post_image_medium: "/assets/images/writing/archive/chocolate-2012-celebration-960.webp"
+image_width: 1280
+image_height: 720
+image_alt: "Chocolate Festival 2012 title over a purple-lit stage in the original video thumbnail."
+image_caption: "Thumbnail from the original video."
+image_credit: "Noctune on Vimeo"
+image_source: "https://vimeo.com/44726108"
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/chocolate-festival-2012.png"
 ---
 
 Dive into the electric atmosphere of CHOCOLATE 2012 through my vibrant video project, a dynamic representation of Lausanne's premier electronic music festival, which took place on 3rd and 4th of June. Filmed and edited by me, the video captures the spirit of the festival, the electrifying performances, and the enthusiastic crowd.

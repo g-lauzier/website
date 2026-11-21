@@ -4,9 +4,16 @@ title: "Remix Contest: Martinez – Paradigm Shift (G.J. Lauzier's Synth Tech Ho
 date: 2011-01-11 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["ableton"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/163185_301796504948_36113129948_1249550_6452642_n-1.jpg"
+post_image: "/assets/images/writing/remix-contest-martinez-paradigm-shift-g-j-lauziers-synth-tech-house-remix.webp"
 description: "In January 2011, I participated in a remix contest for Martinez's \"Paradigm Shift,\" producing a Synth Tech House style remix using Ableton and Logic Pro."
 permalink: "/remix-contest-martinez-paradigm-shift-g-j-lauziers-synth-tech-house-remix/"
+post_image_small: "/assets/images/writing/remix-contest-martinez-paradigm-shift-g-j-lauziers-synth-tech-house-remix-640.webp"
+post_image_medium: "/assets/images/writing/remix-contest-martinez-paradigm-shift-g-j-lauziers-synth-tech-house-remix-960.webp"
+image_width: 1600
+image_height: 900
+image_alt: "Graphite fins shift orientation around a blue ribbon, suggesting a changing musical rhythm."
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/163185_301796504948_36113129948_1249550_6452642_n-1.jpg"
 ---
 
 In January 2011, I participated in a remix contest for Martinez's "Paradigm Shift," producing a Synth Tech House style remix using Ableton and Logic Pro. The contest was hosted by Moon Harbour and Juno, offering the chance to win prizes including a release on Moon Harbour Recordings, a £100 Juno Download voucher, and a €250 Soundcloud Pro account. Participants were required to download the provided parts, create a remix, and upload their track by the deadline of February 15th.

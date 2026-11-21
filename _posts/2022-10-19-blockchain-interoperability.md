@@ -4,9 +4,16 @@ title: "Exploring the Benefits of Blockchain Interoperability"
 date: 2022-10-19 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["atomic-swaps", "blockchain-interoperability"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/crypto-interoperability.jpg"
+post_image: "/assets/images/writing/blockchain-interoperability.webp"
 description: "Blockchain interoperability is the ability for different blockchain networks to communicate and interact with each other."
 permalink: "/blockchain-interoperability/"
+post_image_small: "/assets/images/writing/blockchain-interoperability-640.webp"
+post_image_medium: "/assets/images/writing/blockchain-interoperability-960.webp"
+image_width: 1600
+image_height: 900
+image_alt: "A blue bridge connects three different sculptural networks of cubes, loops and lattice."
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/crypto-interoperability.jpg"
 ---
 
 Blockchain interoperability is the ability for different blockchain networks to communicate and interact with each other. As the number of blockchain networks increases, it's becoming increasingly important to understand how to create cross-chain communication and how to use different interoperability solutions. This is important to create a decentralized ecosystem of blockchain networks, where different networks can share information and assets with each other.

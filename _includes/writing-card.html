@@ -1,0 +1,41 @@
+{% assign entry = include.post %}
+{% assign word_count = entry.content | strip_html | number_of_words %}
+{% assign reading_minutes = word_count | divided_by: 220.0 | ceil | at_least: 1 %}
+{% if entry.read_time %}{% assign reading_minutes = entry.read_time %}{% endif %}
+{% assign summary = entry.description | default: entry.excerpt | strip_html | normalize_whitespace %}
+{% assign cover_url = entry.post_image %}
+{% unless cover_url contains '://' %}{% assign cover_url = cover_url | relative_url %}{% endunless %}
+{% assign title_id = 'writing-title-' | append: include.index %}
+{% if include.featured %}{% assign title_id = 'featured-title' %}{% endif %}
+
+<article class="gl-writing-card{% if include.featured %} gl-writing-card-featured{% endif %}"{% unless include.featured %} data-writing-card data-topics="{{ entry.categories | jsonify | escape }}"{% endunless %}>
+  <a class="gl-writing-card-link" href="{{ entry.url | relative_url }}" aria-labelledby="{{ title_id }}">
+    <div class="gl-writing-cover{% unless entry.post_image %} gl-writing-cover-empty{% endunless %}">
+      {% if entry.post_image %}
+      <img src="{{ cover_url | escape }}"
+        {% if entry.post_image_small and entry.post_image_medium %}srcset="{{ entry.post_image_small | relative_url }} 640w, {{ entry.post_image_medium | relative_url }} 960w, {{ entry.post_image | relative_url }} {{ entry.image_width | default: 1600 }}w" sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1200px) calc((100vw - 100px) / 2), 560px"{% endif %}
+        alt="{{ entry.image_alt | default: entry.alt | default: entry.title | escape_once }}"
+        width="{{ entry.image_width | default: 1600 }}" height="{{ entry.image_height | default: 900 }}"
+        {% if include.featured %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async" />
+      {% else %}
+      <span class="gl-writing-cover-wordmark" aria-hidden="true">Field Notes.</span>
+      {% endif %}
+    </div>
+    <div class="gl-writing-card-copy">
+      <div class="gl-writing-card-meta">
+        {% if entry.categories.first %}<span class="gl-writing-topic">{% if entry.categories.first == 'ai' %}AI{% else %}{{ entry.categories.first | replace: '-', ' ' | escape }}{% endif %}</span>{% endif %}
+        <time datetime="{{ entry.date | date_to_xmlschema }}">{{ entry.date | date: "%b %-d, %Y" }}</time>
+      </div>
+      {% if include.featured %}
+      <h2 class="gl-writing-card-title" id="{{ title_id }}">{{ entry.title | escape_once }}</h2>
+      {% else %}
+      <h3 class="gl-writing-card-title" id="{{ title_id }}">{{ entry.title | escape_once }}</h3>
+      {% endif %}
+      {% if summary != '' %}<p class="gl-writing-card-summary">{{ summary | truncate: 220 | escape_once }}</p>{% endif %}
+      <div class="gl-writing-card-footer">
+        <span>{{ reading_minutes }} min read</span>
+        <span class="gl-writing-read">Read field note <span aria-hidden="true">↗</span></span>
+      </div>
+    </div>
+  </a>
+</article>

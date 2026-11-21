@@ -18,7 +18,7 @@
   {% unless og_image contains "http" %}
   {% assign og_image = site.url | append: og_image %}
   {% endunless %}
-  <meta name="description" content="{{ meta_description | escape }}" />
+  <meta name="description" content="{{ meta_description | escape_once }}" />
   {% comment %} Self-referencing canonical — prevents duplicate-content splitting across URL variants (trailing slash, query params, etc.) {% endcomment %}
   <link rel="canonical" href="{{ og_url }}" />
   {% if page.robots %}
@@ -26,13 +26,13 @@
   {% endif %}
   <meta property="og:site_name" content="Guillaume Lauzier" />
   <meta property="og:type" content="{% if page.layout == 'posts/post' %}article{% else %}website{% endif %}" />
-  <meta property="og:title" content="{{ og_title | escape }}" />
-  <meta property="og:description" content="{{ meta_description | escape }}" />
+  <meta property="og:title" content="{{ og_title | escape_once }}" />
+  <meta property="og:description" content="{{ meta_description | escape_once }}" />
   <meta property="og:url" content="{{ og_url | escape }}" />
   <meta property="og:image" content="{{ og_image | escape }}" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{ og_title | escape }}" />
-  <meta name="twitter:description" content="{{ meta_description | escape }}" />
+  <meta name="twitter:title" content="{{ og_title | escape_once }}" />
+  <meta name="twitter:description" content="{{ meta_description | escape_once }}" />
   <meta name="twitter:image" content="{{ og_image | escape }}" />
   {% if site.google_tag_manager_id and site.google_tag_manager_id != "" %}
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','{{ site.google_tag_manager_id }}');</script>
@@ -42,6 +42,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   <link rel="stylesheet" href="/assets/css/gl-dark.css" />
+  {% if page.writing_assets %}
+  <link rel="stylesheet" href="{{ '/assets/css/gl-writing.css' | relative_url }}" />
+  {% endif %}
+  {% if page.collection == 'posts' or page.layout contains 'posts/' %}
+  <link rel="stylesheet" href="{{ '/assets/css/gl-article.css' | relative_url }}" />
+  {% endif %}
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Mr+Dafoe&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Mr+Dafoe&display=swap" /></noscript>
   <!-- Apply saved theme before first paint to prevent flash -->
@@ -138,5 +144,11 @@
 </footer>
 
 <script src="/assets/js/gl.js" defer></script>
+{% if page.writing_assets %}
+<script src="{{ '/assets/js/writing.js' | relative_url }}" defer></script>
+{% endif %}
+{% if page.collection == 'posts' or page.layout contains 'posts/' %}
+<script src="{{ '/assets/js/article.js' | relative_url }}" defer></script>
+{% endif %}
 </body>
 </html>

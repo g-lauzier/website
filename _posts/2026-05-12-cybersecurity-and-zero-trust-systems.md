@@ -7,6 +7,13 @@ tags: ["cybersecurity", "zero-trust", "security"]
 description: "Never trust by default, always verify — security for how business actually operates today."
 permalink: "/cybersecurity-and-zero-trust-systems/"
 canonical_url: "https://axal.vc/articles/cybersecurity-and-zero-trust-systems"
+post_image: "/assets/images/writing/zero-trust-systems.webp"
+post_image_small: "/assets/images/writing/zero-trust-systems-640.webp"
+post_image_medium: "/assets/images/writing/zero-trust-systems-960.webp"
+image_alt: "Blue optical connections pass through individual apertures in layered smoke-glass planes."
+image_caption: "Editorial illustration."
+image_width: 1600
+image_height: 900
 ---
 
 _Originally published on [Axal VC](https://axal.vc/articles/cybersecurity-and-zero-trust-systems)._

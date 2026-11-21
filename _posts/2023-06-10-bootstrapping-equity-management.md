@@ -4,9 +4,16 @@ title: "Bootstrapping and Equity Management"
 date: 2023-06-10 00:00:00 +0000
 categories: ["fintech"]
 tags: ["bootstrapping", "business-model", "cap-table"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/generatedart_futuristic_office_space_ec0552aa-50fa-4a6d-958b-d65c6df21854-2.png"
-description: "Navigating Equity Traps and Maximizing Startup Ownership As an entrepreneur, I am often confronted by entrepreneurs grappling with the challenges of funding their nascent businesses while trying to ma"
+post_image: "/assets/images/writing/bootstrapping-equity-management.webp"
+description: "How founders can fund early growth, avoid equity traps, and preserve ownership while building a sustainable business."
 permalink: "/bootstrapping-equity-management/"
+image_alt: "A balanced cantilever and an intact graphite disk symbolize building a company while preserving ownership."
+post_image_small: "/assets/images/writing/bootstrapping-equity-management-640.webp"
+post_image_medium: "/assets/images/writing/bootstrapping-equity-management-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/generatedart_futuristic_office_space_ec0552aa-50fa-4a6d-958b-d65c6df21854-2.png"
 ---
 
 **Navigating Equity Traps and Maximizing Startup Ownership**

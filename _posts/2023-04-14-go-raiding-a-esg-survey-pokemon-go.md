@@ -4,9 +4,16 @@ title: "Impact of Niantic's Policies through the &#8220;GO Raiding a ESG Survey&
 date: 2023-04-14 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["community-engagement"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/11/go-raiding-survey.png"
+post_image: "/assets/images/writing/go-raiding-a-esg-survey-pokemon-go.webp"
 description: "In the evolving landscape of mobile gaming, Niantic Labs' Pokémon GO has not just been a game but a phenomenon."
 permalink: "/go-raiding-a-esg-survey-pokemon-go/"
+image_alt: "Varied stone and glass markers connect by blue ribbons to a translucent central bowl."
+post_image_small: "/assets/images/writing/go-raiding-a-esg-survey-pokemon-go-640.webp"
+post_image_medium: "/assets/images/writing/go-raiding-a-esg-survey-pokemon-go-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/11/go-raiding-survey.png"
 ---
 
 In the evolving landscape of mobile gaming, Niantic Labs' Pokémon GO has not just been a game but a phenomenon. However, recent changes in the game's mechanics, specifically the implementation of remote raid limitations and price increases, have raised questions and concerns within the gaming community. My project, "[GO Raiding a ESG Survey](https://goraiding.com)," delves into these concerns, focusing on the broader environmental, social, and governance (ESG) implications of Niantic's decisions.

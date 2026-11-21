@@ -7,6 +7,13 @@ tags: ["performance", "profiling", "gc"]
 description: "Most slow code in production isn't slow because the algorithm is wrong. It's slow because every iteration is allocating, and the allocator (and the GC behind it) is doing the work nobody profiled. Here's how to spot the cliff."
 permalink: "/big-o-isnt-the-bottleneck-its-allocation/"
 canonical_url: "https://algosize.com/blog/big-o-isnt-the-bottleneck-its-allocation/"
+post_image: "/assets/images/writing/allocation-bottleneck.webp"
+post_image_small: "/assets/images/writing/allocation-bottleneck-640.webp"
+post_image_medium: "/assets/images/writing/allocation-bottleneck-960.webp"
+image_alt: "Dense graphite blocks gather at a constriction beside a smooth blue glass loop."
+image_caption: "Editorial illustration."
+image_width: 1600
+image_height: 900
 ---
 
 _Originally published on [Algosize](https://algosize.com/blog/big-o-isnt-the-bottleneck-its-allocation/) — service provisioning by [algosize.com](https://algosize.com)._

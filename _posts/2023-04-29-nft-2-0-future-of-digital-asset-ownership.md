@@ -4,9 +4,16 @@ title: "NFT 2.0: Future of Digital Asset Ownership"
 date: 2023-04-29 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["blockchain"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/generatedart_generative_art_urban_art_bf96e126-333d-426b-a163-079f50a522ad.png"
+post_image: "/assets/images/writing/nft-2-0-future-of-digital-asset-ownership.webp"
 description: "Non-fungible tokens (NFTs) have taken the world by storm, enabling digital artists, collectors, and investors to buy, sell, and trade unique digital assets…"
 permalink: "/nft-2-0-future-of-digital-asset-ownership/"
+image_alt: "An articulated blue glass sculpture hovers within a thin silver ring above a stone plinth."
+post_image_small: "/assets/images/writing/nft-2-0-future-of-digital-asset-ownership-640.webp"
+post_image_medium: "/assets/images/writing/nft-2-0-future-of-digital-asset-ownership-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/generatedart_generative_art_urban_art_bf96e126-333d-426b-a163-079f50a522ad.png"
 ---
 
 Non-fungible tokens (NFTs) have taken the world by storm, enabling digital artists, collectors, and investors to buy, sell, and trade unique digital assets such as digital art, collectibles, and virtual real estate. However, the NFT ecosystem is still in its infancy, and its rapid growth has revealed certain limitations and challenges. Enter NFT 2.0, the next generation of NFTs that aims to address these issues and push the boundaries of digital asset ownership. In this article, we explore the key features of NFT 2.0 and the potential impact it will have on the future of the NFT market.
