@@ -7,6 +7,8 @@ tags: ["technical", "tokenomic"]
 post_image: "/assets/images/role-of-smart-contracts.webp"
 description: "Smart contracts are the foundation of Decentralized Finance (DeFi), a transformative movement that leverages blockchain technology to create financial…"
 permalink: "/role-of-smart-contracts/"
+image_width: 1408
+image_height: 768
 ---
 
 Smart contracts are the foundation of Decentralized Finance (DeFi), a transformative movement that leverages blockchain technology to create financial systems without centralized intermediaries. These self-executing, programmable agreements, written in code and deployed on blockchain networks like Ethereum, enable DeFi’s decentralized approach by automating processes, ensuring transparency, and fostering trust. This article explores the pivotal role of smart contracts in DeFi, their advantages over traditional finance, the challenges they face, and real-world examples that highlight their impact.

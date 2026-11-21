@@ -24,30 +24,13 @@ Graph Neural Networks (GNNs) represent a paradigm shift in the realm of neural n
 
 GNNs' foremost strength lies in their direct application to graphs, facilitating node-level, edge-level, and graph-level prediction tasks. This flexibility proves invaluable across various fields where data is intrinsically relational, such as analyzing social networks, understanding molecular structures, and optimizing communication networks [1].
 
-
-
-
-
-
 ### Processing Complex Graph-Structured Data
 
 GNNs excel at processing and analyzing intricate graph-structured data. This capacity unlocks new avenues in numerous domains, including network analysis, computational biology, and the development of advanced recommender systems [[2](https://arxiv.org/abs/2108.10733)].
 
-
-
-
-
-
-
 ### Dependence on Graph Structure
 
 Central to GNNs' functionality is their ability to capture the dependence of graphs through message passing between nodes. By leveraging the inherent structural information of graphs, GNNs can make more accurate predictions and analyses, a critical aspect in fields like network security and structural health monitoring [[4](https://www.sciencedirect.com/science/article/pii/S2666651021000012)].
-
-
-
-
-
-
 
 ## Expansive Applications of GNNs
 
@@ -63,15 +46,11 @@ Spanning from basic concepts to cutting-edge advancements, GNNs are continually 
 
 Graph Neural Networks (GNNs) have significant potential in the realm of generative art, leveraging their unique capabilities in understanding and manipulating graph-structured data. Here are some ways GNNs can be applied in this field:
 
-
-
-
-
 ## Python code example of a Graph Neural Networks
 
 Here's a basic example of implementing a Graph Neural Network (GNN) using PyTorch. This code demonstrates the creation of a simple GNN for node classification on a graph:
 
-```
+```python
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -107,24 +86,4 @@ model = GCN(num_features, num_classes)
 This code defines a simple two-layer Graph Convolutional Network (GCN) using PyTorch and PyTorch Geometric. The model takes in the number of features per node and the number of classes for classification. Each convolutional layer (GCNConv) in the network processes the graph data, applying a graph convolution followed by a ReLU activation and dropout.
 
 **Note**: This is a basic example. For a real-world application, you would need to provide graph data (nodes, edges, node features) to the model and train it on a specific task like node classification, link prediction, etc.
-
-## 🌐 Sources
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

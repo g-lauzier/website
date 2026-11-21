@@ -18,11 +18,11 @@ original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/1
 
 In the evolving landscape of mobile gaming, Niantic Labs' Pokémon GO has not just been a game but a phenomenon. However, recent changes in the game's mechanics, specifically the implementation of remote raid limitations and price increases, have raised questions and concerns within the gaming community. My project, "[GO Raiding a ESG Survey](https://goraiding.com)," delves into these concerns, focusing on the broader environmental, social, and governance (ESG) implications of Niantic's decisions.
 
-**Importance of the Survey**
+## Importance of the Survey
 
 The survey's core purpose is to address the consequences of Niantic's policy changes, particularly on inclusiveness and sustainability. With the reduction of remote raid opportunities and increased costs, a significant portion of the player base might find themselves excluded from key aspects of the game. Furthermore, encouraging in-person raids could inadvertently lead to increased carbon emissions, as players may resort to using cars to travel between raid locations. This survey aims to quantify these impacts and provide a platform for player voices.
 
-**Survey Scope and Results**
+## Survey Scope and Results
 
 The survey, updated last on April 21st, 2023, covers various areas including player satisfaction, purchase behavior, and the overall impact on gameplay experience. It also looks into changes in social interactions, the importance of open communication, and Niantic Labs' commitment to global sustainability.
 
@@ -38,17 +38,17 @@ Key findings include:
 
 - **Social Engagement**: Notable shifts in social engagement patterns before and after the remote raid changes were observed.
 
-**Methodology**
+## Methodology
 
 Our approach involved aggregating survey responses across multiple languages, focusing on various metrics such as player satisfaction, ESG concerns, and purchase behavior. The Inclusion Index, a crucial part of our analysis, assessed the accessibility and suitability of the game for diverse groups, including those with disabilities and parents with children.
 
-**Implications and Moving Forward**
+## Implications and Moving Forward
 
 The "[GO Raiding a ESG Survey](https://goraiding.com)" illuminates the delicate balance Niantic Labs must maintain between business objectives and community interests. The data suggests a need for more inclusive and sustainable gaming practices. Our report, along with the Google Sheets file and Google Analytics folder, offers a comprehensive view, intended for use by media companies, investors, and the gaming community.
 
 Our work emphasizes the importance of player feedback in shaping a game that is not only enjoyable but also responsible and inclusive. We encourage our community to engage with our main project, GeneratedArt, and participate in ongoing dialogues about the future of gaming in the context of ESG concerns.
 
-**Closing Thoughts**
+## Closing Thoughts
 
 In the dynamic world of Pokémon GO, the "[GO Raiding a ESG Survey](https://goraiding.com)" serves as a critical tool for understanding player sentiment and guiding future developments. As we continue to explore the intersection of gaming and social responsibility, we remain committed to advocating for a gaming experience that resonates with our diverse and passionate player base.
 

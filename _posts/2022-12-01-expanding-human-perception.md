@@ -7,6 +7,8 @@ tags: []
 post_image: "/assets/images/expanding-human-perception.webp"
 description: "Generative art is a medium of artistic expression that relies on algorithms, code, and technology to create unique and often unpredictable works of art."
 permalink: "/expanding-human-perception/"
+image_width: 1408
+image_height: 768
 ---
 
 Generative art is a medium of artistic expression that relies on algorithms, code, and technology to create unique and often unpredictable works of art. One of the key features of generative art is its ability to generate visual and auditory patterns that can be perceived by humans, and the range of such patterns can be extended by technology. However, with the help of technology, generative art can go beyond human sensory experience and represent a range of vision, hearing, touch, smell, and taste that cannot normally be perceived by humans but by machines.

@@ -100,7 +100,7 @@ pi_estimate = 4 * (darts_in_circle / total_darts_thrown)
 
 The example C++ program for estimating the value of Pi using Monte Carlo Simulation is as follows:
 
-```
+```cpp
 #include <iostream>
 #include <random>
 

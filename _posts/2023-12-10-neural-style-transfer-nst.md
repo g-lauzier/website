@@ -48,7 +48,7 @@ Neural Style Transfer (NST) is a captivating intersection of artificial intellig
 
 Python Code Example:
 
-```
+```python
 import tensorflow as tf
 import tensorflow_hub as hub
 import matplotlib.pyplot as plt
@@ -97,7 +97,7 @@ This code snippet uses TensorFlow and TensorFlow Hub to apply a style transfer m
 
 Python Code Example:
 
-```
+```python
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.applications import vgg19
@@ -227,7 +227,7 @@ To effectively work with AI and machine learning algorithms for art generation, 
 
 Investing in these hardware resources can greatly enhance the efficiency and capabilities of AI and machine learning algorithms in art generation and other computationally demanding tasks.
 
-## Limitations and Challenges of Neural Style Transfer
+## Practical Constraints and Real-Time Processing {#limitations-and-challenges-of-neural-style-transfer-1}
 
 Neural Style Transfer (NST), despite its innovative applications in art and technology, faces several limitations and challenges:
 
@@ -294,10 +294,6 @@ These trends and innovations are propelling NST into new realms of creativity an
 ## How can Neural Style Transfer (NST) be used in Generative Art?
 
 Neural Style Transfer (NST) offers a transformative approach to generative art, combining deep learning techniques to create visually striking and unique artworks. Its application in generative art can be understood through the following points:
-
-
-
-
 
 ## 🌐 Sources
 

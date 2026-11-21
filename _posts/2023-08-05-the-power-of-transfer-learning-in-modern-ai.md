@@ -26,12 +26,6 @@ Transfer Learning is a technique where a model developed for a specific task is 
 
 A major advantage of transfer learning is its ability to use pre-trained models. These models, trained on extensive datasets, contain a wealth of learned features and patterns, which can be effectively applied to new tasks. This reuse is especially beneficial in scenarios where training data is limited or when the new task is somewhat similar to the one the model was originally trained on.
 
-
-
-
-
-
-
 ## Enhanced Learning Efficiency
 
 Transfer learning greatly reduces the time and resources required for training new models. By leveraging existing models, it circumvents the need for extensive computation and large datasets, which is a boon in resource-constrained scenarios or when dealing with rare or expensive-to-label data.
@@ -60,30 +54,22 @@ Transfer learning exhibits remarkable adaptability, being applicable to a wide a
 
 Transfer Learning is playing a pivotal role in the field of generative art, opening new avenues for creativity and innovation. Here's how it's being utilized:
 
-
-
-
-
-
 ## Set up transfer learning in Python
 
 To set up transfer learning in Python using Keras, you can leverage a pre-trained model like VGG16. Here's a basic example to demonstrate this process:
 
-
-```
+```python
    from keras.applications.vgg16 import VGG16, preprocess_input, decode_predictions
    from keras.preprocessing.image import img_to_array, load_img
    from keras.models import Model
 ```
 
-
-```
+```python
    # Load the VGG16 model pre-trained on ImageNet data
    vgg16_model = VGG16(weights='imagenet')
 ```
 
-
-```
+```python
    # Remove the last layer
    vgg16_model.layers.pop()
 
@@ -96,8 +82,7 @@ To set up transfer learning in Python using Keras, you can leverage a pre-traine
        print(layer, layer.trainable)
 ```
 
-
-```
+```python
    from keras.layers import Dense, GlobalAveragePooling2D
    from keras.models import Sequential
 
@@ -108,20 +93,17 @@ To set up transfer learning in Python using Keras, you can leverage a pre-traine
    custom_model.add(Dense(1, activation='sigmoid'))  # For binary classification
 ```
 
-
-```
+```python
    custom_model.compile(loss='binary_crossentropy',
                         optimizer='rmsprop',
                         metrics='accuracy'])
 ```
 
-
-```
+```python
    # custom_model.fit(train_data, train_labels, epochs=10, batch_size=32)
 ```
 
-
-```
+```python
    img = load_img('path_to_your_image.jpg', target_size=(224, 224))
    img = img_to_array(img)
    img = img.reshape((1, img.shape0], img.shape1], img.shape2]))
@@ -139,20 +121,4 @@ Remember, this is a simplified example. In a real-world scenario, you need to pr
 One of the most significant impacts of transfer learning is its ability to boost model performance on related tasks. By transferring knowledge from one domain to another, it aids in better generalization and accuracy, often leading to enhanced model performance on the new task. This is particularly evident in cases where the new task is a variant or an extension of the original task.
 
 Transfer learning stands as a cornerstone technique in the field of artificial intelligence, revolutionizing how models are trained and applied. Its efficiency, adaptability, and wide-ranging applications make it a key strategy in overcoming some of the most pressing challenges in machine learning and deep learning.
-
-## 🌐 Sources
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

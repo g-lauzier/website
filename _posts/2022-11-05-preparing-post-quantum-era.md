@@ -7,6 +7,8 @@ tags: ["algorithms", "code-based"]
 post_image: "/assets/images/preparing-post-quantum-era.webp"
 description: "An introduction to quantum-resistant cryptography, the threats posed by quantum computing, and the transition to new cryptographic standards."
 permalink: "/preparing-post-quantum-era/"
+image_width: 1408
+image_height: 768
 ---
 
 ## **An Introduction to Quantum-Resistant Cryptography**

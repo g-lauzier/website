@@ -26,12 +26,6 @@ PixelRNNs are primarily engineered for image generation and completion tasks. Th
 
 The architecture of PixelRNNs is built upon the principles of recurrent neural networks (RNNs), renowned for their ability to handle sequential data. In PixelRNNs, the sequence is the pixels of an image, processed in an orderly fashion, typically row-wise or diagonally. This sequential processing allows PixelRNNs to capture the intricate dependencies between pixels, which is crucial for generating coherent and visually appealing images.
 
-
-
-
-
-
-
 ## Pixel-by-Pixel Generation
 
 At the heart of PixelRNNs lies the concept of generating pixels one at a time, following a specified order. Each prediction of a new pixel is informed by the pixels generated previously, allowing the network to construct an image in a step-by-step manner. This pixel-by-pixel approach is fundamental to the network's ability to produce detailed and accurate images.
@@ -60,21 +54,9 @@ PixelRNNs come in two main variants: Row LSTM and Diagonal BiLSTM. The Row LSTM 
 
 A remarkable feature of PixelRNNs is their ability to be conditioned on additional information, such as class labels or parts of images. This conditioning enables the network to direct the image generation process more precisely, which is particularly beneficial for tasks like targeted image editing or generating images that need to meet specific criteria.
 
-
-
-
-
-
-
 ## Training and Data Requirements
 
 As with other neural networks, PixelRNNs require a significant volume of training data to learn effectively. They are trained on large datasets of images, where they learn to model the distribution of pixel values. This extensive training is necessary for the networks to capture the diverse range of patterns and nuances present in visual data.
-
-
-
-
-
-
 
 ## Challenges and Limitations
 
@@ -88,13 +70,13 @@ This example will focus on a simple PixelRNN structure using LSTM (Long Short-Te
 
 First, ensure you have TensorFlow installed:
 
-```
+```bash
 pip install tensorflow
 ```
 
 Now, let's proceed with the Python code:
 
-```
+```python
 import tensorflow as tf
 from tensorflow.keras import layers
 
@@ -142,32 +124,9 @@ For real-world applications, you would need to expand this structure significant
 
 Pixel Recurrent Neural Networks (PixelRNNs) offer significant potential in the field of generative art. Here's how they can be utilized:
 
-
-
-
-
 ## Recent Developments
 
 Over time, the field of PixelRNNs has seen significant advancements. Newer architectures, such as PixelCNNs, have been developed, offering improvements in computational efficiency and the quality of generated images. These developments are indicative of the ongoing evolution in the field, as researchers and practitioners continue to push the boundaries of what is possible with PixelRNNs.
 
 Pixel Recurrent Neural Networks represent a fascinating intersection of artificial intelligence and image processing. Their ability to generate and complete images with remarkable accuracy opens up a plethora of possibilities in areas ranging from digital art to practical applications like medical imaging. As this technology continues to evolve, we can expect to see even more innovative uses and enhancements in the future.
-
-## 🗒️ Sources
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

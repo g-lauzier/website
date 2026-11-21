@@ -24,7 +24,7 @@ Imagine a scenario where an NFT represents a collaborative project with various 
 
 We can achieve this with the help of Solidity, a contract-oriented programming language used for writing smart contracts on various blockchain platforms, most notably Ethereum. Let's take a look at a simple contract `NFT2` where an NFT can be minted and contributions can be added to the NFT.
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -62,7 +62,7 @@ While the Ethereum blockchain and smart contracts offer robust and decentralized
 
 Chainlink oracles can be used to fetch data from an off-chain source and supply it to your on-chain smart contract. For example, we might want to fetch data from a specific URL and store the returned value in our contract.
 
-```
+```solidity
 pragma solidity ^0.8.0;
 
 import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";

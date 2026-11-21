@@ -7,6 +7,8 @@ tags: ["technical", "tokenomic"]
 post_image: "/assets/images/the-basics-of-defi.webp"
 description: "Decentralized Finance, or DeFi, is transforming the financial world by offering an open, transparent, and intermediary-free alternative to traditional…"
 permalink: "/the-basics-of-defi/"
+image_width: 1408
+image_height: 768
 ---
 
 Decentralized Finance, or DeFi, is transforming the financial world by offering an open, transparent, and intermediary-free alternative to traditional financial systems. Built on blockchain technology, DeFi provides a range of services like lending, borrowing, and trading, all without the need for banks or brokers. This article covers the essentials of DeFi- what it is, how it works, its key services, popular platforms, risks, and its potential future.

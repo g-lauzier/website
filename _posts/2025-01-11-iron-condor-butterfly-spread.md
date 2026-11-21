@@ -7,9 +7,9 @@ tags: ["strategy", "tokenomic"]
 post_image: "/assets/images/iron-condor-butterfly-spread.webp"
 description: "Explore advanced options strategies in DeFi including the Iron Condor and Butterfly Spread, their mechanics, risk profiles, and practical applications."
 permalink: "/iron-condor-butterfly-spread/"
+image_width: 1456
+image_height: 816
 ---
-
-_Estimated reading time: 10 minutes_
 
 Decentralized Finance (DeFi) has transformed how we interact with financial tools, bringing traditional strategies like options trading into a blockchain-based, intermediary-free world. Among the many options strategies, **Iron Condor** and **Butterfly Spread** are two advanced techniques that allow traders to profit from specific market conditions. This article explores these strategies, how they function in DeFi, their benefits, risks, and practical implementation. Whether you’re hedging risk or seeking income, understanding these tools can elevate your DeFi trading game.
 

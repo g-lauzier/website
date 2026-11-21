@@ -7,6 +7,8 @@ tags: ["algorithm", "bias"]
 post_image: "/assets/images/data-art-scientific-discovery.webp"
 description: "Data-driven art is an emerging form of art that utilizes data and technology as a medium for creating and expressing ideas."
 permalink: "/data-art-scientific-discovery-innovation/"
+image_width: 1408
+image_height: 768
 ---
 
 Data-driven art is an emerging form of art that utilizes data and technology as a medium for creating and expressing ideas. This type of art challenges traditional notions of art and artist, and it pushes the boundaries of creativity by providing new tools and methods for creating artwork. In this article, we will explore the various ways data-driven art is being used in different fields such as medicine, finance, and physics to further our understanding of complex data and concepts. We will also discuss how data-driven art can be used to engage with current political and social issues, as well as explore the relationship between data, information and knowledge. Through this article, we will see how data-driven art is not only a new form of artistic expression, but also an important tool for understanding and interpreting the world around us.

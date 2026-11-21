@@ -7,6 +7,8 @@ tags: ["accountability", "artificial-intelligence", "bias"]
 post_image: "/assets/images/ethical-guidelines-ai.webp"
 description: "Artificial intelligence (AI) and machine learning have the potential to bring significant benefits to society, including improvements in healthcare…"
 permalink: "/ethical-guidelines-ai/"
+image_width: 1408
+image_height: 768
 ---
 
 Artificial intelligence (AI) and machine learning have the potential to bring significant benefits to society, including improvements in healthcare, transportation, education, and other areas. However, the development and use of these technologies also raise a number of ethical concerns, including issues related to privacy, bias, accountability, and transparency.

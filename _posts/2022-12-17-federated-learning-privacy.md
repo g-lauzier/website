@@ -7,6 +7,8 @@ tags: ["biased-data", "collaborative-learning"]
 post_image: "/assets/images/federated-learning-privacy.webp"
 description: "In today's data-driven world, machine learning has become an essential tool for many industries."
 permalink: "/federated-learning-privacy/"
+image_width: 1408
+image_height: 768
 ---
 
 In today's data-driven world, machine learning has become an essential tool for many industries. However, traditional machine learning approaches often require large amounts of centralized data, which can pose a risk to privacy and security. Federated learning is an innovative approach to machine learning that allows for collaborative model training without the need to centralize data. In this article, we will explore what federated learning is, how it works, and its potential benefits and challenges.

@@ -24,7 +24,7 @@ The operating system for venture is being rewritten. The pace is faster, the sig
 
 That is the shift Axal VC is built for.
 
-### Venture is becoming an AI-native workflow
+## Venture is becoming an AI-native workflow
 
 For years, venture work ran on a mix of email, spreadsheets, notes, meeting follow-ups, CRM tools, and a lot of manual context switching. It worked, but it was fragmented. Every investor, partner, and platform team member had to reconstruct the same story over and over again: who the founder is, what the company needs, where the traction is coming from, and which next step matters most.
 
@@ -36,7 +36,7 @@ In practice, that means less time spent on administration and more time spent on
 
 That matters because venture has never been only about access to deals. It has always been about speed, insight, and support. AI raises the standard on all three.
 
-### Founders expect more from investors
+## Founders expect more from investors
 
 Today's founders move faster than ever. They are often building with AI themselves, using better tools, and making decisions in compressed cycles. They do not want a passive investor who shows up only for the pitch and the board meeting.
 
@@ -48,7 +48,7 @@ AI can help close that gap.
 
 With the right operating system, venture firms can respond faster, route questions to the right experts, prepare materials more efficiently, and bring more value to every founder touchpoint. This is not about replacing human relationships. It is about making those relationships more effective.
 
-### Investors need better signal, not more noise
+## Investors need better signal, not more noise
 
 One of the biggest misconceptions about AI in venture is that it simply means doing the same work faster. Speed matters, but speed alone is not the point.
 
@@ -60,7 +60,7 @@ AI can help investors process more information, but more importantly, it can hel
 
 That does not eliminate the need for human judgment. Venture will always require taste, conviction, and relationship-building. But AI can reduce the amount of manual work standing between a firm and its best judgment.
 
-### Venture support is becoming operational infrastructure
+## Venture support is becoming operational infrastructure
 
 The old model of venture support was often reactive. A founder asked for help, and the firm assembled an answer. That model still has value, but it is no longer enough.
 
@@ -74,7 +74,7 @@ Axal VC is designed to bring everything together so that investors, partners, an
 
 The value is not just convenience. The value is leverage.
 
-### What changes inside the firm
+## What changes inside the firm
 
 When a venture firm adopts an AI-enabled operating system, a few things happen quickly.
 
@@ -88,7 +88,7 @@ Fourth, the portfolio gets better support. When the firm has the right context i
 
 These are operational improvements, but they compound into a strategic advantage. In venture, small process gains often become large edge advantages over time.
 
-### The best firms will combine human judgment with machine speed
+## The best firms will combine human judgment with machine speed
 
 AI will not replace venture investors. It will replace parts of venture work that have been slow, repetitive, or hard to scale.
 
@@ -98,7 +98,7 @@ That balance is the future of venture support.
 
 Founders want speed, but they also want clarity. Investors want efficiency, but they also want insight. Partners want alignment, but they also want flexibility. AI makes those goals more compatible than they used to be.
 
-### Why this matters now
+## Why this matters now
 
 The venture ecosystem is changing at the same time as the companies it funds. AI-native startups are being built faster, operating leaner, and reaching market with fewer people and tighter timelines. That shifts the expectations placed on investors and platform teams.
 
@@ -110,7 +110,7 @@ That is what adapting looks like.
 
 Not layering more tools on top of old habits, but rethinking the system itself.
 
-### The next era of venture is operational
+## The next era of venture is operational
 
 Venture has always been a relationship business. That has not changed. What has changed is the amount of execution required to make those relationships valuable at scale.
 
