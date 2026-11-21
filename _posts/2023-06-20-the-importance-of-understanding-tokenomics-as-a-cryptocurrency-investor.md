@@ -4,9 +4,16 @@ title: "The Importance of Understanding Tokenomics as a Cryptocurrency Investor"
 date: 2023-06-20 00:00:00 +0000
 categories: ["fintech"]
 tags: ["blockchain"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/generatedart_blockchain_technology_db701dd4-1b82-4c06-a567-f46f0171f8b3-2.png"
+post_image: "/assets/images/writing/the-importance-of-understanding-tokenomics-as-a-cryptocurrency-investor.webp"
 description: "In the world of cryptocurrencies and blockchain, \"tokenomics\" — a compound of tokens and economics — has emerged as a critical concept that every crypto…"
 permalink: "/the-importance-of-understanding-tokenomics-as-a-cryptocurrency-investor/"
+image_alt: "Nested metal rings and plain ceramic tokens suggest supply, circulation, and incentives in token economics."
+post_image_small: "/assets/images/writing/the-importance-of-understanding-tokenomics-as-a-cryptocurrency-investor-640.webp"
+post_image_medium: "/assets/images/writing/the-importance-of-understanding-tokenomics-as-a-cryptocurrency-investor-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/generatedart_blockchain_technology_db701dd4-1b82-4c06-a567-f46f0171f8b3-2.png"
 ---
 
 In the world of cryptocurrencies and blockchain, "tokenomics" — a compound of tokens and economics — has emerged as a critical concept that every crypto investor must fully understand. Tokenomics describes the economic ecosystem surrounding a token, defining how they're used, circulated, and stored, among other aspects. For investors, tokenomics offers valuable insight into a cryptocurrency's potential long-term viability and profitability. This article dives into why tokenomics is such an essential tool for crypto investors.

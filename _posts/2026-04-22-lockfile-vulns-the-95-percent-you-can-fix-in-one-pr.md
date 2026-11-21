@@ -7,6 +7,13 @@ tags: ["security", "vuln-scanning", "ci"]
 description: "Most CVEs in your npm or pnpm audit are patch-version bumps with no breaking changes. Here's how to clear the backlog in a single, safe pull request — and why the remaining 5% deserves a different process entirely."
 permalink: "/lockfile-vulns-the-95-percent-you-can-fix-in-one-pr/"
 canonical_url: "https://algosize.com/blog/lockfile-vulns-the-95-percent-you-can-fix-in-one-pr/"
+post_image: "/assets/images/writing/dependency-patching.webp"
+post_image_small: "/assets/images/writing/dependency-patching-640.webp"
+post_image_medium: "/assets/images/writing/dependency-patching-960.webp"
+image_alt: "A graphite dependency lattice contains a clean path of blue replacement modules and isolated amber blocks."
+image_caption: "Editorial illustration."
+image_width: 1600
+image_height: 900
 ---
 
 _Originally published on [Algosize](https://algosize.com/blog/lockfile-vulns-the-95-percent-you-can-fix-in-one-pr/) — service provisioning by [algosize.com](https://algosize.com)._

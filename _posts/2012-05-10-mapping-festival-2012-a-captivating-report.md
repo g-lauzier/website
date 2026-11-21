@@ -4,9 +4,18 @@ title: "Mapping Festival: A Captivating Report"
 date: 2012-05-10 00:00:00 +0000
 categories: ["design"]
 tags: []
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/Mapping_affiche1-683x1024-1.jpg"
+post_image: "/assets/images/writing/archive/mapping-festival-2012-a-captivating-report.webp"
 description: "In 2012, I had the opportunity to attend the Mapping Festival in Geneva and produced a video report that showcases the festival's highlights."
 permalink: "/mapping-festival-2012-a-captivating-report/"
+post_image_small: "/assets/images/writing/archive/mapping-festival-2012-a-captivating-report-640.webp"
+post_image_medium: "/assets/images/writing/archive/mapping-festival-2012-a-captivating-report-960.webp"
+image_width: 1280
+image_height: 720
+image_alt: "Colorful paint splashes surround a welcome title in the Mapping Festival video thumbnail."
+image_caption: "Thumbnail from the original video."
+image_credit: "VJs TV on Vimeo"
+image_source: "https://vimeo.com/55630271"
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/Mapping_affiche1-683x1024-1.jpg"
 ---
 
 In 2012, I had the opportunity to attend the Mapping Festival in Geneva and produced a video report that showcases the festival's highlights. The report was filmed, edited, and animated by me, Guillaume J. Lauzier, and features music by Rory Phillips – Chamber Music (Original Mix).

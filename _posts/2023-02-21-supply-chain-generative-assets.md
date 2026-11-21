@@ -4,9 +4,16 @@ title: "Managing the Supply Chain for Tokenized Generative Assets"
 date: 2023-02-21 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["ai-models", "blockchain"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_supply_chain_of_generative_assets.png"
+post_image: "/assets/images/writing/supply-chain-generative-assets.webp"
 description: "Generative assets supply chain traceability is an important concept that aims to ensure transparency in the creation, distribution, and sale of tokenized…"
 permalink: "/supply-chain-generative-assets/"
+image_alt: "A folded glass sculpture and its impressions sit on linked dark workstations joined by a blue thread."
+post_image_small: "/assets/images/writing/supply-chain-generative-assets-640.webp"
+post_image_medium: "/assets/images/writing/supply-chain-generative-assets-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_supply_chain_of_generative_assets.png"
 ---
 
 Generative assets supply chain traceability is an important concept that aims to ensure transparency in the creation, distribution, and sale of tokenized generative assets. Tokenized generative assets involve the use of data from various sources such as social media data, weather data, or financial data to generate artwork using generative algorithms. These digital artworks are then converted into non-fungible tokens (NFTs) that serve as a digital certificate of ownership for the artwork. The NFTs can be bought, sold, and traded on various online marketplaces.

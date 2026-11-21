@@ -4,9 +4,16 @@ title: "Tokenization of Intellectual Property: A Pathway to Unlocking Value for 
 date: 2023-05-03 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["blockchain"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/generatedart_Tokenisation_d57532fa-8dca-4258-ac6a-14876f10ddcc-2.png"
+post_image: "/assets/images/writing/tokenization-intellectual-property.webp"
 description: "The digital revolution has reshaped various industries, and the field of intellectual property (IP) is no exception."
 permalink: "/tokenization-intellectual-property/"
+image_alt: "A folded metal artwork reflects into a fan of separate blue glass facets."
+post_image_small: "/assets/images/writing/tokenization-intellectual-property-640.webp"
+post_image_medium: "/assets/images/writing/tokenization-intellectual-property-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/generatedart_Tokenisation_d57532fa-8dca-4258-ac6a-14876f10ddcc-2.png"
 ---
 
 The digital revolution has reshaped various industries, and the field of intellectual property (IP) is no exception. Tokenization, a process that involves converting rights to an asset into a digital token on a blockchain, is gaining traction as a promising method to unlock value in IP. By converting IP rights into tokens, stakeholders and shareholders can reap numerous benefits such as increased liquidity, fractional ownership, and greater transparency. This article explores the concept of IP tokenization, its advantages, and its potential impact on the IP ecosystem.

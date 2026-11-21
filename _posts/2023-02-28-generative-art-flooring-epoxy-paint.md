@@ -4,9 +4,16 @@ title: "Transform Your Space with Generative Art Flooring Using Epoxy Paint"
 date: 2023-02-28 00:00:00 +0000
 categories: ["design"]
 tags: []
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/generatedart_generative_floor_art_public_space_2f5f2fc1-ab95-42cb-a862-73f3bb7fe710-2.png"
+post_image: "/assets/images/writing/generative-art-flooring-epoxy-paint.webp"
 description: "Generative art, a captivating fusion of technology and creativity, has taken the world of interior design by storm."
 permalink: "/generative-art-flooring-epoxy-paint/"
+image_alt: "An empty dark gallery has a polished floor patterned with flowing blue and silver forms."
+post_image_small: "/assets/images/writing/generative-art-flooring-epoxy-paint-640.webp"
+post_image_medium: "/assets/images/writing/generative-art-flooring-epoxy-paint-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/generatedart_generative_floor_art_public_space_2f5f2fc1-ab95-42cb-a862-73f3bb7fe710-2.png"
 ---
 
 Generative art, a captivating fusion of technology and creativity, has taken the world of interior design by storm. One of the most innovative applications of this artistic movement is generative art flooring, achieved through epoxy paint application. Epoxy flooring stenciling adds a dynamic, interactive, and visually stunning element to spaces, turning ordinary floors into conversation starters. In this article, we will explore the process, benefits, and versatility of generative art flooring using epoxy paint.

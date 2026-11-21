@@ -4,9 +4,16 @@ title: "Fundamentals of Building a Blockchain"
 date: 2023-07-19 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["block-design", "blockchain", "blockchain-mathematical-principles", "c-blockchain-implementation"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_blockchain_design_2646b05c-8a51-400f-8a48-d65ace71f92f-2.png"
+post_image: "/assets/images/writing/fundamentals-building-blockchain.webp"
 description: "The blockchain is a transformative technology that has had a profound impact on various sectors from finance to supply chain management."
 permalink: "/fundamentals-building-blockchain/"
+image_alt: "Interlocking graphite slabs with distinct engraved textures represent records linked into a blockchain."
+post_image_small: "/assets/images/writing/fundamentals-building-blockchain-640.webp"
+post_image_medium: "/assets/images/writing/fundamentals-building-blockchain-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_blockchain_design_2646b05c-8a51-400f-8a48-d65ace71f92f-2.png"
 ---
 
 The blockchain is a transformative technology that has had a profound impact on various sectors from finance to supply chain management. While the journey to master blockchain development is a complex one, understanding its fundamentals is the first step towards proficiency. This article delves into these essential building blocks of creating a blockchain.

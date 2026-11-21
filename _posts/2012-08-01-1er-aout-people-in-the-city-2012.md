@@ -4,9 +4,18 @@ title: "1er Août People in the City 2012: Celebrating National Spirit"
 date: 2012-08-01 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["1er-aout-people-in-the-city", "benoit-sergio"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/flyer_front_17907-scaled.jpg"
+post_image: "/assets/images/writing/archive/1er-aout-people-in-the-city-2012.webp"
 description: "Immerse yourself in the celebratory spirit of Lausanne's national festival through my video report of the 4th annual \"1er Août People in the City\"."
 permalink: "/1er-aout-people-in-the-city-2012/"
+post_image_small: "/assets/images/writing/archive/1er-aout-people-in-the-city-2012-640.webp"
+post_image_medium: "/assets/images/writing/archive/1er-aout-people-in-the-city-2012-960.webp"
+image_width: 1280
+image_height: 720
+image_alt: "Purple People in the City title over a lakeside city view in the original video thumbnail."
+image_caption: "Thumbnail from the original video."
+image_credit: "Noctune on Vimeo"
+image_source: "https://vimeo.com/48711461"
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/flyer_front_17907-scaled.jpg"
 ---
 
 Immerse yourself in the celebratory spirit of Lausanne's national festival through my video report of the 4th annual "1er Août People in the City". Filmed, edited, and color-corrected by me, this visual narrative brings to life the event held for the first time on the Esplanade du Flon on 31st July. This much-cherished summer tradition has won the city's heart with its festive and good-natured atmosphere.

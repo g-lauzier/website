@@ -1,0 +1,129 @@
+{% assign article_words = content | strip_html | number_of_words %}
+{% assign article_minutes = article_words | divided_by: 220.0 | ceil | at_least: 1 %}
+{% assign article_minutes = page.read_time | default: article_minutes %}
+
+<main class="gl-article-main">
+  <article class="gl-article" aria-labelledby="gl-article-title">
+    <header class="gl-article-header">
+      <a class="gl-article-back" href="{{ '/writing' | relative_url }}"><span aria-hidden="true">←</span> All field notes</a>
+      <div class="gl-article-meta">
+        {% for category in page.categories %}
+        <span class="gl-article-category">{% if category == 'ai' %}AI{% else %}{{ category | replace: '-', ' ' | capitalize | escape }}{% endif %}</span>
+        {% endfor %}
+        {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% endif %}
+        <span>{{ article_minutes }} min read</span>
+      </div>
+      <h1 id="gl-article-title" class="gl-article-title">{{ page.title | escape_once }}</h1>
+      {% if page.description %}<p class="gl-article-deck">{{ page.description | escape_once }}</p>{% endif %}
+      <p class="gl-article-byline">By {{ page.author | default: site.author.name | escape }}</p>
+    </header>
+
+    {% if page.post_format == 'carousel' and page.gallery %}
+    <div class="gl-article-hero gl-article-carousel" aria-label="Article images" aria-roledescription="carousel">
+      {% for item in page.gallery %}
+      <figure class="gl-article-slide" role="group" aria-roledescription="slide" aria-label="{{ forloop.index }} of {{ page.gallery.size }}">
+        <img src="{{ item.img | relative_url }}" alt="{{ item.alt | default: item.caption | default: page.title | escape_once }}" width="1600" height="900" {% if forloop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async" />
+        {% if item.caption %}<figcaption>{{ item.caption | escape }}</figcaption>{% endif %}
+      </figure>
+      {% endfor %}
+      {% if page.gallery.size > 1 %}
+      <div class="gl-article-carousel-controls" hidden>
+        <button type="button" data-carousel-prev aria-label="Previous image">←</button>
+        <span data-carousel-status aria-live="polite" aria-atomic="true">1 / {{ page.gallery.size }}</span>
+        <button type="button" data-carousel-next aria-label="Next image">→</button>
+      </div>
+      {% endif %}
+    </div>
+    {% elsif page.post_format == 'video' and page.header_video %}
+    <div class="gl-article-hero gl-article-video">
+      {% if page.header_video.provider == 'youtube' %}
+      <iframe src="https://www.youtube.com/embed/{{ page.header_video.id | escape }}" title="{{ page.title | escape_once }} — video" width="1600" height="900" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+      {% elsif page.header_video.provider == 'vimeo' %}
+      <iframe src="https://player.vimeo.com/video/{{ page.header_video.id | escape }}" title="{{ page.title | escape_once }} — video" width="1600" height="900" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+      {% endif %}
+    </div>
+    {% elsif page.post_image %}
+    <figure class="gl-article-hero">
+      <img src="{{ page.post_image | relative_url }}"
+        {% if page.post_image_small and page.post_image_medium %}srcset="{{ page.post_image_small | relative_url }} 640w, {{ page.post_image_medium | relative_url }} 960w, {{ page.post_image | relative_url }} {{ page.image_width | default: 1600 }}w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1199px) calc(100vw - 80px), 1120px"{% endif %}
+        alt="{{ page.image_alt | default: page.alt | default: page.title | escape_once }}"
+        width="{{ page.image_width | default: 1600 }}" height="{{ page.image_height | default: 900 }}" loading="eager" fetchpriority="high" decoding="async" />
+      {% if page.image_caption or page.image_credit %}
+      <figcaption class="gl-article-image-caption">
+        {% if page.image_caption %}<span>{{ page.image_caption | escape }}</span>{% endif %}
+        {% if page.image_credit %}
+          {% if page.image_source %}<a href="{{ page.image_source | escape }}" target="_blank" rel="noopener">{{ page.image_credit | escape }} <span aria-hidden="true">↗</span></a>{% else %}<span>{{ page.image_credit | escape }}</span>{% endif %}
+        {% endif %}
+      </figcaption>
+      {% endif %}
+    </figure>
+    {% endif %}
+
+    <div class="gl-article-reading">
+      <details class="gl-article-toc" hidden>
+        <summary>In this article <span aria-hidden="true">+</span></summary>
+        <nav aria-label="Article sections"><ol></ol></nav>
+      </details>
+
+      <div class="gl-article-content" id="gl-article-content">
+        {{ content | replace: '<table', '<div class="gl-article-table-wrap" role="region" aria-label="Scrollable table" tabindex="0"><table' | replace: '</table>', '</table></div>' }}
+
+        {% if page.post_format == 'gallery' and page.gallery %}
+        <div class="gl-article-gallery">
+          {% for photo in page.gallery %}
+          <figure>
+            <a href="{{ photo.img | relative_url }}" target="_blank" rel="noopener">
+              <img src="{{ photo.img | relative_url }}" alt="{{ photo.alt | default: photo.caption | default: page.title | escape_once }}" width="1600" height="900" loading="lazy" decoding="async" />
+            </a>
+            {% if photo.caption %}<figcaption>{{ photo.caption | escape }}</figcaption>{% endif %}
+          </figure>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <footer class="gl-article-footer">
+        {% if page.tags.size > 0 %}
+        <nav class="gl-article-tags" aria-label="Article tags">
+          {% for tag in page.tags %}
+          {% assign tag_slug = tag | slugify %}
+          <a class="gl-article-tag" href="{{ '/tag/' | append: tag_slug | append: '/' | relative_url }}">{{ tag | replace: '-', ' ' | escape }}</a>
+          {% endfor %}
+        </nav>
+        {% endif %}
+        {% include posts/social-share.html %}
+      </footer>
+    </div>
+
+    <aside class="gl-article-continue" aria-labelledby="gl-article-continue-title">
+      <div class="gl-article-continue-heading">
+        <h2 id="gl-article-continue-title">Continue reading.</h2>
+        <a class="gl-article-back" href="{{ '/writing' | relative_url }}">All field notes <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="gl-article-next-grid">
+        {% if page.previous %}
+        {% assign next_read = page.previous %}
+        <a class="gl-article-next" href="{{ next_read.url | relative_url }}">
+          {% if next_read.post_image %}<img src="{{ next_read.post_image_small | default: next_read.post_image | relative_url }}" alt="" width="640" height="360" loading="lazy" decoding="async" />{% endif %}
+          <div>
+            <span class="gl-article-next-meta">Earlier note <span aria-hidden="true">·</span> {{ next_read.date | date: "%b %-d, %Y" }}</span>
+            <h3>{{ next_read.title | escape_once }}</h3>
+            <span class="gl-article-next-action">Read article <span aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+        {% endif %}
+        {% if page.next %}
+        {% assign next_read = page.next %}
+        <a class="gl-article-next" href="{{ next_read.url | relative_url }}">
+          {% if next_read.post_image %}<img src="{{ next_read.post_image_small | default: next_read.post_image | relative_url }}" alt="" width="640" height="360" loading="lazy" decoding="async" />{% endif %}
+          <div>
+            <span class="gl-article-next-meta">Newer note <span aria-hidden="true">·</span> {{ next_read.date | date: "%b %-d, %Y" }}</span>
+            <h3>{{ next_read.title | escape_once }}</h3>
+            <span class="gl-article-next-action">Read article <span aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+        {% endif %}
+      </div>
+    </aside>
+  </article>
+</main>

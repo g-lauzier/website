@@ -4,9 +4,16 @@ title: "Challenging Traditional Notions of Art and Artist with Generative Art"
 date: 2022-09-09 00:00:00 +0000
 categories: ["digital-art"]
 tags: ["algorithm"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/flat-abstract-glitched-generative-art.jpg"
+post_image: "/assets/images/writing/challenging-traditional-art.webp"
 description: "Generative art is a form of digital art that is created using algorithms, mathematical equations, and computer programs."
 permalink: "/challenging-traditional-art/"
+post_image_small: "/assets/images/writing/challenging-traditional-art-640.webp"
+post_image_medium: "/assets/images/writing/challenging-traditional-art-960.webp"
+image_width: 1600
+image_height: 900
+image_alt: "Charcoal filaments from a sweeping sculptural stroke unfold into a blue geometric lattice."
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/flat-abstract-glitched-generative-art.jpg"
 ---
 
 Generative art is a form of digital art that is created using algorithms, mathematical equations, and computer programs. Unlike traditional art, where the artist is in complete control of the creative process, generative art is created by the machine, with the artist providing the parameters and constraints for the algorithm.

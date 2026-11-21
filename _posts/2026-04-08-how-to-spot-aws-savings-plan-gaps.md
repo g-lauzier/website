@@ -7,6 +7,13 @@ tags: ["cloud-cost", "aws", "finops"]
 description: "AWS Savings Plans look great in the dashboard until you read them line by line. Here's the four-gap checklist we run on every Cost & Usage Report — and how to fix each one before next month's invoice."
 permalink: "/how-to-spot-aws-savings-plan-gaps/"
 canonical_url: "https://algosize.com/blog/how-to-spot-aws-savings-plan-gaps/"
+post_image: "/assets/images/writing/aws-savings-plan-gaps.webp"
+post_image_small: "/assets/images/writing/aws-savings-plan-gaps-640.webp"
+post_image_medium: "/assets/images/writing/aws-savings-plan-gaps-960.webp"
+image_alt: "Rows of graphite compute modules extend beyond translucent blue glass coverage bands."
+image_caption: "Editorial illustration."
+image_width: 1600
+image_height: 900
 ---
 
 _Originally published on [Algosize](https://algosize.com/blog/how-to-spot-aws-savings-plan-gaps/) — service provisioning by [algosize.com](https://algosize.com)._

@@ -4,9 +4,16 @@ title: "Leadership Within the Banking Industry"
 date: 2023-09-05 00:00:00 +0000
 categories: ["fintech"]
 tags: ["autonomy", "banking-industry"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/09/generatedart_Leadership_Within_the_Banking_Industry_ae41d43d-1551-4543-8d7c-8aaf424fa8f7-2.png"
+post_image: "/assets/images/writing/leadership-banking-industry.webp"
 description: "In the volatile landscape of investment banking, effective leadership is the cornerstone for success and resilience."
 permalink: "/leadership-banking-industry/"
+image_alt: "An unmarked compass and stable graphite fulcrum symbolize direction and resilient leadership."
+post_image_small: "/assets/images/writing/leadership-banking-industry-640.webp"
+post_image_medium: "/assets/images/writing/leadership-banking-industry-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/09/generatedart_Leadership_Within_the_Banking_Industry_ae41d43d-1551-4543-8d7c-8aaf424fa8f7-2.png"
 ---
 
 In the volatile landscape of investment banking, effective leadership is the cornerstone for success and resilience. It's not just about steering the ship but also about training the crew, balancing the sails, and navigating through storms. Specifically, traits such as autonomy, responsibility, initiative, and resilience are paramount in guiding an investment banking company through phases of development and restructuration.

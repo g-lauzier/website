@@ -4,9 +4,16 @@ title: "Generative Window Art: Transforming Spaces with Algorithmic Designs"
 date: 2023-03-02 00:00:00 +0000
 categories: ["design"]
 tags: ["algorithm-driven-designs"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/generatedart_Generative_window_art_commercial_ed58436b-fd5d-4219-8697-8ee5582409cc-2.png"
+post_image: "/assets/images/writing/generative-window-art.webp"
 description: "Generative window art is an innovative and captivating approach to traditional window treatments, utilizing algorithm-driven patterns and designs to…"
 permalink: "/generative-window-art/"
+image_alt: "An etched glass panel casts an intricate blue-gray pattern across a stone floor."
+post_image_small: "/assets/images/writing/generative-window-art-640.webp"
+post_image_medium: "/assets/images/writing/generative-window-art-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/generatedart_Generative_window_art_commercial_ed58436b-fd5d-4219-8697-8ee5582409cc-2.png"
 ---
 
 Generative window art is an innovative and captivating approach to traditional window treatments, utilizing algorithm-driven patterns and designs to transform ordinary windows into visual masterpieces. These artistic creations not only offer a unique aesthetic but also provide functional benefits like shading, privacy, and energy efficiency. This article explores the world of generative window art, its benefits, and its impact on contemporary spaces.

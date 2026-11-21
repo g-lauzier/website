@@ -4,9 +4,16 @@ title: "Generative Art: The Algorithmic Touch"
 date: 2023-06-26 00:00:00 +0000
 categories: ["digital-art"]
 tags: ["cellular-automata"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/generatedart_fractal_art_7eeffb8b-eb2b-4e45-b8c2-9ac36d7d9c35-2.png"
+post_image: "/assets/images/writing/generative-art-the-algorithmic-touch.webp"
 description: "Generative art represents an exciting merger of creativity and computation, where algorithms replace the brush, shaping intricate patterns and complex…"
 permalink: "/generative-art-the-algorithmic-touch/"
+image_alt: "A branching metal sculpture grows into intricate curls and lace-like forms, expressing algorithmic creativity."
+post_image_small: "/assets/images/writing/generative-art-the-algorithmic-touch-640.webp"
+post_image_medium: "/assets/images/writing/generative-art-the-algorithmic-touch-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/generatedart_fractal_art_7eeffb8b-eb2b-4e45-b8c2-9ac36d7d9c35-2.png"
 ---
 
 Generative art represents an exciting merger of creativity and computation, where algorithms replace the brush, shaping intricate patterns and complex systems that transcend the bounds of traditional art forms. This unique form of art has a variety of methodologies at its disposal, from fractals to neural networks. This article explores these key algorithms and techniques that contribute to the world of generative art.

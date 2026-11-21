@@ -4,9 +4,18 @@ title: "In Montreux and Lausanne with R3hab"
 date: 2012-07-14 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["3d-animation", "cinema4d", "color-correction"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/r3hab.png"
+post_image: "/assets/images/writing/archive/montreux-lausanne-r3hab.webp"
 description: "Step into the exhilarating world of R3hab through my video project, filmed during the iconic 2012 Montreux Jazz Festival and at the Mad Club in Lausanne the…"
 permalink: "/montreux-lausanne-r3hab/"
+post_image_small: "/assets/images/writing/archive/montreux-lausanne-r3hab-640.webp"
+post_image_medium: "/assets/images/writing/archive/montreux-lausanne-r3hab-960.webp"
+image_width: 1280
+image_height: 720
+image_alt: "Gold R3hab title over a background of dark circular lights in the original event video thumbnail."
+image_caption: "Thumbnail from the original video."
+image_credit: "Noctune on Vimeo"
+image_source: "https://vimeo.com/48635915"
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/r3hab.png"
 ---
 
 Step into the exhilarating world of R3hab through my video project, filmed during the iconic 2012 Montreux Jazz Festival and at the Mad Club in Lausanne the following night. Capturing the electrifying energy of the music scene and the pulsating rhythm of these nightlife venues, the video provides an intimate view of the memorable performances and behind-the-scenes moments.

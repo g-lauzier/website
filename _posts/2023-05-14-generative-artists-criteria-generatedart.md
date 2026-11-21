@@ -4,9 +4,16 @@ title: "The Generative Artist's Criteria: Your Gateway to GeneratedArt"
 date: 2023-05-14 00:00:00 +0000
 categories: ["digital-art"]
 tags: ["algorithm-development", "art", "art-inspiration", "collaboration", "compliance-in-art"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/generatedart_generative_art_exhibition_2195b493-43f9-4622-942a-e5f2683a745f-2.png"
+post_image: "/assets/images/writing/generative-artists-criteria-generatedart.webp"
 description: "In the vast and diverse world of digital art, GeneratedArt has positioned itself as a conduit for pioneering and innovative works of generative art."
 permalink: "/generative-artists-criteria-generatedart/"
+image_alt: "Three distinct metal and glass sculptures inside a graphite frame, representing the selection of generative artworks."
+post_image_small: "/assets/images/writing/generative-artists-criteria-generatedart-640.webp"
+post_image_medium: "/assets/images/writing/generative-artists-criteria-generatedart-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/05/generatedart_generative_art_exhibition_2195b493-43f9-4622-942a-e5f2683a745f-2.png"
 ---
 
 In the vast and diverse world of digital art, [GeneratedArt](https://generatedart.com) has positioned itself as a conduit for pioneering and innovative works of generative art. Through this unique approach, we champion artists who harness the power of algorithms and data to birth a unique output, offering an invaluable contribution to the modern art world. This is a realm distinct from conventional digital art creation tools such as Adobe Illustrator or Photoshop, and platforms like MidJourney that facilitate the production of generative digital art.

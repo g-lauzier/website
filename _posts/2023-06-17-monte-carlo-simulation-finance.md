@@ -4,9 +4,16 @@ title: "Monte Carlo Simulation in Finance: Traditional and Decentralized"
 date: 2023-06-17 00:00:00 +0000
 categories: ["fintech"]
 tags: []
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/generatedart_Monte_Carlo_Simulation_Finance_37395abb-80e4-4b6b-a5ca-465ee649e98d-2.png"
+post_image: "/assets/images/writing/monte-carlo-simulation-finance.webp"
 description: "The Monte Carlo Simulation (MCS) is a mathematical technique that allows you to understand the impact of risk and uncertainty in prediction and forecasting…"
 permalink: "/monte-carlo-simulation-finance/"
+image_alt: "Graphite and cobalt beads disperse toward glass bowls, evoking many possible outcomes under uncertainty."
+post_image_small: "/assets/images/writing/monte-carlo-simulation-finance-640.webp"
+post_image_medium: "/assets/images/writing/monte-carlo-simulation-finance-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/generatedart_Monte_Carlo_Simulation_Finance_37395abb-80e4-4b6b-a5ca-465ee649e98d-2.png"
 ---
 
 The Monte Carlo Simulation (MCS) is a mathematical technique that allows you to understand the impact of risk and uncertainty in prediction and forecasting models. Named after the famous Monte Carlo Casino in Monaco, this method utilizes random sampling and statistical modeling to simulate the possible outcomes of uncertain events.

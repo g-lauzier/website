@@ -4,9 +4,16 @@ title: "Submit Your Work to GeneratedArt Publications on Medium"
 date: 2023-02-23 00:00:00 +0000
 categories: ["digital-art"]
 tags: ["ai-art", "algorithms"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_social_media_publications.png"
+post_image: "/assets/images/writing/medium-generatedart-publications.webp"
 description: "Do you have a passion for generative art, AI art, creative coding, or generative design?"
 permalink: "/medium-generatedart-publications/"
+image_alt: "Patterned translucent sheets fan toward an open dark portfolio."
+post_image_small: "/assets/images/writing/medium-generatedart-publications-640.webp"
+post_image_medium: "/assets/images/writing/medium-generatedart-publications-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_social_media_publications.png"
 ---
 
 Do you have a passion for generative art, AI art, creative coding, or generative design? Are you looking to share your insights, ideas, and stories with a wider audience? Submitting your Medium story to GeneratedArt publications can be a great way to get your work seen by people who share your interests. In this article, we will walk you through the steps to submit your Medium story to GeneratedArt publications and provide you with some tips to increase your chances of getting published. Whether you are a seasoned writer or a newcomer, we hope that this guide will help you get your work seen by the right audience.

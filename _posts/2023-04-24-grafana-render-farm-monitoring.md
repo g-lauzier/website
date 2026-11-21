@@ -4,9 +4,16 @@ title: "Harnessing the Power of Grafana for Render Farm Monitoring"
 date: 2023-04-24 00:00:00 +0000
 categories: ["infrastructure"]
 tags: ["3d-rendering"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/generatedart_render_farm_31c3b34b-5f3c-4f83-9c5e-a3e2839ecbf2-2.png"
+post_image: "/assets/images/writing/grafana-render-farm-monitoring.webp"
 description: "Render farms are essential for handling complex 3D rendering and film visual effects (VFX) tasks."
 permalink: "/grafana-render-farm-monitoring/"
+image_alt: "A suspended lens highlights one warm module in a field of dark blue-lit render units."
+post_image_small: "/assets/images/writing/grafana-render-farm-monitoring-640.webp"
+post_image_medium: "/assets/images/writing/grafana-render-farm-monitoring-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/04/generatedart_render_farm_31c3b34b-5f3c-4f83-9c5e-a3e2839ecbf2-2.png"
 ---
 
 Render farms are essential for handling complex 3D rendering and film visual effects (VFX) tasks. As the number of render nodes increases, managing and monitoring their performance becomes increasingly critical. Grafana, a popular open-source visualization and analytics platform, can be an invaluable tool for monitoring the performance and resource utilization of render farms. In this article, we'll explore how to leverage Grafana to create a comprehensive monitoring solution for your render farm.

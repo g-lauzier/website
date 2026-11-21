@@ -4,9 +4,16 @@ title: "Emotional XYZ sound wave"
 date: 2023-02-25 00:00:00 +0000
 categories: ["digital-art"]
 tags: []
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_generative_art_sound_frequency.png"
+post_image: "/assets/images/writing/emotional-xyz-sound-wave.webp"
 description: "Sound is an important aspect of our daily lives, from the music we listen to, the sounds of nature, and even the spoken words we hear."
 permalink: "/emotional-xyz-sound-wave/"
+image_alt: "A flowing ribbon of metal fins curves through space with blue and copper edge light."
+post_image_small: "/assets/images/writing/emotional-xyz-sound-wave-640.webp"
+post_image_medium: "/assets/images/writing/emotional-xyz-sound-wave-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_generative_art_sound_frequency.png"
 ---
 
 Sound is an important aspect of our daily lives, from the music we listen to, the sounds of nature, and even the spoken words we hear. Sound can evoke emotions and affect our mood and behavior. In recent years, advances in technology have made it possible to create more immersive and interactive sound experiences, such as surround sound systems and 3d data visualisation.

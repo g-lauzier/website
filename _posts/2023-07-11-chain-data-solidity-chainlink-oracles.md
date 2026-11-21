@@ -4,9 +4,16 @@ title: "Managing Parties and Fetching Off-Chain Data in NFTs using Solidity and 
 date: 2023-07-11 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["chainlink", "collaboration"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_ethereum_oracle_d5ca524d-218b-411d-8bef-f47cab4abc34-2.png"
+post_image: "/assets/images/writing/chain-data-solidity-chainlink-oracles.webp"
 description: "In the burgeoning world of Non-Fungible Tokens (NFTs), many new challenges and use-cases are emerging."
 permalink: "/chain-data-solidity-chainlink-oracles/"
+image_alt: "A metal bridge carries a cobalt bead from rough slate into a glass enclosure, illustrating external data entering a blockchain."
+post_image_small: "/assets/images/writing/chain-data-solidity-chainlink-oracles-640.webp"
+post_image_medium: "/assets/images/writing/chain-data-solidity-chainlink-oracles-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_ethereum_oracle_d5ca524d-218b-411d-8bef-f47cab4abc34-2.png"
 ---
 
 In the burgeoning world of Non-Fungible Tokens (NFTs), many new challenges and use-cases are emerging. One such use-case is managing different contributing parties and their respective shares in a project represented by an NFT. Another is fetching and incorporating off-chain data into the [Ethereum smart contract](https://github.com/guillaumelauzier/NFT-managing-parties/tree/main). In this article, we'll explore how to handle both these cases using Solidity and Chainlink oracles.

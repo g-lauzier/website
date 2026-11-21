@@ -4,9 +4,16 @@ title: "Zero-Knowledge Proofs: A Pillar of Cryptographic Privacy"
 date: 2023-03-11 00:00:00 +0000
 categories: ["cybersecurity"]
 tags: ["blockchain"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_cryptography_encryption_a29f64d4-9071-412d-bdd5-4f6e75dd92c1-2.png"
+post_image: "/assets/images/writing/zero-knowledge-proofs.webp"
 description: "As our world becomes increasingly digital, the ability to securely share and verify information is crucial."
 permalink: "/zero-knowledge-proofs/"
+image_alt: "A closed dark vault sits beside a small prism projecting a blue ring of light."
+post_image_small: "/assets/images/writing/zero-knowledge-proofs-640.webp"
+post_image_medium: "/assets/images/writing/zero-knowledge-proofs-960.webp"
+image_width: 1600
+image_height: 900
+image_caption: "Editorial illustration."
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_cryptography_encryption_a29f64d4-9071-412d-bdd5-4f6e75dd92c1-2.png"
 ---
 
 As our world becomes increasingly digital, the ability to securely share and verify information is crucial. Cryptography has made impressive strides in this area, and zero-knowledge proofs (ZKPs) are one such innovation that holds great promise. They provide a way for one party (the prover) to demonstrate to another party (the verifier) that they possess certain knowledge or a specific piece of information without revealing any additional details.

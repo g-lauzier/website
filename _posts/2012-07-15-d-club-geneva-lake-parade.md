@@ -4,9 +4,18 @@ title: "D! Club at Geneva's Lake Parade: A Sonic Journey"
 date: 2012-07-15 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["bad-nelson"]
-post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/geneva-lake-parade-2012.png"
+post_image: "/assets/images/writing/archive/d-club-geneva-lake-parade.webp"
 description: "Discover the vibrant spirit of Geneva's Lake Parade in this captivating video, featuring D! Club's inaugural float."
 permalink: "/d-club-geneva-lake-parade/"
+post_image_small: "/assets/images/writing/archive/d-club-geneva-lake-parade-640.webp"
+post_image_medium: "/assets/images/writing/archive/d-club-geneva-lake-parade-960.webp"
+image_width: 1280
+image_height: 720
+image_alt: "Pink Lake Parade title card from the original D! Club video."
+image_caption: "Thumbnail from the original video."
+image_credit: "Noctune on Vimeo"
+image_source: "https://vimeo.com/46101379"
+original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/geneva-lake-parade-2012.png"
 ---
 
 Discover the vibrant spirit of Geneva's Lake Parade in this captivating video, featuring D! Club's inaugural float. While the video footage was captured by another collaborator, the editing process was expertly handled by me, transforming raw clips into a cohesive, engaging narrative.
