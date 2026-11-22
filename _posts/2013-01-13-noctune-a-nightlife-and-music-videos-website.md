@@ -7,6 +7,8 @@ tags: ["bootstrap"]
 post_image: "/assets/images/noctune-nightlife-music.webp"
 description: "The \"Nightlife and Music Videos\" website was developed on CMS WordPress using PHP, MySQL, Javascript, and Bootstrap framework."
 permalink: "/noctune-a-nightlife-and-music-videos-website/"
+image_width: 1408
+image_height: 768
 ---
 
 The "Nightlife and Music Videos" website was developed on CMS WordPress using PHP, MySQL, Javascript, and Bootstrap framework. It showcased video reports that covered the night-life scene, artists, and DJ mixes. I founded the company Noctune in 2012, with a focus on producing music videos and artist photography. The website served as a platform to promote artists through profiles featuring links, videos, and photos, as well as covering events and showcasing the producer's work. It included articles, a video gallery, and a photo gallery. I attended and filmed over 50 electronic events and club nights in 2012 to gather footage for the website.

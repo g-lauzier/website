@@ -7,6 +7,8 @@ tags: []
 post_image: "/assets/images/gva-pogo-pokemon-map.webp"
 description: "In 2017, I launched GVA PoGo, a real-time map for Pokemon spawns across Geneva, designed specifically for Pokemon GO players."
 permalink: "/gva-pogo-real-time-pokemon-spawns-map-for-geneva/"
+image_width: 1408
+image_height: 768
 ---
 
 In 2017, I launched GVA PoGo, a real-time map for Pokemon spawns across Geneva, designed specifically for Pokemon GO players. The web application showed the location of all Pokemon, PokéStops, Pokemon nests, raids, and gyms with a clean and intuitive graphical user interface. It featured notifications on Twitter and Discord, lure information, filters, and a multithreaded mode. The web application used independent worker threads that allowed many users to quickly generate a live map of a large geographical area of Geneva. GVA PoGo was also available in multiple languages.

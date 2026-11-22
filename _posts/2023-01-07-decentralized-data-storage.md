@@ -7,6 +7,8 @@ tags: ["algorithms"]
 post_image: "/assets/images/decentralized-data-storage.webp"
 description: "Decentralized data storage is a distributed computing paradigm that allows users to store and retrieve data in a decentralized manner, without the need for…"
 permalink: "/decentralized-data-storage/"
+image_width: 1408
+image_height: 768
 ---
 
 Decentralized data storage is a distributed computing paradigm that allows users to store and retrieve data in a decentralized manner, without the need for a central authority or coordinator. This approach has the potential to offer a number of benefits compared to traditional, centralized storage systems, such as improved reliability, security, and scalability.
@@ -17,83 +19,7 @@ After publishing an article in august 2022 on [How Decentralized Storage is Tran
 
 By understanding the technicalities of decentralized storage, we can gain a deeper appreciation for the design and operation of these systems, and how they can be used to solve real-world problems.
 
-## **Contents**
-
-- **[Distributed systems](#Distributed-systems)**  
-
-Data distribution algorithms
-
-**[Erasure coding](#Erasurecoding)**
-
-- **[Replication](#Replication)**
-
-- **[Distributed hash tables (DHTs)](#DHTs)**
-
-- **[Consensus protocols](#Consensusprotocols)**
-
-**[Paxos algorithms](#Paxosalgorithms)**
-
-- **[Raft algorithm](#Raftalgorithm)**
-
-- **[Byzantine fault tolerance (BFT) protocols](#BFT)**
-
-Fault tolerance algorithms
-- **[Replication](#Replication)**
-
-- **[Checkpointing](#Checkpointing)**
-
-- **[Rollback algorithms](#Rollbackalgorithms)**
-
-Distributed database algorithms
-- **[Distributed indexing algorithms](#Distributed-indexing-algorithms)**
-
-- **[Distributed query processing algorithms](#Distributed-query-processing-algorithms)**
-
-- **[Distributed transaction processing algorithms](#Distributed-transaction-processing-algorithms)**
-
-Distributed file system algorithms
-- **[Replication](#Replication)**
-
-- **[File allocation a](https://guillaumelauzier.com/decentralized-data-storage/#File-allocation-algorithms)[l](#File-allocation-algorithms)[gorithms](https://guillaumelauzier.com/decentralized-data-storage/#File-allocation-algorithms)**
-
-- **[File distribution algorithms and striping](#File-distribution-algorithms-striping)**
-
-Synchronization algorithms
-- **[Lock-based algorithms](#Lock-basedalgorithms)**
-
-- **[Timestamp-based algorithms](https://guillaumelauzier.com/decentralized-data-storage/#Timestamp-based-algorithms)**
-
-- **[Vector clock algorithms](https://guillaumelauzier.com/decentralized-data-storage/#Vector-clock-algorithms)**
-
-Coordination algorithms
-- [**Leader election algorithms**](#Leader-election-algorithms)
-
-- [**Clock synchronization algorithm**](#clock-synchronization-algorithm)
-
-- **[Distributed mutual exclusion algorithms](#Distributed-mutual-exclusion-algorithms)**
-
-Resource management algorithms
-- **[Load balancing algorithms](#Load-balancing-algorithms)**
-
-- [**Scheduling algorith**](#Scheduling-algorithms)[**ms**](https://guillaumelauzier.com/decentralized-data-storage/#Scheduling-algorithms)
-
-- **[Optimization algorithms](#Optimization-algorithms)**
-
-Communication protocols
-- **[Message passing protocols](#Message-passing-protocols)**
-
-- **[Request-response](#Request-response)**
-
-- **[Publish-subscribe protocols](#Publish-subscribe-protocols)**
-
-Network routing algorithms
-- **[Shortest path algorithms](#Shortest-path-algorithms)**
-
-- [**Minimum hop algorithms**](#Minimum-hop-algorithms)
-
-- **[Load-balanced routing algorithms](#Load-balanced-routing-algorithms)**
-
-## **[Distributed systems](#Distributed-systems)**
+## Distributed systems {#Distributed-systems}
 
 Distributed systems are computer systems that consist of multiple interconnected nodes that work together to perform a common task. These nodes can be located in the same physical location or dispersed across different locations, and communicate with each other over a network.
 
@@ -101,7 +27,7 @@ Distributed systems offer several benefits over traditional centralized systems,
 
 However, distributed systems also introduce new challenges and complexities, such as the need to coordinate the actions of the nodes, manage data consistency and integrity, and ensure fault tolerance. To address these challenges, distributed systems rely on a variety of algorithms and protocols, such as consensus algorithms, resource management algorithms, and distributed data structures.
 
-**[Replication](#Replication)**
+### Replication {#Replication}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/Normal-operation-of-the-replication-algorithm.png)
 
@@ -117,7 +43,7 @@ Some common types of replication algorithms include:
 
 - Quorum-based replication: In this approach, a minimum number of copies of the data must be available in order for it to be considered "live." This can provide a good balance between availability and efficiency, but may be more complex to implement.
 
-**[Erasure coding](#Erasurecoding)**
+### Erasure coding {#Erasurecoding}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/Erasure-coding.jpg)
 
@@ -127,7 +53,7 @@ Erasure coding allows for more efficient storage compared to simple replication,
 
 Erasure coding is often used in decentralized storage systems to ensure the durability and availability of data. It can be implemented using various mathematical techniques, such as finite field arithmetic or polynomial interpolation.
 
-**[Gossip protocols](#Gossipprotocols)**
+### Gossip protocols {#Gossipprotocols}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/13174_2012_Article_12_Fig1_HTML.jpg)
 
@@ -137,7 +63,7 @@ Gossip protocols can be used for a variety of tasks in decentralized systems, su
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/1sy9fDAy1KLb7mYflAP_F_A-1024x642.jpeg)
 
-**[Distributed hash tables (DHTs)](#DHTs)**
+### Distributed hash tables (DHTs) {#DHTs}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/86956780-dc1e-11eb-80f2-44332a1d3508-1024x512.png)
 
@@ -155,7 +81,7 @@ DHTs have several key features that make them useful for decentralized storage s
 
 DHTs are used in a variety of decentralized systems, including distributed file systems, peer-to-peer networks, and decentralized storage systems.
 
-**[Consensus protocols](#Consensusprotocols)**
+### Consensus protocols {#Consensusprotocols}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/11276_2019_2195_Fig1_HTML.png)
 
@@ -163,12 +89,9 @@ Consensus protocols are algorithms that allow nodes in a decentralized system to
 
 There are several different types of consensus protocols, including:
 
-
-
-
 Consensus protocols play a critical role in decentralized storage systems, as they ensure the consistency and integrity of the data stored in the system. They also help to ensure the reliability and fault tolerance of the system, as they allow the system to recover from errors and continue to operate correctly in the presence of failures or network disruptions.
 
-**[Paxos algorithms](#Paxosalgorithms)**
+### Paxos algorithms {#Paxosalgorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/0rR2dbxumchq0jwcy.png)
 
@@ -182,7 +105,7 @@ The Multi-Paxos algorithm is a variant of the Basic Paxos algorithm that allows 
 
 Paxos algorithms are widely used in distributed systems that require high availability and fault tolerance, such as distributed databases, file systems, and messaging systems. They are known for their reliability and efficiency, although they can be somewhat complex to understand and implement.
 
-**[Raft algorithm](#Raftalgorithm)**
+### Raft algorithm {#Raftalgorithm}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/multiple-server-labelled-raft-visual.png)
 
@@ -194,7 +117,7 @@ One key difference between Raft and Paxos is that Raft divides the nodes in the 
 
 Raft is also designed to be more fault-tolerant than Paxos, as it allows nodes to recover from failures more quickly and automatically. This can make it a good choice for distributed systems that require high availability and reliability.
 
-**[Byzantine fault tolerance (BFT) protocols](#BFT)**
+### Byzantine fault tolerance (BFT) protocols {#BFT}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/Practical-byzantine-fault-tolerance-protocol.ppm_.png)
 
@@ -206,7 +129,7 @@ There are several different types of BFT protocols, including practical BFT (PBF
 
 BFT protocols are more complex and resource-intensive than other types of consensus protocols, such as the Paxos algorithms and the Raft algorithm. However, they offer a high level of security and reliability, making them a good choice for systems that require strong guarantees against Byzantine failures.
 
-**[Checkpointing](#Checkpointing)**
+### Checkpointing {#Checkpointing}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/An-example-of-checkpointing.pbm_.png)
 
@@ -218,7 +141,7 @@ There are several different types of checkpointing algorithms, including periodi
 
 Checkpointing algorithms are often used in distributed systems that require high availability and fault tolerance, such as distributed databases and distributed file systems. They can be an effective way to ensure the reliability and consistency of the system, although they may have some overhead and complexity.
 
-**[Rollback algorithms](#Rollbackalgorithms)**
+### Rollback algorithms {#Rollbackalgorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/Example-of-rollback-traffic-with-the-snapshot-routing-algorithm.png)
 
@@ -230,7 +153,7 @@ There are several different types of rollback algorithms, including snapshot rol
 
 Rollback algorithms are often used in distributed systems that require high availability and fault tolerance, such as distributed databases and distributed file systems. They can be an effective way to ensure the reliability and consistency of the system, although they may have some overhead and complexity.
 
-**[Distributed indexing algorithms](#Distributed-indexing-algorithms)**
+### Distributed indexing algorithms {#Distributed-indexing-algorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/img195.png)
 
@@ -244,7 +167,7 @@ Range-based indexing algorithms divide the keys into ranges and assign each rang
 
 Tree-based indexing algorithms use a tree structure to store the index information, and can support efficient queries and updates. However, they may have lower scalability and higher overhead compared to other approaches.
 
-**[Distributed query processing algorithms](#Distributed-query-processing-algorithms)**
+### Distributed query processing algorithms {#Distributed-query-processing-algorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/978-0-387-39940-9_4_Part_Fig1-704_HTML.jpg)
 
@@ -258,7 +181,7 @@ Pipelining algorithms divide the query into stages, and pass the intermediate re
 
 Broadcast algorithms send the entire query to all nodes in the system, and have each node return the relevant part of the result. This can be simple to implement, but may have lower performance and scalability compared to other approaches.
 
-**[Distributed transaction processing algorithms](#Distributed-transaction-processing-algorithms)**
+### Distributed transaction processing algorithms {#Distributed-transaction-processing-algorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/Distributed-transaction-processing.png)
 
@@ -270,7 +193,7 @@ Two-phase commit algorithms are used to coordinate the updates made by a single 
 
 Three-phase commit algorithms are similar to 2PC algorithms, but involve an additional "pre-commit" phase in which the nodes prepare to commit the updates. This can provide higher fault tolerance and better recovery from failures, but may have higher overhead and complexity compared to 2PC algorithms.
 
-**[File allocation algorithms](#File-allocation-algorithms)**
+### File allocation algorithms {#File-allocation-algorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/image-120.png)
 
@@ -278,10 +201,7 @@ File allocation algorithms are used to determine how files should be distributed
 
 There are several different types of file allocation algorithms, including:
 
-
-
-
-**[File distribution algorithms and striping](#File-distribution-algorithms-striping)**
+### File distribution algorithms and striping {#File-distribution-algorithms-striping}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/1200px-Data_striping_example.svg-1024x683.png)
 
@@ -291,7 +211,7 @@ One type of file distribution algorithms we haven't already mentions aside from 
 
 In striping, data is divided into blocks and distributed across the nodes in the system in a round-robin manner. This can provide good performance and scalability, but may have lower fault tolerance compared to other approaches.
 
-**[Lock-based algorithms](#Lock-basedalgorithms)**
+### Lock-based algorithms {#Lock-basedalgorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/dbms-lock-based-protocol-1.png)
 
@@ -299,10 +219,7 @@ Lock-based algorithms are a type of synchronization algorithm that is used to co
 
 There are several different types of lock-based algorithms, including:
 
-
-
-
-**[Timestamp-based algorithms](#Timestamp-based-algorithms)**
+### Timestamp-based algorithms {#Timestamp-based-algorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/22-6.png)
 
@@ -310,10 +227,7 @@ Timestamp-based algorithms are a type of synchronization algorithm that is used 
 
 There are several different types of timestamp-based algorithms, including:
 
-
-
-
-**[Vector clock algorithms](#Vector-clock-algorithms)**
+### Vector clock algorithms {#Vector-clock-algorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/vector1-1024x601.png)
 
@@ -323,7 +237,7 @@ Vector clocks are often used in distributed systems that need to ensure consiste
 
 Vector clocks are similar to Lamport timestamps, which are another type of logical clock used in distributed systems. However, vector clocks can track more complex causal relationships between events, and can be used to determine whether two events are concurrent or causally related.
 
-[Leader election algorithms](#Leader-election-algorithms)
+### Leader election algorithms {#Leader-election-algorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/7-3500643x2-1.png)
 
@@ -331,10 +245,7 @@ Leader election algorithms are used to select a leader or coordinator from among
 
 There are several different approaches to leader election, including:
 
-
-
-
-[Clock synchronization algorithm](#clock-synchronization-algorithm)
+### Clock synchronization algorithm {#clock-synchronization-algorithm}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/Ping_for_time.png)
 
@@ -342,10 +253,7 @@ Clock synchronization algorithms are used to ensure that the clocks on different
 
 There are several different approaches to clock synchronization, including:
 
-
-
-
-**[Distributed mutual exclusion algorithms](#Distributed-mutual-exclusion-algorithms)**
+### Distributed mutual exclusion algorithms {#Distributed-mutual-exclusion-algorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/Mutual_exclusion_example_with_linked_list-1024x726.png)
 
@@ -353,10 +261,7 @@ Distributed mutual exclusion algorithms are used to coordinate the access to sha
 
 There are several different approaches to distributed mutual exclusion, including:
 
-
-
-
-**[Load balancing algorithms](#Load-balancing-algorithms)**
+### Load balancing algorithms {#Load-balancing-algorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/roundrobinmodified-1-1024x502.png)
 
@@ -364,11 +269,7 @@ Load balancing algorithms are used to distribute workload evenly among the nodes
 
 There are several different types of load balancing algorithms, including:
 
-
-
-
-
-[Scheduling algorithms](#Scheduling-algorithms)
+### Scheduling algorithms {#Scheduling-algorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/UntitledDiagram12.jpg-1024x560.png)
 
@@ -376,11 +277,7 @@ Scheduling algorithms are used to determine the order in which tasks should be e
 
 There are several different types of scheduling algorithms, including:
 
-
-
-
-
-**[Optimization algorithms](#Optimization-algorithms)**
+### Optimization algorithms {#Optimization-algorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/06i2hhr8DQqJ4NksR.png)
 
@@ -388,11 +285,7 @@ Optimization algorithms are a class of algorithms that are used to find the opti
 
 There are several different types of optimization algorithms, including:
 
-
-
-
-
-**[Message passing protocols](#Message-passing-protocols)**
+### Message passing protocols {#Message-passing-protocols}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/Full-three-rounds-of-message-passing-protocol-in-Z-channel.png)
 
@@ -400,11 +293,7 @@ Message passing protocols are communication protocols that are used to facilitat
 
 There are many different types of message passing protocols, including:
 
-
-
-
-
-**[Request-response](#Request-response)**
+### Request-response {#Request-response}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/http-communication-1024x432.png)
 
@@ -412,11 +301,7 @@ Request-response protocols are communication protocols that are used to facilita
 
 There are many different types of request-response protocols, including:
 
-
-
-
-
-**[Publish-subscribe protocols](#Publish-subscribe-protocols)**
+### Publish-subscribe protocols {#Publish-subscribe-protocols}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/a6baf485733448bc9730f47bf1f41135.png-1024x455.webp)
 
@@ -424,11 +309,7 @@ Publish-subscribe protocols are communication protocols that are used to facilit
 
 There are many different types of publish-subscribe protocols, including:
 
-
-
-
-
-**[Shortest path algorithms](#Shortest-path-algorithms)**
+### Shortest path algorithms {#Shortest-path-algorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/Shortest_path_with_direct_weights.svg-1024x560.png)
 
@@ -436,11 +317,7 @@ Shortest path algorithms are a class of algorithms that are used to find the sho
 
 There are several different types of shortest path algorithms, including:
 
-
-
-
-
-[Minimum hop algorithms](#Minimum-hop-algorithms)
+### Minimum hop algorithms {#Minimum-hop-algorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/ROyLs-1024x617.jpg)
 
@@ -448,10 +325,7 @@ Minimum hop algorithms are a class of algorithms that are used to find the short
 
 There are several different types of minimum hop algorithms, including:
 
-
-
-
-**[Load-balanced routing algorithms](#Load-balanced-routing-algorithms)**
+### Load-balanced routing algorithms {#Load-balanced-routing-algorithms}
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2023/01/Router-load-balancing.png)
 
@@ -459,8 +333,6 @@ Load-balanced routing algorithms are a class of algorithms that are used to dist
 
 There are several different types of load-balanced routing algorithms, including:
 
-
-
-
+## Conclusion
 
 In conclusion, algorithms play a crucial role in distributed systems, helping to solve a wide range of problems involving data distribution, resource management, and communication. There are many different types of algorithms used in distributed systems, including data distribution algorithms, resource management algorithms, and distributed file system algorithms, as well as more specialized algorithms such as consistent hashing, replication algorithms, erasure coding, and gossip protocols. These algorithms are an essential part of the infrastructure of distributed systems, and help to ensure that these systems are efficient, scalable, and reliable.

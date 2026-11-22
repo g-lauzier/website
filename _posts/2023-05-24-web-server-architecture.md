@@ -18,35 +18,35 @@ original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/0
 
 A well-architected web server is crucial for managing and effectively distributing high-volume traffic to maintain a responsive and fast website. This article explores various techniques that can be used to balance high volume traffic to a website server, ensuring optimal performance and availability.
 
-**1. Load Balancing:**
+## 1. Load Balancing:
 
 Load balancing is an essential technique that evenly distributes network traffic across several servers, thereby preventing any single server from getting overwhelmed. Load balancers, which can be hardware-based or software-based, distribute loads based on predefined policies, ensuring efficient use of resources and improving overall application responsiveness and availability.
 
-**2. Auto Scaling:**
+## 2. Auto Scaling:
 
 In the realm of cloud computing, auto-scaling is a feature that allows for automatic scaling up or down of server instances based on actual traffic loads. This feature becomes extremely useful during peak traffic times, ensuring that website performance remains stable even during traffic surges.
 
-**3. Content Delivery Network (CDN):**
+## 3. Content Delivery Network (CDN):
 
 A CDN is a globally distributed network of proxy servers and data centers designed to provide high availability and performance by spatially distributing services relative to end-users. CDNs serve a large portion of content, including HTML pages, JavaScript files, stylesheets, images, and videos, thereby reducing the load on the origin server and improving website performance.
 
-**4. Caching:**
+## 4. Caching:
 
 Caching involves storing copies of files in a cache or temporary storage location so that they can be accessed more quickly. There are browser-side caches, which store files in the user's browser, and server-side caches, like Memcached or Redis, which store data on the server for faster access.
 
-**5. Database Optimization:**
+## 5. Database Optimization:
 
 Optimizing your database involves refining database queries and improving indexing so that your server can retrieve and display your website's content more quickly. Techniques like database sharding, which separates large databases into smaller, faster, more easily managed shards, can also contribute to overall server performance.
 
-**6. Server Optimization:**
+## 6. Server Optimization:
 
 Server optimization includes various techniques like using HTTP/2, compressing data using algorithms like GZIP, optimizing images and other files, and minifying CSS and JavaScript files. All these techniques aim to reduce data sizes and reduce the load on the server, enhancing overall server performance.
 
-**7. Microservices Architecture:**
+## 7. Microservices Architecture:
 
 In a microservices architecture, an application is built as a collection of small services, each running in its own process and communicating with lightweight mechanisms. This architecture allows for continuous delivery and deployment of large, complex applications and allows an organization to evolve its technology stack.
 
-**8. DNS Load Balancing:**
+## 8. DNS Load Balancing:
 
 DNS load balancing works by associating multiple IP addresses with a single domain name. The DNS server can rotate the order of the returned IP addresses or select an IP based on geolocation data, ensuring that traffic is effectively distributed across multiple servers.
 

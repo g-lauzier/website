@@ -2,20 +2,27 @@
 {% assign article_minutes = article_words | divided_by: 220.0 | ceil | at_least: 1 %}
 {% assign article_minutes = page.read_time | default: article_minutes %}
 
-<main class="gl-article-main">
+<main class="gl-article-main" id="main-content">
   <article class="gl-article" aria-labelledby="gl-article-title">
-    <header class="gl-article-header">
+    <div class="gl-article-progress" aria-hidden="true" hidden><span></span></div>
+    <div class="gl-article-wayfinding">
       <a class="gl-article-back" href="{{ '/writing' | relative_url }}"><span aria-hidden="true">←</span> All field notes</a>
+      <a class="gl-article-start" href="#gl-article-content">Start reading <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="gl-article-opening{% if page.post_image or page.gallery or page.header_video %} has-media{% endif %}">
+    <header class="gl-article-header">
       <div class="gl-article-meta">
         {% for category in page.categories %}
         <span class="gl-article-category">{% if category == 'ai' %}AI{% else %}{{ category | replace: '-', ' ' | capitalize | escape }}{% endif %}</span>
         {% endfor %}
-        {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% endif %}
-        <span>{{ article_minutes }} min read</span>
       </div>
       <h1 id="gl-article-title" class="gl-article-title">{{ page.title | escape_once }}</h1>
       {% if page.description %}<p class="gl-article-deck">{{ page.description | escape_once }}</p>{% endif %}
-      <p class="gl-article-byline">By {{ page.author | default: site.author.name | escape }}</p>
+      <div class="gl-article-byline">
+        <span class="gl-article-author">{{ page.author | default: site.author.name | escape }}</span>
+        {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% endif %}
+        <span>{{ article_minutes }} min read</span>
+      </div>
     </header>
 
     {% if page.post_format == 'carousel' and page.gallery %}
@@ -45,7 +52,7 @@
     {% elsif page.post_image %}
     <figure class="gl-article-hero">
       <img src="{{ page.post_image | relative_url }}"
-        {% if page.post_image_small and page.post_image_medium %}srcset="{{ page.post_image_small | relative_url }} 640w, {{ page.post_image_medium | relative_url }} 960w, {{ page.post_image | relative_url }} {{ page.image_width | default: 1600 }}w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1199px) calc(100vw - 80px), 1120px"{% endif %}
+        {% if page.post_image_small and page.post_image_medium %}srcset="{{ page.post_image_small | relative_url }} 640w, {{ page.post_image_medium | relative_url }} 960w, {{ page.post_image | relative_url }} {{ page.image_width | default: 1600 }}w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1099px) min(720px, calc(100vw - 80px)), (max-width: 1263px) calc((100vw - 144px) * 0.4), 448px"{% endif %}
         alt="{{ page.image_alt | default: page.alt | default: page.title | escape_once }}"
         width="{{ page.image_width | default: 1600 }}" height="{{ page.image_height | default: 900 }}" loading="eager" fetchpriority="high" decoding="async" />
       {% if page.image_caption or page.image_credit %}
@@ -58,14 +65,19 @@
       {% endif %}
     </figure>
     {% endif %}
+    </div>
 
-    <div class="gl-article-reading">
+    <div class="gl-article-reading-layout">
+      <aside class="gl-article-rail" aria-label="Reading guide" hidden>
       <details class="gl-article-toc" hidden>
         <summary>In this article <span aria-hidden="true">+</span></summary>
         <nav aria-label="Article sections"><ol></ol></nav>
       </details>
+      <a class="gl-article-top" href="#gl-article-title">Back to top <span aria-hidden="true">↑</span></a>
+      </aside>
 
-      <div class="gl-article-content" id="gl-article-content">
+      <div class="gl-article-reading">
+      <div class="gl-article-content" id="gl-article-content" tabindex="-1">
         {{ content | replace: '<table', '<div class="gl-article-table-wrap" role="region" aria-label="Scrollable table" tabindex="0"><table' | replace: '</table>', '</table></div>' }}
 
         {% if page.post_format == 'gallery' and page.gallery %}
@@ -93,6 +105,7 @@
         {% endif %}
         {% include posts/social-share.html %}
       </footer>
+      </div>
     </div>
 
     <aside class="gl-article-continue" aria-labelledby="gl-article-continue-title">

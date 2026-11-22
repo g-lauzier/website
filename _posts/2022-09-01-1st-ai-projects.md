@@ -7,6 +7,8 @@ tags: ["ai", "artificial-intelligence"]
 post_image: "/assets/images/1st-ai-projects.webp"
 description: "The first artificial intelligence (AI) projects were developed in the 1950s and 1960s, and focused on creating simple programs that could mimic basic human…"
 permalink: "/1st-ai-projects/"
+image_width: 1408
+image_height: 768
 ---
 
 The first artificial intelligence (AI) projects were developed in the 1950s and 1960s, and focused on creating simple programs that could mimic basic human cognitive functions such as learning and problem-solving.

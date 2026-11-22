@@ -7,6 +7,8 @@ tags: ["ad-free-tv"]
 post_image: "/assets/images/vjs-tv-online-platform.webp"
 description: "The VJs TV project was developed on WordPress CMS using PHP, MySQL, JavaScript, and Bootstrap framework."
 permalink: "/vjs-tv-project-an-online-platform-for-global-artists-and-creatives/"
+image_width: 1408
+image_height: 768
 ---
 
 The VJs TV project was developed on WordPress CMS using PHP, MySQL, JavaScript, and Bootstrap framework. A form was created on the website to allow artists from across the world to submit their projects. The submitted projects were then aggregated and reposted on the website.

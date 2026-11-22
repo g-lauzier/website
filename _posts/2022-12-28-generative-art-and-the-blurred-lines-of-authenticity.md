@@ -7,6 +7,8 @@ tags: ["algorithm", "artist", "authenticity", "coding"]
 post_image: "/assets/images/generative-art-authenticity.webp"
 description: "Generative art refers to art that is created using an algorithmic process, often involving computer software."
 permalink: "/generative-art-and-the-blurred-lines-of-authenticity/"
+image_width: 1408
+image_height: 768
 ---
 
 Generative art refers to art that is created using an algorithmic process, often involving computer software. In this context, the artist's role may involve designing the parameters and rules that govern the generative process, as well as selecting and curating the output.
@@ -19,7 +21,7 @@ In this context, it is important to consider the various factors that impact the
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2022/12/nodes-cover-2-1024x576.jpg)
 
-**Blur between "No Code Art", and "Creative Coding"**
+## Blur between "No Code Art", and "Creative Coding"
 
 There are many artists who create generative art without coding, either by using existing generative art tools or software or by working with coders or other technical experts to develop custom algorithms or processes. In these cases, the artist's role may involve designing the parameters and rules that govern the generative process, as well as selecting and curating the output.
 
@@ -27,15 +29,11 @@ Meanwhile creative coding is a form of programming that is specifically designed
 
 While creative coding can be an exciting and rewarding form of artistic expression, it can also be challenging, especially for those who are new to programming. Some of the difficulties of creative coding include:
 
-
-
-
-
 Despite these challenges, creative coding can be a rewarding and fulfilling form of artistic expression for those who are willing to put in the time and effort to learn and master it. With practice and persistence, it is possible to overcome these challenges and create innovative and expressive digital media using code.
 
 ![](https://guillaumelauzier.com/wp-content/uploads/2022/12/MIKPE8D4OGRK-1.jpg)
 
-**"No Code" and "Creative Coding" hybrids**
+## "No Code" and "Creative Coding" hybrids
 
 Hybrids of no code and creative coding refer to generative art that is created using a combination of no code tools or software and creative coding. In this context, the artist may use no code tools or software to generate a base output, and then use creative coding techniques to modify or enhance the output in some way.
 

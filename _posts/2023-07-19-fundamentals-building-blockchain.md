@@ -26,7 +26,7 @@ Before you build a blockchain, it's crucial to understand its core elements:
 
 Creating a blockchain structure involves creating a data structure to store blocks, and each block will contain a set of transactions. For simplicity, we'll create a simple blockchain structure where each block stores a string as data. Also, we'll use the SHA-256 cryptographic hash function to create the hash for each block. Here's a simple C++ implementation:
 
-```
+```cpp
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -94,10 +94,6 @@ int main() {
 }
 ```
 
-```
-
-```
-
 Note that you need the OpenSSL library installed to compile this code.
 
 This code defines a `Block` class that stores the data, the hash of the previous block, and the hash of the current block. The current block's hash is calculated by hashing the previous block's hash and the data. The `Blockchain` class is a list of `Block` objects. It has a method to add new blocks to the blockchain, with the new block's previous hash set to the current last block's hash.
@@ -122,7 +118,7 @@ Where:
 
 Implementing a consensus mechanism like Proof-of-Work (PoW) or Proof-of-Stake (PoS) in C++ would be a fairly complex task, as these algorithms require a network of nodes communicating with each other and other advanced features. However, a simplified implementation of Proof-of-Work can be done, which we will demonstrate below. In this example, we'll use a simple mining function to demonstrate the PoW concept.
 
-```
+```cpp
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -233,7 +229,7 @@ Before going further, it should be noted that implementing a fully functional bl
 
 Below is a simple example of a blockchain node that can receive and display blocks from its peers. It does not validate the blocks or maintain a copy of the blockchain:
 
-```
+```cpp
 #include <iostream>
 #include <string>
 #include <vector>
@@ -310,7 +306,7 @@ Creating a transaction in a blockchain network involves dealing with cryptograph
 
 In this simplified example, I'll illustrate a basic structure of a transaction and its validation using Crypto++. However, bear in mind that a real-world blockchain transaction would be much more complex, would include additional checks and balances, and would be part of a larger system that includes blocks, a network of nodes, consensus mechanisms, etc.
 
-```
+```cpp
 #include <string>
 #include <crypto++/secblock.h>
 #include <crypto++/osrng.h>
@@ -388,7 +384,7 @@ The process of creating a new block, often known as mining in PoW blockchains, i
 
 Here's a simplified example of a block structure in C++. We're not dealing with actual mining in this example, just the basic structure of a block.
 
-```
+```cpp
 #include <string>
 #include <vector>
 #include <ctime>

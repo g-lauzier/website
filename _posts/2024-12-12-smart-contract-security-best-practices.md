@@ -7,6 +7,8 @@ tags: ["technical", "tokenomic"]
 post_image: "/assets/images/smart-contract-security-best-practices.webp"
 description: "Smart contracts, self-executing programs on blockchain networks such as Ethereum, automate transactions based on predefined rules encoded within them."
 permalink: "/smart-contract-security-best-practices/"
+image_width: 1408
+image_height: 768
 ---
 
 Smart contracts, self-executing programs on blockchain networks such as Ethereum, automate transactions based on predefined rules encoded within them. Their immutability, a core feature, ensures that once deployed, they cannot be altered, which enhances security but also amplifies the impact of any vulnerabilities.

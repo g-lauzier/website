@@ -7,6 +7,8 @@ tags: []
 post_image: "/assets/images/play-draw-interactive-installation.webp"
 description: "\"Play + Draw\" was an interactive installation and scenography project featured at the 2013 Figment Festival on Governors Island in New York."
 permalink: "/play-draw-an-interactive-installation-and-scenography/"
+image_width: 1408
+image_height: 768
 ---
 
 "Play + Draw" was an interactive installation and scenography project featured at the 2013 [Figment Festival on Governors Island in New York](https://newyork.figmentproject.org). Participants were able to take control as VJs and DJs, manipulating sound and video fields of texture using DJ and VJ technologies. The project was a collaboration between digital video specialist and VJ Miixxy Melissa Ulto, Guillaume Lauzier, founder of VJs Magazine, and Mark Alan Johnson, also known as VJ DoctorMojo. Users' actions were streamed live on the internet, and the installation received coverage from local magazine [HyperAllergic](https://hyperallergic.com/73036/social-media-at-the-helm-of-performance-on-governors-island/). The technical direction, VDMX programming, video mapping, and projection system design were provided by Mojo Video Tech Inc.

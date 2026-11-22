@@ -20,7 +20,7 @@ Before Bitcoin, there were several attempts at creating digital currencies, but 
 
 One early example is the digital currency called e-gold, which was launched in 1996 and allowed users to exchange gold-backed digital tokens. e-gold was popular at first, but it eventually faced legal and regulatory challenges, and it is no longer in operation.
 
-**What was e-gold?**
+## What was e-gold?
 
 E-gold was an electronic payment system that used gold as its medium of exchange. Users could buy, sell, and transfer gold electronically through the e-gold platform, which was backed by physical gold stored in secure vaults. To use e-gold, users first had to open an account and deposit money into it. They could then use their account to make purchases or send money to other e-gold users.
 
@@ -32,7 +32,7 @@ Another early digital currency was b-money, b-money was an early proposal for a 
 
 In the b-money system, users would be able to send and receive payments without the need for intermediaries or central authorities. Transactions would be recorded on a decentralized ledger, and the system would be secured by cryptographic techniques.
 
-**B-money**
+## B-money
 
 While the b-money proposal was influential and sparked significant interest in the concept of decentralized digital currencies, it was never actually implemented. However, it paved the way for later developments in the field of cryptocurrency, such as Bitcoin, which was released in 2009.
 
