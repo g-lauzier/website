@@ -2,79 +2,82 @@
 layout: posts/post
 title: "Hybrid Approach to Innovation"
 date: 2022-11-01 00:00:00 +0000
+last_modified_at: 2026-11-22 12:00:00 +0000
 categories: ["infrastructure"]
 tags: ["collaboration"]
 post_image: "/assets/images/hybrid-approach-to-innovation.webp"
-description: "Combining Design Thinking, Lean Startup, and Agile Development"
+description: "Use design thinking to understand the problem, Lean Startup to test the business, and agile delivery to turn evidence into working software."
 permalink: "/hybrid-approach-to-innovation/"
 image_width: 1408
 image_height: 768
 ---
 
-**Combining Design Thinking, Lean Startup, and Agile Development**
+A team can deliver software quickly and still build something customers do not need. It can also understand a real problem and spend months refining a solution without testing whether anyone will use or pay for it.
 
-The use of a hybrid of lean startup and agile software development can help organizations create innovative products and services in a flexible and iterative way. By combining the principles of lean startup, which emphasizes experimentation and learning from failure, with the principles of agile development, which emphasizes flexibility and adaptability, organizations can create a process that is responsive to change and continuously improving.
+Combining design thinking, Lean Startup, and agile delivery is useful because each addresses a different uncertainty. Design thinking investigates the problem. Lean Startup tests the assumptions behind a business. Agile practices help a team deliver and improve working software. The connection between them is evidence that changes the next decision.
 
-This hybrid approach can be particularly useful for organizations that are looking to quickly build and iterate on new products or services, and to validate assumptions about customer needs and behaviors. By using agile development techniques to rapidly build and deliver functional prototypes, and by using lean startup principles to gather data and feedback from real users, organizations can create innovative solutions that are tailored to the needs of their customers.
+The aim is a learning loop, not three separate departments or a new collection of meetings.
 
-The use of a hybrid of lean startup and agile software development can help organizations create value for their customers, reduce risk and uncertainty, and drive continuous improvement in their development processes.
-
-![](https://guillaumelauzier.com/wp-content/uploads/2023/01/IN_DEsignthinking_Design-Thinking-2-1-1024x570.png)
+![Original design-thinking illustration](https://guillaumelauzier.com/wp-content/uploads/2023/01/IN_DEsignthinking_Design-Thinking-2-1-1024x570.png)
 
 ## What is Design Thinking?
 
-Design thinking is a problem-solving approach that combines creative and analytical thinking in order to design innovative solutions to complex problems. It is often used in the fields of product design, user experience design, and service design, but can be applied to a wide range of fields and industries.
+Design thinking starts with the people affected by a problem. Observation and interviews help reveal the work they are trying to do, the constraints they face, and the workarounds they already use. A useful problem statement describes that situation before prescribing a feature.
 
-The design thinking process typically involves the following steps:
+The [Stanford d.school's Design Thinking Bootleg](https://dschool.stanford.edu/tools/design-thinking-bootleg) offers methods for exploring needs, framing problems, generating ideas, prototyping, and testing. These activities can be revisited as understanding improves; they are not a mandatory linear sequence.
 
-Design thinking is often used in conjunction with agile development methodologies, which focus on rapid iteration and continuous improvement. It is a user-centered approach that helps designers create solutions that are tailored to the needs and desires of the people they are designing for.
+For example, a team considering a new expense-management product might first watch how a small company handles a receipt, an approval, and a reimbursement. The expensive problem may be missing information between those steps, rather than the absence of another dashboard. A paper prototype can test that interpretation before anyone builds the dashboard.
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/01/Articles-Lean-Startup_Eng_B-1024x682-1.png)
+![Original Lean Startup illustration](https://guillaumelauzier.com/wp-content/uploads/2023/01/Articles-Lean-Startup_Eng_B-1024x682-1.png)
 
 ## What is Lean Startup?
 
-Lean startup is a business strategy that focuses on quickly building and iterating on a product or service in order to learn what works and what doesn't, and to validate assumptions about customer needs and behaviors. It emphasizes the importance of experimentation, learning from failure, and making data-driven decisions.
+Lean Startup turns assumptions into experiments. Its [build–measure–learn cycle](https://theleanstartup.com/principles) is useful when the customer, offer, or business model is uncertain. A minimum viable product should generate evidence about a specific assumption, not simply contain fewer features than the intended product.
 
-The lean startup approach is based on the idea that traditional business planning methods are too slow and inflexible to be effective in today's rapidly changing business environment. Instead of spending a lot of time and resources on detailed business plans, lean startup proponents advocate for a more iterative and flexible approach that allows businesses to quickly test and validate their assumptions about their customers and market.
+A useful experiment has four parts:
 
-The lean startup process typically involves the following steps:
+1. **Hypothesis:** state what must be true for the idea to work.
+2. **Test:** create the smallest credible way to observe the relevant behavior.
+3. **Decision threshold:** decide in advance what result would justify further investment.
+4. **Learning:** compare the result with the hypothesis and choose what changes next.
 
-The goal of the lean startup approach is to minimize the risk and uncertainty associated with launching a new product or business, and to increase the chances of success by quickly learning what works and what doesn't.
+For the expense product, a manually operated pilot could test whether finance teams will entrust the service with real work and continue using it. A sign-up page tests interest; it does not by itself establish retention, willingness to pay, or the cost of serving a customer.
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/01/img1a.jpg)
+![Original agile-development illustration](https://guillaumelauzier.com/wp-content/uploads/2023/01/img1a.jpg)
 
 ## What is Agile?
 
-Agile is a project management approach that focuses on delivering high-quality software through iterative development and continuous collaboration between cross-functional teams. It emphasizes flexibility and adaptability, and encourages teams to respond to change and continuously improve their processes.
+Agile software development emphasizes frequent delivery, collaboration, responsiveness to change, and technical quality. The [Agile Manifesto's principles](https://agilemanifesto.org/principles.html) connect working software with customer value and sustainable development.
 
-The agile approach is based on the idea that traditional, Waterfall-style project management methods are too rigid and inflexible to be effective in today's rapidly changing business environment. Instead of trying to plan and execute a project in a linear, step-by-step fashion, agile proponents advocate for a more flexible and iterative approach that allows teams to respond to change and continuously improve their work.
+Scrum is one framework for organizing that work; it uses timeboxed Sprints of one month or less. Agile is broader than Scrum, and not every agile team uses Sprints. The [Scrum Guide](https://scrumguides.org/scrum-guide.html) is a useful source for that distinction.
 
-The agile process typically involves the following steps:
-
-The agile approach is designed to be flexible and adaptable, and encourages teams to continuously improve their processes and work together in a collaborative way. It is often used in conjunction with agile development methodologies such as Scrum and Kanban, which provide a structured framework for implementing agile principles.
+In practice, delivery needs a prioritized backlog, a shared understanding of completion, feedback from use, and time to correct defects. Releasing unfinished work more frequently does not automatically produce learning. The software must work well enough for its use to tell the team something meaningful.
 
 ## How is Design thinking and Lean startup used in problem solving?
 
-Design thinking and lean startup are both approaches to problem-solving that involve a combination of creative and analytical thinking, and a focus on delivering value to customers.
+Use design thinking to improve the quality of the question and Lean Startup to test the assumptions attached to an answer. Customer interviews can reveal why a task is difficult. An experiment can then test whether a proposed service changes the behavior that matters.
 
-Design thinking is a user-centered approach that involves empathizing with the needs and challenges of the people for whom you are designing a solution, defining the problem you are trying to solve, generating a wide range of ideas for potential solutions, prototyping and testing your ideas, and iterating on your prototypes based on feedback. The goal of design thinking is to create innovative solutions that are tailored to the needs and desires of the people you are designing for.
+Consider the expense example as a hypothetical sequence:
 
-Lean startup is a business strategy that focuses on quickly building and iterating on a product or service in order to learn what works and what doesn't, and to validate assumptions about customer needs and behaviors. It involves defining a hypothesis, creating a minimum viable product (MVP) to test the hypothesis, gathering data on how the MVP is received by real customers or users, analyzing the results, and iterating on the product or business model based on the results. The goal of lean startup is to minimize the risk and uncertainty associated with launching a new product or business, and to increase the chances of success by quickly learning what works and what doesn't.
+| Uncertainty | Smallest useful investigation | Evidence to carry forward |
+| --- | --- | --- |
+| Where does the process break? | Observe a complete reimbursement cycle | Specific delays, errors, and workarounds |
+| Does the proposed service help? | Run a small manual pilot | Whether users complete the task more reliably |
+| Is there a viable business? | Test a clear paid offer | Conversion, continued use, and delivery cost |
+| Can software deliver it reliably? | Build one complete workflow | Successful use, failure modes, and support needs |
 
-Both design thinking and lean startup can be useful approaches to problem-solving in a variety of contexts, and may be used individually or in combination with other methods. They are both designed to be flexible and adaptable, and encourage a focus on experimentation, iteration, and continuous learning in order to create innovative and valuable solutions.
+The team should be able to explain what it learned between rows. A favorable interview is not permission to skip the commercial test, and an early sale is not evidence that the software can scale.
 
 ## How is agile used in execution and solution phase?
 
-Agile is a project management approach that is often used in the execution and solution phase of a project in order to deliver high-quality software or other solutions in a flexible and iterative way.
+Once a problem and a promising approach are clear enough, use delivery cycles to make the solution usable. Keep the learning question visible in the backlog: a task should connect to a user outcome, an operational need, or a known risk.
 
-During the execution and solution phase of a project, agile teams focus on delivering small, manageable chunks of work called "sprints." Each sprint is a self-contained unit of work that can be completed in a short period of time (e.g. 1-4 weeks), and typically involves completing a set of prioritized tasks or deliverables.
+For each release, define the smallest complete behavior, the conditions under which it is safe to use, and how the team will observe success or failure. Review actual use alongside delivery metrics. Finishing more tickets is useful only if it advances the product or makes it more reliable.
 
-In order to deliver the work in each sprint, agile teams typically follow a set of iterative and incremental development principles, including:
-
-By following these principles, agile teams are able to deliver high-quality solutions in a flexible and adaptable way that is responsive to change and continuously improving. Agile methodologies such as Scrum and Kanban provide a structured framework for implementing agile principles in a project.
+Discovery continues during execution. If users abandon a workflow, the answer may require a different interaction, a different offer, or a different understanding of the problem. A delivery process should make that revision possible without treating every changed assumption as a failure of planning.
 
 ## Conclusion
 
-In conclusion, the hybrid approach is a powerful tool for organizations that are looking to create value for their customers and drive innovation in a rapidly changing business environment. By combining the principles of design thinking, which emphasizes empathy and user-centered design, with the principles of lean startup, which emphasizes experimentation and learning from failure, and the principles of agile development, which emphasizes flexibility and adaptability, organizations can create a flexible, iterative, and data-driven process that is focused on delivering value to customers.
+A hybrid approach works when evidence passes cleanly between exploration, experimentation, and delivery. It becomes cumbersome when each method adds rituals while leaving decisions unchanged.
 
-Whether you are looking to use the hybrid approach in your own organization or project, or you are simply interested in learning more about these powerful tools and techniques, this guide has something for you. By following the principles and practices outlined in this guide, you can start using the hybrid approach in your own work, and drive innovation and continuous improvement in your organization.
+Give each experiment an owner, a question, a time limit, and a next decision. Keep records short enough to use. Revisit assumptions when the evidence changes, and preserve the engineering discipline that makes those experiments trustworthy. That is how the three approaches can help a team learn and deliver together.

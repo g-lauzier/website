@@ -1,10 +1,11 @@
 ---
 layout: posts/post
-title: "Big-O isn't the bottleneck. It's allocation."
+title: "When Big-O isn't the bottleneck: allocation"
 date: 2026-05-01 00:00:00 +0000
+last_modified_at: 2026-11-22 12:00:00 +0000
 categories: ["infrastructure"]
 tags: ["performance", "profiling", "gc"]
-description: "Most slow code in production isn't slow because the algorithm is wrong. It's slow because every iteration is allocating, and the allocator (and the GC behind it) is doing the work nobody profiled. Here's how to spot the cliff."
+description: "Two linear-time implementations can put very different pressure on memory. Profile allocations, garbage collection, and latency before changing a hot path."
 permalink: "/big-o-isnt-the-bottleneck-its-allocation/"
 canonical_url: "https://algosize.com/blog/big-o-isnt-the-bottleneck-its-allocation/"
 post_image: "/assets/images/writing/allocation-bottleneck.webp"
@@ -18,178 +19,150 @@ image_height: 900
 
 _Originally published on [Algosize](https://algosize.com/blog/big-o-isnt-the-bottleneck-its-allocation/) — service provisioning by [algosize.com](https://algosize.com)._
 
-The first instinct of every engineer who reads a hot-path is to check the algorithm. _Is this nested loop O(n²) when it could be O(n log n)?_ It almost never is. The function has been there for two years, the team has reviewed it twice, and Big-O is the kind of correctness problem that gets caught on the second pass, not the hundredth.
+Two functions can both be O(n) and behave differently under load. One creates a result and discards a few small values. The other builds intermediate arrays, serializes an object that nobody uses, and keeps a large buffer alive longer than necessary.
 
-The thing that _does_ get worse over time, silently, in code reviews nobody flags, is **allocation per iteration**. A `.map().filter().slice()` chain that allocates four arrays where the original code allocated one. A closure pulled out into a "cleaner" inner function that captures a reference and prevents an escape analysis. A logger that builds a structured object on every call site, even on the call sites where the log line is below the active level.
+Big-O describes how work grows with input size. It does not describe every constant, allocation, cache miss, or pause involved in completing that work. When a service slows down, allocation is one of the costs worth investigating alongside the algorithm, I/O, contention, and queuing.
 
-Each one is invisible in a CPU profile until the day the GC pause hits 200ms and your p99 goes vertical. Then a postmortem discovers the cliff, and someone writes a Slack message that begins "actually it's not the algorithm, it's…"
-
-This post is the field guide we use when we get a "this loop got slow" ticket. It does not assume you've ever read a flame graph. It assumes you've shipped working code and now the working code is slow.
+The point is to find the limiting resource before choosing the optimization. A cleaner loop is useful only if it addresses a measured cost without changing the required behavior.
 
 ## The shape of the cliff
 
-Plot p50 latency against `n` for a hot path that allocates per iteration. Up until you hit some threshold, the line is roughly linear in `n` and roughly flat per-call — you're spending CPU on actual work, the allocator is fast, GC is happening between calls, all is well.
+Allocation-heavy code may increase garbage-collection work and contribute to latency spikes. The effect depends on the runtime, the lifetime of objects, the live heap, and available memory. There is no universal pause duration or input threshold.
 
-Cross the threshold — your nursery (young-generation heap) fills mid-call, GC fires, and the call has to wait for the collection to finish. Now your line jumps from "linear in `n`" to "linear in `n` with periodic 50–200ms cliffs" and your p99 looks like a barbed-wire fence.
+A stable p50 and an erratic p99 are clues, not a diagnosis. Slow downstream calls, lock contention, CPU throttling, cache misses, and queue buildup can create a similar pattern. Algorithmic growth and allocation pressure can also occur together.
 
-The shape matters because it is _not_ what you'd expect from an algorithmic problem. Algorithmic problems give you a smooth curve — `n²` looks parabolic, `n log n` looks like `n` with a gentle warp. Allocation cliffs give you a flat-then-spike profile, where p50 is fine and p99 is a disaster.
-
-If you take one thing away from this post: **a flat p50 and a spiky p99 is almost always allocation, not algorithm**.
+Compare latency with CPU, event-loop delay or queue depth, allocation profiles, and GC events over the same workload. The useful question is whether those observations support a causal explanation that a controlled change can test.
 
 ## Where the allocations hide
 
-Every language has its own allocator quirks, but the categories of "allocation that gets written without anyone noticing" are remarkably stable across languages. Here's what we look for, in roughly the order they bite.
-
 ### 1. Method-chain landmines
 
-The same data transformation, written two ways:
+For a dense array of ordinary records, these two functions produce the same values:
 
 ```js
-// Allocates: 1 array.
-const out = [];
-for (const item of items) {
-  if (!item.active) continue;
-  out.push(item.value * 2);
+function activeValuesWithChain(items) {
+  return items
+    .filter(item => item.active)
+    .map(item => item.value * 2);
 }
 
-// Allocates: 2 arrays. (filter result, then map result.)
-const out = items
-  .filter(item => item.active)
-  .map(item => item.value * 2);
+function activeValuesWithLoop(items) {
+  const out = [];
+  for (const item of items) {
+    if (item.active) out.push(item.value * 2);
+  }
+  return out;
+}
 ```
 
-For `n=10`, who cares. For `n=100,000` called inside an event handler that fires fifty times a second, the second version makes 100 intermediate arrays a second the GC has to walk and collect. Same Big-O. Different performance.
+The chain expresses an intermediate filtered array and a final mapped array. The loop avoids that intermediate collection. Both are linear in the number of input records, but their memory behavior can differ.
 
-The fix isn't "stop using `.map().filter()`" — it's to know which paths are hot. You can leave the chain in a request handler that runs once per request. You should rewrite it in the inner loop of a parser or a render pipeline.
+At fifty calls per second, the chain expresses fifty intermediate filtered arrays per second—not one intermediate array per element. Their sizes and lifetimes matter more than the count alone. Actual allocation behavior also depends on runtime optimization.
+
+Use the clearer form on ordinary paths. Consider fusion on a measured hot path, and test semantics before substituting a loop: sparse arrays, getters, callbacks with side effects, and mutation can make apparently similar transformations behave differently.
 
 ### 2. Closures that capture too much
 
 ```js
 function processBatch(records, ctx) {
-  return records.map(record => transform(record, ctx));   // closure allocated per call
+  return records.map(record => transform(record, ctx));
 }
 ```
 
-In V8 specifically, the inner arrow function above will often be re-created on every call to `processBatch`, _and_ prevented from being inlined because it captures `ctx`. If `processBatch` is on the hot path, the inner closure is now an allocation per call multiplied by the call frequency.
+The callback captures `ctx`. That does not establish that the engine cannot inline or optimize it, nor does the source create a new callback for every record. The important questions are how often the containing function runs and whether retained callbacks extend the lifetime of large objects.
 
-Lifting the inner function out:
-
-```js
-const transformOne = (record, ctx) => transform(record, ctx);
-
-function processBatch(records, ctx) {
-  return records.map(record => transformOne(record, ctx));
-}
-```
-
-…doesn't help — you've just moved the problem. The real fix is to drop `.map()` for a manual loop in this hot path and let the optimiser inline `transform` directly. Five lines longer, zero allocations per record.
+Moving `transform` into a separate helper while keeping the capturing arrow function does not remove that callback. If profiling implicates the path, compare a direct loop and inspect what remains allocated or retained. The result array and anything `transform` creates still need to be accounted for.
 
 ### 3. String concatenation in logs
 
 ```js
-logger.debug("processed " + record.id + " in " + ms + "ms with " + JSON.stringify(meta));
+logger.debug("processed " + record.id + " with " + JSON.stringify(meta));
 ```
 
-Every call to that line allocates a string, calls `JSON.stringify` (which allocates a much larger string), and then _throws it all away_ if the logger's level is above `debug`. On a hot path running ten thousand times per second, that's ten thousand JSON serializations of `meta` per second, none of which were ever written to disk.
+Arguments are evaluated before the logging call. If the debug level is disabled, this line can still perform serialization and string construction before the logger discards the message.
 
-The fix is the well-known guard pattern:
+Use the level-check API provided by the actual logging library. In schematic form:
 
 ```js
 if (logger.isDebugEnabled()) {
-  logger.debug("processed " + record.id + " in " + ms + "ms with " + JSON.stringify(meta));
+  logger.debug("processed " + record.id + " with " + JSON.stringify(meta));
 }
 ```
 
-…or, better, lazy logger APIs that take a function and only call it if the level is active. Most modern logging libraries (`pino`, `winston`'s structured mode, etc.) handle this for you if you stop concatenating strings and start passing structured objects:
-
-```js
-logger.debug({ id: record.id, ms, meta }, "processed record");
-```
-
-The library short-circuits before allocation if the level is below `debug`.
+A lazy logging API can defer expensive work, but check its documented behavior. Passing a structured object can avoid manual serialization and improve logging output; it does not mean the object literal and its property expressions are never evaluated. If creating the arguments is expensive, guard that work explicitly.
 
 ### 4. Buffers and slices
 
-Once you go past the script-level languages and into Go / Rust / Node-with-typed-arrays, the killer allocation is usually a slice or a buffer that gets created fresh every iteration when it could have been pooled.
-
-In Go:
+Repeatedly creating a temporary buffer is another candidate. In this schematic Go example, `encode` appends a record's bytes to the supplied buffer and returns the resulting slice:
 
 ```go
 for _, record := range records {
-  buf := make([]byte, 0, 1024)         // fresh slice every iteration
-  buf = encode(buf, record)
-  out = append(out, buf...)
+    buf := make([]byte, 0, 1024)
+    buf = encode(buf, record)
+    out = append(out, buf...)
 }
 ```
 
-The `make` inside the loop allocates 1KB on every iteration. For a million records that's 1GB of garbage the GC has to walk. Lift the buffer out and reset it:
+A reusable scratch buffer changes the source-level allocation pattern:
 
 ```go
 buf := make([]byte, 0, 1024)
 for _, record := range records {
-  buf = buf[:0]
-  buf = encode(buf, record)
-  out = append(out, buf...)
+    buf = encode(buf[:0], record)
+    out = append(out, buf...)
 }
 ```
 
-Same Big-O. One allocation instead of a million.
+This works only if the encoder and later consumers do not retain references that are overwritten by the next iteration. The output append copies bytes, but the encoder's behavior still needs to be known. Larger records may grow the buffer, and a large peak capacity may remain retained.
 
-The Node equivalent uses `Buffer.allocUnsafe` plus a reusable scratch buffer; the Rust equivalent uses `Vec::with_capacity` once and `clear()` per iteration.
+Do not infer heap-allocation counts from `make` alone. Go's escape analysis affects placement, and its [GC guide](https://go.dev/doc/gc-guide) recommends allocation profiles and compiler diagnostics to identify the actual cost.
+
+In Node, default to initialized buffers unless there is a measured reason and a proven initialization discipline. [`Buffer.allocUnsafe`](https://nodejs.org/api/buffer.html#static-method-bufferallocunsafesize) can expose old memory if uninitialized bytes reach a consumer. In Rust, reusing a `Vec` can avoid capacity growth, while `clear()` retains the allocation. Reuse is an ownership decision as well as a performance decision.
 
 ### 5. Iterator-protocol overhead
 
-JavaScript's iterator protocol (`for...of`, generator functions, `[Symbol.iterator]`) is _not_ free. Every iteration allocates an `IteratorResult` object — `{ value: T, done: boolean }` — that the GC then has to clean up.
+A generic iterator has a protocol for producing values and signaling completion. That does not prove that every `for...of` iteration creates a heap object in optimized machine code. Engines can specialize common paths, and behavior varies with the iterable and runtime version.
 
-For the vast majority of code this is irrelevant. For the inner loop of a streaming JSON parser running a hundred million times per process lifetime, it adds up to a measurable chunk of GC pressure. The fix in the hottest paths is to abandon the iterator protocol and use index-based iteration over a typed array. Less elegant. Significantly faster.
-
-The point is not "don't use iterators". The point is "iterators have a cost, and the cost is almost always invisible until you measure it."
+If iteration is a measured hotspot, compare the alternatives on representative data. An index loop over a typed array is a useful candidate, not a universal improvement. Keep the runtime version, input shape, and surrounding work consistent during the comparison.
 
 ## How to actually measure
 
-Profilers love showing you CPU. Profilers do not, by default, show you allocation rate. So we want a different lens.
+Start with a reproducible workload and an outcome: latency at a given throughput, memory use, or total processing time. Warm up where the runtime requires it, consume the output, and collect several runs. A benchmark that ignores the result or tests only tiny inputs may answer a different question from the production workload.
 
-In Node, the simplest one-line measurement is `--trace-gc`:
+For Node, GC tracing gives a first view of collection activity:
 
+```bash
+node --trace-gc app.js
 ```
-$ node --trace-gc app.js
-[12345:0x1] 12 ms: Scavenge 24.5 (28.0) -> 4.3 (28.5) MB, 2.4 ms ...
-```
 
-The frequency of those lines is what you care about. If you see a `Scavenge` every 50ms, you're allocating roughly 24MB every 50ms — half a gigabyte per second. That's a _lot_ of garbage, and even though scavenges are fast, the cumulative pause time will move p99.
+A trace reports heap sizes around a collection and time spent in the event. A “before” heap size is not the number of bytes allocated since the last line; objects survive, spaces change, and collection types differ. Use the [Node GC-tracing guide](https://nodejs.org/en/learn/diagnostics/memory/using-gc-traces) to interpret the fields, and relate the timestamps to application latency.
 
-In Go, run with `GODEBUG=gctrace=1` for the same effect. In the JVM, `-Xlog:gc*`. In Rust, you have to opt into instrumentation explicitly because the default doesn't have a GC, but `dhat` will tell you allocation counts and sizes.
+For allocation sites, inspect the process with DevTools and capture an allocation profile. [Chrome's Memory panel](https://developer.chrome.com/docs/devtools/memory) distinguishes allocation sampling from a heap snapshot. Sampling helps locate allocation activity; a snapshot helps explain retained objects. A large retained object and a high rate of short-lived allocations are different problems.
 
-Once you know you have an allocation problem, get a heap profile. `node --inspect`, then "Memory" panel in Chrome DevTools, "Allocation sampling". Run your hot path. The flame graph will rank functions by _bytes allocated_, not CPU spent. The function that's allocating the most is almost never the function that's slowest in a CPU profile, because the allocator itself is fast — it's the GC pauses _between_ calls that hurt.
+In Go, compare benchmark allocation counts and bytes per operation, and use an allocation-space profile when investigating churn. GC tracing can provide context, but it does not replace attribution to a call site. In a runtime without tracing GC, allocation and deallocation can still consume time or affect locality.
 
 ## A worked example
 
-A customer last year had a JSON-over-HTTP service whose p50 was 8ms and whose p99 was 320ms. The team had spent a week on the algorithm — was the JSON parser quadratic? Were they accidentally `JSON.parse`-ing twice? — and found nothing.
+Consider a hypothetical request-processing service whose tail latency worsens as throughput increases. A profile points to a validator that creates intermediate objects and serializes them for disabled debug logging.
 
-`--trace-gc` showed a major GC every 1.2s, lasting 90–110ms each. Heap profile showed 78% of the bytes allocated were going to a single function: a request-shape validator that took the inbound payload, ran a recursive `Object.entries().map(…)` on it, then `JSON.stringify`'d the result for an audit log nobody read.
+Change one source of work at a time:
 
-The fix was three lines: cache the validator's known-good schema once, replace the recursive `.map()` with a manual loop that wrote into a pre-allocated array, and remove the `JSON.stringify` for the audit log (which was a debug feature from 2018 that nobody had remembered to delete).
+| Experiment | What it tests | What to verify |
+| --- | --- | --- |
+| Guard disabled logging | Whether unused serialization is material | Required audit events are still retained |
+| Reuse an immutable parsed schema | Whether repeated setup is expensive | No request-specific state enters the shared object |
+| Fuse a measured transformation | Whether intermediate collections matter | Output and error behavior remain equivalent |
+| Re-run the same workload | Whether the change improves the service | Latency, throughput, allocation, and retained memory |
 
-The algorithm was identical before and after. p99 dropped from 320ms to 14ms.
-
-That's the shape of every allocation-bound performance bug we've ever seen. The Big-O is fine. The diff is "fewer intermediate objects". The result is dramatic.
+Record the results rather than assuming that fewer source-level allocations must improve every metric. A pool may reduce allocation while increasing retained memory or contention. A change that improves a microbenchmark may be invisible once network time dominates.
 
 ## When the algorithm _is_ the bottleneck
 
-To be clear: algorithmic problems exist. We've seen `O(n²)` written into a billing-line aggregator, an `O(2ⁿ)` regex used as a cache key, and a fascinating hash-table implementation that rehashed on every insert. Big-O matters.
+Input growth can expose a poor data structure or repeated work even after allocation is reduced. If doubling the input causes disproportionate CPU growth, examine the algorithm and the surrounding interactions. If the service spends most of its time waiting, investigate the wait.
 
-But — and this is the point — if you have not yet _measured_ whether you're CPU-bound or allocation-bound, **start with measurement, not algorithm**. The reason "rewrite the algorithm" feels productive is that it's tractable engineering work. The reason it usually doesn't help is that the actual cost lives somewhere the engineer didn't look.
+A useful sequence is to establish the workload, locate the dominant cost, form a narrow hypothesis, and compare one change against the same baseline. Prioritize the change with the largest supported benefit for its complexity.
 
-The decision tree we use:
-
-1. Profile p50 vs p99. **Smooth-and-rising** → likely algorithm. **Flat-then-spiky** → likely allocation.
-2. If algorithm: read the inner loop, count the comparisons, check the data structure, optimise.
-3. If allocation: enable GC tracing, identify the call site, eliminate or pool the allocation, re-measure.
-4. If both: fix allocation first. It's almost always cheaper, and the algorithm work goes faster on a quiet GC.
-
-> Spend the hour reading a flame graph before you spend the week rewriting the algorithm.
-
-The bias toward "improve Big-O" is the bias toward the kind of work that sounds smart in a performance review. The bias toward "eliminate allocation" is the bias toward the work that ships a faster service. Most of the time you want the second one.
+Allocation belongs in that investigation because it is easy to overlook in readable, correct code. Measure it directly, account for object lifetimes, and keep the optimization only when the evidence supports it.
 
 ---
 

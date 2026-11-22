@@ -1,11 +1,11 @@
 ---
 layout: posts/post
-title: "Submit Your Work to GeneratedArt Publications on Medium"
+title: "Writing for GeneratedArt publications on Medium"
 date: 2023-02-23 00:00:00 +0000
 categories: ["digital-art"]
 tags: ["ai-art", "algorithms"]
 post_image: "/assets/images/writing/medium-generatedart-publications.webp"
-description: "Do you have a passion for generative art, AI art, creative coding, or generative design?"
+description: "Prepare a useful article for a generative-art publication: explain the process, credit the inputs and give readers something they can learn or try."
 permalink: "/medium-generatedart-publications/"
 image_alt: "Patterned translucent sheets fan toward an open dark portfolio."
 post_image_small: "/assets/images/writing/medium-generatedart-publications-640.webp"
@@ -14,26 +14,29 @@ image_width: 1600
 image_height: 900
 image_caption: "Editorial illustration."
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_social_media_publications.png"
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-Do you have a passion for generative art, AI art, creative coding, or generative design? Are you looking to share your insights, ideas, and stories with a wider audience? Submitting your Medium story to GeneratedArt publications can be a great way to get your work seen by people who share your interests. In this article, we will walk you through the steps to submit your Medium story to GeneratedArt publications and provide you with some tips to increase your chances of getting published. Whether you are a seasoned writer or a newcomer, we hope that this guide will help you get your work seen by the right audience.
+A good generative-art article lets readers see how a work came into being. The final image or recording matters, but so do the rules, decisions and experiments behind it. This guide sets out a practical way to prepare that kind of contribution for GeneratedArt or a similar publication.
 
 ## Getting started with Medium
 
+Start with the publication’s own About or submission page. Publication requirements and submission availability can change, so an old invitation should not be treated as confirmation that submissions are currently open.
 
-
-
-
-
+For the current workflow, Medium’s [official submission guide](https://help.medium.com/hc/en-us/articles/213904978-How-to-submit-a-story-to-a-publication) explains how to open a draft or story in the editor, use **Submit to publication**, select an eligible publication and send it for review. Publications can accept approved contributors, followers or neither, and can set requirements for the stories they receive. Submission is followed by an editorial decision.
 
 ## Guidelines
 
+Build the article around one question: what will the reader understand after seeing your process? A description of a particle system could explain how one rule changes the motion. A project diary could show why an early experiment failed and what you changed. A critical essay could compare two approaches to authorship using specific works.
 
+Give the piece enough evidence to support that question:
 
+- Show the work and identify the tools, datasets or source material used.
+- Explain your own contribution and credit collaborators, libraries and influences.
+- Use a small code excerpt or sequence of images when it makes a decision easier to follow.
+- Label simulated results and illustrative examples. Separate observations from interpretations.
+- Check that images, audio and text can be shared, and include useful captions and alt text.
 
+Avoid presenting a list of software names as a creative method. Readers need to know what you did with the tools and why. Likewise, a strong title describes the specific subject without promising a breakthrough the article cannot substantiate.
 
-
-
-
-
-Generative art is a rapidly growing field that offers a unique blend of creativity, innovation, and technology. As an author, your work is a reflection of your unique perspective on the world around you, and your writing can provide valuable insights into your creative process and the challenges you face. By following these tips for writing Medium articles for GeneratedArt publications, you can create content that engages and inspires your readers, establishes you as a thought leader in the field of generative art, and builds your reputation as an expert in the industry. So, take the time to craft compelling introductions, do your research, master your headlines, find your own creative voice, and avoid overly aggressive calls to action. By doing so, you can create content that resonates with your audience and helps to push the boundaries of generative art even further.
+End with a useful next step: a repository, a documented experiment, a question left open or a link to the finished work. That gives the reader a reason to continue exploring beyond the article.

@@ -5,7 +5,7 @@ date: 2023-02-16 00:00:00 +0000
 categories: ["blockchain"]
 tags: []
 post_image: "/assets/images/writing/scaling-ethereum-exploring-layer-2-solutions.webp"
-description: "Ethereum is one of the most popular blockchain networks, offering developers the ability to create and deploy decentralized applications (dApps) and smart…"
+description: "How rollups and state channels scale Ethereum, why sidechains differ, and what to check before moving an application off mainnet."
 permalink: "/scaling-ethereum-exploring-layer-2-solutions/"
 image_alt: "Silver beads travel along elevated glass ribbons above a dark foundation with a blue seam."
 post_image_small: "/assets/images/writing/scaling-ethereum-exploring-layer-2-solutions-640.webp"
@@ -14,44 +14,55 @@ image_width: 1600
 image_height: 900
 image_caption: "Editorial illustration."
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_Ethereum_Rollups_speed.png"
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-Ethereum is one of the most popular blockchain networks, offering developers the ability to create and deploy decentralized applications (dApps) and smart contracts. However, as the number of users and transactions on the Ethereum network has grown, the network's capacity to process transactions has become increasingly limited. This has led to high transaction fees and slow confirmation times, limiting the network's scalability and usability.
+Scaling Ethereum means making more activity possible without making independent verification prohibitively expensive. Moving execution away from mainnet can reduce the work each Ethereum node must perform, but the security result depends on how that activity is checked and how users can recover their funds.
 
-To address these challenges, various layer 2 scaling solutions have been developed to help improve the performance of the Ethereum network. These layer 2 solutions work by processing transactions off-chain, allowing for higher transaction throughput and reduced fees. They operate alongside the Ethereum mainnet, providing additional scalability and improving the overall performance of the network.
+The useful distinction is between **execution**, **data availability**, and **settlement**. Where do transactions run? Where can someone obtain the data needed to verify them? Which system decides the final state? Two networks can offer similar fees while giving very different answers.
 
-Some of the most popular layer 2 solutions on Ethereum include rollups, state channels, sidechains, and plasma. Each of these solutions offers its own unique benefits and challenges, and the choice of which to use depends on the specific requirements of the application. Overall, layer 2 solutions have the potential to greatly improve the scalability and usability of the Ethereum network, making it a more viable platform for a wider range of use cases.
+This article began as a 2023 overview. The distinctions below are enduring design principles; the maturity, permissions, and withdrawal procedures of individual deployments need to be checked separately.
 
 ## Layer 2 scaling solutions
 
-Layer 2 scaling solutions are becoming increasingly important for the Ethereum network as the demand for the platform grows. These solutions aim to increase the throughput of the network, reduce the cost of transactions, and enhance the overall usability of the platform. In this section, we will discuss some of the most popular layer 2 solutions for Ethereum.
+An Ethereum layer 2 derives important security properties from Ethereum. A separate chain connected by a bridge does not automatically qualify. [Ethereum's scaling documentation](https://ethereum.org/developers/docs/scaling/) distinguishes rollups, channels, and other approaches by how they move work away from the base layer.
+
+The overall cost is broader than the fee on a single transfer. Depositing, withdrawing, obtaining the required gas token, and moving between networks can all affect the economics of an application. Finality and the ability to exit during an outage matter as much as a low advertised fee.
 
 ### Rollups
-Rollups are a type of Layer 2 solution that bundle multiple transactions together and submit them to the Ethereum network as a single transaction. This allows for a significant increase in transaction throughput and a reduction in gas fees. Rollups can be categorized into two main types: optimistic rollups and zk-rollups.
 
-- Optimistic rollups assume that all transactions are valid by default, without requiring any additional validation or computation. This allows for quick and efficient transaction processing. If any invalid transactions are detected, a challenge period begins, during which anyone can submit a fraud proof to the Ethereum mainnet to challenge the validity of the transactions. If the fraud proof is successful, the invalid transactions are rolled back and the correct state of the system is restored.
+Rollups execute batches of transactions outside Ethereum and publish commitments and relevant data to it. Spreading settlement and data costs across a batch can lower the cost per transaction. The two main families differ in how Ethereum accepts a state update.
 
-- On the other hand, zk-rollups use zero-knowledge proofs to verify the correctness of transactions. This provides stronger security guarantees, as it is mathematically impossible for invalid transactions to be included in the rollup. However, zk-rollups require additional computation to generate and verify the zero-knowledge proofs, which can make them slower and more expensive to use than optimistic rollups.
+**Optimistic rollups** use a dispute process. Operators execute transactions, then post state claims that can be challenged during a defined period. They do not skip computation altogether, and the challenge window does not begin only after someone notices an error. Security depends on the deployed proof system, available data, and the ability of honest participants to challenge invalid claims. See the [optimistic-rollup mechanism](https://ethereum.org/developers/docs/scaling/optimistic-rollups/).
+
+**Validity rollups**, often called ZK-rollups, submit a cryptographic proof for the state transition. The verifier checks that proof before accepting the update. This changes the dispute model, but it does not make implementation bugs, compromised upgrade keys, or data-availability failures mathematically impossible. Nor does using a validity proof necessarily make user transactions private. The [ZK-rollup documentation](https://ethereum.org/developers/docs/scaling/zk-rollups/) describes the components separately.
+
+For either family, inspect the actual deployment. Who sequences transactions? Can users force inclusion through Ethereum? Who can upgrade the contracts? Is there a delay before an upgrade takes effect? Can funds be withdrawn if the operator stops? The label “rollup” is the beginning of a review, not its conclusion.
 
 ### State Channels
-State channels are a type of Layer 2 solution that enable off-chain transactions. Participants can create a channel, lock up some funds, and then transact with each other off-chain. When they are finished, they can close the channel and settle the final state on the blockchain. This enables high-speed, low-cost transactions with minimal blockchain interaction.
 
-State channels are ideal for use cases where there are a large number of transactions between a small number of participants. They are also suitable for microtransactions and other use cases where speed and cost are important. However, they are only suitable for use cases where there are a small number of participants, and they are not suitable for use cases where the participants do not trust each other.
+State channels let a defined set of participants exchange signed updates off-chain, with an on-chain mechanism for settlement and disputes. They can suit repeated interactions, such as a sequence of payments or a game between known participants.
+
+They are designed to reduce reliance on participants' honesty, not to require that everyone trust each other. The practical requirement is that a participant, or a service acting for them, can respond within the dispute rules. Funds may need to be committed upfront, and opening or closing a channel still requires on-chain transactions. [Ethereum's state-channel guide](https://ethereum.org/developers/docs/scaling/state-channels/) explains these tradeoffs.
+
+Channels are less convenient when an application needs arbitrary new participants to join every interaction. A fast update between two parties is also different from making a globally shared application state available to everyone.
 
 ### Sidechains
-Sidechains are a type of Layer 2 solution that are connected to the Ethereum mainnet. They can process transactions off-chain and then send the final results to the mainnet for settlement. Sidechains can provide a variety of different features and functionality, such as increased privacy or different consensus mechanisms.
 
-Sidechains can be customized to suit the needs of specific use cases, which makes them a flexible solution for improving the scalability and usability of the Ethereum network. They also enable developers to experiment with new features and functionality without affecting the mainnet.
+A sidechain is an independent blockchain connected to Ethereum, typically through a bridge. It has its own consensus mechanism and validator assumptions. EVM compatibility can make application migration easier, but does not transfer Ethereum's security to the sidechain.
+
+That difference matters for custody. A user may depend on both the sidechain's consensus and the bridge's rules. If either fails, Ethereum cannot necessarily reconstruct the correct sidechain state and release the funds. The [sidechain documentation](https://ethereum.org/developers/docs/scaling/sidechains/) makes this separation explicit.
+
+Sidechains can still be useful where their operating characteristics fit an application's requirements. The decision should state the accepted trust assumptions clearly, rather than treating every lower-cost execution environment as interchangeable.
 
 ### Plasma
-Plasma is a Layer 2 solution that is designed to improve the scalability of Ethereum by creating hierarchical tree structures of sidechains. These sidechains can process transactions off-chain and then send the final results to the mainnet for settlement. Plasma is still in development, but it has the potential to greatly increase the throughput of the Ethereum network.
+
+Plasma explores committing information about a separate execution system to Ethereum while keeping much of its transaction data elsewhere. Its exit mechanisms aim to let users recover assets if the operator behaves incorrectly.
+
+The difficult part is handling unavailable data and allowing many users to exit under stress. Plasma should therefore be understood as a distinct design family, rather than a synonym for a rollup or an ordinary sidechain. The [Ethereum Plasma guide](https://ethereum.org/developers/docs/scaling/plasma/) is useful background for those differences.
 
 ## Conclusion
 
-Layer 2 solutions are essential to the future of the Ethereum network. With increasing demand for the platform, layer 2 solutions offer a way to greatly improve the scalability and usability of the network, enabling developers to create new and innovative use cases that were previously not possible.
+Choose a scaling architecture from the application's requirements: transaction frequency, participant set, acceptable delay, data needs, and recovery procedure. Then examine the implementation that users will actually depend on.
 
-Rollups, state channels, sidechains, and plasma are some of the most popular layer 2 solutions for Ethereum, and each one offers its own unique benefits and challenges. By providing additional scalability and improved performance, these solutions can help to make the Ethereum network a more accessible and user-friendly platform.
-
-As the Ethereum ecosystem continues to evolve, it is likely that new and innovative layer 2 solutions will be developed. These solutions will play a critical role in improving the scalability, security, and usability of the platform, enabling it to support a wide range of use cases and applications.
-
-In summary, layer 2 solutions are a promising development in the ongoing evolution of the Ethereum network. By enhancing the performance and scalability of the platform, they offer new opportunities for developers and users alike, paving the way for a more efficient and accessible decentralized future.
+For a payments application, predictable settlement and a clear exit path may dominate. For a shared application, general execution and accessible state may matter more. Lower fees create room for useful products when the accompanying security and operational choices remain understandable.

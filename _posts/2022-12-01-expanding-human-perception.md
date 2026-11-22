@@ -5,30 +5,47 @@ date: 2022-12-01 00:00:00 +0000
 categories: ["ai"]
 tags: []
 post_image: "/assets/images/expanding-human-perception.webp"
-description: "Generative art is a medium of artistic expression that relies on algorithms, code, and technology to create unique and often unpredictable works of art."
+description: "How generative art can translate light, vibration, and chemical measurements into experiences people can see, hear, and feel."
 permalink: "/expanding-human-perception/"
 image_width: 1408
 image_height: 768
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-Generative art is a medium of artistic expression that relies on algorithms, code, and technology to create unique and often unpredictable works of art. One of the key features of generative art is its ability to generate visual and auditory patterns that can be perceived by humans, and the range of such patterns can be extended by technology. However, with the help of technology, generative art can go beyond human sensory experience and represent a range of vision, hearing, touch, smell, and taste that cannot normally be perceived by humans but by machines.
+Generative art can make phenomena accessible that our senses cannot detect directly. A sensor measures something; a rule translates the measurement; an image, sound, or physical response makes the result perceptible. The artistic opportunity lies in that translation.
+
+This does not give a viewer a new biological sense. It creates a representation, with choices about scale, emphasis, and meaning. An infrared image and a sound generated from temperature data can describe the same environment while making different aspects of it noticeable.
 
 ## Vision
 
-The range of vision that can be perceived by machines, but not by humans, includes infrared and ultraviolet light. Infrared radiation has longer wavelengths than visible light and is commonly used in thermal imaging and remote sensing. Ultraviolet radiation has shorter wavelengths and is often used in medical imaging, germicidal lamps, and forensic investigations. By using specialized cameras or sensors that are sensitive to these wavelengths, generative artists can create visual representations of non-visible light that can be perceived by humans. For example, an installation could use lasers to create abstract shapes or patterns that are based on the data collected from sensors that detect non-visible light.
+Cameras and detectors can register parts of the electromagnetic spectrum outside visible light, including infrared and ultraviolet. To display those measurements, a system maps them into visible colors or forms. The colors are chosen by the visualization; they are not the invisible radiation’s “true” appearance to a human observer.
+
+An installation could map temperature differences to moving bands of color. A fixed scale would make comparisons possible across time, while an automatically adjusted scale might reveal small local variations. Both are valid artistic choices, but they communicate different information. [NASA’s guide to the electromagnetic spectrum](https://science.nasa.gov/ems/) provides a useful scientific starting point for understanding what each kind of sensor measures.
 
 ## Hearing
 
-The range of hearing that can be perceived by machines, but not by humans, includes ultrasonic and infrasonic frequencies. Ultrasonic frequencies are sounds that are above the range of human hearing, typically above 20,000 Hz. Infrasonic frequencies are sounds that are below the range of human hearing, typically below 20 Hz. By using sensors to detect data, generative artists can convert it into sound waves that fall within the range of human hearing. For example, an installation might use sensors to detect environmental data such as temperature or air quality and then convert this data into sound waves that are played through speakers or headphones.
+Sound can also become a translation medium. Recordings outside a listener’s hearing range can be shifted into an audible range. Alternatively, **sonification** can map a non-audio variable, such as temperature or particle concentration, to pitch, rhythm, or timbre.
+
+Those are different operations. Shifting the frequency of a recording preserves some of its acoustic relationships. Turning air-quality measurements into musical notes introduces a mapping designed by the artist. Neither should be presented as an unmediated recording of what the environment “sounds like.”
+
+A useful experiment is to keep one mapping stable: increasing concentration could increase pulse density, for instance. The audience can then learn a relationship rather than encounter a succession of arbitrary effects.
 
 ## Touch
 
-The range of touch that can be perceived by machines, but not by humans, includes electromagnetic radiation and magnetic fields. Electromagnetic radiation, such as visible light and X-rays, can interact with our bodies, but humans cannot feel them directly. Magnetic fields are also present in our environment, but we cannot feel them without the aid of specialized equipment. By using haptic feedback or other types of sensory technology, generative artists can create interactive installations that allow viewers to experience non-visible touch.
+Haptic interfaces can turn measurements into vibration, pressure, or movement. A magnetic-field reading, for example, might control the intensity of a handheld actuator. The person feels the actuator’s response to the reading, not the magnetic field itself.
+
+This separation between measurement and output helps clarify what an installation does. It also makes the design easier to test: does the sensor detect a meaningful change, does the mapping preserve it, and can the visitor distinguish the resulting feedback?
+
+Accessibility belongs in that design process. Combining visual and tactile outputs can offer different ways into the same work, but the mappings need to be understandable and comfortable for the people using them.
 
 ## Taste and smell
 
-The range of taste and smell that can be perceived by machines, but not by humans, is vast. The human senses of taste and smell are limited compared to the range of chemical compounds that exist in the natural world. However, by using gas chromatography and mass spectrometry, generative artists can detect and identify a much wider range of chemical compounds than the human senses can. By using sonification, generative artists can convert this data into sound, allowing viewers to experience the data in a new way.
+Chemical sensors and analytical instruments can provide measurements that are useful artistic material. They do not reproduce human taste or smell as a complete experience. What an instrument can distinguish depends on its method, calibration, and sample.
 
-## Conclusion
+An artist might use a changing chemical measurement to generate a landscape of sound or color. That makes the data available through another sensory channel. It does not mean that a viewer can identify a compound by hearing it, unless they have learned the particular mapping and the measurement supports that distinction.
 
-Generative art provides a unique medium for exploring the limits of human perception and extending it with technology. By using technology to create novel ways of representing non-visible and non-audible phenomena, generative art can provide new insights into the world around us and create unique and immersive experiences for viewers. Through generative art, the range of vision, hearing, touch, smell, and taste that cannot normally be perceived by humans can be transformed into a form that can be experienced in new and exciting ways.
+## Designing the translation {#conclusion}
+
+The strongest work makes its transformation legible. Name the measured quantity, show the units where they matter, and distinguish recorded data from simulated or improvised input. Decide whether changes should be comparable across visitors, locations, or time.
+
+Generative art can then do more than decorate an invisible phenomenon. It can draw attention to patterns, invite questions, and let people explore how a representation shapes what they notice. The artist’s choices remain visible as part of the work.

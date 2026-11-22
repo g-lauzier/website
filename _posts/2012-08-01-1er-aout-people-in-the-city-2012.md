@@ -5,7 +5,7 @@ date: 2012-08-01 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["1er-aout-people-in-the-city", "benoit-sergio"]
 post_image: "/assets/images/writing/archive/1er-aout-people-in-the-city-2012.webp"
-description: "Immerse yourself in the celebratory spirit of Lausanne's national festival through my video report of the 4th annual \"1er Août People in the City\"."
+description: "Filming, editing and color correction for the 2012 People in the City event on Lausanne’s Esplanade du Flon."
 permalink: "/1er-aout-people-in-the-city-2012/"
 post_image_small: "/assets/images/writing/archive/1er-aout-people-in-the-city-2012-640.webp"
 post_image_medium: "/assets/images/writing/archive/1er-aout-people-in-the-city-2012-960.webp"
@@ -16,18 +16,15 @@ image_caption: "Thumbnail from the original video."
 image_credit: "Noctune on Vimeo"
 image_source: "https://vimeo.com/48711461"
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/flyer_front_17907-scaled.jpg"
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-Immerse yourself in the celebratory spirit of Lausanne's national festival through my video report of the 4th annual "1er Août People in the City". Filmed, edited, and color-corrected by me, this visual narrative brings to life the event held for the first time on the Esplanade du Flon on 31st July. This much-cherished summer tradition has won the city's heart with its festive and good-natured atmosphere.
+I filmed, edited and color-corrected this report of the fourth “1er Août People in the City.” The 2012 event took place on July 31 on Lausanne’s Esplanade du Flon, ahead of Swiss National Day.
 
-The festival's winning "food & pool" formula attracted a diverse crowd. Daytime was buzzing with the beats of open-air dance music, while a pool offered a refreshing escape for the festival-goers amid the warm summer heat. Further enhancing the lively mood were bars, food stalls, lounge chairs, and distinctive entertainment. This year's focus was on early 20th-century circus performers, with jugglers and fortune tellers, creating a lively, carnival-like ambience.
+The setting combined open-air electronic music with a pool, food stalls, bars and lounge areas. Circus-themed performers, including jugglers and fortune tellers, added another layer to the event’s visual character.
 
-The event was graced by internationally acclaimed artists such as Guy Gerber from Tel-Aviv, Soul Clap from Boston in a face-off with Wolf + Lamb from New York for a remarkable four-hour DJ set. Miguel Campbell from Leeds, Benoit & Sergio live from Berlin, and Eric Borgo from Lausanne added to the eclectic music landscape of the festival.
+The program included Guy Gerber, Soul Clap with Wolf + Lamb, Miguel Campbell, Benoit & Sergio live, and Eric Borgo. The film follows the event through its performers and audience, preserving the setting as well as the stage activity.
 
-With safety being a top priority, over twenty security agents ensured the event progressed smoothly, keeping up with the flawless safety record established since its inception.
-
-The "1er Août People in the City" festival, recognized nationally and nominated for the Swiss Nightlife Awards 2011 (Best Event category), is associated with the award-winning Attitude Nocturne (Swiss Nightlife Awards 2010/2011 winner, Best Event Series category for the Mad Attitude evenings at Mad de Lausanne).
-
-My video report encapsulates the essence of the "1er Août People in the City" festival, celebrating Lausanne's dynamic nightlife and sense of community through a unique medley of music, entertainment, and camaraderie.
+This report forms part of Noctune’s coverage of Lausanne’s music and nightlife scene in 2012.
 
 [1er Ao&ucirc;t People In The City 2012](https://vimeo.com/48711461) from [Noctune](https://vimeo.com/noctune) on [Vimeo](https://vimeo.com).

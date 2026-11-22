@@ -5,18 +5,27 @@ date: 2013-01-13 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["bootstrap"]
 post_image: "/assets/images/noctune-nightlife-music.webp"
-description: "The \"Nightlife and Music Videos\" website was developed on CMS WordPress using PHP, MySQL, Javascript, and Bootstrap framework."
+description: "Noctune brought my music videos, event reports and artist photography together with profiles and galleries on one website."
 permalink: "/noctune-a-nightlife-and-music-videos-website/"
 image_width: 1408
 image_height: 768
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-The "Nightlife and Music Videos" website was developed on CMS WordPress using PHP, MySQL, Javascript, and Bootstrap framework. It showcased video reports that covered the night-life scene, artists, and DJ mixes. I founded the company Noctune in 2012, with a focus on producing music videos and artist photography. The website served as a platform to promote artists through profiles featuring links, videos, and photos, as well as covering events and showcasing the producer's work. It included articles, a video gallery, and a photo gallery. I attended and filmed over 50 electronic events and club nights in 2012 to gather footage for the website.
+I founded Noctune in 2012 to produce music videos and artist photography. The website brought that work together through event reports, artist profiles, DJ mixes, articles, and video and photo galleries.
 
-The producer was responsible for all media content on Noctune, including music videos and photography. Their skills included directing, video editing, filming, steadicam operation, photography, motion graphic design, web design, and development, communicating with artists and event organizers, and online marketing. They used various tools for their work, including DSLR cameras, Final Cut Pro, on-camera LED lighting, steadicams, After Effects, Illustrator, Photoshop, and Cinema 4D.
+During 2012, I attended and filmed more than 50 electronic music events and club nights. The site gave that material a lasting home and connected individual films and photographs with the artists and events they documented.
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/02/noctune02-732x1024.png)
+## Production and publishing
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/02/noctune03-738x1024.png)
+My role covered filming, editing, photography, steadicam operation, motion graphics, web design and development. It also involved coordinating with artists and organizers and publishing the finished work online.
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/02/noctune4-734x1024.png)
+The production tools included DSLR cameras, on-camera LED lighting, Final Cut Pro, After Effects, Illustrator, Photoshop and Cinema 4D. I built the website with WordPress, PHP, MySQL, JavaScript and Bootstrap.
+
+The archived images below document the website from that period.
+
+![Archived Noctune website image 1](https://guillaumelauzier.com/wp-content/uploads/2023/02/noctune02-732x1024.png)
+
+![Archived Noctune website image 2](https://guillaumelauzier.com/wp-content/uploads/2023/02/noctune03-738x1024.png)
+
+![Archived Noctune website image 3](https://guillaumelauzier.com/wp-content/uploads/2023/02/noctune4-734x1024.png)

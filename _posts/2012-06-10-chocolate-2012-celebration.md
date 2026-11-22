@@ -1,11 +1,11 @@
 ---
 layout: posts/post
-title: "CHOCOLATE: A Celebration of Electronic Music"
+title: "CHOCOLATE Festival 2012: a film from Lausanne"
 date: 2012-06-10 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["adana-twins", "after-party-at-d-club"]
 post_image: "/assets/images/writing/archive/chocolate-2012-celebration.webp"
-description: "Dive into the electric atmosphere of CHOCOLATE 2012 through my vibrant video project, a dynamic representation of Lausanne's premier electronic music…"
+description: "A film from CHOCOLATE Festival 2012 in Lausanne, shot and edited for Noctune as part of my electronic music coverage."
 permalink: "/chocolate-2012-celebration/"
 post_image_small: "/assets/images/writing/archive/chocolate-2012-celebration-640.webp"
 post_image_medium: "/assets/images/writing/archive/chocolate-2012-celebration-960.webp"
@@ -16,16 +16,13 @@ image_caption: "Thumbnail from the original video."
 image_credit: "Noctune on Vimeo"
 image_source: "https://vimeo.com/44726108"
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/chocolate-festival-2012.png"
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-Dive into the electric atmosphere of CHOCOLATE 2012 through my vibrant video project, a dynamic representation of Lausanne's premier electronic music festival, which took place on 3rd and 4th of June. Filmed and edited by me, the video captures the spirit of the festival, the electrifying performances, and the enthusiastic crowd.
+I filmed and edited this report from CHOCOLATE Festival 2012 in Lausanne for Noctune. The video brings together the performances, crowd and setting of the festival, documenting an edition of the city’s electronic music scene.
 
-CHOCOLATE 2012 boasted a diverse lineup of top-tier artists from across the globe, including Adana Twins from Germany, Anja Schneider and Bebetta from Berlin, Dubfire from the USA, Flug from Spain, Lilly Palmer and VNTM Live from Amsterdam, Midas 104 Live, and Pauli Pocket from Berlin, Rodriguez Jr. Live from France, Teenage Mutants from Germany, and Undercatt from Italy. Swiss talents such as Claudya, Definition & Natascha Polké from Zurich, Djerry C, Nicolas Duvoisin, Tarba, Kaël, FRÅDERIK, and Hervé Solar also graced the event, contributing to the eclectic soundscape.
+The report sits alongside my club and event films from the same period. The emphasis is on the experience of the event: how the performers and audience occupy the space, and how those moments work together in an edit.
 
-The event, which attracted an impressive 5,000 attendees, culminated in an after-party at the popular D! Club in Lausanne, a highlight vividly captured in the video.
-
-CHOCOLATE began as a cultural association with the aim of promoting electronic music and associated arts. The festival was first organized in 2006 on a small scale, featuring seven regional artists and 200 spectators. The event has grown significantly since then, becoming a must-attend event in the Swiss cultural landscape.
-
-The video project provides an intimate look into the evolution of CHOCOLATE, showcasing the quality and dynamism that has established it as the number one electronic music festival in Lausanne. It is a testament to the festival's 17-year journey, which has presented over 245 artists and contributed significantly to the thriving regional electronic music scene.
+Published through Noctune, the film preserves the 2012 edition as part of my archive of Lausanne’s music events.
 
 [Chocolate Festival 2012](https://vimeo.com/44726108) from [Noctune](https://vimeo.com/noctune) on [Vimeo](https://vimeo.com).

@@ -5,7 +5,7 @@ date: 2023-07-11 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["chainlink", "collaboration"]
 post_image: "/assets/images/writing/chain-data-solidity-chainlink-oracles.webp"
-description: "In the burgeoning world of Non-Fungible Tokens (NFTs), many new challenges and use-cases are emerging."
+description: "A Solidity example for recording contributors and their shares, followed by the trust and lifecycle requirements for external data in NFT projects."
 permalink: "/chain-data-solidity-chainlink-oracles/"
 image_alt: "A metal bridge carries a cobalt bead from rough slate into a glass enclosure, illustrating external data entering a blockchain."
 post_image_small: "/assets/images/writing/chain-data-solidity-chainlink-oracles-640.webp"
@@ -14,89 +14,104 @@ image_width: 1600
 image_height: 900
 image_caption: "Editorial illustration."
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_ethereum_oracle_d5ca524d-218b-411d-8bef-f47cab4abc34-2.png"
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-In the burgeoning world of Non-Fungible Tokens (NFTs), many new challenges and use-cases are emerging. One such use-case is managing different contributing parties and their respective shares in a project represented by an NFT. Another is fetching and incorporating off-chain data into the [Ethereum smart contract](https://github.com/guillaumelauzier/NFT-managing-parties/tree/main). In this article, we'll explore how to handle both these cases using Solidity and Chainlink oracles.
+A collaborative NFT project often needs two kinds of information: who contributed to the work, and which external facts should affect its behavior. These are separate responsibilities. Contributor records belong to the project's agreement and contract design; external facts need an authenticated path from their source to the contract.
+
+The [NFT-Managing-Parties project](https://github.com/guillaumelauzier/NFT-managing-parties/tree/main) explores that combination. This article focuses on the boundaries that make the design understandable: authority to mint, fixed contribution shares, and the rules for accepting data from outside the blockchain.
 
 ## NFT-Managing-Parties
 
-Imagine a scenario where an NFT represents a collaborative project with various contributors such as data providers, developers, or project managers, each holding a certain percentage of shares. Managing these contributions directly on-chain provides a transparent, immutable, and verifiable record.
+Imagine a work created by an artist, a data supplier, and a developer. Recording their shares on-chain can make the allocation inspectable. The record still needs to specify what the shares apply to: revenue, a particular payment stream, or another agreed entitlement. A percentage does not automatically grant copyright or ownership of the NFT.
 
-We can achieve this with the help of Solidity, a contract-oriented programming language used for writing smart contracts on various blockchain platforms, most notably Ethereum. Let's take a look at a simple contract `NFT2` where an NFT can be minted and contributions can be added to the NFT.
+The educational contract below uses **Solidity 0.8.24 and OpenZeppelin Contracts 5.0.2**. The deploying project administrator can mint a token with a bounded list of contributors. Shares use basis points, where 10,000 represents 100%. They are set once at minting and cannot be edited through this interface.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity 0.8.24;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract NFT2 is ERC721 {
     struct Contribution {
         address contributor;
-        uint percentage;
+        uint16 basisPoints;
     }
 
-    mapping(uint => Contribution]) public contributions;
+    address public immutable projectAdmin;
+    mapping(uint256 => Contribution[]) private contributions;
 
-    constructor() ERC721("NFT2", "NFT") {}
-
-    function mintNFT(address recipient, uint tokenId) public {
-        _mint(recipient, tokenId);
+    constructor() ERC721("NFT2", "NFT") {
+        projectAdmin = msg.sender;
     }
 
-    function addContribution(uint tokenId, address contributor, uint percentage) public {
-        contributionstokenId].push(Contribution(contributor, percentage));
+    function mintNFT(
+        address recipient,
+        uint256 tokenId,
+        Contribution[] calldata shares
+    ) external {
+        require(msg.sender == projectAdmin, "Only project admin");
+        require(_ownerOf(tokenId) == address(0), "Token exists");
+        require(shares.length > 0 && shares.length <= 20, "Invalid count");
+
+        uint256 total;
+        for (uint256 i = 0; i < shares.length; ++i) {
+            require(shares[i].contributor != address(0), "Zero contributor");
+            require(shares[i].basisPoints > 0, "Zero share");
+            for (uint256 j = 0; j < i; ++j) {
+                require(
+                    shares[j].contributor != shares[i].contributor,
+                    "Duplicate contributor"
+                );
+            }
+            total += shares[i].basisPoints;
+            contributions[tokenId].push(shares[i]);
+        }
+        require(total == 10000, "Shares must total 100 percent");
+        _safeMint(recipient, tokenId);
     }
 
-    function getContributions(uint tokenId) public view returns (Contribution] memory) {
-        return contributionstokenId];
+    function getContributions(uint256 tokenId)
+        external
+        view
+        returns (Contribution[] memory)
+    {
+        ownerOf(tokenId); // Reverts for a nonexistent token.
+        return contributions[tokenId];
     }
 }
 ```
 
-In this contract, `mintNFT` allows for the creation of a new NFT. `addContribution` enables the addition of contributors and their respective percentage shares to a specific NFT. The `getContributions` function retrieves the contributors and their percentages for a given NFT. Each NFT and its contributions are tracked using a mapping that links each token ID to an array of Contribution structs.
+All share checks occur before the safe-mint callback. If any check or mint fails, the transaction reverts, including the stored contribution entries. The maximum of 20 contributors bounds the work done by the duplicate check; a larger project would need a different storage and validation design.
+
+This contract records allocations. It does not receive sale proceeds or distribute payments. A payment component would need its own rules for rounding, withdrawal, failed transfers, and the definition of the amount being shared. Keeping those responsibilities distinct makes the example easier to review.
+
+The original open-ended idea of adding contributions also raises a governance question: may allocations change after a collector acquires the token? This example avoids that ambiguity by fixing them at minting. A mutable design would need explicit authority, limits, and an event history for every change.
 
 ## Fetching Off-Chain Data Using Chainlink Oracles
 
-While the Ethereum blockchain and smart contracts offer robust and decentralized solutions, they're inherently cut off from the outside world and can't directly access off-chain data. This is where Chainlink comes in. Chainlink is a decentralized oracle network that allows smart contracts to securely interact with real-world data and external APIs.
+A smart contract cannot make an ordinary HTTP request from inside deterministic EVM execution. An oracle workflow obtains information outside the chain and submits data that the contract can authenticate and interpret.
 
-Chainlink oracles can be used to fetch data from an off-chain source and supply it to your on-chain smart contract. For example, we might want to fetch data from a specific URL and store the returned value in our contract.
+The historical Chainlink Any API pattern used a request and a later fulfillment transaction. The contract did not itself perform the HTTP fetch. The [Any API documentation](https://docs.chain.link/any-api/getting-started) now labels that material as historical and directs new work to Chainlink Runtime Environment (CRE).
 
-```solidity
-pragma solidity ^0.8.0;
+**Update, November 2026:** Chainlink's [migration documentation](https://docs.chain.link/cre/reference/clf-migration-ts) also records the deprecation of Chainlink Functions and its replacement by CRE. A new integration should follow the current supported workflow and chain-specific configuration, rather than copying an old oracle address, job ID, or fee.
 
-import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
+The durable architecture is the data lifecycle. In schematic form:
 
-contract MyContract is ChainlinkClient {
-    using Chainlink for Chainlink.Request;
-
-    uint256 public volume;
-
-    address private oracle;
-    bytes32 private jobId;
-    uint256 private fee;
-
-    constructor() {
-        setPublicChainlinkToken();
-        oracle = 0x123...; // This should be the address of the oracle
-        jobId = "abc123..."; // This should be the job ID
-        fee = 0.1 * 10 ** 18; // This is the fee (0.1 LINK in this case)
-    }
-
-    function requestData() public returns (bytes32 requestId) {
-        Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
-        request.add("get", "http://api.example.com/data"); // This should be your off-chain API URL
-        return sendChainlinkRequestTo(oracle, request, fee);
-    }
-
-    function fulfill(bytes32 _requestId, uint256 _volume) public recordChainlinkFulfillment(_requestId) {
-        volume = _volume;
-    }
-}
+```text
+1. A permitted trigger identifies the data and intended update.
+2. The off-chain workflow fetches and validates the source response.
+3. The workflow produces an authenticated report.
+4. The authorized on-chain receiver verifies the report context.
+5. The application checks units, freshness, ordering, and acceptable values.
+6. Only then does it update the NFT's state.
 ```
 
-In this `MyContract`, we first initialize a new Chainlink request in the `requestData` function. This function sends an HTTP GET request to an API at `http://api.example.com/data`. When the Chainlink oracle gets a response, it calls the `fulfill` function on the contract, which updates the `volume` variable with the returned data.
+This is pseudocode for the responsibilities, not a deployable Chainlink SDK example. The exact interfaces, forwarder addresses, and authentication rules must come from the selected supported environment.
 
-It's important to note that you'd need to replace the oracle address and jobId with actual values that you'd get from a Chainlink node. Also, you need to have enough LINK tokens to pay for the oracle service.
+For an artwork that responds to weather, record the observation location, measurement unit, timestamp, and source. Decide whether an old value remains usable during an outage and whether a delayed report may overwrite a newer one. If the answer is no, enforce that rule before applying the update.
 
-By combining NFTs, Solidity, and Chainlink oracles, we can create more dynamic, interactive, and useful smart contracts that could potentially revolutionize how we use blockchain technology. Remember that smart contract development and testing should be done very carefully to avoid potential security and functionality issues.
+Authentication establishes who or what produced a report under the workflow's trust model. It does not establish that an external API is factually correct. Multiple operators querying the same faulty source can still agree on a faulty result. Source selection and validation remain part of the application's design.
+
+Contributor management and oracle integration meet at that boundary: who is authorized to change which state, on what evidence, and under what agreement? Clear answers make a dynamic NFT easier to maintain, review, and explain to the people relying on it.

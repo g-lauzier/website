@@ -2,9 +2,10 @@
 layout: posts/post
 title: "How to spot AWS Savings Plan gaps before the bill arrives"
 date: 2026-04-08 00:00:00 +0000
+last_modified_at: 2026-11-22 12:00:00 +0000
 categories: ["infrastructure"]
 tags: ["cloud-cost", "aws", "finops"]
-description: "AWS Savings Plans look great in the dashboard until you read them line by line. Here's the four-gap checklist we run on every Cost & Usage Report — and how to fix each one before next month's invoice."
+description: "Review coverage and utilization together, inspect hourly commitments, and distinguish a real Savings Plan gap from usage that should stay On-Demand."
 permalink: "/how-to-spot-aws-savings-plan-gaps/"
 canonical_url: "https://algosize.com/blog/how-to-spot-aws-savings-plan-gaps/"
 post_image: "/assets/images/writing/aws-savings-plan-gaps.webp"
@@ -18,105 +19,100 @@ image_height: 900
 
 _Originally published on [Algosize](https://algosize.com/blog/how-to-spot-aws-savings-plan-gaps/) — service provisioning by [algosize.com](https://algosize.com)._
 
-You bought a 1-year, no-upfront Compute Savings Plan twelve months ago. The Cost Explorer card says "94% utilization" and you stop reading. Next month the same card says 88%, the month after 81%, and by the end of the renewal cycle you're paying On-Demand prices on a third of your fleet _and_ a separate fixed commitment for capacity nobody is using.
+A Savings Plan can be fully utilized while a substantial amount of eligible usage is still billed On-Demand. It can also be underutilized during quiet hours and exhausted during busy ones. A single monthly percentage will not explain both situations.
 
-The dashboard isn't lying. It's just answering a different question than the one you actually care about. **Utilization** measures how much of your _commitment_ you spent. **Coverage** measures how much of your _spend_ was at the discounted rate. Most teams stare at the first number, miss the second, and pay the gap in cash.
-
-This post is the four-gap checklist we run on every customer's Cost & Usage Report (CUR). It takes about an hour the first time, twenty minutes a month after that, and we've yet to run it on an account where it didn't pay for the engineer's whole afternoon.
+The useful review combines utilization, coverage, and the workload behind them. The four checks below help identify where a commitment no longer fits. They also help avoid buying a larger commitment to cover usage that should instead be stopped, resized, or left flexible.
 
 ## The metric you actually want
 
-Open a fresh tab and write this on a sticky note: **uncovered eligible spend**. Not utilization. Not effective savings rate. Not commitment used.
+**Utilization** measures how much of the purchased commitment was used. **Coverage** measures the share of eligible usage covered, valued at equivalent On-Demand rates. They have different denominators. The [AWS coverage calculation](https://docs.aws.amazon.com/savingsplans/latest/userguide/ce-sp-cr-metrics.html) and [utilization definition](https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_SavingsPlansUtilization.html) make that distinction explicit.
 
-Uncovered eligible spend is the dollar amount you paid On-Demand for resources a Savings Plan _would have_ discounted if the math had lined up. It's the part of the bill nobody sends you a Slack alert about, because from AWS's point of view nothing went wrong — you used a service, you paid for it, end of story.
+Track uncovered eligible On-Demand cost and unused commitment together. A large uncovered amount is a candidate for investigation, not automatically the amount a new plan would save. The potential saving depends on applicable rates, the duration of the workload, and the risk of paying for commitment that later goes unused.
 
-A Savings Plan is a futures contract. You pre-commit to $X per hour of compute and AWS gives you up to 66% off the published rate on anything that fits the contract. The contract has fine print, the fine print has edges, and the gaps live on those edges.
-
-There are exactly four edges that matter in practice. We list them in order of how often they bite, not how big they are.
+A Savings Plan is a billing commitment expressed in dollars per hour. It is not a futures contract or a reservation of physical capacity. Critically, unused commitment from one hour does not carry into another. [AWS's application rules](https://docs.aws.amazon.com/savingsplans/latest/userguide/sp-applying.html) describe how eligible usage consumes it.
 
 ## Gap 1: family-mismatch
 
-A Compute Savings Plan covers EC2, Fargate, and Lambda usage _across instance families_, but only if AWS can re-price the family at the same hourly rate as your commitment. An EC2 Instance Savings Plan does not — it's locked to a single family in a single region.
+First identify the plan type. Compute Savings Plans can cover eligible EC2 usage across families and regions, as well as eligible Fargate and Lambda usage. An EC2 Instance Savings Plan is tied to an instance family in a selected region. The distinction is documented in [AWS's plan-type guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/plan-types.html).
 
-The trap is the EC2 Instance Savings Plan. You bought it back when the team was running c5 boxes for everything. Two quarters later someone read a benchmark, the platform team flipped the auto-scaling group to c6i, and the new boxes are 8% cheaper at On-Demand prices. Your old commitment now covers nothing they're running. Utilization on the dashboard reads 100% (you're "using" all of it on the few c5 boxes still in the fleet) and coverage on c6i reads 0%.
+A migration from one family to another may therefore strand an EC2 Instance commitment while the new family incurs On-Demand charges. A Compute plan does not require the new instance's rate to equal the commitment; eligible usage consumes the dollar commitment at its applicable Savings Plans rate.
 
-How to find it: pull the CUR for the last full month, group by `pricing/Term` and `lineItem/UsageType`, and look for any usage type with a non-trivial On-Demand spend that _also_ has a sibling family covered by an Instance Savings Plan. We use this query as a starting point:
+Inspect the inventory alongside the migration plan. Record the family, region, owner account, hourly commitment, and end date. Compare them with the workloads expected to remain after rightsizing and scheduled migrations.
 
-```sql
-SELECT line_item_usage_type, SUM(line_item_unblended_cost) AS od_spend
-FROM cur_table
-WHERE line_item_line_item_type = 'Usage'
-  AND pricing_term = 'OnDemand'
-  AND product_product_family = 'Compute Instance'
-GROUP BY 1
-HAVING SUM(line_item_unblended_cost) > 100
-ORDER BY 2 DESC;
-```
-
-Any row in the output that lives in a family adjacent to one you've already committed to is a candidate. The fix is almost always to convert the Instance Savings Plan to a Compute Savings Plan at renewal — same dollar commitment, much wider coverage, ~6% smaller discount. We've never had a customer regret the trade.
+At renewal, compare the discount and flexibility of a replacement plan against that forecast. There is no universal percentage penalty for choosing flexibility, and an existing plan's terms should not be assumed to be freely convertible.
 
 ## Gap 2: region-mismatch
 
-Compute Savings Plans are region-agnostic across EC2 and Fargate. They are _not_ region-agnostic across services in the way you'd think. Sagemaker Savings Plans? Region-locked. RDS Reserved Instances? Region-locked. The new Bedrock provisioned-throughput commitment? Region-locked.
+A regional EC2 Instance commitment may stop fitting when a workload moves. A Compute Savings Plan is region-flexible; buying a separate “DR-region Compute plan” is therefore not the remedy merely because the destination region changed.
 
-The bite happens when your platform team runs a DR exercise, fails over to a secondary region for two days, and the bill for those two days runs at On-Demand rates on top of your existing commitment in the primary region. We've seen this pattern most often in financial-services customers who rehearse failover quarterly — the rehearsal is excellent practice, the surprise spend afterwards is not.
+For a failover exercise, ask whether the original workload continues running, whether total eligible usage rises, and whether account sharing permits the plan to apply. Model the exercise as additional or shifted usage at the relevant rates.
 
-How to find it: in the same CUR, group by `product/region` and `pricing/Term`. Anything On-Demand in a region where you don't hold a regional commitment is a candidate.
+Keep service-specific purchasing arrangements separate. SageMaker AI Savings Plans are also region-flexible under AWS's documented terms. Database plans, Reserved Instances, and other commitments have their own scope; consult the applicable product documentation rather than applying an EC2 rule to everything.
 
-The fix is policy, not procurement. Pick one of:
-
-- Buy a small Compute Savings Plan in the DR region sized to a 24-hour failover.
-- Run the DR exercise on Spot to keep the unplanned spend bounded.
-- Accept the cost of the rehearsal and budget for it explicitly. ("Surprise" spend is much worse than budgeted spend, even if the dollar amount is identical.)
+A short, infrequent exercise may reasonably remain On-Demand. Its cost should be budgeted and tested against the actual recovery requirements. Do not introduce interruptible capacity simply to make the rehearsal cheaper unless the system's resilience design supports it.
 
 ## Gap 3: instance-class skew
 
-Some of the largest gaps we see are inside a single family. You have a Compute Savings Plan, you're running c6i across the fleet, and you assume coverage is 100%. Then someone provisions a c6i_d_.4xlarge for a stateful workload that needs the local NVMe and the SP rate doesn't match the d-suffix variant 1:1 — there's a small premium for the local storage, and that premium is uncovered.
+A larger instance or a variant with a different rate can consume an hourly dollar commitment faster. That is different from an automatic exclusion of a storage or network “premium.” Inspect full instance types and actual covered usage before attributing a gap to a suffix.
 
-The same thing happens between regular and `n` (high-network) variants, between `g` (graviton) and non-graviton, and between metal and virtualised within the same family. Each is a single-digit-percent variance in coverage. They add up.
+The same review should separate instance charges from adjacent charges. An application's bill can include storage, data transfer, and service fees that the relevant compute commitment does not discount. Increasing the compute commitment will not make unrelated line items eligible.
 
-How to find it: split coverage reports by full instance type, not just family. AWS's own coverage report defaults to family-level rollups, which is exactly the rollup that hides this gap. In the CUR, group by `product/instanceType` rather than `product/instanceFamily` and you'll see the skew immediately.
+Use a narrowly scoped query to find candidate On-Demand EC2 usage. This example targets a classic CUR Athena schema; replace the table and date window, and adapt column names for your export schema. It is a screening query, not a complete Savings Plans savings calculation.
 
-The fix is to either (a) re-quote your commitment with the heavier-variant rate factored in, or (b) standardise on the base variant for the workload and only deviate when there's a measured reason. The standardisation play is usually the cheaper one — most teams discover the d-suffix wasn't actually needed.
+```sql
+SELECT
+  line_item_usage_account_id,
+  product_region,
+  product_instance_type,
+  SUM(line_item_unblended_cost) AS on_demand_ec2_cost
+FROM cur_table
+WHERE line_item_usage_start_date >= TIMESTAMP '2026-11-01 00:00:00'
+  AND line_item_usage_start_date < TIMESTAMP '2026-11-08 00:00:00'
+  AND line_item_line_item_type = 'Usage'
+  AND line_item_product_code = 'AmazonEC2'
+  AND product_product_family = 'Compute Instance'
+  AND pricing_term = 'OnDemand'
+GROUP BY 1, 2, 3
+ORDER BY on_demand_ec2_cost DESC;
+```
+
+Review matching `SavingsPlanCoveredUsage`, `SavingsPlanNegation`, and commitment charges separately. Summing all of these indiscriminately can double-count costs or mix different measures. The [CUR Savings Plans guide](https://docs.aws.amazon.com/cur/latest/userguide/cur-sp.html) explains the line items and effective-cost fields. Reconcile your result with Cost Explorer using the same accounts, period, and cost basis.
 
 ## Gap 4: sandbox and dev burn
 
-The most common gap we see is also the most embarrassing one. The platform team buys a tight Compute Savings Plan sized to production traffic. The data team spins up a 32-vCPU Notebooks instance for a Friday-afternoon experiment, leaves it running over the weekend, and Monday morning you've paid On-Demand on a workload that wasn't part of the commitment plan.
+Development environments often differ from production: they may run only during working hours, appear for a short experiment, or remain active accidentally. Those are different purchasing problems.
 
-You can't predict experiments. You can predict that there will be experiments. So size the commitment with a 10–15% headroom buffer over the production baseline, _then_ set up a budget alert at the buffer-line so the platform team gets pinged the moment dev burn pushes utilization into the buffer.
+Tag and assign ownership before deciding on coverage. Shut down forgotten resources, schedule work that does not need to run continuously, and establish budgets or provisioning controls. Only then consider whether the remaining baseline is predictable enough to support a commitment.
 
-How to find it: tag every non-prod resource with an `env=dev|staging|sandbox` tag (you should be doing this anyway for a thousand other reasons). In the CUR, group by `resourceTags/user_env` and look at the On-Demand fraction by environment. If `dev` or `sandbox` shows up with five-figure monthly On-Demand spend, you have a gap.
+An automatic 10–15% commitment buffer can turn intermittent experiments into a fixed bill. Spare hourly commitment is paid for even when unused. Size the plan against a conservative, durable workload forecast, and evaluate bursts separately.
 
-The fix has two halves: (1) buy a small Savings Plan sized to typical dev burn, and (2) put a hard cap on instance size in non-prod via Service Control Policies. Most teams won't _consciously_ spin up an x1e.16xlarge for a Friday notebook, but somebody will eventually click the wrong dropdown.
+## A focused weekly review {#a-weekly-review-that-takes-20-minutes}
 
-## A weekly review that takes 20 minutes
+Once the queries and owners are in place, a short recurring review can focus on changes rather than reconstructing the bill:
 
-Once you've found and fixed the gaps once, the maintenance loop is short:
+1. Compare utilization, coverage, unused commitment, and uncovered eligible cost over the same period.
+2. Break material changes down by account, service, region, and instance family or type.
+3. Check plan expirations, sharing settings, migrations, and workload schedules.
+4. Assign an action: stop waste, resize, repair allocation settings, budget a temporary burst, or evaluate future commitment.
+5. Revisit the action after the next complete billing-data update.
 
-1. **Monday morning**, pull the CUR for last week, run the four group-bys above.
-2. Note any row where uncovered eligible spend exceeds your alert threshold (we use $1,000/week as a starting point — adjust to your bill size).
-3. For each row, decide: is this a one-off (DR rehearsal, weekend experiment) or a trend (a new family rolling out across the fleet)?
-4. One-offs go in a "watch" list. Trends become a procurement ticket — convert, top up, or reshape the commitment.
-5. **Last business day of the quarter**, review the watch list. Anything that became a trend during the quarter joins the procurement ticket queue. Anything that didn't gets archived.
-
-That's it. Twenty minutes, every Monday. The first time you run it you'll find six-to-twelve months of accumulated gap. The discipline after that catches the next gap inside a week instead of a year.
+The duration depends on the account's complexity. Choose thresholds proportionate to the bill and record decisions so that the same anomaly is not investigated from scratch every week.
 
 ## What this looks like end-to-end
 
-The customer who prompted this checklist had a 3-year all-upfront Compute Savings Plan that the dashboard showed at 96% utilization. We pulled their CUR and ran the four queries. Findings:
+Consider a hypothetical $10-per-hour commitment and a single workload whose plan rate is half its On-Demand rate. This deliberately simplified example excludes other plans, fees, credits, and taxes.
 
-- **Family-mismatch:** $14,200/mo of On-Demand c6i spend that the SP wasn't routing to (their commitment was Instance-flavoured, not Compute-flavoured).
-- **Region-mismatch:** $3,400/mo of On-Demand in eu-west-2, which they only used for a customer-specific compliance workload nobody had told the platform team about.
-- **Instance-class skew:** $1,800/mo on the d-suffix variant.
-- **Sandbox burn:** $6,100/mo on a single g5.12xlarge instance an ML researcher had provisioned and forgotten about three weeks earlier.
+| Hour | Eligible usage at On-Demand rates | Commitment consumed | Unused commitment | Uncovered On-Demand cost |
+| --- | ---: | ---: | ---: | ---: |
+| Quiet hour | $12 | $6 | $4 | $0 |
+| Busy hour | $32 | $10 | $0 | $12 |
+| Total | $44 | $16 | $4 | $12 |
 
-Total gap: $25,500/month, or $306,000/year, on a Savings Plan the dashboard had told them was working perfectly.
+Utilization is 16 ÷ 20 = **80%**. Covered usage has an On-Demand equivalent of $12 + $20 = $32, so coverage is 32 ÷ 44, or approximately **72.7%**. Total cost in this model is the $20 commitment plus $12 On-Demand, or $32.
 
-The gaps were all closed within a sprint. The instance-class skew got reshaped at the next renewal, the dev burn got a Service Control Policy and a Slack alert, and we left the team with the four queries in a SQL file they run every Monday.
+The account has both unused commitment and uncovered usage because the hours differ. Buying enough commitment for the busy hour would increase the amount left unused in the quiet hour. The right decision depends on how often each pattern occurs and what workload will remain throughout the term.
 
-> Utilization is the wrong question. The right question is: how much eligible spend slipped past the discount last month?
-
-Either way: stop reading utilization, start reading coverage, and run the checklist on Monday morning. The bill arrives on the 3rd.
+A useful cost review ends with that decision, supported by the hourly evidence. Read coverage and utilization together, then investigate the work behind the bill.
 
 ---
 

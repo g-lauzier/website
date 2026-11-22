@@ -1,11 +1,11 @@
 ---
 layout: posts/post
-title: "D! Club at Geneva's Lake Parade: A Sonic Journey"
+title: "D! Club at Geneva’s Lake Parade 2012"
 date: 2012-07-15 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["bad-nelson"]
 post_image: "/assets/images/writing/archive/d-club-geneva-lake-parade.webp"
-description: "Discover the vibrant spirit of Geneva's Lake Parade in this captivating video, featuring D! Club's inaugural float."
+description: "My edit of D! Club’s float at Geneva’s Lake Parade 2012, using footage shot by a collaborator and published through Noctune."
 permalink: "/d-club-geneva-lake-parade/"
 post_image_small: "/assets/images/writing/archive/d-club-geneva-lake-parade-640.webp"
 post_image_medium: "/assets/images/writing/archive/d-club-geneva-lake-parade-960.webp"
@@ -16,16 +16,13 @@ image_caption: "Thumbnail from the original video."
 image_credit: "Noctune on Vimeo"
 image_source: "https://vimeo.com/46101379"
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/geneva-lake-parade-2012.png"
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-Discover the vibrant spirit of Geneva's Lake Parade in this captivating video, featuring D! Club's inaugural float. While the video footage was captured by another collaborator, the editing process was expertly handled by me, transforming raw clips into a cohesive, engaging narrative.
+I edited this film of D! Club’s float at Geneva’s Lake Parade in 2012, working with footage shot by a collaborator. My contribution was the edit: selecting and sequencing the material into a record of the DJs, crowd and parade.
 
-The video provides an intimate look at the pulsating energy and exuberant enthusiasm that characterized D! Club's float at the parade. From beginning to end, the video encapsulates the essence of the event, immersing viewers in the captivating atmosphere.
+The lineup featured M.A.N.D.Y., Coxswain, Salvatore Freda, Djerry C, Bad Nelson, Radi, The Phat Crew, Moussy Key, Koma and Keith Hurtigan. The footage places their performances within the moving setting of the float and the wider event.
 
-The project shines a spotlight on an impressive line-up of DJs who graced the decks during the parade. It features exhilarating performances by M.A.N.D.Y from Get Physical Berlin, Coxswain from DJ MAG Spain, along with Salvatore Freda, Djerry C, Bad Nelson, Radi, The Phat Crew, Moussy Key, Koma, and Keith Hurtigan.
-
-Each artist brought their unique sound to the event, contributing to an eclectic musical tapestry that kept the crowd engaged and energized throughout the parade.
-
-This video is not only an encapsulation of the euphoric vibes and the pulsating beats that filled the air during the parade but also a testament to the power of electronic music in bringing together diverse crowds. It serves as a dynamic record of an unforgettable day at Geneva's Lake Parade, an event that perfectly blends the joy of music with the celebration of community spirit.
+Published through Noctune, the film is part of my archive of electronic music and nightlife work from that period.
 
 [D! Club – Lake Parade 2012](https://vimeo.com/46101379) from [Noctune](https://vimeo.com/noctune) on [Vimeo](https://vimeo.com).
