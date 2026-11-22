@@ -1,65 +1,54 @@
 ---
 layout: gl-default
 title: "Writing"
-description: "Essays on AI, digital infrastructure, cybersecurity, and venture building by Guillaume Lauzier."
+description: "Essays on Digital Infrastructure, AI, Cybersecurity, and the architecture of the new digital sovereign."
 writing_assets: true
 ---
 
-{% assign featured = site.posts.first %}
-{% assign oldest = site.posts.last %}
-{% assign archive_count = site.posts.size | minus: 1 | at_least: 0 %}
+<main class="gl-writing-list-page" id="main-content">
+  <div class="gl-section gl-writing-section">
+    <p class="gl-section-label">Writing</p>
+    <h1 class="gl-section-title">Field Notes.</h1>
+    <p class="gl-section-body">Non-consensus thinking on the primitives that matter. Infrastructure, intelligence, and the architecture of what's inevitable.</p>
 
-<main class="gl-writing" id="main-content">
-  <header class="gl-writing-intro">
-    <div>
-      <p class="gl-writing-eyebrow">Writing{% if featured %}<span aria-hidden="true"> / </span>{{ oldest.date | date: "%Y" }}–{{ featured.date | date: "%Y" }}{% endif %}</p>
-      <h1 class="gl-writing-heading">Field Notes<span>.</span></h1>
-    </div>
-    <p class="gl-writing-intro-copy">Essays on AI, digital infrastructure, cybersecurity, and venture building. Ideas from the work, and questions worth pursuing.</p>
-  </header>
-
-  {% if featured %}
-  <section class="gl-writing-feature" aria-labelledby="featured-title">
-    <p class="gl-writing-section-label">The latest field note</p>
-    {% include writing-card.html post=featured featured=true index="featured" %}
-  </section>
-  {% else %}
-  <p class="gl-writing-empty">New field notes will appear here.</p>
-  {% endif %}
-
-  {% if archive_count > 0 %}
-  <section class="gl-writing-archive" aria-labelledby="archive-title">
-    <div class="gl-writing-archive-header">
-      <div>
-        <p class="gl-writing-section-label">Earlier writing</p>
-        <h2 class="gl-writing-archive-title" id="archive-title">Explore the archive.</h2>
+    <section class="gl-writing-archive" aria-labelledby="writing-list-title">
+      <div class="gl-writing-list-toolbar">
+        <h2 class="gl-section-title gl-writing-latest-title" id="writing-list-title">Latest entries.</h2>
+        <div class="gl-writing-filter" id="writing-filter" hidden>
+          <label for="writing-topic">Filter by topic</label>
+          <select id="writing-topic" aria-controls="writing-list">
+            <option value="all">All topics</option>
+            {% assign categories = site.categories | sort %}
+            {% for category in categories %}
+            {% assign category_name = category[0] %}
+            <option value="{{ category_name | escape }}">{% if category_name == 'ai' %}AI{% else %}{{ category_name | replace: '-', ' ' | capitalize }}{% endif %}</option>
+            {% endfor %}
+          </select>
+        </div>
       </div>
-      <div class="gl-writing-filter" id="writing-filter" hidden>
-        <label for="writing-topic">Filter by topic</label>
-        <select id="writing-topic" aria-controls="writing-grid">
-          <option value="all">All topics</option>
-          {% assign categories = site.categories | sort %}
-          {% for category in categories %}
-          {% assign category_name = category[0] %}
-          <option value="{{ category_name | escape }}">{% if category_name == 'ai' %}AI{% else %}{{ category_name | replace: '-', ' ' | capitalize }}{% endif %}</option>
-          {% endfor %}
-        </select>
+
+      <p class="gl-writing-results" id="writing-results" role="status" aria-live="polite" aria-atomic="true">{{ site.posts.size }} articles</p>
+
+      <ul class="gl-posts-list gl-writing-posts-list gl-writing-list" id="writing-list" aria-labelledby="writing-list-title">
+        {% for post in site.posts %}
+        <li data-writing-entry data-topics="{{ post.categories | jsonify | escape }}">
+          <a href="{{ post.url | relative_url }}" class="gl-post-row" aria-labelledby="writing-title-{{ forloop.index }}">
+            <time class="gl-post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+            <span class="gl-post-title" id="writing-title-{{ forloop.index }}">{{ post.title | escape_once }}</span>
+            <span class="gl-post-tag">{% if post.categories.first == 'ai' %}AI{% else %}{{ post.categories.first | replace: '-', ' ' | escape }}{% endif %}</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+
+      {% if site.posts.size == 0 %}
+      <p class="gl-writing-empty">New articles will appear here.</p>
+      {% endif %}
+      <p class="gl-writing-empty" id="writing-empty" hidden>No articles in this topic. Choose another topic to continue.</p>
+
+      <div class="gl-load-more-wrap" id="writing-more" hidden>
+        <button class="gl-load-more-btn" id="writing-load-more" type="button" aria-controls="writing-list">Load more articles</button>
       </div>
-    </div>
-
-    <p class="gl-writing-results" id="writing-results" role="status" aria-live="polite" aria-atomic="true">{{ archive_count }} field notes</p>
-
-    <div class="gl-writing-grid" id="writing-grid">
-      {% for post in site.posts offset:1 %}
-        {% include writing-card.html post=post index=forloop.index %}
-      {% endfor %}
-    </div>
-
-    <p class="gl-writing-empty" id="writing-empty" hidden>No earlier field notes in this topic. Choose another topic to continue exploring.</p>
-
-    <div class="gl-writing-more" id="writing-more" hidden>
-      <button class="gl-writing-more-button" id="writing-load-more" type="button" aria-controls="writing-grid">Load more field notes <span aria-hidden="true">↓</span></button>
-    </div>
-  </section>
-  {% endif %}
+    </section>
+  </div>
 </main>

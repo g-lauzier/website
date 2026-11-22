@@ -2,19 +2,19 @@
 (function () {
   'use strict';
 
-  var grid = document.getElementById('writing-grid');
+  var list = document.getElementById('writing-list');
   var topic = document.getElementById('writing-topic');
   var filter = document.getElementById('writing-filter');
   var more = document.getElementById('writing-more');
   var button = document.getElementById('writing-load-more');
   var status = document.getElementById('writing-results');
   var empty = document.getElementById('writing-empty');
-  if (!grid || !topic || !filter || !more || !button || !status || !empty) return;
+  if (!list || !topic || !filter || !more || !button || !status || !empty) return;
 
   var batchSize = 12;
   var limit = batchSize;
-  var entries = Array.from(grid.querySelectorAll('[data-writing-card]')).map(function (card) {
-    return { element: card, topics: JSON.parse(card.getAttribute('data-topics') || '[]') };
+  var entries = Array.from(list.querySelectorAll('[data-writing-entry]')).map(function (row) {
+    return { element: row, topics: JSON.parse(row.getAttribute('data-topics') || '[]') };
   });
   var matches = entries;
 
@@ -29,7 +29,7 @@
       if (matchesTopic) shown += 1;
     });
     var visible = Math.min(limit, matches.length);
-    status.textContent = 'Showing ' + visible + ' of ' + matches.length + ' field note' + (matches.length === 1 ? '' : 's');
+    status.textContent = 'Showing ' + visible + ' of ' + matches.length + ' article' + (matches.length === 1 ? '' : 's');
     more.hidden = visible >= matches.length;
     empty.hidden = matches.length !== 0;
   }
@@ -51,5 +51,5 @@
   });
 
   render();
-  filter.hidden = false;
+  filter.hidden = entries.length === 0;
 })();

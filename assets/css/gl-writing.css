@@ -1,106 +1,29 @@
-/* Field Notes — image-led writing archive. Uses the site's theme tokens. */
-.gl-writing {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 9rem 2.5rem 6rem;
-}
+/* Restore the compact chronological article list, using the original site styles. */
+.gl-writing-list-page [hidden] { display: none !important; }
+.gl-writing-list-toolbar { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-top: 2.5rem; }
+.gl-writing-list-toolbar .gl-writing-latest-title { margin: 0; }
+.gl-writing-filter { display: flex; flex-direction: column; gap: 0.5rem; min-width: 12rem; }
+.gl-writing-filter label { color: var(--muted); font: 400 0.75rem/1.5 var(--mono); }
+.gl-writing-filter select { min-height: 44px; max-width: 100%; padding: 0.6rem 2.5rem 0.6rem 0.85rem; border: 1px solid var(--border-h); border-radius: var(--radius); background: var(--bg-2); color: var(--text); font: 400 0.85rem/1.5 var(--sans); cursor: pointer; }
+.gl-writing-results { margin: 1rem 0 0; color: var(--muted); font: 400 0.75rem/1.6 var(--mono); }
+.gl-writing-list { margin-top: 1.25rem; padding: 0; list-style: none; border-top: 1px solid var(--border); }
+.gl-writing-list .gl-post-row { grid-template-columns: 8rem minmax(0, 1fr) auto; min-height: 64px; gap: 1.5rem; padding: 1.2rem 0; }
+.gl-writing-list .gl-post-title { color: var(--text); font-size: 1rem; line-height: 1.55; overflow-wrap: anywhere; }
+.gl-writing-list .gl-post-row:hover .gl-post-title { color: var(--accent); }
+.gl-writing-list .gl-post-tag { font-size: 0.75rem; }
+.gl-writing-list-page :is(.gl-post-row, .gl-load-more-btn, select):focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.gl-writing-list-page .gl-load-more-btn { min-height: 44px; }
 
-.gl-writing [hidden] { display: none !important; }
-
-.gl-writing-intro {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 3rem;
-  align-items: end;
-  margin-bottom: 4rem;
-}
-
-.gl-writing-eyebrow,
-.gl-writing-section-label {
-  font: 400 0.72rem/1.6 var(--mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.gl-writing-eyebrow { margin-bottom: 1.15rem; }
-.gl-writing-eyebrow span { margin: 0 0.55rem; color: var(--accent); }
-.gl-writing-heading { font-size: clamp(3.4rem, 6.5vw, 5.4rem); letter-spacing: -0.05em; line-height: 1.05; }
-.gl-writing-heading > span { color: var(--accent); }
-.gl-writing-intro-copy { max-width: 28rem; margin: 0 0 0.2rem auto; font-size: 1.05rem; line-height: 1.8; color: var(--muted); }
-
-.gl-writing-feature { border-top: 1px solid var(--border-h); padding-top: 1.25rem; padding-bottom: 4rem; }
-.gl-writing-feature > .gl-writing-section-label { margin-bottom: 1.5rem; }
-.gl-writing-card { min-width: 0; }
-.gl-writing-card-link { display: block; color: var(--text); }
-.gl-writing-card-link:hover { color: var(--text); }
-.gl-writing-card-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 8px; border-radius: var(--radius); }
-.gl-writing-cover { aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--radius); background: var(--bg-3); }
-.gl-writing-cover img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-.gl-writing-cover-empty { display: grid; place-items: center; border: 1px solid var(--border); }
-.gl-writing-cover-wordmark { font: 700 clamp(1.8rem, 3vw, 3rem)/1.2 var(--serif); color: var(--muted); }
-.gl-writing-card-copy { padding-top: 1.35rem; }
-.gl-writing-card-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.25rem; margin-bottom: 0.85rem; font: 400 0.75rem/1.7 var(--mono); color: var(--muted); }
-.gl-writing-topic { color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
-.gl-writing-card-title { font-size: clamp(1.55rem, 2.5vw, 2rem); line-height: 1.22; letter-spacing: -0.025em; text-wrap: pretty; }
-.gl-writing-card-summary { margin-top: 1rem; font-size: 0.96rem; line-height: 1.75; color: var(--muted); }
-.gl-writing-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.35rem; font: 400 0.75rem/1.7 var(--mono); color: var(--muted); }
-.gl-writing-read { color: var(--text); }
-.gl-writing-read > span { display: inline-block; margin-left: 0.3rem; color: var(--accent); transition: transform 0.25s ease; }
-.gl-writing-card-link:hover .gl-writing-read > span { transform: translate(2px, -2px); }
-.gl-writing-card-link:hover .gl-writing-cover img { transform: scale(1.025); }
-.gl-writing-card-featured .gl-writing-card-link { display: grid; grid-template-columns: 1.25fr 1fr; gap: 2.75rem; align-items: center; }
-.gl-writing-card-featured .gl-writing-card-copy { padding-top: 0; }
-.gl-writing-card-featured .gl-writing-card-title { font-size: clamp(1.8rem, 3vw, 2.45rem); line-height: 1.18; }
-.gl-writing-card-featured .gl-writing-card-summary { margin-top: 1.1rem; font-size: 1rem; }
-.gl-writing-card-featured .gl-writing-card-footer { margin-top: 1.75rem; }
-
-.gl-writing-archive { border-top: 1px solid var(--border-h); padding-top: 2rem; }
-.gl-writing-archive-header { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
-.gl-writing-archive-title { margin-top: 0.55rem; font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; }
-.gl-writing-filter { display: flex; flex-direction: column; gap: 0.55rem; min-width: 12rem; }
-.gl-writing-filter label { font: 400 0.7rem/1.5 var(--mono); color: var(--muted); }
-.gl-writing-filter select { min-height: 44px; max-width: 100%; padding: 0.6rem 2.5rem 0.6rem 0.85rem; border: 1px solid var(--border-h); border-radius: var(--radius); background-color: var(--bg-2); color: var(--text); font: 400 0.85rem/1.5 var(--sans); cursor: pointer; }
-.gl-writing-filter select:focus-visible,
-.gl-writing-more-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-.gl-writing-results { margin: 1.5rem 0 2rem; font: 400 0.7rem/1.6 var(--mono); color: var(--muted); }
-.gl-writing-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3.5rem 2.75rem; }
-.gl-writing-grid .gl-writing-card { padding-bottom: 1.75rem; border-bottom: 1px solid var(--border); }
-.gl-writing-grid .gl-writing-card-link { display: flex; flex-direction: column; height: 100%; }
-.gl-writing-grid .gl-writing-cover { flex: 0 0 auto; }
-.gl-writing-grid .gl-writing-card-copy { display: flex; flex-direction: column; flex: 1; }
-.gl-writing-grid .gl-writing-card-footer { margin-top: auto; padding-top: 1.35rem; }
-.gl-writing-more { display: flex; justify-content: center; margin-top: 3rem; }
-.gl-writing-more-button { min-height: 48px; padding: 0.9rem 1.5rem; border: 1px solid var(--border-h); border-radius: var(--radius); background: transparent; color: var(--text); font: 400 0.8rem/1.5 var(--mono); cursor: pointer; transition: border-color 0.2s ease, background-color 0.2s ease; }
-.gl-writing-more-button span { margin-left: 1rem; color: var(--accent); }
-.gl-writing-more-button:hover { border-color: var(--accent); background-color: var(--bg-2); }
-.gl-writing-empty { padding: 2rem 0; color: var(--muted); }
-
-@media (max-width: 1000px) {
-  .gl-writing-card-featured .gl-writing-card-link { gap: 2rem; grid-template-columns: 1.1fr 1fr; }
-  .gl-writing-card-featured .gl-writing-card-title { font-size: 1.9rem; }
-  .gl-writing-card-featured .gl-writing-card-footer { margin-top: 1.25rem; }
-  .gl-writing-grid { gap: 3rem 2rem; }
-}
-
-@media (max-width: 700px) {
-  .gl-writing { padding: 7rem 1.25rem 4rem; }
-  .gl-writing-intro { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
-  .gl-writing-heading { font-size: clamp(3.3rem, 13vw, 4.5rem); }
-  .gl-writing-intro-copy { margin: 0; max-width: 32rem; font-size: 1rem; }
-  .gl-writing-feature { padding-bottom: 2.75rem; }
-  .gl-writing-card-featured .gl-writing-card-link { grid-template-columns: 1fr; gap: 1.35rem; }
-  .gl-writing-card-featured .gl-writing-card-title { font-size: clamp(1.8rem, 6.5vw, 2.25rem); }
-  .gl-writing-archive { padding-top: 1.5rem; }
-  .gl-writing-archive-header { align-items: start; flex-direction: column; gap: 1.5rem; }
+@media (max-width: 768px) {
+  .gl-writing-list-page .gl-writing-section { padding-top: 7rem; }
+  .gl-writing-list-toolbar { align-items: start; flex-direction: column; gap: 1rem; margin-top: 2rem; }
   .gl-writing-filter { width: 100%; }
-  .gl-writing-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .gl-writing-card-title { font-size: clamp(1.65rem, 6vw, 2rem); }
-  .gl-writing-results { margin-top: 1rem; margin-bottom: 1.5rem; }
+  .gl-writing-list .gl-post-row { grid-template-columns: minmax(0, 1fr) auto; gap: 0.5rem 1rem; }
+  .gl-writing-list .gl-post-date { grid-column: 1; grid-row: 1; }
+  .gl-writing-list .gl-post-title { grid-column: 1 / -1; grid-row: 2; }
+  .gl-writing-list .gl-post-tag { display: block; grid-column: 2; grid-row: 1; font-size: 0.65rem; overflow-wrap: anywhere; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gl-writing *, .gl-writing *::before, .gl-writing *::after { transition: none !important; }
-  .gl-writing-card-link:hover .gl-writing-cover img,
-  .gl-writing-card-link:hover .gl-writing-read > span { transform: none; }
+  .gl-writing-list-page *, .gl-writing-list-page *::before, .gl-writing-list-page *::after { transition: none !important; }
 }
