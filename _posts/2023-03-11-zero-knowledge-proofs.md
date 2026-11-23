@@ -5,7 +5,7 @@ date: 2023-03-11 00:00:00 +0000
 categories: ["cybersecurity"]
 tags: ["blockchain"]
 post_image: "/assets/images/writing/zero-knowledge-proofs.webp"
-description: "As our world becomes increasingly digital, the ability to securely share and verify information is crucial."
+description: "How zero-knowledge proofs separate a public claim from private evidence, and what their properties do—and do not—guarantee."
 permalink: "/zero-knowledge-proofs/"
 image_alt: "A closed dark vault sits beside a small prism projecting a blue ring of light."
 post_image_small: "/assets/images/writing/zero-knowledge-proofs-640.webp"
@@ -14,44 +14,53 @@ image_width: 1600
 image_height: 900
 image_caption: "Editorial illustration."
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/07/generatedart_cryptography_encryption_a29f64d4-9071-412d-bdd5-4f6e75dd92c1-2.png"
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-As our world becomes increasingly digital, the ability to securely share and verify information is crucial. Cryptography has made impressive strides in this area, and zero-knowledge proofs (ZKPs) are one such innovation that holds great promise. They provide a way for one party (the prover) to demonstrate to another party (the verifier) that they possess certain knowledge or a specific piece of information without revealing any additional details.
+A zero-knowledge proof lets someone establish that a statement is true while withholding the private information used to prove it. The useful separation is between a **public statement**, which the verifier is allowed to know, and a **private witness**, which remains hidden.
+
+For example, a carefully designed credential system could prove that a signed birth date satisfies an age threshold without publishing the date itself. The proof must also establish that the credential comes from an accepted issuer. Hiding a date is not useful if someone can invent the underlying credential.
 
 ## Understanding Zero-Knowledge Proofs
 
-In the realm of cryptography, zero-knowledge proofs are foundational. The principle of zero knowledge means that the prover can assure the verifier of the validity of a statement without disclosing any information beyond the authenticity of the claim. This functionality ensures data privacy and security, paramount in the age of digital information.
+The prover supplies evidence that a defined relation holds between public and private inputs. The verifier checks that evidence. Zero knowledge limits what can be learned from the proof beyond the public statement and its validity; it does not make the public statement secret.
 
-Zero-knowledge proofs can be either interactive or non-interactive. In an interactive proof, the prover and verifier engage in multiple rounds of communication, with the prover responding to randomly generated challenges from the verifier. Non-interactive proofs, on the other hand, require only a single message from the prover to the verifier. The choice between interactive and non-interactive systems depends on the application and the system's constraints.
+Some protocols are interactive, requiring a sequence of messages or challenges. Others produce a proof that can be checked without a live conversation with the prover. The setup, cryptographic assumptions, and permitted verifier behavior differ between systems.
+
+This precision matters in applications. A proof that a computation followed a set of rules says nothing about whether those rules capture the intended business requirement. The relation being proved is part of the security boundary.
 
 ## The Essential Properties of ZKPs
 
-Three key properties distinguish zero-knowledge proofs: completeness, soundness, and zero-knowledge.
+**Completeness** means that an honest prover with a valid witness can convince an honest verifier, subject to the protocol’s specified error probability.
 
-**Completeness** stipulates that if a statement is true and both parties act in good faith, the verifier will be convinced of the statement's truth by the end of the interaction.
+**Soundness** means that a false statement should not be accepted except with a small probability under the relevant assumptions. An *argument* typically relies on computational limits on the adversary. A *proof of knowledge* additionally formalizes the prover’s possession of a witness.
 
-**Soundness** ensures that a dishonest prover cannot convince an honest verifier of the validity of a false statement, except with minimal probability.
+**Zero knowledge** is usually expressed through simulation: the verifier’s view can be simulated without the private witness, given the allowed public information. It is not a claim that the verifier learns no information of any kind. It learns the public claim and whether verification succeeds.
 
-Finally, the **zero-knowledge property** ensures that the verifier learns nothing more than the veracity of the statement. Formally, every verifier can generate a transcript that looks like an interaction between an honest prover and the verifier, without any access to the prover.
+[Boneh and Shoup’s cryptography text](https://crypto.stanford.edu/~dabo/cryptobook/BonehShoup_0_6.pdf) develops these definitions and their security models in detail.
 
 ## Applications and Implementations of ZKPs
 
-The ability of zero-knowledge proofs to validate information without revealing any details makes them an ideal choice in a wide array of applications. For instance, in cryptography, they can be utilized to construct secure systems where users need to prove their identities or other credentials without divulging them. Furthermore, the rise of blockchain and other decentralized technologies opens up new possibilities for ZKPs, allowing for transaction verification without transaction detail exposure.
+Selective disclosure of credentials is one application. Another is proving that a computation was executed correctly, which can reduce the work a verifier must repeat. Privacy and efficient verification are separate properties: a system may use validity proofs for scaling while still publishing transaction data.
 
-Several ZKP schemes are well-established today, each with unique strengths, weaknesses, and use cases. They include the Schnorr protocol, the Fiat-Shamir heuristic, zk-SNARKs (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge), and zk-STARKs (Zero-Knowledge Scalable Transparent Arguments of Knowledge).
+The names in this field also refer to different kinds of objects:
 
-The Schnorr protocol, for instance, is a simple, interactive protocol widely recognized for its efficiency. The Fiat-Shamir heuristic, on the other hand, transforms interactive ZKPs into non-interactive ones by replacing the verifier's role with a hash function. Meanwhile, zk-SNARKs and zk-STARKs represent a newer generation of ZKPs, offering more scalability and transparency, with potential for wide-ranging applications in blockchain technology.
+- **Schnorr’s protocol** proves knowledge of a discrete logarithm in an appropriate group.
+- **The Fiat–Shamir transformation** can turn certain interactive protocols into non-interactive ones by deriving challenges from a cryptographic hash, under specific assumptions. It is not an unrestricted conversion for every interactive proof.
+- **SNARKs and STARKs** are families of proof or argument systems with different assumptions, setup requirements, and performance characteristics. Whether a particular construction provides zero knowledge must be checked.
+
+[RFC 8235](https://www.rfc-editor.org/info/rfc8235/) gives a concrete account of a non-interactive Schnorr proof. Ethereum’s documentation on [validity proofs in rollups](https://ethereum.org/developers/docs/scaling/zk-rollups/) illustrates why the use of proof systems should not be confused with transaction confidentiality.
 
 ## The Challenge of Practical Implementation
 
-Despite being a longstanding theoretical concept, the practical implementation of ZKPs has been challenging due to computational complexities. However, recent advancements in computation and a surge in interest due to blockchain technology have made ZKPs increasingly feasible.
+The hard work begins before proof generation. Define the exact claim, identify all public inputs, constrain every relevant value, and decide who controls setup parameters or proving software. A valid proof of an incomplete circuit can still authorize an unintended outcome.
 
-Zero-knowledge proofs, while conceptually intricate, are a potent mechanism for preserving privacy in the digital world. By facilitating proof without exposure, they serve as a powerful tool in cryptographic systems, fortifying security while safeguarding privacy.
+Then examine the surrounding protocol. Could the proof be replayed in another session? Is it bound to the correct account, application, and context? Does a public input reveal more than intended? Can metadata or repeated interactions link the prover’s activity?
+
+Proving time, verification time, memory, and proof size should be measured separately. A fast verifier may require substantial work from the prover. Those trade-offs determine whether a construction fits a mobile credential, a backend service, or a blockchain application.
 
 ## The Road Ahead
 
-As with homomorphic encryption, which allows computations to be performed on encrypted data without compromising privacy, ZKPs are shaping the future of data security. Their ability to authenticate claims without revealing underlying data is a game-changer in cryptography, with broad potential applications.
+Zero-knowledge proofs are useful when a party needs assurance without access to all the evidence. They complement other techniques: encryption controls access to data, while a proof can establish a property about data or computation.
 
-While we continue to grapple with the complexities of a progressively digitized world, the need for robust privacy and data security solutions becomes increasingly evident. Zero-knowledge proofs are well-positioned to meet this demand, offering a technique to authenticate data without sacrificing privacy.
-
-As we forge ahead, the significance of ZKPs will continue to escalate. They hold the promise of ensuring our data's security and privacy in an ever-evolving technological landscape, and their development and application are pivotal for a secure digital future.
+The design question is specific: **what must be proven, to whom, and what may remain visible?** Answer it first. The proof system can then be selected and reviewed against that requirement, rather than used as a general promise of privacy.

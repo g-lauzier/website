@@ -1,11 +1,11 @@
 ---
 layout: posts/post
-title: "Milan Design Week: A Look at the Latest in Industrial Design"
+title: "Milan Design Week 2012: a video report"
 date: 2012-04-22 00:00:00 +0000
 categories: ["design"]
 tags: []
 post_image: "/assets/images/writing/archive/milan-design-week-2012-a-look-at-the-latest-in-industrial-design.webp"
-description: "\"Milan Design Week 2012\" is a video report of Milan's major industrial design fair, featuring Salone del Mobile, SaloneSatellite, Zona Tortona, and standout designers and products from the 2012 edition."
+description: "A five-and-a-half-minute film from Milan Design Week 2012, covering Salone del Mobile, SaloneSatellite and exhibitions across the city."
 permalink: "/milan-design-week-2012-a-look-at-the-latest-in-industrial-design/"
 post_image_small: "/assets/images/writing/archive/milan-design-week-2012-a-look-at-the-latest-in-industrial-design-640.webp"
 post_image_medium: "/assets/images/writing/archive/milan-design-week-2012-a-look-at-the-latest-in-industrial-design-960.webp"
@@ -16,8 +16,13 @@ image_caption: "Thumbnail from the original video."
 image_credit: "Guillaume J. Lauzier on Vimeo"
 image_source: "https://vimeo.com/43245755"
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/milan-design-week-2012.png"
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-"Milan Design Week 2012" is a video report of one of Europe's most recognized industrial design fairs that took place from April 17th to 22nd in Milan, including Salone Internazionale del Mobile, SaloneSatellite, Zona Tortona, and other small exhibitions around the city. The 5-and-a-half-minute video features notable designers and products presented at the fair, such as Zaha Hadid's "The Secret Garden," Raw Edges' "Deskbox for Arco," and Studio Job's "Altdeutsche Möbel for Moooi." The video also showcases animations, filming, and editing by Guillaume J. Lauzier and music by Dubrider and Soulstance.
+This five-and-a-half-minute report follows Milan Design Week, held from April 17–22, 2012. It moves between Salone Internazionale del Mobile, SaloneSatellite, Zona Tortona and smaller exhibitions around the city.
+
+The featured work includes Zaha Hadid’s “The Secret Garden,” Raw Edges’ Deskbox for Arco, and Studio Job’s Altdeutsche Möbel for Moooi. Together, the projects give a view of the objects, installations and presentation spaces that defined that edition of the fair.
+
+I handled the filming, editing and animation. The soundtrack features music by Dubrider and Soulstance.
 
 [Milan Design Week 2012](https://vimeo.com/43245755) from [Guillaume J. Lauzier](https://vimeo.com/guillaumelauzier) on [Vimeo](https://vimeo.com).

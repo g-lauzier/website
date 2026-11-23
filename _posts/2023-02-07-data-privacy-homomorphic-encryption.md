@@ -5,7 +5,7 @@ date: 2023-02-07 00:00:00 +0000
 categories: ["cybersecurity"]
 tags: []
 post_image: "/assets/images/writing/data-privacy-homomorphic-encryption.webp"
-description: "In today's world, data privacy is becoming increasingly important as more and more sensitive information is being shared and stored online."
+description: "What homomorphic encryption makes possible, how partial and fully homomorphic schemes differ, and where the privacy guarantees stop."
 permalink: "/data-privacy-homomorphic-encryption/"
 image_alt: "Metal rings surround a sealed smoked-glass capsule containing a blue threadlike form."
 post_image_small: "/assets/images/writing/data-privacy-homomorphic-encryption-640.webp"
@@ -14,34 +14,53 @@ image_width: 1600
 image_height: 900
 image_caption: "Editorial illustration."
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_homomorphic_encryption.png"
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-In today's world, data privacy is becoming increasingly important as more and more sensitive information is being shared and stored online. At the same time, there is a growing need for computations to be performed on this data to gain insights and drive decision-making. Homomorphic encryption is a technique that can help bridge this gap by allowing computations to be performed on encrypted data, without the need for decryption.
+Encryption usually protects information while it is stored or transmitted. Processing it often means decrypting it first. Homomorphic encryption changes that arrangement: a service can perform supported computations on ciphertexts, returning a result that the key holder can decrypt.
 
-Homomorphic encryption provides a way to perform calculations on sensitive data while still maintaining its privacy. This is achieved by applying a mathematical transformation to the original data, which results in encrypted data that can be manipulated without the need for decryption. The results of these computations are also encrypted, ensuring that the original data remains secure throughout the entire process.
+The appeal is concrete. A data owner may want a computation performed without giving the operator access to the underlying values. The challenge is designing a useful calculation, an acceptable performance budget, and a security model that covers the entire exchange.
 
-The potential applications of homomorphic encryption are vast, ranging from healthcare to finance to government. For example, healthcare providers could use homomorphic encryption to perform calculations on sensitive patient data without compromising privacy. Financial institutions could use it to perform complex financial analysis on encrypted customer data. And governments could use it to analyze sensitive data for national security purposes.
+## Computing without revealing the input
 
-Despite its potential benefits, homomorphic encryption is still a relatively new and emerging technology. Its implementation is still a challenge, as it requires significant computing resources and specialized knowledge. Nonetheless, it has the potential to be a game-changer in the field of data privacy, providing a way to perform computations on sensitive data while keeping that data secure.
+Consider an illustrative service that calculates a total. A client encrypts several values under an appropriate scheme, sends the ciphertexts to the service, and receives an encrypted sum. The client decrypts the result locally. The service’s arithmetic is on ciphertexts; the meaningful sum appears only after authorized decryption.
+
+[NIST’s overview of fully homomorphic encryption](https://csrc.nist.gov/Projects/pec/fhe) describes the broader goal of evaluating arbitrary functions without possessing the decryption key. In practice, the computation must be represented using operations supported by the scheme and implementation.
+
+The distinction matters for ordinary software. A program that branches on a plaintext value cannot necessarily be moved unchanged into an encrypted workflow. Comparisons, table lookups, and other operations may require a different representation or a costly circuit. The engineering problem is often to reshape the computation rather than simply switch on encryption.
 
 ## FHE & SHE
 
-Fully Homomorphic Encryption (FHE) is the most advanced form of homomorphic encryption. It enables arbitrary computations to be performed on encrypted data, including addition and multiplication of encrypted values. This means that complex calculations can be performed on encrypted data without the need for decryption, ensuring the privacy of the original data is maintained. While FHE is still relatively new and computationally intensive, it has the potential to revolutionize the field of data privacy.
+Three terms describe different capabilities:
 
-Somewhat Homomorphic Encryption (SHE) is another form of homomorphic encryption that allows for limited computations to be performed on encrypted data. SHE is more practical and computationally efficient than FHE, making it a more attractive option for real-world applications. SHE is primarily used in scenarios where only basic computations, such as addition or multiplication, are required on the encrypted data.
+| Family | Capability | Main constraint |
+| --- | --- | --- |
+| Partially homomorphic encryption | Supports a restricted operation, such as addition or multiplication, repeatedly | The available operation set is limited |
+| Somewhat homomorphic encryption | Supports combinations of operations up to a bounded complexity | The computation must fit the scheme’s supported depth |
+| Fully homomorphic encryption | Supports arbitrary computable functions in principle | Practical latency, memory, ciphertext size, and parameter choices remain limiting |
 
-There are several use cases for homomorphic encryption, including:
+A related term, **leveled FHE**, refers to supporting a chosen bounded circuit depth through parameter selection. Some constructions use **bootstrapping** to refresh a ciphertext and enable further computation. Neither term implies that a large calculation is inexpensive. The [Canadian privacy commissioner’s technical explanation](https://www.priv.gc.ca/en/blog/20231024/) provides a more detailed account of these distinctions.
 
-- Healthcare: Homomorphic encryption can be used in the healthcare sector to enable computations on sensitive patient data while maintaining data privacy. Medical researchers and providers can use homomorphic encryption to perform analyses on encrypted data, including the detection of rare diseases, identifying correlations between different health factors, and discovering new treatments.
+Choose the required computation before choosing the most general label. An application that needs encrypted totals has different requirements from one evaluating a neural network. A narrowly defined calculation may permit a much simpler design.
 
-- Finance: Homomorphic encryption can be used in the finance sector to perform complex financial analysis on encrypted customer data. Banks and other financial institutions can use homomorphic encryption to perform encrypted computations on customer data, such as credit scores, loan eligibility, and fraud detection.
+## What remains exposed
 
-- Government: Homomorphic encryption can be used in the government sector for national security purposes. Intelligence agencies can use homomorphic encryption to analyze encrypted data to detect potential threats to national security, while maintaining the privacy of sensitive information.
+Homomorphic encryption protects the confidentiality of the encrypted input under the scheme’s assumptions. It does not automatically hide all metadata, verify that the service performed the requested calculation, or control what the decrypted answer reveals.
 
-One of the strengths of homomorphic encryption is that it provides a way to maintain data privacy even in the face of quantum computing threats. While traditional encryption methods can be broken by quantum computers, homomorphic encryption remains secure because it encrypts the data at a much higher level of abstraction, making it resistant to brute-force attacks. Homomorphic encryption also enables computations to be performed on encrypted data in a quantum-safe way, providing a secure way to process sensitive information.
+For example, a series of aggregate queries could expose an individual’s contribution even if each calculation was performed on encrypted data. A compromised client can also disclose information before encryption or after decryption. Key management, query authorization, and output policy therefore remain part of the design.
 
-## Conclusion
+[Microsoft SEAL’s security guidance](https://github.com/microsoft/SEAL/blob/main/SECURITY.md) highlights the need to assess the complete application and its security model. Correct use of a library is necessary, but the library cannot decide which answers an application should disclose.
 
-Homomorphic encryption is an exciting technology that provides a way to perform computations on sensitive data without compromising its privacy. It has numerous applications in healthcare, finance, government, and many other sectors. While still relatively new, advancements in the field are rapidly increasing its practicality and potential. Homomorphic encryption's ability to maintain data privacy in the face of quantum computing threats is a significant advantage, making it an essential tool for safeguarding sensitive data.
+## Potential uses and practical limits
 
-As we continue to navigate the complexities of an increasingly digitized world, the demand for privacy and data security will only continue to grow. Homomorphic encryption provides a solution that allows us to analyze and process sensitive data without sacrificing its privacy. Its potential to revolutionize data privacy and security is enormous, and it is essential that we continue to invest in its development and application. As we move forward, we can be confident that homomorphic encryption will play a crucial role in ensuring the security and privacy of our data in the face of an ever-changing technological landscape.
+Possible applications include outsourced statistics, selected financial calculations, and model inference on sensitive inputs. Each needs a concrete threat model: is the service merely curious, actively malicious, or allowed to collude with another participant? Who can decrypt the result, and can that party misuse it?
+
+A useful proof of concept measures the actual workload. Record accuracy where approximate arithmetic is used, ciphertext and key sizes, evaluation time, and the cost of transfers. Compare those costs with the benefit of withholding plaintext from the operator.
+
+Homomorphic encryption is also not automatically quantum-resistant. The property “supports computation on ciphertexts” says nothing by itself about the mathematical assumption behind the encryption. Some widely studied constructions use lattice assumptions; other homomorphic schemes use different assumptions. Claims about quantum resistance must identify the scheme and parameters rather than appeal to a “higher level of abstraction.”
+
+## Choosing a system {#conclusion}
+
+Begin with the smallest useful computation and state exactly who should learn its input and output. Check whether homomorphic encryption solves that requirement better than alternatives such as local computation or a different sharing arrangement. Then test the full protocol, including how errors, repeated queries, and key loss are handled.
+
+The value of homomorphic encryption is the ability to separate computation from access to plaintext. That is a powerful building block when its boundaries are explicit.

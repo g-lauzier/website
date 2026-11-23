@@ -1,10 +1,10 @@
 ---
 layout: posts/post
-title: "Lockfile vulns: the 95% you can fix in one PR"
+title: "Lockfile vulnerabilities: a practical patching workflow"
 date: 2026-04-22 00:00:00 +0000
 categories: ["cybersecurity"]
 tags: ["security", "vuln-scanning", "ci"]
-description: "Most CVEs in your npm or pnpm audit are patch-version bumps with no breaking changes. Here's how to clear the backlog in a single, safe pull request — and why the remaining 5% deserves a different process entirely."
+description: "Batch compatible dependency fixes, isolate migrations, and make vulnerability triage part of a repeatable engineering workflow."
 permalink: "/lockfile-vulns-the-95-percent-you-can-fix-in-one-pr/"
 canonical_url: "https://algosize.com/blog/lockfile-vulns-the-95-percent-you-can-fix-in-one-pr/"
 post_image: "/assets/images/writing/dependency-patching.webp"
@@ -14,119 +14,111 @@ image_alt: "A graphite dependency lattice contains a clean path of blue replacem
 image_caption: "Editorial illustration."
 image_width: 1600
 image_height: 900
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
 _Originally published on [Algosize](https://algosize.com/blog/lockfile-vulns-the-95-percent-you-can-fix-in-one-pr/) — service provisioning by [algosize.com](https://algosize.com)._
 
-Open `npm audit` on any non-trivial Node project and you will see a wall of red. Forty-six high-severity, twelve critical, three hundred moderate. The nightly CI job flags them. The security dashboard at your shop counts them. Three sprints later the count has gone up, not down, because the team that's "supposed to" fix them is the same team trying to ship features.
+A dependency audit can become a backlog that nobody feels able to finish. New advisories arrive, several findings point to the same package, and the team responsible for remediation is also trying to ship features. Treating every finding as a separate project makes routine updates slow and leaves difficult migrations buried in the queue.
 
-Here's the thing nobody says out loud: **the overwhelming majority of those CVEs are patch-version bumps with no breaking changes**. The reason your audit count is still climbing isn't that the fixes are hard. It's that the workflow for applying them is. People pattern-match on "security work = scary, careful, slow" and so each individual bump becomes a careful, slow, scary three-day investigation.
+The better workflow groups fixes by the change they require, then prioritizes them by actual exposure and urgency. Compatible updates can often move together. Breaking changes, abandoned packages, and issues without a fix need their own engineering plan.
 
-We've watched dozens of teams clear their lockfile vulnerability backlog in a single afternoon. The trick is to stop doing it one CVE at a time, and to be honest about which fixes deserve scrutiny and which deserve a rubber stamp.
+The original headline used a **95/4/1 split**. That is not a measured distribution a reader should assume for their codebase. This revision replaces the percentage claim with a procedure for establishing the split from the actual dependency tree.
 
-## The 95/4/1 split
+## Triage by compatibility and exposure {#the-9541-split}
 
-Run `npm audit --json` (or the pnpm/yarn equivalent) on any production codebase that's been around for more than a year. Pipe the output through `jq` and group findings by the _type_ of fix the audit recommends. Almost every codebase we've checked lands in the same shape:
+Start with the package manager’s machine-readable audit report and the locked dependency graph. Identify the advisory, affected versions, dependency paths, available remediation, and whether the vulnerable behavior is reachable in the application or build process.
 
-- **~95% are patch bumps.** Same major, same minor, fixed patch. `4.17.15` → `4.17.21`. No API changes by definition (under semver), and the fix is usually a one-line escape, parser tightening, or DoS guard.
-- **~4% are minor bumps.** New API surface available, old API still works, behaviour preserved. Slightly more risk because library authors occasionally interpret "minor" loosely.
-- **~1% are major bumps.** Breaking API changes, possibly deprecations, possibly a rewrite. These are real engineering work.
+Then group the work:
 
-The reason the audit feels endless is that teams treat all three buckets identically — every CVE gets the same triage meeting, the same hand-wringing, the same Slack thread. The 1% that needs the meeting is buried under the 95% that doesn't, and so the meeting never gets the depth it actually deserves.
+- **Compatible updates:** a fixed version can be resolved within the accepted dependency constraints, with a reviewable scope.
+- **Changes requiring focused review:** the version is nominally compatible but affects a sensitive integration, runtime behavior, or a package with uncertain compatibility practices.
+- **Migrations or unresolved issues:** the fix needs an incompatible version, a replacement dependency, or a temporary mitigation because no acceptable fix is available.
 
-The fix is to _separate_ the buckets, then apply different processes to each.
+[Semantic Versioning](https://semver.org/) expresses a publisher’s compatibility contract. A patch version is intended for a backward-compatible bug fix; it is not proof that a release cannot break your application. Versions below 1.0 also need particular attention. A package’s release history and the way the application uses it matter alongside the version number.
 
-## The bump-everything PR
+Keep urgency separate from implementation size. A small fix for an exposed, actively exploited issue should not wait for a calendar slot. A major migration can be urgent even when it is inconvenient.
 
-The 95% bucket — patch-only, in-range, semver-safe — gets one PR, every two weeks, that bumps every patch. You do not read the changelog of every library. You do not write a test plan for each CVE. You read the diff _of the fix's commit list_, run the existing test suite, and merge.
+## The batch-remediation PR {#the-bump-everything-pr}
 
-The mechanics in npm:
+Use a clean branch and the same Node and package-manager versions as CI. Preview the remediation, inspect the resulting change, and run the checks that exercise affected integrations.
+
+For an npm project, a starting sequence is:
 
 ```bash
-git checkout -b chore/lockfile-bumps-$(date +%Y-%m-%d)
-npm update           # applies patch+minor bumps respecting your semver ranges
-npm audit fix        # adds explicit overrides for transitive CVEs
+git switch -c chore/dependency-remediation
+npm ci
+npm audit --json > audit-before.json
+npm audit fix --dry-run
+npm audit fix
+
+git diff -- package.json package-lock.json
+npm ci
 npm test
-git add package.json package-lock.json
-git commit -m "chore(deps): scheduled patch bumps + audit fixes"
+npm run build
+npm audit --json > audit-after.json
 ```
 
-That's the whole PR. It will move dozens to hundreds of versions in a single sweep. The tests either pass or they don't. If they pass, you ship it.
+Run these commands deliberately rather than treating the block as an unconditional release script. Audit commands normally exit nonzero when findings remain; distinguish that result from a failed audit request. Adapt `npm test` and `npm run build` to the project’s actual verification commands. The audit JSON files are local review records, not files to commit automatically.
 
-The objection at this point is always the same: _"What if a patch bump silently breaks something the tests don't catch?"_ And yes, occasionally a library author misunderstands semver and ships a behavioural change in a patch release. We have seen it. It happens roughly once every two-to-three years per codebase. The risk is real but it is _small_, and it is dramatically smaller than the risk of running known-vulnerable versions in production for nine more months because the team is paralysed by the size of the audit list.
+[`npm audit fix`](https://docs.npmjs.com/cli/v11/commands/npm-audit/) attempts available compatible remediation through npm’s installation process. It does not automatically create explicit `overrides` for every transitive issue. Avoid adding `--force` to a routine sweep: it can permit changes outside declared ranges, including major-version changes.
 
-You also recover from the bad-patch case in fifteen minutes — `npm install library@previous-version`, commit, deploy, file an issue with the upstream. Compare to the cost of every team running CVE bingo for the next quarter and the trade is obvious.
+[`npm update`](https://docs.npmjs.com/cli/v11/commands/npm-update/) is a broader maintenance command that respects dependency constraints. With a caret range, it may include minor updates. Calling it “patch-only” hides a meaningful difference in scope. Keep general updating separate when it would make a security change too difficult to review.
+
+A batch should be large enough to remove repeated overhead and small enough to understand and roll back. If a release changes a critical parser, authentication integration, or payment path, that component may deserve an isolated PR even when its version change is small.
 
 ## The fixture/snapshot trap
 
-There's exactly one common failure mode for the bump-everything PR, and it's worth calling out so you can pre-empt it: **fixture and snapshot tests built against pinned upstream behaviour**.
+Dependency updates can change snapshots, error strings, request metadata, or serialized output. Some differences expose brittle tests; others expose a real compatibility or security change. The failure alone does not tell you which.
 
-Examples:
+Ask what the assertion protects. If a test compares an incidental timestamp, it may be better to assert the behavior that matters. If it checks signed bytes, a public response schema, or a persisted format, an exact comparison may be essential.
 
-- A snapshot of an HTTP request body, where the underlying library bumped its default `User-Agent` between patch versions and now the snapshot diff is one line of metadata.
-- A test that asserts an exact stack trace string and the library's error formatter changed.
-- A regex against an exported JSON config that gained a new optional field.
-
-These show up as test failures in your bump PR. They are _not_ real regressions. They're test-suite tech debt the bump merely surfaced. Resist the urge to revert the bump; instead, loosen the assertion to focus on the behaviour that actually matters and re-record the snapshot. (If you do need to assert exact bytes — for, say, a deterministic build artifact — pin the specific dependency in `package.json` with `"library": "1.2.3"` and add a comment explaining why.)
+Do not regenerate snapshots simply to make CI green. Read the difference, determine its effect on consumers, and update the test only when the new behavior is intended. Record the reason in the PR so a future reviewer can distinguish an accepted change from a missed regression.
 
 ## CI: lockfile drift, not just audit
 
-The bump-PR workflow only works if your CI catches _new_ vulnerabilities the next time the schedule runs. The way most teams set this up is `npm audit --audit-level=high` in CI, which fails the build the moment a new high-severity CVE drops.
+Use both change-level and scheduled scanning. A PR check can identify newly introduced vulnerable dependencies or worsening exposure. A scheduled scan can detect advisories published after the last code change.
 
-This sounds great until you realise that _new high-severity CVEs drop on dependencies you don't directly control all the time_. A perfectly stable PR can suddenly fail CI because a transitive dependency four levels down published a patch with a CVE the day before. Now your "always-green main" branch goes red until somebody runs the bump PR.
+If a PR check compares against `main`, scan both dependency trees against the same advisory snapshot where practical. Comparing today’s branch report with last week’s stored baseline can misclassify a newly published advisory as a dependency change. Document how the tool groups package paths and advisories so its count has a clear meaning.
 
-Better: split the check into two jobs.
+Existing findings still need owners, deadlines, and escalation. A notification without a response process is a quieter backlog. Let severity, exploitability, exposure, and available mitigation determine urgency; a two-week batch cycle is a maintenance cadence, not a promise to postpone every issue until then.
 
-1. **Block-on-new** — fail the PR build only if _this PR_ introduces a new vulnerability versus `main`. This catches developers adding a new dep with a known issue.
-2. **Notify-on-existing** — run nightly against `main`, post the diff to a Slack channel the security team owns. New CVEs get triaged, not enforced — they go onto the backlog the next bump PR will sweep.
+Build-time dependencies also deserve analysis. A package that is not shipped in the application can still affect the code or artifacts produced by CI. Classify its exposure instead of automatically dismissing it as “dev-only.”
 
-This separates "this PR is making things worse" (a hard block, deserves attention) from "the world changed under us" (a notification, batched for the next sweep).
+## Minor updates and sensitive integrations {#the-4-bucket-minor-bumps}
 
-In practice it means the developer who's trying to ship a feature stops getting paged for vulnerabilities they didn't introduce, and the security backlog stops being shaped by whoever happened to push commits last Tuesday.
+A minor update may fit the ordinary batch or require a focused PR. Use the release notes, consumed API surface, compatibility history, and tests to make that decision.
 
-## The 4% bucket: minor bumps
+A compact review record should state the old and new versions, why the change is needed, which application paths use the package, and what was verified. It should also identify any configuration or lockfile changes and the rollback plan.
 
-Minor bumps go into a separate PR per library, queued and reviewed sequentially. Same scheduled cadence (every two weeks works well), same person doing the queuing, but each one gets its own PR so the changelog can be read and the smoke-test plan can be written. We have a Slack template:
+For example, an HTTP client update might need checks for timeouts, redirects, proxy configuration, and error handling. Those tests are more informative than counting how many import statements refer to the package. Keep the effort proportional to the integration rather than assigning a fixed review time to every library.
 
-> **Minor bump:** `axios 0.21.0 → 0.27.2` **Changelog:** [link] **Surface area used in this codebase:** 4 files, all in `src/api/`. Calls `axios.get`, `axios.post`, `axios.create`, `axios.defaults`. **Verified against:** unit tests, integration smoke (`scripts/smoke-axios.mjs`), staging soak (24h). **Rollback plan:** revert PR, redeploy. Lockfile is the only artifact.
+## Major updates and unresolved issues {#the-1-bucket-major-bumps}
 
-That's still a small amount of work — maybe 30 minutes per library — but it's _manageable_ work, and it doesn't fight for time with the 95% bucket.
+A major-version fix needs an explicit migration plan: identify consumers, understand changed behavior, update integration code, and verify the result. If the issue is exposed, choose a deadline or mitigation appropriate to the risk rather than leaving the work indefinitely on a roadmap.
 
-## The 1% bucket: major bumps
+Sometimes the right action is to remove a dependency or stop using the affected feature. Sometimes a narrowly scoped override is appropriate, but it needs evidence that the parent package remains compatible. Record such overrides as temporary decisions to revisit, not invisible patches that accumulate forever.
 
-Major bumps are real engineering. They go on the roadmap. They get a story, an estimate, a code-search of every consumer, and a feature flag if the library spans a system boundary. They do not get done in the audit-clearing sweep, and they don't get done by whoever happens to draw the short straw at security stand-up.
+If no fix is available, document the exposure and the compensating control, assign an owner, and set a review date. “No patch” is a state to manage, not a resolution.
 
-Counter-intuitively, _separating_ the major bumps from the patch bumps means the major bumps actually get done. When everything is on the same backlog, "the audit list" never goes down, the team gives up, and the major bumps pile up forever. When the audit list is a sweep that completes every two weeks, the major bumps stand out, get prioritised, and ship.
+## Illustrative backlog: 241 findings {#worked-example-a-240-cve-backlog}
 
-## Worked example: a 240-CVE backlog
+Consider a hypothetical audit with 241 findings. Suppose review shows that compatible upgrades address 228, nine need focused compatibility work, and four require migrations or replacements. These are illustrative numbers, not a customer result or a claim about typical repositories.
 
-A customer came to us last quarter with `npm audit` showing 241 vulnerabilities (24 critical, 89 high, 128 moderate). Their security team had been chipping at it for six months and the count had gone _up_ by 14 in that time.
+The useful output is a plan: one or several coherent compatible-update PRs, nine bounded reviews, and four owned migration decisions. Several findings may share one underlying dependency, so the number of tasks can be much smaller than the count on the dashboard.
 
-We pulled their lockfile and ran the 95/4/1 split. The actual numbers:
-
-- **228** were patch bumps inside their existing semver ranges. `npm audit fix` resolved all 228 in one command.
-- **9** were minor bumps. Two were Express middleware (read changelog, no surface change), four were utility libraries with deprecation warnings, three were dev-only build tooling.
-- **4** were major bumps: a new major of `node-fetch`, a major of `react-router`, and two ORM majors. None had usable patches available within the existing major.
-
-Total time spent: one engineer-day for the bump-everything PR (most of it waiting for CI), four engineer-days spread across the next sprint for the minors, and the four majors went onto the roadmap. The audit dropped from 241 to 4 in eleven days.
-
-The four remaining issues weren't a problem to be solved. They were a list of clearly-scoped engineering tasks. That's the whole point.
+After each change, rescan and retain the evidence. Confirm the dependency paths that disappeared and investigate any unexpected additions. The result is not just a lower count; it is a clearer explanation of what changed and which risks remain.
 
 ## A workflow you can paste into a runbook
 
-Here is the workflow we hand to teams. Copy-paste it.
+1. Inventory the locked dependency tree and capture a current audit report.
+2. Triage urgent exposure immediately; assign an owner to each unresolved risk.
+3. Group compatible, reviewable fixes into scheduled PRs. Separate changes that need focused integration work.
+4. Preview and inspect the updates, perform a clean install, and run the relevant build, tests, and smoke checks.
+5. Compare the new report, document residual findings, and review the deployment and rollback plan.
+6. Track migrations and exceptions to deadlines. Rescan on a schedule and respond to new information.
 
-1. **Every other Monday:** open the bump-everything PR. Run `npm update && npm audit fix`, run tests, push. If green in 24h, merge. No standalone review meeting required for in-range bumps.
-2. **Same day:** triage anything `npm audit fix` couldn't resolve into the 4% (minor) or 1% (major) bucket.
-3. **Within the sprint:** ship the minor-bump PRs, one per library, with the Slack template above.
-4. **At sprint planning:** any major-version bump becomes a story with an estimate. It is real work; treat it as real work.
-5. **In CI:** block-on-new on PRs, notify-on-existing on `main` nightly.
-
-That's it. The 95% gets cleared on a schedule, the 4% gets careful per-library attention, and the 1% gets real engineering. The audit count goes down monotonically and stays down.
-
-> Most security work isn't risky. Most security work is just unscheduled.
-
-When you stop treating "security" as a special category that demands special process for every line item, and start treating it like any other recurring chore — payroll, dependency updates, secret rotation — the backlog becomes a workflow instead of a wall. And the few items that genuinely deserve scrutiny actually get it.
+A dependency program should make routine work routine while keeping the difficult decisions visible. Batching can reduce overhead, but evidence still decides what is safe to release. A declining audit count is useful; a maintained explanation of the remaining exposure is more useful.
 
 ---
 

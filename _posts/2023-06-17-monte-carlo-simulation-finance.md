@@ -5,7 +5,7 @@ date: 2023-06-17 00:00:00 +0000
 categories: ["fintech"]
 tags: []
 post_image: "/assets/images/writing/monte-carlo-simulation-finance.webp"
-description: "The Monte Carlo Simulation (MCS) is a mathematical technique that allows you to understand the impact of risk and uncertainty in prediction and forecasting…"
+description: "Using random sampling to estimate financial outcomes, distinguish model risk from sampling error, and test scenarios in traditional finance and DeFi."
 permalink: "/monte-carlo-simulation-finance/"
 image_alt: "Graphite and cobalt beads disperse toward glass bowls, evoking many possible outcomes under uncertainty."
 post_image_small: "/assets/images/writing/monte-carlo-simulation-finance-640.webp"
@@ -14,150 +14,145 @@ image_width: 1600
 image_height: 900
 image_caption: "Editorial illustration."
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/06/generatedart_Monte_Carlo_Simulation_Finance_37395abb-80e4-4b6b-a5ca-465ee649e98d-2.png"
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-The Monte Carlo Simulation (MCS) is a mathematical technique that allows you to understand the impact of risk and uncertainty in prediction and forecasting models. Named after the famous Monte Carlo Casino in Monaco, this method utilizes random sampling and statistical modeling to simulate the possible outcomes of uncertain events.
+Monte Carlo simulation estimates outcomes by repeatedly sampling from a model. In finance, that can mean generating price paths, valuing a payoff, or measuring how a portfolio behaves under uncertain conditions.
 
-The simulations are run thousands, or even millions, of times, to identify all possible outcomes. The results are then used to analyze the probabilities of different results occurring. In essence, Monte Carlo Simulations convert uncertain outcomes into more predictable outcomes.
+It does not reveal every possible future or turn uncertainty into certainty. Its answers are conditional on the model, parameters, and data. More simulations reduce sampling noise; they cannot repair an incorrect assumption about the market.
 
 ## Monte Carlo Simulation in Traditional Finance
 
-In traditional finance, Monte Carlo Simulations play a critical role in various areas, including options pricing, investment portfolio optimization, and risk management.
-
 ### Options Pricing
 
-Black-Scholes-Merton is a well-known model for options pricing. However, it assumes constant volatility and interest rates, which is rarely the case in real life. To handle these complexities, financial analysts use MCS to value options with multiple sources of uncertainty and in cases where an option is dependent on several assets.
+Simulation is useful when a derivative's payoff depends on several risk factors or on the path taken by an asset. A European call has a relatively simple terminal payoff; an Asian option, whose payoff depends on an average price, requires information along the path.
+
+For valuation, the simulation must use a pricing model consistent with the relevant market assumptions. In a standard risk-neutral approach, the estimate is the discounted average simulated payoff. That is different from forecasting the asset's real-world expected return. Paul Glasserman's [Monte Carlo Methods in Financial Engineering](https://doi.org/10.1007/978-0-387-21617-1) develops this distinction and its applications.
+
+Using Monte Carlo also does not automatically remove Black–Scholes assumptions. A simulation with constant volatility still has constant volatility. The numerical method and the market model are separate choices.
 
 ### Investment Portfolio Optimization
 
-Investors and financial advisors use MCS to optimize investment portfolios. By simulating various combinations of assets and their expected returns and risks, MCS can predict the probability of achieving a target return, helping investors understand potential risks and make informed decisions.
+A portfolio model can simulate joint returns and compare candidate allocations. Correlations matter: sampling each asset independently can severely misrepresent how a portfolio behaves when assets move together.
+
+The result can help answer a specific question, such as how often a portfolio falls below a funding threshold under the assumed model. It should not be described as a forecast probability without explaining the assumptions used to generate the paths. Optimizing against those paths can also overfit the scenario set.
 
 ### Risk Management
 
-Risk managers employ MCS to assess the potential risk of financial portfolios. It allows them to model complex, unpredictable market conditions and measure their possible impact on investment portfolios. It can provide insights into Value at Risk (VaR), Conditional Value at Risk (CVaR), and other risk metrics.
+Simulation can estimate a distribution of losses over a chosen horizon. Value at Risk is a quantile of that distribution, not the maximum possible loss. Expected shortfall examines losses beyond a specified tail threshold, giving more information about the severity of unfavorable outcomes.
+
+Both measures depend on the chosen distribution and portfolio valuation. A precise estimate under a mild-tailed model can still understate real tail risk. Stress scenarios should therefore challenge the model rather than merely repeat its typical behavior.
 
 ## Monte Carlo Simulation in Decentralized Finance (DeFi)
 
-Decentralized Finance, also known as DeFi, is a blockchain-based form of finance that does not rely on central financial intermediaries such as brokerages, exchanges, or banks to offer traditional financial instruments. The principles of MCS are increasingly being applied to this emerging field to manage risk and inform strategy.
-
 ### Liquidity Provision and Yield Farming
 
-DeFi protocols allow users to become liquidity providers (LPs) and earn fees. However, the return on investment can fluctify due to "Impermanent Loss," a unique risk associated with providing liquidity in DeFi protocols. MCS can simulate various market scenarios, providing LPs with insights into potential earnings and risks.
+For a liquidity position, simulate the assets, the pool's pricing rules, trading fees, and any rebalancing strategy. Compare the result with an explicit alternative, such as holding the same initial assets outside the pool.
 
-Yield farming, a popular DeFi practice, involves lending assets to earn high returns. Using MCS, yield farmers can simulate numerous scenarios, including price changes and default rates, to understand the possible outcomes and risks.
+A model that includes only token prices may miss fee income, concentrated-liquidity ranges, reward-token dilution, and the costs of repositioning. “Impermanent loss” should be interpreted as a relative performance measure under specified conditions; withdrawing a position does not guarantee that the loss reverses.
 
 ### DeFi Derivatives
 
-DeFi platforms have also started to offer decentralized derivatives, such as options and futures. The pricing and risk assessment of these financial instruments can be complex due to the volatility of the underlying assets. MCS provides an effective way to price these derivatives and understand their potential risk and reward.
+On-chain derivatives add settlement and collateral details to the usual market model. If an option settles against an averaged oracle price, simulate that rule. If collateral is volatile, model the collateral as well as the underlying payoff. An option with a bounded dollar payoff may still have a different risk profile when margined in another asset.
 
 ### DeFi Protocol Risk Assessment
 
-With the advent of smart contracts, DeFi protocols can automatically execute contracts without the need for intermediaries. However, these protocols can be complex and hold potential risks such as smart contract bugs and market manipulation. MCS can help users and developers understand these risks by simulating different scenarios and assessing their impact.
+Simulation can explore the consequences of a price shock, a withdrawal surge, or delayed liquidation. For example, a lending model could vary collateral prices and available liquidation liquidity to estimate shortfalls under selected scenarios.
+
+It cannot discover arbitrary smart-contract vulnerabilities merely by generating random market paths. Code review, testing, and security analysis address different questions. Simulation is useful when the failure mechanism has been represented in the model; omitted mechanisms remain omitted.
 
 ## The Mathematical Principle of Monte Carlo Simulation
 
-The mathematical principle behind the Monte Carlo Simulation is straightforward. It relies on the Law of Large Numbers, which states that as the number of trials or instances increases, the results obtained should approximate the expected value.
+Let `X` represent uncertain inputs and `Y = f(X)` the quantity of interest. To estimate the model's expected value of `Y`, draw inputs `X₁, …, Xₙ`, compute the corresponding outputs, and take their average:
 
-Monte Carlo Simulations use a random sampling process to solve deterministic problems. They generate large numbers of random inputs to a function and compute the output for each. By doing this, they can generate a distribution of possible output values.
-
-The general formula for a Monte Carlo Simulation is:
-
-```
-Y = f(X)
+```text
+estimated expectation = (f(X₁) + ... + f(Xₙ)) / N
 ```
 
-Where:
+Under suitable assumptions, the law of large numbers explains convergence to the model expectation. For independent, identically distributed samples with finite variance, the standard error of the mean scales as `1 / sqrt(N)`. Reducing it by a factor of ten therefore requires one hundred times as many samples. The University of Michigan's [standard-error notes](https://dept.stat.lsa.umich.edu/~kshedden/introds/topics/standard_errors/) explain this relationship and the corresponding formula for a sample proportion.
 
-- `Y` is the output of the simulation,
+A simple geometric example estimates pi. Draw points uniformly in the square from −1 to 1 on both axes. The proportion inside the unit circle estimates the ratio of the circle's area to the square's area. Multiplying that proportion by four estimates pi.
 
-- `f` is the function that represents the model or system being simulated, and
-
-- `X` is a vector of random inputs.
-
-If you wanted to use Monte Carlo Simulation to estimate the value of pi, for example, you could use a simple 2D geometric model. The model would simulate throwing darts randomly onto a square dartboard with a circular bullseye. The ratio of darts landing inside the circle to total darts thrown, multiplied by 4, can be used to estimate pi.
-
-The pseudo code would look something like this:
-
-```
-total_darts_thrown = 0
-darts_in_circle = 0
-
-For i = 1 to N
-  x = random number between -1 and 1
-  y = random number between -1 and 1
-
-  if x*x + y*y <= 1
-    darts_in_circle += 1
-  end if
-
-  total_darts_thrown += 1
-End loop
-
-pi_estimate = 4 * (darts_in_circle / total_darts_thrown)
+```text
+inside = 0
+repeat N times:
+    x = uniform sample between -1 and 1
+    y = uniform sample between -1 and 1
+    if x*x + y*y <= 1:
+        inside += 1
+pi_estimate = 4 * inside / N
 ```
 
 ## C++ Implementation for Estimating Pi
 
-The example C++ program for estimating the value of Pi using Monte Carlo Simulation is as follows:
+This C++11 example uses a fixed seed to make repeated runs reproducible within the same implementation. It rejects a non-positive sample count and reports an approximate Monte Carlo standard error alongside the estimate.
 
 ```cpp
+#include <cmath>
+#include <cstdint>
 #include <iostream>
 #include <random>
+#include <stdexcept>
 
-double estimate_pi(long long iterations) {
-    std::default_random_engine generator;
-    std::uniform_real_distribution<double> distribution(-1.0,1.0);
+struct Estimate {
+    double value;
+    double standard_error;
+};
 
-    long long darts_in_circle = 0;
-    for(long long i = 0; i < iterations; i++) {
-        double x = distribution(generator);
-        double y = distribution(generator);
-        if(x*x + y*y <= 1) {
-            darts_in_circle++;
+Estimate estimate_pi(std::int64_t iterations, std::uint64_t seed) {
+    if (iterations <= 0) {
+        throw std::invalid_argument("iterations must be positive");
+    }
+    std::mt19937_64 generator(seed);
+    std::uniform_real_distribution<double> uniform(-1.0, 1.0);
+    std::int64_t inside = 0;
+
+    for (std::int64_t i = 0; i < iterations; ++i) {
+        const double x = uniform(generator);
+        const double y = uniform(generator);
+        if (x * x + y * y <= 1.0) {
+            ++inside;
         }
     }
-    return 4.0 * darts_in_circle / iterations;
+    const double n = static_cast<double>(iterations);
+    const double p = static_cast<double>(inside) / n;
+    return {4.0 * p, 4.0 * std::sqrt(p * (1.0 - p) / n)};
 }
 
 int main() {
-    long long iterations = 100000000; // 100 million
-    std::cout << "Estimation of Pi after " << iterations << " iterations is " << estimate_pi(iterations) << std::endl;
-    return 0;
+    const auto result = estimate_pi(1000000, 42);
+    std::cout << "Pi estimate: " << result.value
+              << "\nApproximate standard error: "
+              << result.standard_error << '\n';
 }
 ```
 
-In this program, a function `estimate_pi` is defined to simulate the dart throwing process. It uses the C++ `<random>` library to generate a uniform distribution of random numbers between -1 and 1 for x and y coordinates. The number of darts thrown and the number of darts that land in the circle are counted, and the estimate for pi is computed.
+Compile with `g++ -std=c++11 -O2 monte_carlo.cpp -o monte_carlo`. The random engine is suitable for this numerical demonstration, not for cryptographic key generation. Standard-library implementations may transform random draws differently, so the exact output is not a cross-platform guarantee.
 
-Please note that you may need a compiler with C++11 or later to run this program due to the usage of the `<random>` library.
+The standard error measures sampling uncertainty for this estimator. It does not cover a programming error or a wrong geometric model. That separation is directly relevant to financial simulation.
 
 ## Monte Carlo Simulation in Conjunction with Other Algorithms
 
-Monte Carlo Simulation can work in conjunction with other financial algorithms and models to bring a new level of sophistication to trading, risk management, and portfolio optimization. Here are some examples:
-
 ### Algorithmic Trading
 
-Algorithmic trading utilizes complex formulas, combined with mathematical models, to make high-speed trading decisions and transactions. Traders use these algorithms to execute trades at the best possible prices, minimize slippage, and execute trades instantly when certain pre-set conditions are met.
+Simulation can stress a strategy under generated scenarios or resampled returns. Historical backtesting instead evaluates it against an observed sequence. The two can complement each other, but neither should use information that would have been unavailable at the decision time.
 
-Monte Carlo Simulations can be used to backtest these trading algorithms. By simulating the performance of the trading strategy under a wide range of market conditions, traders can gain a deeper understanding of the potential risks and returns. They can use these insights to refine their algorithms and better manage their exposure to risk.
+Include the execution mechanism: spreads, fees, latency, market impact, and failed orders where relevant. A strategy that appears profitable before costs may not survive realistic trading assumptions.
 
 ### Risk Management
 
-Risk management involves the identification, assessment, and prioritization of risks followed by coordinated and economical application of resources to minimize, monitor, and control the probability or impact of unfortunate events.
+A useful process combines simulated distributions with deliberately adverse scenarios. Vary parameters, dependence assumptions, liquidity, and recovery rates. Report how the decision changes, not only the average result.
 
-Monte Carlo Simulations can be used to quantify risk. For example, in Value at Risk (VaR) models, a Monte Carlo Simulation can be used to simulate the portfolio outcomes based on the historical distribution of asset returns. This can give a probabilistic estimate of the maximum loss over a certain period.
-
-Moreover, in the realm of credit risk, Monte Carlo Simulations can be used to simulate the default probability of a borrower, helping the lender to better understand the potential risk.
+Rare events require particular care. If an event has very low probability under the model, a modest number of ordinary samples may never produce it. The absence of an event in a run is not evidence that its risk is zero.
 
 ### Portfolio Optimization
 
-Portfolio optimization involves the strategic selection of assets to maximize returns for a given level of risk, or to minimize risk for a given level of return.
+Use simulation to compare decisions under uncertainty, then evaluate the selected decision on fresh scenarios. Otherwise, the optimization can exploit random features of the same paths used to judge it.
 
-Monte Carlo Simulations can be used to generate a wide range of possible scenarios for the returns of the assets in the portfolio. By running simulations under various conditions, investors can gain insights into how different asset allocations will affect the risk and return of the portfolio.
-
-This probabilistic approach to portfolio optimization can provide more robust results than deterministic methods. The randomness injected by the Monte Carlo method reflects the inherent uncertainty and dynamic nature of financial markets.
+Sensitivity analysis is often more useful than presenting one optimal weight vector. If small changes in expected returns produce a completely different portfolio, the apparent precision of the allocation deserves scrutiny.
 
 ## Conclusion
 
-Whether it's traditional finance or DeFi, Monte Carlo Simulations provide an essential tool for understanding the risk and potential outcomes of financial decisions. By simulating a vast number of scenarios and analyzing the results, traders, investors, brokers, and hedge funds can better navigate the complex and uncertain world of finance.
+Monte Carlo is a way to make assumptions produce measurable consequences. Its strongest use is to compare decisions, expose sensitivity, and quantify sampling uncertainty under a stated model.
 
-As DeFi continues to evolve, the need for robust risk assessment tools like MCS will grow. By harnessing the power of these simulations, participants in the financial ecosystem can make more informed and secure decisions, bolster
+Before trusting a result, identify the distribution being sampled, the mechanism being simulated, and the risks that remain outside it. Then ask whether the numerical precision is meaningful relative to the uncertainty in those choices.

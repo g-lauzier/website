@@ -2,9 +2,10 @@
 layout: posts/post
 title: "Why I avoid consensus and invest early"
 date: 2026-05-20 09:00:00 +0000
+last_modified_at: 2026-11-22 12:00:00 +0000
 categories: ["venture"]
 tags: ["venture-capital", "early-stage", "conviction"]
-description: "Conviction before the market, and the system that makes moving early possible."
+description: "Early conviction needs a differentiated insight, a clear account of what could be wrong, and a process that helps founders move forward."
 permalink: "/why-i-avoid-consensus-and-invest-early/"
 canonical_url: "https://axal.vc/articles/why-i-avoid-consensus-and-invest-early"
 post_image: "/assets/images/writing/investing-before-consensus.webp"
@@ -18,98 +19,74 @@ image_height: 900
 
 _Originally published on [Axal VC](https://axal.vc/articles/why-i-avoid-consensus-and-invest-early)._
 
-There is a kind of comfort that comes from consensus. If enough smart people agree, it feels safer to follow. But in venture capital, safety is often the enemy of outsized returns.
+Consensus offers a comfortable explanation for an investment decision: other respected people agree. I am more interested in understanding what a company could become before that agreement forms.
 
-I have always been drawn to the edges, not the center. The earliest conversations, the half-formed ideas, the founders who do not yet look obvious. That is where real asymmetry lives. By the time everyone agrees, much of the upside is already priced in. The difficult part is not recognizing what is already proven. The difficult part is seeing what is still becoming.
+That draws me toward early conversations, incomplete products, and founders whose insight is clearer than their presentation. The uncertainty is real. So is the opportunity to understand something that the market has not yet learned how to evaluate.
 
-That is why I prefer to invest early.
-
-Early investing is not about being reckless. It is about having conviction before the market does. It means understanding that the best companies rarely look inevitable at the start. They look incomplete, uncertain, and sometimes even uncomfortable. But under that uncertainty, the strongest signal is often the founder's clarity, speed, and ability to learn.
-
-Consensus can be useful in many parts of business. In venture, it can be fatal.
+I prefer to invest early because I want to participate in that stage of building. Conviction has to come from a reasoned view of the company, including a clear account of what could make that view wrong.
 
 ## Why consensus is a trap
 
-Consensus rewards familiarity. It tends to prefer what can already be explained, benchmarked, and defended. In venture, that often means everyone starts converging on the same themes, the same narratives, and the same companies. That may reduce the chance of looking wrong in the short term, but it also compresses the opportunity set.
+Consensus tends to reward what can already be explained and compared. A familiar category, a recognizable customer, or a strong group of existing investors makes a decision easier to defend. Those signals can be useful, but they can also draw attention toward the same opportunities.
 
-The problem is that the most interesting opportunities are usually not consensus opportunities. They are the ones that feel early, messy, or underexplored. If a deal is obvious to everyone, the market has already done part of the work. The edge disappears quickly.
+The important distinction is between independent judgment and reflexive contrarianism. An unpopular company is not automatically undervalued. Sometimes the objection is correct. The work is to identify the specific belief that differs from the market's view and the evidence that supports it.
 
-I have found that the best venture decisions often require a willingness to be slightly out of sync with the crowd. Not contrarian for the sake of it, but independent enough to make a judgment before the crowd confirms it.
-
-That independence matters because founders do not build in consensus. They build through uncertainty, iteration, and persistence. Investors should match that reality.
+That belief might concern a technical capability, an overlooked customer need, or a change in the cost of serving a market. If it cannot be stated clearly, “non-consensus” risks becoming a flattering description of uncertainty.
 
 ## What early really means
 
-Investing early is not just about the stage of the company. It is about the quality of the insight and the speed of the process.
+Early is partly a stage of company development, but it is also a stage of understanding. There may be little revenue or limited product evidence. That makes the founder's clarity, learning speed, and ability to recruit others especially relevant.
 
-An early investor sees the shape of the company before it is fully formed. That means paying attention to the founder's ability to attract talent, to think clearly, to move quickly, and to adapt without losing direction. It means being comfortable with incomplete information while still making a decisive judgment.
+I look for the relationship between conviction and adaptation. A founder should be able to explain why the problem matters while revising an approach that the evidence no longer supports. Speed is useful when each iteration produces learning; activity alone is harder to evaluate.
 
-Early also means being useful early. The best investors are not just capital providers. They help shape the company's next chapter. They support narrative, hiring, fundraising, product thinking, and strategic focus. The earlier you invest, the more important that support becomes.
+The investment case should connect a few concrete questions:
 
-But early investing creates a challenge: it demands speed without sacrificing rigor. You need to move fast enough to win conviction-driven opportunities, while still making disciplined decisions.
+- What does the founder understand about the customer that others may be missing?
+- What can be demonstrated now, and what is still a hypothesis?
+- Which milestone would make the next stage of the company more credible?
+- What resources does reaching it require?
+- What would cause us to reconsider the thesis?
 
-That tension is exactly where a platform like Axal VC becomes important.
+Those questions do not eliminate uncertainty. They make it possible to discuss it honestly.
 
 ## The case for structured speed
 
-One of the biggest mistakes venture firms make is treating speed and structure as opposites. In practice, they depend on each other.
+Early investing creates a practical tension: decisions often need to move quickly while important information is incomplete. A good process makes the relevant information easier to find and the unresolved questions harder to overlook.
 
-If a firm wants to invest early, it needs to process opportunities quickly. That means organizing founder context, tracking conversations, aligning internal feedback, and turning scattered notes into a clear decision. Without structure, early investing becomes chaotic. With too much structure, it becomes slow.
+That means preserving founder context, recording the investment thesis, assigning owners to open questions, and making internal feedback usable. A short decision record can be more valuable than a large collection of disconnected notes.
 
-The right system does not add friction. It removes it.
+This is the operating problem behind my interest in Axal VC. The platform's purpose is to organize the work around an investment decision so the team can spend more of its attention on judgment and follow-through.
 
-Axal VC helps by structuring the work that surrounds the investment decision. It captures context efficiently, keeps information organized, and makes it easier for investors, partners, and operators to collaborate without losing momentum. That matters because early-stage investing is rarely blocked by a lack of interest. It is usually blocked by inefficiency.
-
-A founder should not have to wait while a firm reconstructs a conversation from five different inboxes. A partner should not have to search through disconnected notes to understand what matters. A team should not lose a strong opportunity because the internal process was too slow to match the pace of the founder.
-
-Structured speed is how you stay early.
+A founder should not have to repeat the same explanation because a firm has lost its own context. Nor should an investor confuse a fast process with permission to skip a material concern. Structure should help the team see what is known and what still needs a decision.
 
 ## How the platform changes the workflow
 
-The value of an operating platform is not just in what it stores. It is in how it changes behavior.
+The useful workflow begins with a coherent record of the company: its thesis, current evidence, founder goals, and the next questions. Team members can then contribute to the same decision rather than reconstructing it separately.
 
-When information is structured properly, conversations become shorter and sharper. Investors can review context faster. Partners can contribute earlier. Follow-ups become more precise. Decision-making becomes less dependent on memory and more dependent on shared understanding.
+A practical process also distinguishes facts from interpretations. “The customer signed a paid pilot” is different from “the product has strong demand.” Keeping both the observation and the inference visible makes discussion more productive and later review more honest.
 
-That creates a real advantage in venture, especially at the early stage, where every hour matters. The best opportunities often move quickly, and the firm that can coordinate internally with less drag has a better chance of acting decisively.
+After a decision, preserve the reasoning. If the company succeeds or struggles, the team can revisit what it expected, which signals were informative, and which assumptions were weak. That creates institutional memory that can improve future judgment.
 
-This also improves the quality of support after the investment. Early-stage companies need active help, and that help needs to be tailored. If the firm has clean structure around the founder's goals, current challenges, and historical context, it can engage more intelligently and more consistently.
-
-The platform is not replacing judgment. It is strengthening it.
+The platform needs to support this behavior. The value comes from how consistently the team uses the information, rather than the volume of notes it stores.
 
 ## Why founders benefit from this approach
 
-Founders want investors who are decisive, not distracted. They want people who understand the company quickly and can move with them. They do not want to repeat themselves, and they do not want to feel like they are educating the firm from scratch at every step.
+Founders need a coherent relationship with the people considering an investment. They should understand the next step, the outstanding questions, and who owns the response. A decisive “no” with a clear reason can be more useful than an indefinite process.
 
-A structured operating system helps create that experience.
+After investment, the same discipline should make support specific. A hiring introduction, a product discussion, or fundraising preparation is more useful when it connects to the company's immediate priorities and has an owner who follows through.
 
-When a firm can track context properly, the founder gets a more coherent relationship. The conversations feel connected. The advice is sharper. The follow-through is faster. The investor becomes more valuable because the firm is better organized around the founder's reality.
-
-That matters especially in the earliest days, when founders are making high-stakes decisions with limited time and very little margin for noise.
-
-In that sense, better internal structure is not just an operational improvement. It is part of the product the firm offers to founders.
+Early support also requires restraint. The founder is building the company; the investor's operating process should reduce the burden on that work. A request for more information should have a purpose the firm can explain.
 
 ## Early conviction is a skill
 
-People often describe early investing as intuition, but intuition is only part of it. Good early conviction is built through repeated exposure, pattern recognition, and disciplined reflection. It comes from seeing enough founders to understand the difference between surface-level polish and real underlying strength.
+Pattern recognition can help an investor notice a signal, but it can also reinforce a familiar bias. Judgment improves when it is exposed to disagreement and compared with what happens later.
 
-That kind of judgment is easier to exercise when the firm has systems that preserve context and reduce clutter. A good platform allows the team to learn from each interaction instead of treating every deal as a separate event. It makes institutional memory usable.
+A strong thesis should therefore include its failure conditions. Perhaps a technical advantage will not survive distribution costs, or a customer problem is too infrequent to support a business. Naming those possibilities makes conviction more disciplined and helps the team notice when the evidence changes.
 
-That is one of the reasons I care about structure. Not because venture should feel bureaucratic, but because structure helps preserve the quality of the judgment itself.
-
-If you want to stay early, you need to keep learning faster than the market does.
+Being early also means accepting that a promising idea may take longer than expected or fail entirely. The appeal is the opportunity to form a differentiated view and help a capable team test it, with the risks understood.
 
 ## The Axal VC thesis
 
-Axal VC exists to make venture work more efficient, more connected, and more decisive. For me, that is not a back-office issue. It is central to how a modern venture firm should operate.
+My interest in Axal VC follows from that approach to investing. If a firm wants to act early and remain useful afterward, it needs to preserve context, coordinate decisions, and turn commitments into action.
 
-If you want to invest early, you need the ability to move early. If you want to move early, you need systems that reduce friction at every step. That is what this platform enables: a better way to structure the work so investors can spend more time on judgment and less time on administration.
-
-The result is a firm that can act with conviction, support founders more effectively, and stay closer to the frontier of what is emerging.
-
-That is the real opportunity.
-
-Not consensus.
-Not comfort.
-Not waiting for everyone else to agree.
-
-Just the discipline to see early, act early, and build the system that makes that possible.
+I want an investment process that leaves room for an unusual company to be understood without making the founder navigate unnecessary confusion. Independent judgment, disciplined speed, and reliable support belong together. The system around the decision should make all three easier to practice.

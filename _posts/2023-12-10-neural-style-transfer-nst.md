@@ -5,7 +5,7 @@ date: 2023-12-10 00:00:00 +0000
 categories: ["ai"]
 tags: ["ai", "art", "artistic-style"]
 post_image: "/assets/images/writing/neural-style-transfer-nst.webp"
-description: "Neural Style Transfer (NST) is a captivating intersection of artificial intelligence and artistic creativity."
+description: "How neural style transfer represents content and texture, with corrected Python examples and a practical guide to choosing an approach."
 permalink: "/neural-style-transfer-nst/"
 image_alt: "One continuous ribbon changes from ceramic to metal and cobalt glass while preserving its shape, illustrating neural style transfer."
 post_image_small: "/assets/images/writing/neural-style-transfer-nst-640.webp"
@@ -14,391 +14,164 @@ image_width: 1600
 image_height: 900
 image_caption: "Editorial illustration."
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/12/generatedart_super_computer_image_processor_-ar_32_-v_4_777b2e40-5906-4a23-868b-6976fb0cc7ee-3.png"
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-Neural Style Transfer (NST) is a captivating intersection of artificial intelligence and artistic creativity. This technology leverages the capabilities of deep learning to merge the essence of one image with the aesthetic style of another.
+Neural style transfer creates an image that balances two references: the structure of a content image and visual statistics drawn from a style image. A photograph can retain a recognizable composition while taking on a different texture or palette.
+
+The method is useful to artists because that balance is adjustable. It is also limited: a statistical representation of style does not capture an artist’s intention, historical context, or every aspect of a composition. Understanding what the model measures makes it easier to use deliberately.
 
 ## Basic Concept of Neural Style Transfer (NST)
 
-**Combining Content and Style**: NST works by taking two images – a content image (like a photograph) and a style image (usually a famous painting) – and combining them. The goal is to produce a new image that retains the original content but is rendered in the artistic style of the second image.
+The influential [method introduced by Gatys, Ecker, and Bethge](https://arxiv.org/abs/1508.06576) uses features from a pretrained convolutional neural network. It defines a content objective and a style objective, then changes the pixels of an output image to reduce both losses.
 
-**Deep Learning at its Core**: This process is made possible through deep learning techniques, specifically using Convolutional Neural Networks (CNNs). These networks are adept at recognizing and processing visual information.
+Content is represented by selected feature activations. Style is represented by correlations among feature channels **within a layer**, commonly summarized by a Gram matrix. Style information from several layers can be combined, but this is not the same as calculating correlations between different layers.
 
-**Content Representation**: The CNN captures the content of the target image at its deeper layers, where the network understands higher-level features (like objects and their arrangements).
+The feature extractor’s weights remain fixed during this image-optimization process. The image is the variable being optimized. It may start from noise or from the content image, and the final result depends on that initialization as well as the selected layers and loss weights.
 
-**Style Representation**: The style of the source image is captured from the correlations between different layers of the CNN. These layers encode textural and color patterns characteristic of the artistic style.
-
-**Image Transformation**: The NST algorithm iteratively adjusts a third, initially random image to minimize the differences in content with the target image and in style with the source image.
-
-**Resulting Image**: The result is a fascinating blend that looks like the original photograph (content) 'painted' in the style of the artwork (style).
+A larger style weight encourages stronger texture matching; a larger content weight preserves more of the chosen structural representation. Neither weight guarantees a pleasing result. Those losses are tools for directing the image, not a complete measure of artistic quality.
 
 ## How Neural Style Transfer Works with Python Example
 
-**Content and Style Images**: The process begins with two images: a content image (the subject you want to transform) and a style image (the artistic style to be transferred).
+There are two approaches to distinguish. The original optimization method iteratively updates an image. A **feed-forward stylization model** learns a transformation in advance and produces a result in a forward pass. The following example uses the second approach through TensorFlow Hub; it is not an implementation of the original optimization loop.
 
-**Using a Pre-Trained CNN**: Typically, a pre-trained CNN like VGG19 is used. This network has been trained on a vast dataset of images and can effectively extract and represent features from these images.
-
-**Feature Extraction**: The CNN extracts content features from the content image and style features from the style image. These features are essentially patterns and textures that define the image's content and style.
-
-**Combining Features**: The NST algorithm then creates a new image that combines the content features of the content image with the style features of the style image.
-
-**Optimization**: This new image is gradually refined through an optimization process, minimizing the loss between its content and the content image, and its style and the style image.
-
-**Result**: The final output is a new image that retains the essence of the content image but is rendered in the style of the style image.
-
-Python Code Example:
+Install compatible TensorFlow, TensorFlow Hub, and Matplotlib packages, and provide your own content and style images. The model is downloaded on first use. Input images must be RGB tensors with values between 0 and 1, including a batch dimension, as described in the [official model tutorial](https://www.tensorflow.org/hub/tutorials/tf2_arbitrary_image_stylization).
 
 ```python
 import tensorflow as tf
 import tensorflow_hub as hub
 import matplotlib.pyplot as plt
-import numpy as np
 
-# Load content and style images
-content_image = plt.imread('path_to_content_image.jpg')
-style_image = plt.imread('path_to_style_image.jpg')
+def read_rgb(path, max_side):
+    image = tf.io.decode_image(
+        tf.io.read_file(path), channels=3, expand_animations=False
+    )
+    image = tf.image.convert_image_dtype(image, tf.float32)
+    height_width = tf.cast(tf.shape(image)[:2], tf.float32)
+    scale = tf.minimum(1.0, max_side / tf.reduce_max(height_width))
+    new_size = tf.cast(tf.maximum(1.0, tf.round(height_width * scale)), tf.int32)
+    image = tf.image.resize(image, new_size)
+    return image[tf.newaxis, ...]
 
-# Load a style transfer model from TensorFlow Hub
-hub_model = hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
+content_image = read_rgb('content.jpg', max_side=512.0)
+style_image = read_rgb('style.jpg', max_side=256.0)
+hub_model = hub.load(
+    'https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2'
+)
+stylized_image = hub_model(content_image, style_image)[0]
 
-# Preprocess images and run the style transfer
-content_image = tf.image.convert_image_dtype(content_image, tf.float32)tf.newaxis, ...]
-style_image = tf.image.convert_image_dtype(style_image, tf.float32)tf.newaxis, ...]
-stylized_image = hub_model(tf.constant(content_image), tf.constant(style_image))0]
-
-# Display the output
-plt.imshow(np.squeeze(stylized_image))
+plt.imshow(tf.clip_by_value(stylized_image[0], 0.0, 1.0))
+plt.axis('off')
 plt.show()
 ```
 
-This code snippet uses TensorFlow and TensorFlow Hub to apply a style transfer model, merging the content of one image with the style of another.
+Resizing preserves the aspect ratio and limits memory use. The style image and content image do not need identical dimensions. Inspect both the overall composition and small details: a result that looks convincing as a thumbnail may distort faces, lettering, or edges at full size.
+
+This model follows the arbitrary-style direction explored by [Ghiasi and colleagues](https://arxiv.org/abs/1705.06830): a separate style reference influences the transformation. A model trained for one fixed style has a different scope, even if both are described as “fast style transfer.”
 
 ## Detailed Section on Content and Style Representations in Neural Style Transfer
 
-**Feature Extraction Using Pre-Trained CNN**: VGG19, a CNN model pre-trained on a large dataset (like ImageNet), is often used. This model effectively extracts features from images.
+To understand the optimization approach, it helps to inspect the representations directly. At a chosen layer, content loss compares feature activations at corresponding positions. A Gram matrix combines channel relationships over spatial positions, emphasizing texture statistics while discarding much of their exact location.
 
-**Content Representation**:
+That loss of location explains an important behavior. Matching a style representation can spread texture across areas where a human artist would apply it selectively. A portrait’s skin, background, and clothing may all receive similar marks unless the method includes additional control.
 
-- The content of an image is represented by the feature maps of higher layers in the CNN.
-
-- These layers capture the high-level content of the image, such as objects and their spatial arrangement, but not the finer details or style aspects.
-
-**Style Representation**:
-
-- The style of an image is captured by examining the correlations across different layers' feature maps.
-
-- These correlations are represented as a Gram matrix, which effectively captures the texture and visual patterns that define the image's style.
-
-**Combining Content and Style**:
-
-- NST algorithms aim to preserve the content from the content image while adopting the style of the style image.
-
-- This is done by minimizing a loss function that measures the difference in content and style representations between the generated image and the respective content and style images.
-
-Python Code Example:
+The example below extracts VGG19 targets for a content/style pair. It corrects the original feature-extraction example and adds a normalized Gram matrix. **It stops at target extraction**; generating an optimized image additionally requires a combined loss and a gradient-based update loop.
 
 ```python
-import numpy as np
 import tensorflow as tf
 from tensorflow.keras.applications import vgg19
-from tensorflow.keras.preprocessing.image import load_img, img_to_array
 
-# Function to preprocess the image for VGG19
-def preprocess_image(image_path, target_size=(224, 224)):
-    img = load_img(image_path, target_size=target_size)
-    img = img_to_array(img)
-    img = np.expand_dims(img, axis=0)
-    img = vgg19.preprocess_input(img)
-    return img
+style_layers = [
+    'block1_conv1', 'block2_conv1', 'block3_conv1',
+    'block4_conv1', 'block5_conv1',
+]
+content_layer = 'block5_conv2'
+vgg = vgg19.VGG19(weights='imagenet', include_top=False)
+vgg.trainable = False
+layer_names = style_layers + [content_layer]
+extractor = tf.keras.Model(
+    vgg.input, [vgg.get_layer(name).output for name in layer_names]
+)
 
-# Load your content and style images
-content_image = preprocess_image('path_to_your_content_image.jpg')
-style_image = preprocess_image('path_to_your_style_image.jpg')
+def load_vgg_image(path):
+    image = tf.keras.utils.load_img(path, target_size=(224, 224))
+    array = tf.keras.utils.img_to_array(image)
+    return vgg19.preprocess_input(array[None, ...])
 
-# Load the VGG19 model
-model = vgg19.VGG19(weights='imagenet', include_top=False)
+def gram_matrix(feature_map):
+    # [batch, height, width, channels] -> [batch, channels, channels]
+    shape = tf.shape(feature_map)
+    channels = shape[-1]
+    flattened = tf.reshape(feature_map, [shape[0], -1, channels])
+    correlations = tf.matmul(flattened, flattened, transpose_a=True)
+    positions = tf.cast(shape[1] * shape[2], tf.float32)
+    return correlations / positions
 
-# Define a function to get content and style features
-def get_features(image, model):
-    layers = {
-        'content': 'block5_conv2'], 
-        'style': 'block1_conv1', 'block2_conv1', 'block3_conv1', 'block4_conv1', 'block5_conv1']
-    }
-    features = {}
-    outputs = model.get_layer(name).output for name in layers'content'] + layers'style']]
-    model = tf.keras.Model(model.input], outputs)
-    image_features = model(image)
-    for name, output in zip(layers'content'] + layers'style'], image_features):
-        featuresname] = output
-    return features
-
-# Extract features
-content_features = get_features(content_image, model)
-style_features = get_features(style_image, model)
+content_outputs = extractor(load_vgg_image('content.jpg'), training=False)
+style_outputs = extractor(load_vgg_image('style.jpg'), training=False)
+content_target = content_outputs[-1]
+style_targets = [gram_matrix(value) for value in style_outputs[:-1]]
+print('Content feature shape:', content_target.shape)
+print('Style matrix shapes:', [value.shape for value in style_targets])
 ```
 
-This code provides a basic structure for extracting content and style features using VGG19 in Python. Further steps would involve defining and optimizing the loss functions to generate the stylized image.
+This teaching example resizes both images to a square for a predictable feature shape. For an artwork, choose a preprocessing policy that respects the intended composition. Also distinguish its VGG preprocessing from the Hub model’s 0–1 input: the two models have different input contracts.
+
+An optimization loop compares the generated image’s content features with `content_target`, compares its style matrices with `style_targets`, and minimizes a weighted sum. A smoothness term can discourage abrupt neighboring-pixel changes. The [TensorFlow optimization tutorial](https://www.tensorflow.org/tutorials/generative/style_transfer) supplies the complete gradient-descent implementation.
 
 ## Applications of Neural Style Transfer
 
-**Video Styling**: NST can be applied to video content, allowing filmmakers and content creators to impart artistic styles to their videos. This can transform ordinary footage into visually stunning sequences that resemble paintings or other art forms.
+Style transfer is useful as an exploratory step in an artistic process: generating alternative textures, testing a visual direction, or comparing how a fixed composition responds to different references. It can also produce material for animation, interfaces, textile experiments, and installation visuals.
 
-**Website Design**: In web design, NST can be used to create unique, visually appealing backgrounds and elements. Designers can apply specific artistic styles to images, aligning them with the overall aesthetic of the website.
+Those applications impose different requirements. A web background must leave text readable. A textile design must work at the production scale and across repeats. A video sequence must remain coherent through motion. An attractive still image is not evidence that all three problems are solved.
 
-**Fashion and Textile Design**: NST has been explored in the fashion industry for designing fabrics and garments. By transferring artistic styles onto textile patterns, designers can create innovative and unique clothing lines.
-
-**Augmented Reality (AR) and Virtual Reality (VR)**: In AR and VR environments, NST can enhance the visual experience by applying artistic styles in real-time, creating immersive and engaging worlds for users.
-
-**Product Design**: NST can be used in product design to create visually appealing prototypes and presentations, allowing designers to experiment with different artistic styles quickly.
-
-**Therapeutic Settings for Mental Health**: There's growing interest in using NST in therapeutic settings. By creating soothing and pleasant images, it can be used as a tool for relaxation and stress relief, contributing positively to mental health and well-being.
-
-**Educational Tools**: NST can also be used as an educational tool in art and design schools, helping students understand the nuances of different artistic styles and techniques.
-
-These diverse applications showcase the versatility of NST, demonstrating its potential beyond the realm of digital art creation.
+Keep the source images and transformation settings with the output. That makes iterations comparable and helps describe the contribution of the reference material, model, and subsequent editing. Use source material whose permissions fit the intended use; the transformation itself does not settle that question.
 
 ## Limitations and Challenges of Neural Style Transfer
 
-**Computational Intensity**:
+The content/style distinction is a modeling choice. It works well for some relationships between structure and texture, but it can struggle when a style depends on precise geometry, sparse marks, or the placement of objects.
 
-- NST, especially when using deep learning models like VGG19, is computationally demanding. It requires significant processing power, often necessitating the use of GPUs to achieve reasonable processing times.
+Three practical failure modes deserve close inspection. First, texture can obscure a subject rather than support it. Second, repeated patterns may become visually dominant even when they are incidental in the reference. Third, a loss that decreases numerically may still produce a result the artist prefers less.
 
-**Balancing Content and Style**:
+Change one variable at a time when investigating those outcomes: the style reference, output resolution, chosen layers, or weighting. Save intermediate images. That creates an intelligible process rather than a search through unexplained outputs.
 
-- Achieving the right balance between content and style in the output image can be challenging. It often requires careful tuning of the algorithm's parameters and may involve a lot of trial and error.
-
-**Unpredictability of Results**:
-
-- The outcome of NST can be unpredictable. The results may vary widely based on the chosen content and style images and the specific configurations of the neural network.
-
-**Quality of Output**:
-
-- The quality of the generated image can sometimes be lower than expected, with issues like distortions in the content or the style not being accurately captured.
-
-**Training Data Limitations**:
-
-- The effectiveness of NST is also influenced by the variety and quality of images used to train the underlying model. Limited or biased training data can affect the versatility and effectiveness of the style transfer.
-
-**Overfitting**:
-
-- There's a risk of overfitting, especially when the style transfer model is trained on a narrow set of images. This can limit the model's ability to generalize across different styles and contents.
-
-These challenges highlight the need for ongoing research and development in the field of NST to enhance its efficiency, versatility, and accessibility.
+Avoid treating “overfitting” as a universal diagnosis. Training a transformation network on a narrow collection can limit its generalization. Optimizing a single output image with fixed features is a different procedure and needs to be discussed on its own terms.
 
 ## Necessary Hardware Resources for AI and Machine Learning in Art Generation
 
-To effectively work with AI and machine learning algorithms for art generation, which can be computationally intensive, certain hardware resources are essential:
+Hardware needs depend on the method, resolution, and batch size. Running a compact pretrained model is a different workload from repeatedly optimizing a high-resolution image or training a new transformation network.
 
-**High-Performance GPUs**:
+Begin at a modest resolution and measure peak memory and processing time. Increase resolution after the visual direction is useful. A GPU can accelerate the relevant tensor operations, but there is no universal RAM figure or hardware shopping list that guarantees a good result.
 
-- Graphics Processing Units (GPUs) are crucial for their ability to handle parallel tasks, making them ideal for the intensive computations required in training and running neural networks.
-
-- GPUs significantly reduce the time required for training models and generating art, compared to traditional CPUs.
-
-**Sufficient RAM**:
-
-- Adequate Random Access Memory (RAM) is important for handling large datasets and the high memory requirements of deep learning models.
-
-- A minimum of 16GB RAM is recommended, but 32GB or higher is preferable for more complex tasks.
-
-**Fast Storage Solutions**:
-
-- Solid State Drives (SSDs) are preferred over Hard Disk Drives (HDDs) for their faster data access speeds, which is beneficial when working with large datasets and models.
-
-**High-Performance CPUs**:
-
-- While GPUs handle most of the heavy lifting, a good CPU can improve overall system performance and efficiency.
-
-- Multi-core processors with high clock speeds are recommended.
-
-**Cloud Computing Platforms**:
-
-- Cloud computing resources like AWS, Google Cloud Platform, or Microsoft Azure offer powerful hardware for AI and machine learning tasks without the need for local installation.
-
-- These platforms provide scalability, allowing you to choose resources as per the project's requirements.
-
-**Adequate Cooling Solutions**:
-
-- High computational tasks generate significant heat. Therefore, a robust cooling solution is necessary to maintain optimal hardware performance and longevity.
-
-**Reliable Power Supply**:
-
-- A stable and reliable power supply is crucial, especially for desktop setups, to ensure uninterrupted processing and to protect the hardware from power surges.
-
-Investing in these hardware resources can greatly enhance the efficiency and capabilities of AI and machine learning algorithms in art generation and other computationally demanding tasks.
+For a one-off experiment, the important constraints may be setup time and model download size. For a live installation, sustained frame time, thermal behavior, recovery after a failure, and the cost of moving frames between devices can matter more than an isolated benchmark. Test the complete pipeline in its intended setting.
 
 ## Practical Constraints and Real-Time Processing {#limitations-and-challenges-of-neural-style-transfer-1}
 
-Neural Style Transfer (NST), despite its innovative applications in art and technology, faces several limitations and challenges:
+Video adds a temporal problem. Applying a still-image method independently to each frame can produce flicker because small changes in input lead to different texture placement. Faster inference alone does not resolve that instability.
 
-**Computational Resource Intensity**:
+Evaluate a sequence with movement, occlusion, and changes in lighting. Inspect transitions as well as individual frames. Decide whether the work needs temporal consistency, whether stylization can be precomputed, or whether visible variation is an intentional part of the piece.
 
-- NST is computationally demanding, often requiring powerful GPUs and significant processing power. This can be a barrier for individuals or organizations without access to high-end computing resources.
-
-**Quality and Resolution of Output**:
-
-- The quality and resolution of the output images can sometimes be less than satisfactory. High-resolution images may lose detail or suffer from distortions after the style transfer.
-
-**Balancing Act Between Content and Style**:
-
-- Achieving a harmonious balance between the content and style in the output image can be challenging. It often requires fine-tuning of parameters and multiple iterations.
-
-**Generalization and Diversity**:
-
-- NST models might struggle with generalizing across vastly different styles or content types. This can limit the diversity of styles that can be effectively transferred.
-
-**Training Data Biases**:
-
-- The effectiveness of NST can be limited by the biases present in the training data. A model trained on a narrow range of styles may not perform well with radically different artistic styles.
-
-**Overfitting Risks**:
-
-- There's a risk of overfitting when the style transfer model is exposed to a limited set of images, leading to reduced effectiveness on a broader range of styles.
-
-**Real-Time Processing Challenges**:
-
-- Implementing NST in real-time applications, such as video styling, can be particularly challenging due to the intensive computational requirements.
-
-Understanding and addressing these limitations and challenges is crucial for the advancement and wider application of NST technologies.
+Measure capture, resizing, inference, display, and encoding together. A model’s forward pass may be fast while the surrounding pipeline misses the required frame rate. A fallback visual or pre-rendered segment can be part of the installation design when live processing cannot keep up.
 
 ## Trends and Innovations in Neural Style Transfer (NST)
 
-Neural Style Transfer (NST) is an evolving field with continuous advancements and innovations. These developments are broadening its applications and enhancing its efficiency:
+The research history offers useful design alternatives. [Johnson, Alahi, and Fei-Fei](https://arxiv.org/abs/1603.08155) showed how perceptual losses could train feed-forward image transformations. [Ulyanov, Vedaldi, and Lempitsky](https://arxiv.org/abs/1607.08022) examined instance normalization in fast stylization. Arbitrary-style models then explored how a new reference could influence output without training a separate network for every style.
 
-**Improving Efficiency**:
-
-- Research is focused on making NST algorithms faster and more resource-efficient. This includes optimizing existing neural network architectures and developing new methods to reduce computational requirements.
-
-**Adapting to Various Artistic Styles**:
-
-- Innovations in NST are enabling the adaptation to a wider range of artistic styles. This includes the ability to mimic more complex and abstract art forms, providing artists and designers with more diverse creative tools.
-
-**Extending Applications Beyond Visual Art**:
-
-- NST is finding applications in areas beyond traditional visual art. This includes video game design, film production, interior design, and even fashion, where NST can be used to create unique patterns and designs.
-
-**Real-Time Style Transfer**:
-
-- Advances in real-time processing capabilities are enabling NST to be applied in dynamic environments, such as live video feeds, augmented reality (AR), and virtual reality (VR).
-
-**Integration with Other AI Technologies**:
-
-- NST is being combined with other AI technologies like Generative Adversarial Networks (GANs) and reinforcement learning to create more sophisticated and versatile style transfer tools.
-
-**User-Friendly Tools and Platforms**:
-
-- The development of more user-friendly NST tools and platforms is democratizing access, allowing artists and non-technical users to experiment with style transfer without deep technical knowledge.
-
-These trends and innovations are propelling NST into new realms of creativity and practical application, making it a rapidly growing area in the field of AI and machine learning.
+These approaches address different compromises between flexibility, inference cost, and the work performed during training. Choose an approach based on the actual interaction the artwork requires: a fixed visual identity, a selectable library of styles, or a new reference supplied by a visitor.
 
 ## How can Neural Style Transfer (NST) be used in Generative Art?
 
-Neural Style Transfer (NST) offers a transformative approach to generative art, combining deep learning techniques to create visually striking and unique artworks. Its application in generative art can be understood through the following points:
+Treat the model as one stage in a larger system. A generative composition can supply the content image; a curated set of references can supply texture; parameters or audience input can select among transformations. The output can then be composited, animated, or physically rendered.
+
+For an initial experiment, hold the composition fixed and generate a small series using clearly identified references. Compare which structural relationships survive and which disappear. Then decide what to preserve through masks, manual editing, or a different representation.
+
+The useful result is an artistic decision informed by the model’s behavior. Style transfer gives a way to explore that behavior, while authorship also resides in the selection, constraints, sequencing, and presentation of the work.
 
 ## 🌐 Sources
 
-- [Neural Style Transfer: Trends, Innovations, and Benefits](https://www.linkedin.com/advice/3/what-latest-trends-innovations-neural-style-transfer)
-
-- [Challenges and Limitations of Deep Learning for Style Transfer](https://www.linkedin.com/advice/0/what-current-challenges-limitations-deep-learning)
-
-- [Neural Style Transfer: A Critical Review](https://ieeexplore.ieee.org/document/9539183/)
-
-- [Neural Style Transfer for So Long, and Thanks for all the Fish](https://inst.eecs.berkeley.edu/~cs194-26/fa18/upload/files/projFinalProposed/cs194-26-adv/docs/)
-
-- [Advantages and disadvantages of two methods of Neural Style Transfer](https://www.researchgate.net/figure/Advantages-and-disadvantages-of-the-two-methods-presented-a-Content-image-from-Fig-1_fig3_304163747)
-
-- [Evaluate and improve the quality of neural style transfer](https://www.sciencedirect.com/science/article/abs/pii/S1077314221000473)
-
-- [Neural Style Transfer: Creating Artistic Images with Deep Learning](https://medium.com/@zhonghong9998/neural-style-transfer-creating-artistic-images-with-deep-learning-803409fc64c0)
-
-- [Classic algorithms, neural style transfer, GAN – Ricardo Corin](https://rcorin.medium.com/transforming-photos-into-art-automatically-classic-algorithms-neural-style-transfer-gan-and-a3cac3124916)
-
-- [Mastering Neural Style Transfer](https://www.ikomia.ai/blog/neural-style-transfer-guide)
-
-- [Neural Style Transfer Papers on GitHub](https://github.com/ycjing/Neural-Style-Transfer-Papers)
-
-- [How to Make Artistic Images with Neural Style Transfer](https://towardsdatascience.com/how-to-make-artistic-images-with-neural-style-transfer-345a376d56cf)
-
-- [Artificial Intelligence and Applications: Neural Style Transfer](https://www.linkedin.com/pulse/artificial-intelligence-applications-neural-style-transfer-mohan)
-
-- [Neural Style Transfer with Deep VGG model](https://medium.com/@mirzezadeh.elvin/neural-style-transfer-with-deep-vgg-model-26b11ea06b7e)
-
-- [Style Transfer using Deep Neural Network and PyTorch](https://medium.com/udacity-pytorch-challengers/style-transfer-using-deep-nural-network-and-pytorch-3fae1c2dd73e)
-
-- [Neural Style Transfer on Real Time Video (With Full Implementable Code)](https://towardsdatascience.com/neural-style-transfer-on-real-time-video-with-full-implementable-code-ac2dbc0e9822)
-
-- [How to Code Neural Style Transfer in Python?](https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/)
-
-- [Implementing Neural Style Transfer Using TensorFlow 2.0](https://www.datacamp.com/tutorial/implementing-neural-style-transfer-using-tensorflow)
-
-- [Neural Style Transfer (NST). Using Deep Learning Algorithms](https://heartbeat.comet.ml/neural-style-transfer-nst-1ba877165179)
-
-- [Neural Style Transfer with Deep VGG model](https://medium.com/@mirzezadeh.elvin/neural-style-transfer-with-deep-vgg-model-26b11ea06b7e)
-
-- [Style Transfer using Deep Neural Network and PyTorch](https://medium.com/udacity-pytorch-challengers/style-transfer-using-deep-nural-network-and-pytorch-3fae1c2dd73e)
-
-- [How to Code Neural Style Transfer in Python?](https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/)
-
-- [Implementing Neural Style Transfer Using TensorFlow 2.0](https://www.datacamp.com/tutorial/implementing-neural-style-transfer-using-tensorflow)
-
-- [Neural Style Transfer on Real Time Video (With Full Implementable Code)](https://towardsdatascience.com/neural-style-transfer-on-real-time-video-with-full-implementable-code-ac2dbc0e9822)
-
-- [Neural style transfer | TensorFlow Core](https://www.tensorflow.org/tutorials/generative/style_transfer)
-
-- [Neural Style Transfer with Deep VGG model](https://medium.com/@mirzezadeh.elvin/neural-style-transfer-with-deep-vgg-model-26b11ea06b7e)
-
-- [Style Transfer using Deep Neural Network and PyTorch](https://medium.com/udacity-pytorch-challengers/style-transfer-using-deep-nural-network-and-pytorch-3fae1c2dd73e)
-
-- [Introduction and Implementation to Neural Style Transfer](https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/)
-
-- [Implementing Neural Style Transfer Using TensorFlow 2.0](https://www.datacamp.com/tutorial/implementing-neural-style-transfer-using-tensorflow)
-
-- [Making deep learning your artist with Style Transfer](https://towardsdatascience.com/making-deep-learning-your-artist-with-style-transfer-4854055f79b7)
-
-- [Neural Style Transfer on Real Time Video](https://towardsdatascience.com/neural-style-transfer-on-real-time-video-with-full-implementable-code-ac2dbc0e9822)
-
-- [How to code Neural Style Transfer in Python](https://anderfernandez.com/en/blog/how-to-code-neural-style-transfer-in-python/)
-
-- [Image-Style-Transfer-Using-Convolutional-Neural-Networks on GitHub](https://github.com/superb20/Image-Style-Transfer-Using-Convolutional-Neural-Networks)
-
-- [Introduction and Implementation to Neural Style Transfer](https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/)
-
-- [How to do Image Style Transfer in Python | Medium](https://medium.com/analytics-vidhya/how-to-do-neural-style-transfer-in-python-bee3f0d1008b)
-
-- [Implementing Neural Style Transfer Using TensorFlow 2.0 | DataCamp](https://www.datacamp.com/tutorial/implementing-neural-style-transfer-using-tensorflow)
-
-- [Fast Neural Style Transfer Using TensorFlow 2 | Towards Data Science](https://towardsdatascience.com/python-for-art-fast-neural-style-transfer-using-tensorflow-2-d5e7662061be)
-
-- [Neural style transfer | TensorFlow Core](https://www.tensorflow.org/tutorials/generative/style_transfer)
-
-- [Neural Style Transfer (NST) — theory and implementation | Medium](https://medium.com/@ferlatti.aldo/neural-style-transfer-nst-theory-and-implementation-c26728cf969d)
-
-- [How Do Neural Style Transfers Work? | Towards Data Science](https://towardsdatascience.com/how-do-neural-style-transfers-work-b76de101eb3)
-
-- [Neural Style Transfer: Using Deep Learning to Generate Art | V7 Labs](https://www.v7labs.com/blog/neural-style-transfer)
-
-- [Intuitive Guide to Neural Style Transfer | Towards Data Science](https://towardsdatascience.com/light-on-math-machine-learning-intuitive-guide-to-neural-style-transfer-ef88e46697ee)
-
-- [How to Code Neural Style Transfer in Python? | Analytics Vidhya](https://www.analyticsvidhya.com/blog/2020/10/introduction-and-implementation-to-neural-style-transfer-deep-learning/)
-
-- [How Do Neural Style Transfers Work? | Towards Data Science](https://towardsdatascience.com/how-do-neural-style-transfers-work-b76de101eb3)
-
-- [Neural Style Transfer: Using Deep Learning to Generate Art | V7 Labs](https://www.v7labs.com/blog/neural-style-transfer)
-
-- [A brief introduction to Neural Style Transfer | Towards Data Science](https://towardsdatascience.com/a-brief-introduction-to-neural-style-transfer-d05d0403901d)
-
-- [Neural Style Transfer (NST) — theory and implementation | Medium](https://medium.com/@ferlatti.aldo/neural-style-transfer-nst-theory-and-implementation-c26728cf969d)
-
-- [Shrinking Neural Style Transfer Model with Knowledge  | IEEE Xplore](https://ieeexplore.ieee.org/document/9918806)
-
-- [Neural Style Transfer: Trends, Innovations, and Benefits | LinkedIn](https://www.linkedin.com/advice/3/what-latest-trends-innovations-neural-style-transfer)
-
-- [LinkedIn – How to Use Generative AI for Style Transfer](https://www.linkedin.com/advice/0/what-most-effective-techniques-style-transfer-afgzf)
-
-- Medium – Neural Style Transfer: Creating Artistic Images with Deep Learning
-
-- [Ikomia – Mastering Neural Style Transfer: Techniques and](https://www.ikomia.ai/blog/neural-style-transfer-guide)
-
-- [GitHub – deepeshdm/Neural-Style-Transfer: Creating digital art](https://github.com/deepeshdm/Neural-Style-Transfer)
-
-- [Heartbeat – Neural Style Transfer (NST). Using Deep Learning Algorithms](https://heartbeat.comet.ml/neural-style-transfer-nst-1ba877165179)
+- [Gatys, Ecker, and Bethge — A Neural Algorithm of Artistic Style](https://arxiv.org/abs/1508.06576).
+- [Johnson, Alahi, and Fei-Fei — Perceptual Losses for Real-Time Style Transfer and Super-Resolution](https://arxiv.org/abs/1603.08155).
+- [Ulyanov, Vedaldi, and Lempitsky — Instance Normalization](https://arxiv.org/abs/1607.08022).
+- [Ghiasi and colleagues — Arbitrary Neural Artistic Stylization](https://arxiv.org/abs/1705.06830).
+- [TensorFlow — Neural style transfer](https://www.tensorflow.org/tutorials/generative/style_transfer).
+- [TensorFlow Hub — Fast Style Transfer for Arbitrary Styles](https://www.tensorflow.org/hub/tutorials/tf2_arbitrary_image_stylization).

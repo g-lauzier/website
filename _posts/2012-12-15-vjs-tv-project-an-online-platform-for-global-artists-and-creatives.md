@@ -5,34 +5,39 @@ date: 2012-12-15 00:00:00 +0000
 categories: ["entertainment"]
 tags: ["ad-free-tv"]
 post_image: "/assets/images/vjs-tv-online-platform.webp"
-description: "The VJs TV project was developed on WordPress CMS using PHP, MySQL, JavaScript, and Bootstrap framework."
+description: "How I built VJs TV: a curated audiovisual archive, artist submissions and continuous playback on a WordPress-based platform."
 permalink: "/vjs-tv-project-an-online-platform-for-global-artists-and-creatives/"
 image_width: 1408
 image_height: 768
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-The VJs TV project was developed on WordPress CMS using PHP, MySQL, JavaScript, and Bootstrap framework. A form was created on the website to allow artists from across the world to submit their projects. The submitted projects were then aggregated and reposted on the website.
+VJs TV launched on December 15, 2012 as a place to discover work by VJs, video artists and designers. The initial collection brought together more than 1,000 videos spanning projection mapping, interactive art, light installations and sound-based work.
 
-On 15th December 2012, the website was launched, and it showcased a compilation of over 1000 videos from VJs, designers, and artists based around the world. The videos were carefully selected to offer a mind-blowing insight into everything from video projection mapping to interactive art, lumen installations to sonic installations. The website had a modern, clean, and crisp design, and it had something for everybody.
+## A library and a viewing channel
 
-The website featured a simple interface with pull-down menus that made it easy to find the right video within seconds. VjsTV.com, as the name suggests, not only offered an extensive library of the world's best videos but also a unique ad-free TV option. By clicking only two times, users could access a continuous full-screen random selection of videos based on the category they chose. There were no breaks, no ads, just a non-stop selection of stunning videos.
+The platform offered two ways into the collection. Visitors could browse by category to find a particular kind of work, or open a continuous, full-screen selection of videos from their chosen category. The channel was designed for uninterrupted viewing, without advertising breaks.
 
-VJsTV.com grew quickly and added new videos daily. Upcoming bands, artists, and designers were welcome to submit their videos via the website. The VJs TV project was a huge success, providing an outstanding platform for artists to showcase their talents to a global audience.
+An artist submission form supported additions to the archive. Submitted projects were reviewed and republished on the site, connecting the viewing experience to the people making the work.
 
-[Check WayBackMachine for full historic](https://web.archive.org/web/20230000000000*/vjstv.com)
+## Building the platform
 
-Check out 2015 VJs TV analytics
+I developed the website with WordPress, PHP, MySQL, JavaScript and Bootstrap. The product challenge was to make an extensive collection approachable: categories and navigation helped visitors choose where to begin, while continuous playback encouraged discovery beyond a single clip.
 
-[VJSTVCOM-2015Analytics](https://guillaumelauzier.com/wp-content/uploads/2023/02/VJSTVCOM-2015Analytics.pdf)[Download](https://guillaumelauzier.com/wp-content/uploads/2023/02/VJSTVCOM-2015Analytics.pdf)
+The project archive and analytics below document the platform’s presentation and use during that period.
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/02/1672417588553-1-793x1024.jpeg)
+[Explore historical VJs TV pages in the Wayback Machine](https://web.archive.org/web/20230000000000*/vjstv.com).
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/02/1672417779272-752x1024.jpeg)
+[Download the 2015 VJs TV analytics](https://guillaumelauzier.com/wp-content/uploads/2023/02/VJSTVCOM-2015Analytics.pdf).
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/02/1672417635470-1.jpeg)
+![Archived VJs TV project image 1](https://guillaumelauzier.com/wp-content/uploads/2023/02/1672417588553-1-793x1024.jpeg)
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/02/1672417835461-1-730x1024.jpeg)
+![Archived VJs TV project image 2](https://guillaumelauzier.com/wp-content/uploads/2023/02/1672417779272-752x1024.jpeg)
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/02/1672418126428.jpeg)
+![Archived VJs TV project image 3](https://guillaumelauzier.com/wp-content/uploads/2023/02/1672417635470-1.jpeg)
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/02/1672417635470.jpeg)
+![Archived VJs TV project image 4](https://guillaumelauzier.com/wp-content/uploads/2023/02/1672417835461-1-730x1024.jpeg)
+
+![Archived VJs TV project image 5](https://guillaumelauzier.com/wp-content/uploads/2023/02/1672418126428.jpeg)
+
+![Archived VJs TV project image 6](https://guillaumelauzier.com/wp-content/uploads/2023/02/1672417635470.jpeg)

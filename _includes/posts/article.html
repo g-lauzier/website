@@ -21,6 +21,7 @@
       <div class="gl-article-byline">
         <span class="gl-article-author">{{ page.author | default: site.author.name | escape }}</span>
         {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% endif %}
+        {% if page.last_modified_at %}<span class="gl-article-revised">Revised <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%B %-d, %Y" }}</time></span>{% endif %}
         <span>{{ article_minutes }} min read</span>
       </div>
     </header>

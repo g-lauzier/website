@@ -5,50 +5,51 @@ date: 2022-09-01 00:00:00 +0000
 categories: ["ai"]
 tags: ["ai", "artificial-intelligence"]
 post_image: "/assets/images/1st-ai-projects.webp"
-description: "The first artificial intelligence (AI) projects were developed in the 1950s and 1960s, and focused on creating simple programs that could mimic basic human…"
+description: "Logic Theorist, General Problem Solver, and ELIZA: three early approaches to machine intelligence, and what their limits still teach us."
 permalink: "/1st-ai-projects/"
 image_width: 1408
 image_height: 768
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-The first artificial intelligence (AI) projects were developed in the 1950s and 1960s, and focused on creating simple programs that could mimic basic human cognitive functions such as learning and problem-solving.
+Early artificial intelligence explored a question that still matters: which parts of human reasoning can be expressed as procedures a computer can follow? Three influential projects approached it differently. Logic Theorist searched for proofs, General Problem Solver organized problem solving, and ELIZA generated conversational responses.
 
-One of the first AI projects was the Logic Theorist, developed by Allen Newell and Herbert Simon in 1955.
+These systems did not learn from vast datasets in the way many contemporary models do. Their capabilities depended on representations, rules, and search strategies designed by people. Looking at those mechanisms is more informative than describing them simply as machines that could “think.”
 
-## Logic Theorist 
+## Logic Theorist
 
-![](https://guillaumelauzier.com/wp-content/uploads/2022/12/4-Figure1-1.png)
+![Historical illustration of the Logic Theorist](https://guillaumelauzier.com/wp-content/uploads/2022/12/4-Figure1-1.png)
 
-It was one of the first AI programs to be developed and was designed to mimic the problem-solving abilities of a human logician.
+Allen Newell, Herbert Simon, and J. C. “Cliff” Shaw developed Logic Theorist in the mid-1950s. Its task was to find proofs for propositions in the symbolic logic of *Principia Mathematica*. Shaw’s contribution matters: implementing the ideas was part of the research, not a separate detail.
 
-The Logic Theorist was able to prove theorems in symbolic logic and was able to solve problems in propositional and predicate logic. It was able to do this by searching through a large number of possible solutions and selecting the one that best fit the constraints of the problem.
+The program represented logical expressions symbolically and used heuristics to decide which proof steps to explore. A heuristic does not guarantee the shortest route to a solution. It makes the search more selective, directing limited computation toward promising steps.
 
-The Logic Theorist was a significant achievement in the field of AI because it demonstrated that it was possible to create a program that could solve complex logical problems using a set of rules and a search algorithm. It also showed that it was possible to encode knowledge in a computer program and use it to reason and solve problems.
+The [researchers’ account of the Logic Theory Machine](https://iiif.library.cmu.edu/file/Newell_box00028_fld01976_doc0005/Newell_box00028_fld01976_doc0005.pdf) describes an experiment in how difficult problems can be solved without exhaustively trying every possibility. Its significance was specific: a machine could manipulate symbols and discover proofs within a formal system. That did not establish a general ability to understand mathematics or the world.
 
-The Logic Theorist was an important influence on the development of other AI programs and helped to lay the foundation for the development of more advanced AI systems in the following decades. It also contributed to the development of the field of artificial intelligence as a whole and helped to establish it as a serious area of study and research.
+This distinction remains useful. Success on a precisely defined task is evidence about that task; broader intelligence requires additional evidence.
 
 ## GPS
 
-![](https://guillaumelauzier.com/wp-content/uploads/2022/12/school-gps.png)
+![Historical illustration associated with General Problem Solver](https://guillaumelauzier.com/wp-content/uploads/2022/12/school-gps.png)
 
-Another early AI project was the General Problem Solver (GPS), developed by Newell and Simon in 1957. It was one of the first AI programs to be developed and was designed to be a general-purpose problem-solver that could find solutions to a wide variety of problems.
+General Problem Solver, developed by Newell, Shaw, and Simon from 1957, tried to separate a reusable problem-solving method from the details of an individual problem. [Carnegie Mellon’s historical account](https://digitalcollections.library.cmu.edu/cmu-collection/herbert-simon) connects its development to observations of how people described their own reasoning.
 
-GPS was designed to work by searching through a large number of possible solutions and selecting the one that best fit the constraints of the problem. It used a set of heuristics, or rules of thumb, to guide its search and was able to solve a wide range of problems, including puzzles, logic problems, and mathematical equations.
+Its central method was **means–ends analysis**: compare the current state with the desired state, identify a difference, and select an operation that might reduce that difference. If the operation cannot yet be applied, solve the prerequisite as a smaller subproblem.
 
-GPS was a significant achievement in the field of AI because it demonstrated that it was possible to create a program that could solve complex problems using a set of rules and a search algorithm. It also helped to establish the field of artificial intelligence as a serious area of study and research.
+Imagine a puzzle in which a piece must move to a target square, but another piece blocks the route. “Clear the route” becomes an intermediate goal. The program can reuse this pattern, provided the puzzle has been encoded as states, legal operations, and goals.
 
-While GPS was a promising early AI project, it had several limitations and was not able to solve all problems. It was also quite resource-intensive, as it required a large amount of computing power to run. Despite these limitations, GPS was an important influence on the development of other AI programs and helped to pave the way for the development of more advanced AI systems in the following decades.
+That qualification is the limit behind the name. GPS was not a universal solver for arbitrary real-world problems. Someone still had to supply an appropriate representation and useful operators. A search method cannot compensate for an incomplete description of what actions mean or which outcomes count as success.
+
+The lasting idea is the separation between a reasoning procedure and the knowledge it operates on. The difficult work often lies in both.
 
 ## ELIZA
 
-![](https://guillaumelauzier.com/wp-content/uploads/2022/12/4-Figure2-1.png)
+![Historical illustration associated with ELIZA](https://guillaumelauzier.com/wp-content/uploads/2022/12/4-Figure2-1.png)
 
-Other early AI projects included ELIZA, it was a natural language processing program developed by Joseph Weizenbaum in 1966. It was one of the first AI programs to be developed and was designed to mimic human conversation by using a set of rules and patterns to generate responses to user input.
+Joseph Weizenbaum described ELIZA in a [1966 paper](https://courses.cs.umbc.edu/undergraduate/CMSC471/papers/weizenbaum.eliza.1966.pdf). The program used scripts, keyword matching, and rules for decomposing and reassembling input. Its best-known script, DOCTOR, adopted the conversational style of a nondirective therapist.
 
-ELIZA was designed to simulate a therapist and was able to carry on a conversation with a user by asking questions and responding to the user's answers. It used a set of rules and patterns to recognize key words and phrases in the user's input and generate appropriate responses.
+That setting was clever because reflecting a person’s words back as a question could keep a conversation moving without requiring detailed knowledge of the subject. An input about a family member, for example, could trigger a response asking the user to say more about their family. The apparent relevance came from a rule and the user’s interpretation, not a clinical understanding of their situation.
 
-ELIZA was able to engage in a surprisingly realistic conversation with users and was able to convincingly mimic a human therapist. It was able to do this by using simple language processing techniques and a set of rules and patterns to recognize and respond to user input.
+ELIZA therefore offers two lessons. First, a narrow mechanism can create a compelling interface. Second, a compelling interface can encourage people to attribute more understanding to a system than its mechanism supports.
 
-ELIZA was a pioneering AI project that demonstrated the potential of natural language processing and helped to establish the field of artificial intelligence as a serious area of study and research. It also influenced the development of other AI programs and helped to pave the way for the development of more advanced natural language processing systems in the following decades.
-
-These early AI projects laid the foundation for the development of more advanced AI systems in the following decades, and many of the principles and techniques developed in these early projects are still used in modern AI research and development.
+Logic Theorist, GPS, and ELIZA made different capabilities visible: symbolic search, goal-directed planning, and conversational pattern matching. Their limitations are part of their importance. To evaluate any AI system, ask what it represents, how it produces an answer, and where the evidence for its competence stops.

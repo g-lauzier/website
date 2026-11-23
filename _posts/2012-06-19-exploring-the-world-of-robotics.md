@@ -5,7 +5,7 @@ date: 2012-06-19 00:00:00 +0000
 categories: ["ai"]
 tags: []
 post_image: "/assets/images/writing/archive/exploring-the-world-of-robotics.webp"
-description: "A video covering the 5th edition of the EPFL Robotics Festival, which took place on May 5th."
+description: "A video report from the 2012 EPFL Robotics Festival: public demonstrations, an interview with Francesco Mondada, and robots in motion."
 permalink: "/exploring-the-world-of-robotics/"
 post_image_small: "/assets/images/writing/archive/exploring-the-world-of-robotics-640.webp"
 post_image_medium: "/assets/images/writing/archive/exploring-the-world-of-robotics-960.webp"
@@ -16,18 +16,23 @@ image_caption: "Thumbnail from the original video."
 image_credit: "Guillaume J. Lauzier on Vimeo"
 image_source: "https://vimeo.com/42269464"
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/festival-robotique-epfl-2012.png"
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-A video covering the 5th edition of the EPFL Robotics Festival, which took place on May 5th. The video features different exhibitors and spectacles that were present at the festival. You filmed and edited the video yourself using Final Cut Pro.
+On 5 May 2012, I filmed the fifth EPFL Robotics Festival in Lausanne. The report follows the demonstrations, exhibitors, and public encounters that made robotics tangible beyond the laboratory. I filmed and edited the video using Final Cut Pro.
 
-The festival attracted approximately 15,000 visitors who came to admire, observe, or manipulate the various robots presented. The festival has been growing in popularity since its inception in 2008, with only about 3,000 visitors in the first edition and over 13,000 visitors in 2011.
+[EPFL’s report](https://actu.epfl.ch/news/robotic-festival-2012/) records approximately 15,000 visitors at that edition and features this video. The attraction was the opportunity to observe robots closely, ask questions, and, in some cases, interact with them.
 
-The video includes interviews with Francesco Mondada, a researcher at the EPFL Robotics Systems Laboratory and one of the main organizers of the event. He highlighted the festival's positive atmosphere and the public's curiosity and interest in robotics.
+## Inside the festival
 
-The video also showcases various exhibitors, including Teams Robots en Balade, DISAL, The Corpora Robotic, HESSO HEIG VD, Festo SA, Faulhaber et IIT, Induct, ETH Zurich, and HES-SO Fribourg. Additionally, the video features different spectacles such as SwissEurobot, Festo's Air Jelly, Les Voyages Extraordinaires, Centre Roberta EPFL, and Faulhaber et IIT's humanoid robot iCub.
+The video includes an interview with Francesco Mondada of EPFL’s Robotics Systems Laboratory, one of the event’s organizers. He describes the public’s curiosity and the atmosphere of the festival.
 
-The video's background music is Scape One's Full Circle. Overall, the video provides an informative and exciting look into the EPFL Robotics Festival, highlighting the impressive technological advancements and interest in robotics that the festival aims to promote.
+Exhibitors featured in the report include Robots en Balade, DISAL, The Corpora Robotic, HEIG-VD, Festo, Faulhaber and IIT, Induct, ETH Zurich, and HES-SO Fribourg. Demonstrations range from SwissEurobot and Centre Roberta EPFL to Festo’s Air Jelly and the iCub humanoid robot.
 
-[Video featured on EPFL](https://actu.epfl.ch/news/robotic-festival-2012/)
+Together, these encounters show different ways of approaching movement, interaction, and control. The report is a record of the 2012 festival and of the people explaining their work to a broad audience.
+
+## Watch the report
+
+The soundtrack is **“Full Circle” by Scape One**.
 
 [Festival Robotique 2012](https://vimeo.com/42269464) from [Guillaume J. Lauzier](https://vimeo.com/guillaumelauzier) on [Vimeo](https://vimeo.com).

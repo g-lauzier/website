@@ -1,11 +1,12 @@
 ---
 layout: posts/post
-title: "AXAL: A Sustainable IT Revolution"
+title: "AXAL: connecting computing, energy, and agriculture"
 date: 2023-11-27 00:00:00 +0000
+last_modified_at: 2026-11-22 12:00:00 +0000
 categories: ["infrastructure"]
 tags: ["agriculture-integration", "axal", "community-resilience"]
 post_image: "/assets/images/writing/axal-a-sustainable-it-revolution.webp"
-description: "As a part of my diverse project portfolio, I am proud to introduce AXAL, a groundbreaking initiative that stands at the forefront of sustainable IT…"
+description: "The original AXAL infrastructure concept: connect computing, renewable energy, and agricultural heat use, then measure whether the local system works."
 permalink: "/axal-a-sustainable-it-revolution/"
 image_alt: "Modular computing pavilions connect to a greenhouse through heat-exchange channels, illustrating a local sustainable IT ecosystem."
 post_image_small: "/assets/images/writing/axal-a-sustainable-it-revolution-640.webp"
@@ -16,36 +17,42 @@ image_caption: "Editorial illustration."
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/11/transformative.png"
 ---
 
-As a part of my diverse project portfolio, I am proud to introduce [AXAL](https://axal.io), a groundbreaking initiative that stands at the forefront of sustainable IT solutions. This project embodies my commitment to integrating technology with ecological responsibility, creating a resilient and self-sufficient future.
+The infrastructure concept behind [AXAL](https://axal.io) starts with a question: can computing, energy, and agriculture be designed together so that resources used by one activity become useful to another?
+
+When I introduced the project in 2023, the ambition was to connect local IT infrastructure with renewable power and productive uses for server heat. This note describes that original direction. The environmental and resilience benefits are design objectives that need to be demonstrated in operation.
 
 ## Project Overview
 
-[AXAL](https://axal.io) is not just an IT project; it's a comprehensive sustainable ecosystem that marries high-performance technology with environmental stewardship. The project is designed to serve various industries, offering tailored IT solutions that prioritize both efficiency and ecological impact.
+AXAL brings several infrastructure decisions into the same discussion: where computing capacity is placed, how it is powered, where its heat goes, and who operates the services around it. The goal is to make those decisions work together within a local setting.
+
+A successful system would need more than compatible equipment. It would need a match between energy supply, computing demand, useful heat demand, and the people responsible for maintenance.
 
 ## Key Features of AXAL
 
 ### Sustainable Ecosystem Integration
 
-[AXAL](https://axal.io) integrates IT, agriculture, and energy solutions to foster self-sufficiency and resilience, particularly crucial during natural disasters. This integration reduces reliance on external resources and enhances community resilience.
+The proposal connects IT, agriculture, and energy rather than planning each in isolation. Computing produces heat; an agricultural activity may be able to use some of it. The practical question is whether the temperature, timing, distance, and seasonal demand make that exchange useful.
 
 ### Localized Sustainable Solutions
 
-The project focuses on localizing information systems, agriculture, and energy solutions, significantly reducing transportation costs and CO2 emissions. This approach not only boosts efficiency but also advances environmental sustainability.
+Local infrastructure can reduce some transport needs and give operators a clearer view of their dependencies. It does not automatically reduce total emissions. The comparison needs to include construction, equipment, electricity, heat distribution, maintenance, and the alternative system being displaced.
 
 ### Sovereignty and Community Empowerment
 
-[AXAL](https://axal.io) empowers communities by providing control over essential resources like information, food, and energy, facilitating effective decision-making and sustainable resource management.
+Local control is meaningful when responsibilities are clear. Who owns the equipment, controls access to data, pays for repairs, and can keep essential services running? Those operating arrangements are as important as the physical location of a server.
 
 ### Innovative Green IT Infrastructure
 
-At the core of [AXAL](https://axal.io) is a green approach to IT infrastructure. The project harnesses solar and hydro energy to power servers, which in turn support agricultural practices through innovative heat reuse strategies.
+Solar and hydro energy, together with heat reuse, formed part of the original concept. A detailed design would have to account for variable supply, backup arrangements, cooling requirements, and the quality of the recovered heat. Resilience during a disruption would need to be tested rather than assumed from proximity alone.
 
 ## Our Commitment to Sustainability
 
-[AXAL](https://axal.io) is more than just a project; it's a testament to our commitment to creating a sustainable future. We have taken a holistic approach to sustainability, focusing on renewable energy, eco-efficient solutions, and responsible consumption. Our team is dedicated to ethical decision-making, community collaboration, and environmental advocacy.
+I want the project's environmental case to be measurable. Useful indicators would include electricity consumed per unit of computing work, heat actually delivered to a useful load, system availability, and the resources required to maintain the installation.
+
+Those measurements should be compared with a clear baseline. Counting all server heat as a benefit would overstate the result if much of it cannot be used. The relevant benefit is the useful service delivered and what it replaces.
 
 ## Join Us in Our Sustainable Journey
 
-[AXAL](https://axal.io) represents a significant step in my ongoing journey to integrate sustainable practices across various sectors. This project not only showcases my commitment to innovation and sustainability but also demonstrates how technology and nature can work in harmony for a better future.
+AXAL reflects my interest in infrastructure that connects technical performance with local resource needs. The next question for any implementation is specific: which site, which workloads, which heat users, and which operating model make the combination viable?
 
-[Discover more about AXAL](https://axal.io) and join us in shaping a more sustainable and resilient world.
+[Discover more about AXAL](https://axal.io).

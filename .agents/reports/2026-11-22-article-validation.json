@@ -1,0 +1,122 @@
+{
+  "date": "2026-11-22",
+  "base_commit": "e9c160acf6fe66aaaf64f038e604c20b766b7032",
+  "source_checks": {
+    "base_commit": "e9c160acf6fe66aaaf64f038e604c20b766b7032",
+    "articles_expected": 88,
+    "articles_checked": 88,
+    "substantively_revised": 88,
+    "revision_dates_present": 88,
+    "descriptions_revised": 88,
+    "legacy_heading_ids": 566,
+    "publication_and_routing_metadata_preserved": 88,
+    "original_inline_media_references": 61,
+    "articles_with_original_media_metadata": 88,
+    "current_headings": 601,
+    "missing_legacy_heading_ids": 0,
+    "duplicate_rendered_ids": 0,
+    "inline_media_removed": 0,
+    "code_blocks": 30,
+    "code_languages": {
+      "text": 6,
+      "cpp": 4,
+      "solidity": 2,
+      "bash": 4,
+      "python": 7,
+      "sql": 1,
+      "js": 4,
+      "go": 2
+    },
+    "python_blocks_syntax_checked": 7,
+    "editor_report_entries": 88,
+    "editor_report_totals": {
+      "ai-security-edit-report.json": 17,
+      "creative-portfolio-edit-report.json": 33,
+      "blockchain-finance-edit-report.json": 21,
+      "root-editorial-edit-report.json": 17
+    },
+    "unique_source_urls_reported": 178,
+    "articles_with_reported_verified_sources": 66,
+    "per_article_source_references_reported": 202,
+    "words_before": 86045,
+    "words_after": 73812,
+    "error_groups": 0,
+    "warning_groups": 0,
+    "worked_math_checks_passed": 7,
+    "git_diff_check_passed": true,
+    "all_post_snapshots_stable": true
+  },
+  "rendered_checks": {
+    "articles": 88,
+    "assertions": 995,
+    "checks": {
+      "rendered_article_exists": 88,
+      "single_correct_h1": 88,
+      "updated_description_rendered": 88,
+      "visible_revision_date": 88,
+      "unique_page_ids": 88,
+      "nonempty_article_body": 88,
+      "valid_json_ld": 88,
+      "jsonld_revision_date": 88,
+      "jsonld_original_publication_date": 88,
+      "hero_alt_present": 88,
+      "local_hero_image_exists": 88,
+      "accessible_table_wrapper": 18,
+      "internal_link_targets": 3,
+      "writing_archive_exists": 1,
+      "all_88_archive_entries": 1,
+      "chronological_list_markup": 1,
+      "archive_links_match_posts": 1,
+      "archive_reverse_chronological_order": 1,
+      "archive_and_assets_unchanged": 1
+    },
+    "errors": [],
+    "existing_local_link_warnings": [
+      {
+        "file": "2012-12-15-vjs-tv-project-an-online-platform-for-global-artists-and-creatives.md",
+        "kind": "unresolved_local_link",
+        "href": "https://guillaumelauzier.com/wp-content/uploads/2023/02/VJSTVCOM-2015Analytics.pdf",
+        "preexisting": true
+      },
+      {
+        "file": "2023-04-21-niantic-labs-call-for-inclusivity-sustainability.md",
+        "kind": "unresolved_local_link",
+        "href": "https://guillaumelauzier.com/wp-content/uploads/2023/04/GO-Raiding-Balancing-Accessibility-and-Sustainability.pdf",
+        "preexisting": true
+      }
+    ],
+    "new_local_link_warnings": []
+  },
+  "compiled_and_arithmetic_examples": [
+    {
+      "name": "Monte Carlo compile and known-pi convergence",
+      "result": "Pi estimate: 3.14175\nApproximate standard error: 0.00164208"
+    },
+    {
+      "name": "Hash chain and proof-of-work compile and tamper detection",
+      "result": "Block 1 | nonce 2222 | 000c375af94c91e6b02144b3c38ab396eaab7c97e3a0225ae51244427b18e83d\nBlock 2 | nonce 5410 | 0006cbd07845d9a567043b2d83e4a84f840032c3823b5aa8740293dc41fdecf7\nBlock 3 | nonce 4217 | 0003b55e7234d93658c5220442cb4f8abe5c1d886beaf768c860e094a71503af\nValid: true\nValid after edit: false"
+    },
+    {
+      "name": "Bounded loopback node example compilation",
+      "result": "passed"
+    },
+    {
+      "name": "Canonical transaction signature authentication and field tampering",
+      "result": "Valid signature accepted; recipient, amount, nonce, chain and sender changes rejected."
+    },
+    {
+      "name": "Solidity 0.8.24 and OpenZeppelin 5.0.2 compilation of both examples",
+      "result": "passed"
+    },
+    {
+      "name": "Options payoff tables, max profits and break-evens",
+      "result": "passed"
+    }
+  ],
+  "title_changes": 23,
+  "limitations": [
+    "ML libraries not installed for training execution.",
+    "Historical inline images and two PDF references still require original-file recovery.",
+    "External links checked selectively against primary sources, not exhaustively crawled."
+  ]
+}

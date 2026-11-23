@@ -4,7 +4,7 @@ title: "Cybersecurity and zero-trust systems"
 date: 2026-05-12 09:00:00 +0000
 categories: ["cybersecurity"]
 tags: ["cybersecurity", "zero-trust", "security"]
-description: "Never trust by default, always verify — security for how business actually operates today."
+description: "How to make access decisions explicit, limit the reach of compromised credentials, and introduce zero trust without losing operational clarity."
 permalink: "/cybersecurity-and-zero-trust-systems/"
 canonical_url: "https://axal.vc/articles/cybersecurity-and-zero-trust-systems"
 post_image: "/assets/images/writing/zero-trust-systems.webp"
@@ -14,46 +14,55 @@ image_alt: "Blue optical connections pass through individual apertures in layere
 image_caption: "Editorial illustration."
 image_width: 1600
 image_height: 900
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
 _Originally published on [Axal VC](https://axal.vc/articles/cybersecurity-and-zero-trust-systems)._
 
-Cybersecurity is no longer about building a higher wall around the network. It is about assuming the wall has already been crossed and designing systems that still hold. That is the logic behind zero trust: never trust by default, always verify continuously.
+A valid login should not provide unlimited access. A device on the office network should not be assumed safe. Zero trust starts with those two observations and asks a more precise question: should this identity, using this device, be allowed to perform this action on this resource now?
 
-For modern organizations, that shift is not theoretical. Cloud services, remote work, SaaS tools, APIs, and distributed teams have made perimeter-based security too brittle for how business actually operates today. Zero trust responds by moving access decisions from location-based assumptions to identity, device posture, behavior, and context.
+For organizations using cloud services, remote work, SaaS tools, and APIs, that question is more useful than treating network location as a sufficient reason to trust a request. The objective is to reduce implicit trust and constrain the consequences when an account or system is compromised.
 
 ## Why zero trust matters
 
-Traditional security models assumed that anything inside the corporate network was mostly safe. That assumption breaks down once credentials are stolen, devices are compromised, or an attacker gains a foothold through a vendor or employee account. Zero trust reduces that risk by verifying each request and limiting what any user or device can reach.
+Credentials can be stolen, devices can be compromised, and an authorized user can have more privileges than the work requires. A broad internal network grant can turn one failure into access to many unrelated systems.
 
-This is especially important because attackers rarely need to "break in" dramatically anymore. They often move through legitimate access paths, then expand quietly across systems until they find sensitive data or critical infrastructure. Zero trust is designed to make that lateral movement much harder.
+[NIST’s Zero Trust Architecture guidance](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf) describes an approach centered on users, assets, and resources, with no implicit trust based solely on physical or network location or asset ownership. Authentication and authorization are evaluated before access to a resource is established.
+
+This is an architectural direction rather than a product label. An organization needs to understand the resource it is protecting, the identities that use it, and the policy that connects them.
 
 ## Core principles
 
-A zero-trust system is built around a few consistent ideas. First, every access request must be authenticated and authorized, even if it comes from inside the network. Second, access should be limited to the minimum required for the task, so a compromise does not open the entire environment.
+Make access **specific**: identify the resource, permitted action, and conditions under which permission applies. Make it **limited**: grant the scope needed for the work rather than broad privileges that accumulate indefinitely. Make it **reviewable**: record enough evidence to explain why access was allowed or denied.
 
-Third, verification should be continuous rather than one-time. That means the system keeps checking identity, device health, and risk signals as conditions change. Fourth, security controls should be applied across identity, devices, networks, applications, and data, rather than relying on one defensive layer alone.
+Re-evaluate access when relevant conditions change. A new device risk signal, revoked role, or suspicious session may justify an additional check or termination. “Continuous verification” does not mean asking a person to complete an authentication prompt for every click. It means that authorization should not outlive the conditions that justified it.
+
+Include service identities and machine-to-machine access. A tightly controlled employee login offers limited protection if a long-lived application credential can reach the same sensitive data without equivalent restrictions.
 
 ## What changes operationally
 
-Zero trust changes how organizations manage access. Instead of broad permissions, teams use tighter policies, stronger authentication, microsegmentation, and real-time monitoring. This makes environments easier to contain when something goes wrong, because compromise stays localized instead of spreading widely.
+Consider an illustrative finance workflow. An employee may need to read invoices, approve a limited payment, or administer the payment system. Those are three different actions. Giving every finance user the same broad role makes a compromised account more powerful than necessary.
 
-It also changes the role of automation. Some modern approaches use behavioral analytics and AI-assisted scoring to help evaluate whether a request looks normal or suspicious. In practice, that can improve responsiveness, but it still needs to be paired with clear policy and human oversight.
+A more precise design separates the actions, records approvals, and limits privileged access in scope and duration. It also creates a way to remove access promptly when responsibilities change. Network segmentation can reinforce these boundaries, but the application’s permissions still need to express the intended policy.
+
+Automation helps apply and inspect those policies consistently. Risk scoring may support a decision, but its output needs an owner and a defined response. A score nobody knows how to act on adds noise rather than protection.
 
 ## Implementation challenges
 
-The main challenge is not the idea of zero trust; it is the rollout. Legacy systems, fragmented identity tools, and organizational resistance can slow adoption significantly. Many firms also discover that zero trust requires better inventory, better governance, and better coordination across teams than they originally expected.
+The first obstacle is often an incomplete inventory. A team cannot define reliable policies if it does not know which applications hold sensitive information, which services call them, or who owns the access rules.
 
-That is why successful implementation tends to be phased. Organizations usually start with high-value assets, critical identities, and the most exposed workflows, then expand from there. This makes the transformation manageable while still reducing risk early.
+Start with one valuable resource and a limited set of workflows. Map normal access, remove unnecessary permissions, and test the policy with the people who depend on it. Expand after the team understands both denied legitimate requests and access that should have been blocked.
+
+Plan for failure of the identity provider or policy service. Recovery and emergency access need explicit controls, logging, and review. An undocumented bypass can undermine the architecture; an unavailable recovery path can stop essential work.
 
 ## What good looks like
 
-A strong zero-trust posture usually includes multi-factor authentication, device validation, least-privilege access, encrypted communication, microsegmentation, logging, and continuous monitoring. The point is not to make access painful, but to make trust explicit and temporary.
+A useful review asks operational questions. Can the team explain who has privileged access and why? Can it revoke a compromised identity quickly? Do logs show the action and the resource, rather than just a successful login? Has anyone tested whether a compromised account can reach an unrelated system?
 
-The best systems also remain usable. If security becomes so heavy that people work around it, the model fails in practice. Good zero trust balances protection with operational speed so the organization can move quickly without exposing itself unnecessarily.
+Usability is part of the result. Repeated unexplained denials encourage workarounds, while indiscriminate alerts make meaningful changes harder to notice. Policies should be understandable enough to troubleshoot and narrow enough to enforce.
 
 ## The strategic takeaway
 
-Zero trust is becoming the default security posture because it matches the reality of modern computing. Work is distributed, infrastructure is cloud-based, and threats are persistent. In that world, trust has to be earned continuously, not granted once and forgotten.
+Zero trust makes access a deliberate decision with an explicit scope. Its success should be judged by the reduction in unnecessary authority, the ability to detect and contain misuse, and the reliability of legitimate work.
 
-For organizations, the lesson is simple: the goal is not to assume everything is hostile. The goal is to make every access decision precise enough that even if something goes wrong, the damage stays contained. That is the real promise of zero trust.
+The practical starting point is a resource and a policy, followed by evidence that the policy works. That is a more durable foundation than treating the purchase of a security tool as the completion of the architecture.

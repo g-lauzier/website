@@ -5,7 +5,7 @@ date: 2023-02-21 00:00:00 +0000
 categories: ["blockchain"]
 tags: ["ai-models", "blockchain"]
 post_image: "/assets/images/writing/supply-chain-generative-assets.webp"
-description: "Generative assets supply chain traceability is an important concept that aims to ensure transparency in the creation, distribution, and sale of tokenized…"
+description: "Tracing data, code, artwork, ownership records, and payment obligations across the lifecycle of a generative-art project."
 permalink: "/supply-chain-generative-assets/"
 image_alt: "A folded glass sculpture and its impressions sit on linked dark workstations joined by a blue thread."
 post_image_small: "/assets/images/writing/supply-chain-generative-assets-640.webp"
@@ -14,18 +14,42 @@ image_width: 1600
 image_height: 900
 image_caption: "Editorial illustration."
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/02/generatedart_supply_chain_of_generative_assets.png"
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-Generative assets supply chain traceability is an important concept that aims to ensure transparency in the creation, distribution, and sale of tokenized generative assets. Tokenized generative assets involve the use of data from various sources such as social media data, weather data, or financial data to generate artwork using generative algorithms. These digital artworks are then converted into non-fungible tokens (NFTs) that serve as a digital certificate of ownership for the artwork. The NFTs can be bought, sold, and traded on various online marketplaces.
+A generative artwork can depend on several people's work: a data provider, an artist, a developer, and sometimes a model creator. Tokenizing the output creates a new record of the asset, but it does not explain those contributions automatically. A useful supply chain makes their relationships visible.
+
+The aim is to trace how an output was produced and what each participant is entitled to receive. That requires both technical records and agreements: where the input came from, which version of the algorithm ran, what rights permit its use, and how revenue should be allocated.
 
 ## Supply chain of generative assets
 
-The supply chain of tokenized generative assets involves several steps, including data extraction, data providers, generative algorithms, creation, tokenization, listing, sale, storage and delivery, and royalty payments. The data extraction step involves collecting data from various sources, which is then used as input for the generative algorithm. The data providers are the companies or organizations that provide the data, such as weather services or financial institutions. The generative algorithm is the computer program or algorithm that uses the input data to generate the artwork. The creation step involves the actual creation of the generative artwork using the algorithm, and the digital artwork is stored on a computer or server. The tokenization step involves converting the digital artwork into a non-fungible token (NFT), which serves as a digital certificate of ownership for the artwork. The listing step involves listing the NFT for sale on various online marketplaces, such as OpenSea or Nifty Gateway. The sale step involves the purchase of the NFT by a buyer, who receives the digital certificate of ownership for the artwork. The storage and delivery step involves the storage of the digital artwork and the NFT in a digital wallet, which can be accessed by the owner using a private key. Finally, the royalty payments step involves paying the original artist a percentage of the sale price as a royalty payment when the artwork is sold again in the future.
+The lifecycle is easier to manage as a sequence of distinct records:
 
-To ensure transparency in the supply chain of tokenized generative assets, various smart contracts have been developed. For example, the dataprovider.sol contract allows authorized data providers to provide geographic data of food supply by calling the provideData function and sending the specified amount of ether as payment. The generativeartist.sol contract allows the creation of ERC721 tokens that represent generative art maps based on geographic data of food supply. The royalties.sol contract implements the IERC2981 interface, which defines a standard way to retrieve information about royalty payments for a given NFT. The supplychain.sol contract extends the Royalties contract to handle the distribution of royalties to the data provider and the generative artist for a tokenized generative artwork. The aimodels.sol contract added a new property to the GenerativeArt contract, which is the address of an AI model contract. When a transfer occurs, the royalties are distributed to the data provider, generative artist, and the AI model contract. Finally, the global_model.cpp implementation of the GlobalModel class and the local_model.cpp implementation of the LocalModel class are used in federated learning systems to ensure transparency and accountability in the training of machine learning models.
+| Stage | What to record | Question it should answer |
+| --- | --- | --- |
+| Data collection | Source, version, collection date, permissions | May this input be used for this purpose? |
+| Generation | Code version, parameters, seed, dependencies | Can the output be reproduced or explained? |
+| Artwork storage | File identifier, storage arrangement, backups | Can a buyer still retrieve the work? |
+| Tokenization | Chain, contract address, token ID, metadata | Which token refers to which output? |
+| Listing and sale | Terms, price, recipient, transaction | What was sold, and under which conditions? |
+| Revenue allocation | Beneficiaries, shares, payment rules | Who is owed what, and when? |
+
+A token normally records control over a token identifier. The artwork may be stored separately, and the license determines the uses a buyer is permitted to make of it. A wallet does not necessarily contain the image file itself; it manages the keys and interfaces used to control the token.
+
+The [tokenized-generative-assets repository](https://github.com/guillaumelauzier/tokenized-generative-assets) explores these relationships through example contracts and model classes. Its data-provider and generative-artist components describe a route from supplied geographic data to tokenized art. The royalty and supply-chain components explore allocating revenue among contributors, while the AI-model and federated-learning examples extend the discussion to model provenance.
+
+Those components should be read as implementation experiments, not as proof that the full supply chain is verified. A contract can record a provider's submission; it cannot independently establish that the submitted geographic data is accurate or lawfully obtained. Similarly, a record of a model update does not establish that a training process was private, unbiased, or authorized.
+
+## Making royalty rules explicit
+
+The [ERC-2981 standard](https://eips.ethereum.org/EIPS/eip-2981) exposes royalty information, including a recipient and an amount for a sale price. It does not force every marketplace or transfer to pay royalties.
+
+A contributor agreement should therefore distinguish the amount owed from the mechanism used to pay it. Does payment happen through a particular marketplace, a project treasury, or a separate settlement process? Are shares fixed at creation? Who handles refunds, disputed inputs, or a missing beneficiary address?
+
+For example, a project could allocate receipts among an artist, a data supplier, and a development team. Those percentages should sum to a defined total and apply to a clearly stated base: gross sales, net receipts, or another agreed amount. Recording a percentage without that definition leaves the most important economic question unresolved.
 
 ## Conclusion
 
-The traceability of the supply chain of tokenized generative assets is an important concept that ensures transparency and accountability in the creation, distribution, and sale of these digital assets. Various smart contracts and machine learning models have been developed to achieve this goal, and these tools can help to support a more transparent and equitable ecosystem for tokenized generative assets.
+The useful contribution of a blockchain is a shared record that parties can inspect. The quality of that record still depends on the data, identities, permissions, and payment logic around it.
 
-[See Github repo on Managing the Supply Chain for Tokenized Generative Assets](https://github.com/guillaumelauzier/tokenized-generative-assets)
+A credible generative-asset supply chain connects all of those layers. It lets a collector understand what they receive, a contributor understand how they are paid, and a project operator explain the origin of each output without treating tokenization as a substitute for evidence.

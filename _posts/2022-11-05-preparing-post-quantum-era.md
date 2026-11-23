@@ -5,50 +5,72 @@ date: 2022-11-05 00:00:00 +0000
 categories: ["cybersecurity"]
 tags: ["algorithms", "code-based"]
 post_image: "/assets/images/preparing-post-quantum-era.webp"
-description: "An introduction to quantum-resistant cryptography, the threats posed by quantum computing, and the transition to new cryptographic standards."
+description: "What quantum computing threatens, how the main post-quantum cryptographic families differ, and how to plan a measured migration."
 permalink: "/preparing-post-quantum-era/"
 image_width: 1408
 image_height: 768
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-## **An Introduction to Quantum-Resistant Cryptography**
+Post-quantum cryptography addresses a migration problem: information protected today may need to remain confidential long after the systems that encrypted it have changed. Preparing means understanding which cryptographic components are exposed, what can replace them, and how to change those components without breaking the services that depend on them.
 
-Post-quantum cryptography is a field of study focused on developing and implementing cryptographic algorithms that are resistant to attacks by quantum computers. With the advancement of quantum computing technology, it has become increasingly likely that traditional cryptographic methods, which are based on mathematical problems that are difficult for classical computers to solve but easy for quantum computers to solve, will become vulnerable to attacks. As a result, there is a pressing need for new cryptographic algorithms that can withstand attacks from quantum computers and ensure the security of sensitive information. In this context, post-quantum cryptography aims to design and implement cryptographic methods that are resistant to quantum attacks and can provide the necessary security for a post-quantum era.
+*Revision note, November 2026: this article was originally published in 2022. The standards discussion below now includes NIST’s first three post-quantum standards, finalized in August 2024.*
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/01/IoT-02-00005-g001-550.webp)
+## An Introduction to Quantum-Resistant Cryptography
 
-To protect against this possibility, researchers are developing new cryptographic techniques that are resistant to attack by quantum computers. Some examples of post-quantum cryptographic methods include lattice-based cryptography, multivariate cryptography, code-based cryptography, and hash-based cryptography. It is important to note that these methods are still in the development stage and have not yet been widely adopted.
+A sufficiently capable fault-tolerant quantum computer could use Shor’s algorithm to undermine widely deployed public-key techniques based on integer factorization and discrete logarithms, including RSA and elliptic-curve systems. This is a particular concern for key establishment and digital signatures. It does not mean that every kind of encryption would fail in the same way.
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/01/dgs.png)
+Symmetric encryption and hash functions face different quantum speedups and parameter considerations. The migration task is therefore an inventory of algorithms and uses, not a blanket instruction to replace everything bearing the word “encryption.” [NIST’s post-quantum project](https://csrc.nist.gov/projects/post-quantum-cryptography) provides the standards and transition context.
 
-## **Lattice-based cryptography**
+![Diagram from the original introduction to post-quantum cryptography](https://guillaumelauzier.com/wp-content/uploads/2023/01/IoT-02-00005-g001-550.webp)
 
-Lattice-based cryptography is a type of cryptography that is believed to be resistant to attacks by quantum computers. It is based on the mathematical properties of lattices, which are structures made up of points arranged in a grid-like pattern. Lattice-based cryptography is considered to be a promising option for the post-quantum era, as it is thought to be resistant to attacks by quantum algorithms that are able to break other forms of cryptography, such as RSA and ECC (Elliptic Curve Cryptography).
+An attacker may collect encrypted traffic now and attempt to decrypt it later. Whether that matters depends on how long the information must remain secret and whether its key exchange would be vulnerable. Migration lead times matter alongside estimates of future computing capabilities.
 
-There are several different types of lattice-based cryptography, including NTRU (short for N-th degree Truncated Polynomial Ring Units), RLWE (short for Ring Learning with Errors), and LWE (short for Learning with Errors). These algorithms all work by generating a secret key based on the properties of a lattice, and then using this key to encrypt and decrypt messages.
+![Illustration from the original post-quantum cryptography article](https://guillaumelauzier.com/wp-content/uploads/2023/01/dgs.png)
 
-One of the main advantages of lattice-based cryptography is that it is relatively easy to implement and requires relatively low computational resources. This makes it well-suited for use in resource-constrained environments, such as on mobile devices or in the Internet of Things (IoT).
+## Lattice-based cryptography
 
-Lattice-based cryptography is considered to be a promising option for the post-quantum era, as it is believed to be resistant to attacks by quantum computers and can be implemented with relatively low computational resources. However, it is still an emerging field and more research is needed to fully understand its potential and limitations.
+Lattice-based designs rely on problems involving structured sets of points in high-dimensional space. Learning with Errors and its variants provide assumptions used by several constructions. LWE and Ring-LWE are problem families; they are not interchangeable names for complete encryption products.
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/01/General-workflow-of-multivariate-encryption-schemes.png)
+Two finalized NIST standards illustrate the different jobs these designs can perform:
 
-## **Multivariate cryptography**
+- **ML-KEM**, specified in [FIPS 203](https://csrc.nist.gov/pubs/fips/203/final), establishes a shared secret that can then be used by a symmetric encryption protocol.
+- **ML-DSA**, specified in [FIPS 204](https://csrc.nist.gov/pubs/fips/204/final), provides digital signatures.
 
-Multivariate cryptography refers to cryptographic techniques that use multiple variables as the basis for generating keys and encrypting/decrypting messages. These techniques are believed to be resistant to attacks by quantum computers, as they rely on mathematical problems that are believed to be hard to solve with quantum algorithms. Some examples of multivariate cryptography include McEliece and Niederreiter cryptosystems, which use the concept of algebraic error-correcting codes to generate keys and encode/decode messages. These systems are believed to be secure against attacks by quantum computers, as the mathematical problems they rely on (such as the decoding of error-correcting codes) are thought to be difficult for quantum algorithms to solve. However, it is important to note that the security of these and other multivariate cryptographic techniques is still being actively researched, and it is possible that they may be vulnerable to future attacks or breakthroughs in quantum computing.
+A key-encapsulation mechanism is not a replacement for every function of a public-key cryptosystem. Protocols must use the right primitive for the job. Implementations also need attention to randomness, parameter selection, side channels, and message sizes. “Lattice-based” alone is not a performance or security guarantee.
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/01/2-Figure1-1-1024x260.png)
+![Illustration of multivariate cryptographic constructions from the original article](https://guillaumelauzier.com/wp-content/uploads/2023/01/General-workflow-of-multivariate-encryption-schemes.png)
 
-## **Code-based cryptography**
+## Multivariate cryptography
 
-There are several code-based cryptography algorithms that are believed to be resistant to attacks from quantum computers. These include McEliece, Niederreiter, and Goppa codes. These algorithms rely on the difficulty of decoding a message encoded using error-correcting codes, which makes them resistant to attacks even from powerful quantum computers. However, it is important to note that the security of code-based cryptography is not yet fully understood, and further research is needed to confirm their resistance to post-quantum attacks.
+Multivariate constructions use systems of polynomial equations over finite fields. They form a distinct research family, particularly for signatures. The broad difficulty of solving polynomial systems does not establish the security of every structured scheme built from them; attackers may exploit the specific structure needed to make signing efficient.
 
-![](https://guillaumelauzier.com/wp-content/uploads/2023/01/Figure1-1024x426-1.jpg)
+This distinction corrects a common classification mistake: **McEliece and Niederreiter belong to code-based cryptography**, not the multivariate family. Selecting a construction requires reviewing the actual scheme and its cryptanalysis, rather than treating a family name as an endorsement.
 
-## **Hash-based cryptography**
+![Illustration from the original comparison of post-quantum approaches](https://guillaumelauzier.com/wp-content/uploads/2023/01/2-Figure1-1-1024x260.png)
 
-It is difficult to say definitively which specific hash-based cryptographic algorithms will resist the post-quantum era, as the field is still in the early stages of research and development. However, it is generally believed that hash-based cryptography, which relies on the difficulty of finding a collision (i.e., two different inputs that produce the same hash output) in a given hash function, has the potential to be quantum-resistant. This is because it is thought that finding collisions in hash functions using quantum computers may still be computationally infeasible, even in the post-quantum era. Some examples of hash-based cryptographic algorithms that have been proposed as potential candidates for quantum resistance include the Merkle-Damgård construction, the Sponge construction, and the HMAC construction. It is important to note, however, that the security of these and other hash-based cryptographic algorithms has not yet been rigorously tested against quantum attacks, and further research is needed to determine their true quantum resistance.
+## Code-based cryptography
 
-## Conclusion
+Code-based schemes build on the difficulty of decoding certain error-correcting codes without the required secret information. McEliece and Niederreiter are cryptosystem constructions; Goppa codes are mathematical objects used in some such constructions. Those terms should not be listed as if they were three equivalent algorithms.
 
-In conclusion, the potential for quantum computers to break current cryptographic methods has led to the need for post-quantum cryptography. Several options exist, including lattice-based, multivariate, code-based, and hash-based algorithms, which are resistant to attacks from quantum computers. It is important for organizations and individuals to start considering the transition to post-quantum cryptographic methods in order to secure their data and communications in the future.
+The engineering trade-offs differ from lattice-based designs. Key and ciphertext sizes, deployment constraints, and implementation maturity can matter as much as the headline security level. A large public key, for example, affects certificate handling and constrained devices differently from an increase in signature size.
+
+Use the [NIST project’s published evaluations and standards](https://csrc.nist.gov/projects/post-quantum-cryptography) to track individual schemes. Research interest, selection for standardization, and a finalized standard are different milestones.
+
+![Illustration from the original hash-based cryptography section](https://guillaumelauzier.com/wp-content/uploads/2023/01/Figure1-1024x426-1.jpg)
+
+## Hash-based cryptography
+
+Hash-based signatures use hash functions as building blocks, but a signature scheme is more than a choice of hash. **SLH-DSA**, standardized in [FIPS 205](https://csrc.nist.gov/pubs/fips/205/final), is a stateless hash-based digital signature scheme derived from SPHINCS+.
+
+Merkle–Damgård and sponge constructions describe ways of building hash functions. HMAC is a message-authentication construction. None of these is, by itself, a post-quantum public-key signature scheme.
+
+Stateful and stateless hash-based signatures also have different operational requirements. A stateful design can fail if signing state is reused or rolled back. This is a reminder that security depends on how keys and state are managed as well as the underlying mathematics.
+
+## Planning the transition {#conclusion}
+
+Start with the systems whose compromise would have the longest consequences. Record where public-key cryptography appears: TLS termination, VPNs, certificates, software signing, device firmware, backups, and external service dependencies. Identify who can change each component and which clients must remain compatible.
+
+Then test a supported migration path. Measure handshake size, latency, memory use, failure behavior, and interoperability with actual clients. Use maintained implementations and follow the applicable protocol guidance; combining classical and post-quantum algorithms safely requires a specified construction, not a homemade concatenation.
+
+A useful plan produces an inventory, accountable owners, a test environment, and a sequence of changes. It also leaves room to replace an algorithm if later analysis changes the assessment. Cryptographic agility is an operational capability: knowing where the cryptography is, being able to update it, and verifying that the update works.

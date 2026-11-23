@@ -5,7 +5,7 @@ date: 2023-01-13 00:00:00 +0000
 categories: ["cybersecurity"]
 tags: ["51-attacks", "blockchain"]
 post_image: "/assets/images/writing/understanding-20-blockchain-vulnerabilities.webp"
-description: "Blockchain technology has been hailed as a revolutionary development in the field of digital transactions, offering a secure and transparent way to record…"
+description: "Twenty threat categories across consensus, networks, contracts, wallets, and governance—with concrete distinctions and defensive priorities."
 permalink: "/understanding-20-blockchain-vulnerabilities/"
 post_image_small: "/assets/images/writing/understanding-20-blockchain-vulnerabilities-640.webp"
 post_image_medium: "/assets/images/writing/understanding-20-blockchain-vulnerabilities-960.webp"
@@ -14,361 +14,193 @@ image_height: 900
 image_alt: "A blue inspection light reveals hairline gaps in a ring of connected graphite blocks."
 image_caption: "Editorial illustration."
 original_post_image: "https://old.guillaumelauzier.com/wp-content/uploads/2023/01/generatedart_blockchain_attack_3ae5c706-8a16-4238-808a-32eef2f3db8b.png"
+last_modified_at: 2026-11-22 12:00:00 +0000
 ---
 
-Blockchain technology has been hailed as a revolutionary development in the field of digital transactions, offering a secure and transparent way to record and transfer digital assets. However, despite its many advantages, blockchain technology is not immune to vulnerabilities and threats. 
+A blockchain can preserve an agreed transaction history while the application built around it still fails. A stolen signing key, a manipulated price feed, and a consensus attack are different failures. They expose different assets and require different defenses.
 
-One of the most significant vulnerabilities of blockchain technology is smart contract vulnerabilities. Smart contracts are self-executing contracts with the terms of the agreement written into code. However, if there are errors in the code, it can open up the contract to malicious attacks. For example, in 2016, an attacker exploited a vulnerability in the code of the DAO (Decentralized Autonomous Organization) smart contract, resulting in the theft of 3.6 million Ether (worth around $50 million at the time).
+This guide retains twenty threat categories, but they are not twenty independent defects in every blockchain. Some overlap; others concern applications, network infrastructure, or human decisions. The aim is to identify **which assumption an attacker would have to break**, then choose a control that addresses that assumption.
 
-Another vulnerability of blockchain technology is the possibility of 51% attacks. In a 51% attack, a group of miners control more than 50% of the mining power, which allows them to manipulate the blockchain by reversing transactions, double-spending coins, and preventing new transactions from being confirmed. This type of attack can have a devastating impact on the integrity of the blockchain and can lead to the loss of trust in the network.
+## Reading the threat model {#contents}
 
-In this article, we will go into detail about the different types of attacks that can occur on blockchain networks. We will cover topics such as 51% attacks, replay attacks, front-running, data injection attacks, distributed denial of service (DDoS) attacks, malicious node attacks, and more. For each type of attack, we will provide a detailed explanation of how the attack works, the potential consequences of the attack, and the measures that can be taken to prevent and mitigate the attack.
+Start by naming the chain, application, participants, and assets under review. A proof-of-work network, a proof-of-stake network, and a permissioned ledger do not share the same consensus thresholds. Likewise, a user trusting a remote RPC endpoint has a different view of the network from a validating full node.
 
-We will also discuss the various types of vulnerabilities that can occur on blockchain networks, such as smart contract vulnerabilities, private key vulnerabilities, and wallet vulnerabilities, and will provide examples of real-world attacks that have occurred on blockchain networks.
+| Layer | Questions to ask |
+| --- | --- |
+| Consensus | Who determines transaction order and finality, and what resources could undermine that process? |
+| Network | Which peers and infrastructure deliver the information a node sees? |
+| Application | Which invariants, external calls, and data sources govern asset movement? |
+| Custody and identity | Who can sign, approve, recover, or change a key? |
+| Governance and operations | Who can upgrade the system, change its rules, or respond to an incident? |
 
-## Contents
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+The examples below explain mechanisms and defensive reasoning. They should not be read as claims that a named network has an unpatched vulnerability today.
 
 ## 51% attacks
 
-A 51% attack is a type of attack that occurs on a blockchain network where an attacker controls 51% or more of the network's mining power. This allows the attacker to manipulate the blockchain by reversing transactions, double-spending coins, and blocking legitimate transactions from being confirmed.
+In a proof-of-work system, sustained control of a majority of the relevant hash power can allow an attacker to outpace the honest chain and reorganize recent history. The attacker may exclude transactions or replace their own previously confirmed payment with a conflicting spend. The [Bitcoin white paper](https://bitcoin.org/bitcoin.pdf) explains the relationship between competing computational power and reversal of transaction history.
 
-The most common type of 51% attack is the double-spend attack, in which the attacker sends a large amount of coins to an exchange or a merchant, and then uses their 51% control of the network to reverse the transaction and keep the coins for themselves.
+This does not let an attacker forge someone else’s signature or make honest nodes accept transactions that violate validation rules. “Controls the chain” is therefore too broad a description. The risk concerns ordering and settlement under particular consensus assumptions.
 
-One of the most significant risks associated with 51% attacks is that it undermines the integrity of the blockchain and can lead to the loss of trust in the network. It also allows the attacker to disrupt the consensus mechanism of the blockchain and potentially cause a chain reorganization, which can lead to the loss of legitimate transactions.
-
-These attacks have been observed in different blockchain networks like Ethereum Classic, Bitcoin Gold, Litecoin Cash, and many others. The most recent attack on Ethereum Classic resulted in the theft of around $5.6 million worth of ETC.
-
-To mitigate the risk of 51% attacks, it is important for network participants to be vigilant and to take measures to secure the network. This includes implementing measures such as using a different consensus algorithm, increasing the number of miners, and implementing checkpointing mechanisms, which can help to prevent chain reorganization.
-
-It's worth noting that the occurrence of 51% attack is more likely on smaller blockchain networks where the cost of 51% attack is relatively low compared to the value of the network.
-
-Here are a few examples of 51% attacks that have occurred in the past:
-
-
-
-
-
+Defenses depend on the role. An exchange can choose confirmation and deposit policies based on the chain’s security and monitor for reorganizations. Protocol designers must examine the economic cost and availability of attack resources. Adding node identities alone does not increase proof-of-work security. Checkpoints can limit some reorganizations, but introduce another trust or coordination assumption. Proof-of-stake systems require their own analysis rather than borrowing the 51% label unchanged.
 
 ## Replay attacks
 
-A replay attack is a type of attack that occurs on blockchain networks that support multiple chains, such as those that support both mainnet and testnet environments. In a replay attack, an attacker intercepts a valid transaction on one chain, and then broadcasts it on another chain, resulting in unintended or unexpected results.
+A signed message can be valid in more than one context if its authorization does not identify the intended context. During a chain split, for example, a transaction may be accepted on both branches when the signature scheme and state permit it. The risk is unintended action using a signature that was genuinely authorized elsewhere.
 
-For example, if a user initiates a transaction on the mainnet, an attacker can intercept that transaction and replay it on the testnet, resulting in the unintended transfer of funds. This can be particularly problematic for decentralized exchanges (DEXs), as it can result in the failure of trades and the loss of funds for users.
+[EIP-155](https://eips.ethereum.org/EIPS/eip-155) introduces chain identity into Ethereum transaction signing to address cross-chain replay. Application messages need their own protections: relevant domain identifiers, nonces or other one-use rules, and expiration where appropriate.
 
-Replay attacks can also occur during hard forks, when a blockchain network splits into two separate chains. In this case, an attacker can intercept a transaction on one chain and replay it on the other chain, resulting in the unintended transfer of funds.
-
-To mitigate the risk of replay attacks, it is important to implement replay protection mechanisms. This can be done by using different transaction formats or different network IDs for different chains. Additionally, it's important to monitor the network for any unusual activity and to have incident response plans in place.
-
-Replay attacks are more likely to occur in cases where there is a lack of communication and coordination between the different chains, and where there is a lack of replay protection mechanisms in place.
-
-Here are a few examples of replay attacks that have occurred in the past:
-
-
-
-
-
+Typed signing improves the structure of a message, but [EIP-712 explicitly does not provide replay protection by itself](https://eips.ethereum.org/EIPS/eip-712). A contract still needs to reject an already used authorization. Test the same signature across accounts, contracts, chains, and repeated calls. The question is whether every accepted use matches the signer’s intended authority, not whether the signature is mathematically valid.
 
 ## Front-running
 
-Front-running is a type of attack that occurs on decentralized exchanges (DEXs) and other blockchain-based platforms that rely on smart contracts. In a front-running attack, an attacker uses advanced knowledge of an upcoming transaction to profit from it by placing their own trades ahead of it.
+Public pending transactions can reveal a user’s intended action before it is executed. A participant with influence over transaction submission or ordering may act on that information. On a decentralized exchange, an adverse ordering can worsen the price a user receives; a sandwich places transactions around the user’s trade to exploit its price impact.
 
-For example, if a user initiates a trade to buy a certain cryptocurrency at a specific price, an attacker can use their advanced knowledge of that trade to place their own buy order at that price before the user's trade is executed. This allows the attacker to profit from the price difference between their buy order and the user's trade.
+[Ethereum’s MEV documentation](https://ethereum.org/developers/docs/mev/) explains the broader role of transaction inclusion, exclusion, and ordering. Fast analysis is not the source of secrecy being broken here: the pending transaction may already be publicly visible.
 
-Front-running attacks can also occur on other blockchain-based platforms, such as prediction markets, where an attacker uses their advanced knowledge of an event outcome to profit from it by placing their own trades ahead of it.
-
-The most common way for an attacker to gain advance knowledge of transactions is through the use of high-speed trading algorithms. These algorithms can be used to analyze the network traffic and detect upcoming transactions, allowing the attacker to place their own trades ahead of them.
-
-To mitigate the risk of front-running, it is important to implement anti-front-running mechanisms such as using randomization or transaction delaying techniques. Additionally, it's important to monitor the network for any unusual activity and to have incident response plans in place.
-
-Front-running attacks can undermine the integrity of the network and can lead to the loss of trust in the platform, thus it's crucial to have measures in place to prevent such attacks from happening.
-
-Here are a few examples of front-running that have occurred in the past:
-
-
-
-
+Design the transaction to constrain acceptable outcomes. Minimum-output limits, deadlines, and application-specific auction or commit–reveal designs can address different cases. Private transaction submission changes who sees the order and which intermediaries are trusted; it is not a universal guarantee. Random delays alone do not fix an ordering incentive. Review the complete market mechanism and what happens when the protective condition causes a transaction to fail.
 
 ## Race condition attacks
 
-Race condition attacks refer to an attack on a blockchain network where an attacker takes advantage of the concurrent execution of multiple transactions to gain an unfair advantage. A race condition is a type of software bug that occurs when multiple transactions are executed simultaneously, and the outcome depends on the order in which the transactions are processed. In a race condition attack, an attacker will attempt to manipulate the order in which the transactions are processed in order to gain an unfair advantage.
+In Ethereum’s execution model, transactions are processed in an ordered sequence. The relevant application problem is often **transaction-order dependence**, not two transactions literally writing the same state simultaneously. An off-chain application can also have ordinary concurrency bugs that affect how it prepares or records transactions.
 
-One of the most significant risks associated with race condition attacks is that they can lead to the theft of funds, the loss of access to assets, and other unintended consequences. This can happen if an attacker is able to manipulate the order of transactions, allowing them to execute a transaction before other users, or to block other users from executing their transactions.
+For example, an application may prepare an action based on a state that changes before the action is included. A token allowance change can interact with another transaction that consumes the earlier allowance. The contract must define which state is authoritative at execution time and reject actions that no longer meet their conditions.
 
-To mitigate the risk of race condition attacks, it is important to implement measures such as using a proper synchronization mechanism, such as mutex, semaphore, and monitors, to ensure that transactions are executed in the proper order, and having a well-designed fee structure that discourages small transactions. It is also important to have a proper code review and testing of the smart contract before deployment.
-
-It's worth noting that Race condition attacks are a common type of vulnerability in the blockchain industry, and it's crucial to have measures in place to prevent them from happening. It's also important to be aware of the best practices for smart contract security, such as using a formal verification techniques, regularly auditing the smart contract code and avoiding using smart contracts from untrusted sources.
-
-Here are a few examples of Race condition attacks that have occurred in the past:
-
-
-
-
-
+Operating-system mutexes are not a general solution to on-chain ordering. Use appropriate nonces, state checks, deadlines, and transaction semantics. Where a user signs an intent, bind it to the relevant conditions rather than assuming the state observed by the interface will remain unchanged. Test several valid orderings and confirm that each preserves the intended invariant.
 
 ## Time-jacking attacks
 
-Time-jacking attacks, also known as time manipulation attacks, refer to an attack on a blockchain network where an attacker manipulates the system's time to gain an unfair advantage. In a time-jacking attack, an attacker will attempt to manipulate the time of the blockchain network, either by adjusting the time on a node or by flooding the network with messages with incorrect timestamps. This can lead to a disruption of the network's consensus mechanism and can allow the attacker to execute transactions that would otherwise be invalid or to block valid transactions from being processed.
+Time-related attacks concern how a node or application interprets clocks and timestamps. A node that relies on untrusted peer time information can have different risks from a contract that uses a block timestamp for a deadline. These mechanisms should be analyzed separately.
 
-One of the most significant risks associated with time-jacking attacks is that they can lead to the theft of funds, the loss of access to assets, and other unintended consequences. This can happen if an attacker is able to manipulate the time of the network, allowing them to execute transactions that would otherwise be invalid, or to block other users from executing their transactions.
+Block timestamps are constrained by the chain’s consensus rules; they are not arbitrary wall-clock readings from a perfectly synchronized global clock. The degree of influence and the acceptable range differ by protocol. A time-sensitive application must understand the chain it runs on rather than assume a timestamp behaves identically everywhere.
 
-To mitigate the risk of time-jacking attacks, it is important to implement measures such as using a secure time synchronization protocol, such as NTP or PTP, to ensure that all nodes on the network have the correct time, and using a consensus mechanism that is resistant to time manipulation. It is also important to have a proper monitoring and alert system in place to detect and respond to any suspicious activity on the network.
-
-Time-jacking attacks are a type of vulnerability in the blockchain industry, and it's crucial to have measures in place to prevent them from happening. It's also important to be aware of the best practices for blockchain security, such as using a secure time synchronization protocol, and having a proper monitoring and alert system in place to detect and respond to any suspicious activity on the network.
+Use tolerant deadlines when the business process allows them, and avoid using block metadata as an unpredictable random source. For node operations, maintain sound clock configuration and use supported client software. A better NTP configuration can address an operating-system clock problem, but it does not change consensus rules or repair contract logic that makes an inappropriate timing assumption. Test boundary conditions explicitly.
 
 ## Data injection attacks
 
-A Data injection attack is a type of attack that occurs on blockchain networks where an attacker is able to inject false or malicious data into the blockchain, resulting in unintended or unexpected results. This type of attack can occur in various types of blockchain-based systems such as supply chain management, voting systems, land registries, and medical record systems.
+A ledger can preserve a false statement faithfully. If a supply-chain application records that a shipment passed inspection, consensus can establish which signed record was accepted; it cannot establish that the physical inspection actually happened.
 
-In supply chain management, an attacker can inject false data into the blockchain, resulting in the shipment of counterfeit goods. In voting systems, an attacker can inject false data into the blockchain, resulting in the manipulation of election results. In land registries, an attacker can inject false data into the blockchain, resulting in the transfer of ownership of properties to fraudulent individuals. In medical record systems, an attacker can inject false data into the blockchain, resulting in alteration of patient information and potentially endangering patient's life.
+The attack surface is the point at which external facts enter the system: an API, sensor, user form, administrator, or data provider. A compromised source can supply plausible but false values. Once downstream actions rely on those values, technical integrity of the record may coexist with a wrong business outcome.
 
-The most significant risks associated with data injection attacks is that they can undermine the integrity of the data stored on the blockchain and can lead to the loss of trust in the network. It also allows the attacker to disrupt the mechanism of the system and potentially cause loss of funds, manipulation of data, and other unintended consequences.
-
-To mitigate the risk of data injection attacks, it is important to implement measures such as using encryption, digital signatures, and data validation mechanisms to ensure the integrity of the data stored on the blockchain. Additionally, it is important to monitor the network for any unusual activity, and have incident response plans in place. It is also important to have a proper evaluation and due diligence of the data providers before integrating them in the system.
-
-Here are a few examples of data injection attacks that have occurred in the past:
-
-
-
-
+Authenticate sources, validate formats and ranges, and define how evidence is checked or disputed. Digital signatures identify a key that authorized a message; they do not make its contents true. Encryption protects confidentiality, not truthfulness. For a high-consequence workflow, consider whether independent evidence, human review, or a delay is needed before an irreversible action. Also plan how a mistaken entry is corrected or superseded without pretending that historical records never existed.
 
 ## Distributed Denial of Service (DDoS)
 
-A Distributed Denial of Service (DDoS) attack is a type of attack that occurs on blockchain networks where an attacker floods the network with a large amount of traffic, resulting in the disruption of service and the inability of users to access the network.
+A DDoS attack attempts to exhaust a resource by distributing traffic across many sources. In a blockchain service, the target may be a public RPC endpoint, a website, a node’s peer connections, or an upstream provider. An unavailable website does not necessarily mean the chain has stopped, but users may still be unable to interact with it through that service.
 
-In a DDoS attack, the attacker uses a network of compromised devices, such as computers or IoT devices, to flood the target network with a large amount of traffic. This can cause the network to become overloaded and unavailable to legitimate users.
+Match the defense to the interface. An HTTP API may benefit from rate limits, request-cost controls, caching, and upstream traffic protection. A peer-to-peer node needs protocol-aware resource limits and resilient connectivity. A CDN protecting a website does not automatically protect the chain’s peer protocol.
 
-DDoS attacks on blockchain networks can have a significant impact, as they can result in the temporary disruption of service and the inability of users to access their funds or the platform. This can lead to a loss of trust in the network and can have a negative impact on the value of the cryptocurrency.
-
-To mitigate the risk of DDoS attacks, it is important to implement measures such as using DDoS protection services, deploying firewalls, and load balancers, and also using a content delivery network (CDN) to distribute network traffic. Additionally, it's important to monitor the network for any unusual activity and to have incident response plans in place.
-
-It's worth noting that DDoS attacks are one of the most frequent types of attack on the internet and the blockchain industry is not an exception, thus it's crucial to have measures in place to prevent them from happening.
-
-Here are a few examples of Distributed Denial of Service (DDoS) attacks that have occurred in the past:
-
-
-
-
+Identify expensive queries and isolate public service capacity from privileged operations. Test whether an outage at a single provider prevents all access, and ensure monitoring distinguishes local service failure from network-wide problems. A fallback endpoint is useful only if it has a genuinely different dependency path and returns data the application can verify or assess.
 
 ## Malicious node attacks
 
-A malicious node attack is a type of attack that occurs on blockchain networks where an attacker is able to control a significant portion of the network's nodes and broadcast false or malicious information, resulting in unintended or unexpected results.
+A malicious peer can withhold messages, provide misleading responses, or consume resources. That does not mean it can change the validation rules followed by an honest full node. Counting how many peers are malicious is also different from measuring control over consensus resources.
 
-In a malicious node attack, an attacker can disrupt the consensus mechanism of the blockchain and potentially cause a chain reorganization, which can lead to the loss of legitimate transactions. For example, an attacker can manipulate transaction confirmations, block propagation, or consensus rules to disrupt the network.
+The trust model changes when an application accepts an RPC response without independently verifying it. A hostile endpoint might misreport balances, chain status, or simulated outcomes even when the underlying chain is operating correctly. The application needs to know what evidence it obtains and what it simply trusts.
 
-Another example is an attacker can control the nodes and broadcast false information to the network, resulting in failure of trades, manipulation of market outcomes, and the disruption of the network. This can be particularly problematic for decentralized exchanges (DEXs), as it can result in the failure of trades and the loss of funds for users.
-
-One of the most significant risks associated with malicious node attacks is that they can undermine the integrity of the network and can lead to the loss of trust in the platform. It also allows the attacker to disrupt the consensus mechanism of the blockchain and potentially cause a chain reorganization.
-
-To mitigate the risk of malicious node attacks, it is important to implement measures such as using reputation systems, running nodes on different networks, and implementing mechanisms to detect and remove malicious nodes. Additionally, it is important to monitor the network for any unusual activity and have incident response plans in place.
-
-Here are a few examples of malicious node attacks that have occurred in the past:
-
-
-
-
+Run maintained clients, constrain resource consumption, and seek diverse connectivity where appropriate. For critical decisions, define how chain identity, confirmations, and returned state are checked. Querying several endpoints can reveal disagreement, but identical answers are weak assurance if all providers depend on the same source. Distinguish an invalid message rejected by validation from a valid but strategically withheld message; the latter may affect availability or the view of recent history.
 
 ## Oracle attacks
 
-An Oracle attack is a type of attack that occurs on blockchain networks that rely on oracles, which are third-party entities that provide external data to smart contracts. In an Oracle attack, an attacker is able to manipulate the data provided by the Oracles to the smart contract, resulting in unintended or unexpected results.
+An oracle connects a contract to information beyond the contract’s direct execution environment. The vulnerability may be a compromised data source, manipulation of the market being measured, a stale report, a unit mismatch, or an integration that handles an unavailable answer badly.
 
-For example, if a smart contract is designed to release funds based on the outcome of a sporting event, an attacker can manipulate the data provided by the Oracle to the smart contract, resulting in the release of funds to the attacker instead of the intended recipient.
+Imagine a lending application valuing collateral from a thinly traded pool. A temporary change in that pool’s price can produce an inappropriate valuation even if the oracle faithfully reports the pool. The source’s economic reliability matters alongside the integrity of the message.
 
-Oracle attacks can also occur in supply chain management, prediction markets, insurance and lending platforms. In supply chain management, an attacker can manipulate the data provided by the Oracle to the smart contract to ship counterfeit goods. In lending platforms, an attacker can manipulate the data provided by the Oracle to the smart contract to manipulate interest rates.
-
-One of the most significant risks associated with Oracle attacks is that they can undermine the integrity of the smart contract and can lead to the loss of trust in the network. It also allows the attacker to disrupt the mechanism of the smart contract and potentially cause loss of funds or other unintended consequences.
-
-To mitigate the risk of Oracle attacks, it is important to use multiple, independent Oracles, and to implement measures such as using digital signatures, encryption, and data validation mechanisms to ensure the integrity of the data provided to the smart contract. Additionally, it is important to monitor the network for any unusual activity and have incident response plans in place. It is also important to have a proper evaluation and due diligence of the oracle providers before integrating them in the smart contract.
-
-Here are a few examples of Oracle attacks that have occurred in the past:
-
-
-
-
+Check freshness, decimals, accepted ranges, and the consequences of missing data. Multiple reports are useful only to the extent that their sources and failure modes are independent. A time-weighted price changes the manipulation problem but introduces its own window and liquidity assumptions. [Chainlink’s data-feed guidance](https://docs.chain.link/data-feeds/overview) describes update triggers and the need for application-specific freshness checks. Define whether a failure pauses activity, uses a bounded fallback, or requires review; do not let an accidental default decide.
 
 ## Smart contract vulnerabilities
 
-Smart contract vulnerabilities refer to weaknesses in the design and implementation of smart contracts, which are self-executing contracts with the terms of the agreement between buyer and seller being directly written into lines of code. Smart contracts are used to facilitate, verify, and enforce the negotiation or performance of a contract. However, if the smart contract is not properly designed or implemented, it can leave the assets stored in the contract at risk of theft or loss.
+Smart-contract bugs include reentrancy, incorrect authorization, arithmetic and rounding errors, unsafe external calls, and violations of the intended economic rules. A contract does not need to be technically complex to be dangerous. A single missing check can authorize a transfer or change that the rest of the code assumes is impossible.
 
-One of the most significant risks associated with smart contract vulnerabilities is that they can lead to the theft of funds, the loss of access to assets, and other unintended consequences. This can happen if a smart contract contains security vulnerabilities that are exploited by attackers, or if the contract is not properly audited and tested before deployment.
+Write down the invariants before choosing tools. For a vault, what must remain true about assets, shares, and withdrawals? For a marketplace, who may settle an order and under which terms? Test sequences of actions, including callbacks and failure paths, against those properties.
 
-To mitigate the risk of smart contract vulnerabilities, it is important to implement measures such as using secure smart contract development frameworks, using formal verification techniques, and regularly monitoring for suspicious activity. It is also important to have a proper security audit and testing of the smart contract before deployment.
-
-Smart contract vulnerabilities are a common type of vulnerability in the blockchain industry, and it's crucial to have measures in place to prevent them from happening. It's also important to be aware of the best practices for smart contract security, such as using a formal verification techniques, regularly auditing the smart contract code and avoiding using smart contracts from untrusted sources.
-
-Here are a few examples of Smart contract vulnerabilities that have occurred in the past:
-
-
-
-
-
+The [Solidity security considerations](https://docs.soliditylang.org/en/latest/security-considerations.html) explain implementation pitfalls such as reentrancy and resource limits. Independent audits, fuzzing, and formal methods can strengthen review, but each has a scope. A verified function does not prove the soundness of an oracle assumption or administrative key. Keep code small where possible and treat interactions with other contracts as part of the system being reviewed.
 
 ## Wallet vulnerabilities
 
-Wallet vulnerabilities refer to weaknesses in the design and implementation of software wallets, which are used to store and manage blockchain assets. A software wallet is a software program that allows a user to securely store, send and receive their blockchain assets. However, if the wallet software is not properly designed or implemented, it can leave the assets stored in the wallet at risk of theft or loss.
+A wallet manages keys and presents transactions for authorization; the assets are represented by the ledger’s state. Wallet security therefore includes both secret protection and the accuracy of what a person is asked to approve.
 
-One of the most significant risks associated with wallet vulnerabilities is that they can lead to the theft of funds, the loss of access to assets, and other unintended consequences. This can happen if a wallet software contains security vulnerabilities that are exploited by attackers, or if the wallet provider is not properly securing their servers and user data.
+A compromised interface can replace a destination, obscure a token approval, or misrepresent the effect of a signature. A hardware device may protect a private key while still signing an action the user misunderstood. A secure element does not decide whether a transaction serves the user’s intention.
 
-To mitigate the risk of wallet vulnerabilities, it is important to implement measures such as using secure wallet software, using multi-factor authentication, and regularly monitoring for suspicious activity. It is also important to have a secure backup and recovery plan in place in case of a lost or stolen device.
-
-Wallet vulnerabilities are a common type of vulnerability in the blockchain industry, and it's crucial to have measures in place to prevent them from happening. It's also important to be aware of the best practices for wallet security, such as using a hardware wallet to store your private key offline, regularly updating the wallet software and avoiding using wallets from untrusted sources.
-
-Examples:
-
-
-
-
+Use maintained software from verified distribution channels and review the destination, chain, amount, and permissions being granted. Where the signing device provides an independent display, verify what it can actually show. For an organization, separate routine spending from high-impact administrative authority and test recovery procedures. A wallet password or an exchange’s multi-factor authentication does not stop someone who already possesses an ordinary signing key from using it outside that interface.
 
 ## Private key vulnerabilities
 
-Private key vulnerabilities refer to weaknesses in the management and protection of private keys, which are used to secure access to blockchain assets and perform transactions. A private key is a secret code that allows a user to access and control their cryptocurrency or other blockchain assets. If a private key is lost, stolen, or otherwise compromised, the assets associated with it can be at risk.
+Key compromise can result from weak generation, exposed backups, malware, accidental publication, or poor operational separation. Loss can be just as serious as theft if no authorized recovery path exists. The right key-management design therefore considers creation, use, backup, rotation where supported, and retirement.
 
-One of the most significant risks associated with private key vulnerabilities is that they can lead to the theft of funds, the loss of access to assets, and other unintended consequences. This can happen if a private key is not properly secured, or if it is stolen through phishing or malware attacks.
+For institutional custody, ask which people or systems can authorize a transaction and which failures are independent. A multisignature policy adds little resilience if every signer relies on the same compromised device or if all recovery material is accessible through one account.
 
-To mitigate the risk of private key vulnerabilities, it is important to implement measures such as using secure storage methods, using multi-factor authentication, and regularly monitoring for suspicious activity. It is also important to have a secure backup and recovery plan in place in case of a lost or stolen private key.
-
-Private key vulnerabilities are a common type of vulnerability in the blockchain industry, and it's crucial to have measures in place to prevent them from happening. It's also important to be aware of the best practices for private key management, such as never sharing your private key, never store your private key on an online device, and use hardware wallets to store your private key offline.
-
-Examples:
-
-
-
-
-
+Protect backup material and test recovery without exposing production secrets. Avoid copying seed phrases into ordinary online forms or support conversations. Keep the relationship between an account password and a blockchain key clear: changing a password may not invalidate a leaked signing key. Depending on the account design, responding to compromise may require moving assets or changing authorized signers. Plan that procedure while legitimate control is still available.
 
 ## Phishing attacks
 
-A Phishing attack is a type of vulnerability that occurs when an attacker uses fraudulent emails, text messages or websites to trick individuals into providing sensitive information such as login credentials, credit card numbers, and private keys. In the context of blockchain, phishing attacks are used to steal private keys and gain unauthorized access to funds or assets.
+Phishing targets the decision to trust a message, site, or requested action. In blockchain applications, the attacker may seek a seed phrase, a login credential, a token approval, or a signed message. They do not always need to obtain the private key itself.
 
-Phishing attacks can take many forms, but most commonly, attackers will use fake emails, websites or text messages to impersonate a legitimate entity such as a cryptocurrency exchange, wallet provider or other financial institution. These messages often contain a link to a fake website that is designed to look like the legitimate website, which prompts individuals to enter their sensitive information.
+A familiar-looking page can request authority far beyond the operation the user believes they are performing. A signature presented as a harmless login can be especially confusing when the wallet does not clearly explain the signed domain and action.
 
-Phishing attacks can have a significant impact on blockchain networks, as they can result in the loss of funds, the loss of access to assets, and other unintended consequences. It can also lead to a loss of trust in the network and can have a negative impact on the value of the cryptocurrency.
-
-To mitigate the risk of phishing attacks, it is important to implement measures such as using strong passwords, using multi-factor authentication, and regularly monitoring for suspicious activity. It is also important to be aware of best practices for identifying and avoiding phishing attacks, such as being cautious of unsolicited emails or text messages, verifying the authenticity of websites and links before entering sensitive information, and using anti-phishing software.
-
-Phishing attacks are a common type of vulnerability in the blockchain industry, and it's crucial to have measures in place to prevent them from happening. It's also important to be aware of the best practices for avoiding phishing attacks, such as being cautious of unsolicited emails or text messages, verifying the authenticity of websites and links before entering sensitive information, and using anti-phishing software.
-
-Examples:
-
-
-
-
+Use independently verified routes to services, inspect the requested permission, and treat unexpected recovery requests with particular caution. Organizational workflows should specify who can request a transaction and how the request is confirmed outside the same message thread. Phishing-resistant authentication can help protect supported web accounts, but it does not make a malicious on-chain authorization safe. The final control is understanding and limiting the authority being granted, supported by an interface that makes that authority visible.
 
 ## Sybil attacks
 
-A Sybil attack is a type of vulnerability that occurs on blockchain networks where an attacker creates multiple fake identities, also known as Sybil nodes, to gain control over a significant portion of the network's nodes. This can be used to disrupt the network's consensus mechanism and potentially cause a chain reorganization.
+A Sybil attack uses many apparent identities to gain influence in a system that assumes identities are independent. Creating many node addresses is cheap relative to acquiring scarce resources such as proof-of-work hash power or stake. That is why “more nodes” does not automatically translate to control of a well-designed consensus mechanism.
 
-In a Sybil attack, the attacker creates multiple fake identities, or Sybil nodes, and uses them to gain control over a significant portion of the network's nodes. This can be done by creating fake identities and using them to mine new blocks, validate transactions or vote on governance decisions. Once the attacker has a sufficient number of Sybil nodes, they can use them to disrupt the network's consensus mechanism and potentially cause a chain reorganization.
+The risk still appears in peer discovery, reputation, voting, rewards, and applications that allocate benefits per account. A distribution designed as “one reward per address” is not necessarily one reward per person.
 
-This type of attack can have a significant impact on blockchain networks, as it can result in the temporary disruption of service, the invalidation of transactions, and the inability of users to access their funds or the platform. It can also lead to a loss of trust in the network and can have a negative impact on the value of the cryptocurrency.
-
-To mitigate the risk of Sybil attacks, it is important to implement measures such as using secure identity verification mechanisms, monitoring the network for unusual activity, and having incident response plans in place. Additionally, it is important to have a proper evaluation and due diligence of the network's nodes before integrating them in the network.
-
-Sybil attacks are relatively rare, and it's hard to execute them, however, it's crucial to have measures in place to prevent them from happening.
-
-Examples:
-
-
-
+Identify the resource or evidence that makes influence costly or accountable. Different settings use different mechanisms, and each brings trade-offs. A permissioned membership list changes the trust model; a token-weighted vote measures holdings rather than unique people. Avoid claiming that Sybil attacks are inherently rare or difficult. Their feasibility depends on what the system counts and what an attacker must spend to increase that count.
 
 ## Eclipse attacks
 
-An Eclipse attack is a type of vulnerability that occurs on blockchain networks where an attacker is able to take control of a significant portion of the network's nodes and isolate a specific node from the rest of the network, resulting in the disruption of service and the inability of users to access the network.
+An eclipse attack isolates a victim’s view of the peer-to-peer network by controlling the connections through which it receives information. The attacker need not control most of the global network. A sufficient position around the victim can be enough to delay or selectively reveal blocks and transactions.
 
-In an Eclipse attack, the attacker is able to take control of a significant portion of the network's nodes and manipulate the network traffic, causing the targeted node to be isolated from the rest of the network. This can be done by blocking or manipulating the communication between the targeted node and the other nodes on the network.
+[Heilman and colleagues’ research](https://www.usenix.org/system/files/conference/usenixsecurity15/sec15-paper-heilman.pdf) demonstrates this threat in Bitcoin’s peer network and discusses countermeasures. The important distinction is between the state of the chain and the state the isolated victim can observe.
 
-This type of attack can have a significant impact on blockchain networks, as it can result in the temporary disruption of service and the inability of users to access their funds or the platform. It can also lead to a loss of trust in the network and can have a negative impact on the value of the cryptocurrency.
-
-To mitigate the risk of Eclipse attack, it is important to implement measures such as using secure communication protocols, monitoring the network for unusual activity, and having incident response plans in place. Additionally, it is important to have a proper evaluation and due diligence of the network's nodes before integrating them in the network.
-
-Eclipse attacks are relatively rare and it's hard to execute them, however, it's crucial to have measures in place to prevent them from happening.
-
-Examples:
-
-
+Diverse peers, robust peer-selection mechanisms, and monitoring for abnormal connectivity can raise the cost of isolation. Operational checks should also ask whether supposedly independent connections share an upstream network or service. Encryption alone does not ensure that a node has honest or diverse peers. An application making a high-value decision from one node should understand the consequences of that node temporarily seeing a delayed or incomplete view.
 
 ## BGP hijacking attacks
 
-A BGP hijacking attack is a type of attack that occurs on blockchain networks where an attacker is able to hijack the Border Gateway Protocol (BGP), which is used to route internet traffic, and redirect it to a malicious node. This can result in the disruption of service and the inability of users to access the network.
+Blockchains use ordinary Internet infrastructure to exchange messages. Manipulated routing announcements can redirect, delay, or interrupt that traffic even when the blockchain’s cryptographic validation remains intact.
 
-In a BGP hijacking attack, the attacker is able to take control of a BGP router, which is used to route internet traffic, and redirect it to a malicious node. This can be done by injecting false routing information into the BGP, which causes the traffic to be routed to the attacker's node instead of the intended destination.
+[Research by Apostolaki, Zohar, and Vanbever](https://www.nsg.ee.ethz.ch/publications/2017-06-26-hijacking-bitcoin-routing-attacks-on-cryptocurrencies-20-500-11850-192153/) examined how routing attacks can affect Bitcoin through partitioning and delayed propagation. The results illustrate a network dependency; they should not be treated as a current measurement of every chain’s exposure.
 
-This type of attack can have a significant impact on blockchain networks, as it can result in the temporary disruption of service and the inability of users to access their funds or the platform. It can also lead to a loss of trust in the network and can have a negative impact on the value of the cryptocurrency.
-
-To mitigate the risk of BGP hijacking attacks, it is important to implement measures such as using secure routing protocols, monitoring the network for unusual activity, and having incident response plans in place. Additionally, it is important to have a proper evaluation and due diligence of the internet service providers (ISPs) before integrating them in the network.
-
-BGP hijacking attacks are relatively rare and it's hard to execute them, however, it's crucial to have measures in place to prevent them from happening.
+Review hosting and routing concentration, maintain diverse connectivity where the risk warrants it, and coordinate routing monitoring with infrastructure providers. Authentication can help detect altered messages, while transport encryption can protect their contents, but neither forces an adversary to deliver traffic promptly. A system can therefore preserve message integrity while losing availability. Incident response needs to distinguish an application fault from a routing incident, because restarting the same service behind the same affected route may not restore useful connectivity.
 
 ## Side-channel attacks
 
-A side-channel attack is a type of vulnerability that occurs on blockchain networks where an attacker is able to extract sensitive information from the network by analyzing the physical characteristics of the devices or systems that are used to access the network. This can include information such as private keys, transaction data, and other sensitive information.
+A cryptographic implementation may reveal secrets through properties of its execution: timing, cache behavior, power consumption, or electromagnetic emissions. The mathematical algorithm can remain sound while its implementation leaks information about a key.
 
-In a side-channel attack, the attacker uses techniques such as power analysis, electromagnetic analysis, or acoustic analysis to extract information from the devices or systems that are used to access the network. This can be done by analyzing the physical characteristics of the device, such as the power consumption or electromagnetic emissions, or by analyzing the sound that is emitted by the device.
+The relevant attacker capabilities differ substantially. A remote timing observer, a process sharing hardware, and someone with physical access to a signing device do not have the same opportunities. Review the threat model for the actual key-holding environment rather than describing side channels as a generic attack on the whole network.
 
-One of the most significant risks associated with side-channel attacks is that they can compromise the security of the network, leading to the loss of funds, the theft of private keys, and other unintended consequences.
-
-To mitigate the risk of side-channel attacks, it is important to use secure hardware and to implement countermeasures such as constant-time algorithms, masking, and randomization. Additionally, it is important to monitor the network for any unusual activity and have incident response plans in place. It is also important to have a proper evaluation and due diligence of the hardware used before integrating them in the network.
-
-
-
-
+Use reviewed implementations and hardware suitable for the risk. Constant-time techniques can address some timing leakage; masking and other protections address particular physical leakage models. No single countermeasure covers every channel. Keep software and device firmware maintained, minimize unnecessary exposure of signing operations, and treat implementation changes as security-relevant. Ordinary network monitoring may detect a later unauthorized transaction, but it cannot be assumed to detect the key-extraction process itself.
 
 ## Quantum computing attacks
 
-Quantum computing attacks refer to the potential use of quantum computers to break the encryption used to secure blockchain networks, or the use of quantum computing techniques to solve computational problems that would be infeasible for classical computers. Quantum computing technology has the potential to perform some types of computations significantly faster than classical computers, which could potentially be used to break the encryption used to secure blockchain networks, such as the encryption used to protect private keys.
+A sufficiently capable quantum computer could threaten public-key schemes used for digital signatures. For many blockchain accounts, the concern is deriving signing capability from an exposed public key, not decrypting an otherwise hidden ledger or “breaking the encryption of every transaction.”
 
-One of the most significant risks associated with quantum computing attacks is that they can lead to the theft of funds, the loss of access to assets, and other unintended consequences. This can happen if a quantum computer is able to break the encryption used to protect private keys, or if quantum computing techniques are used to solve computational problems that would be infeasible for classical computers.
+Hashes and symmetric encryption face different quantum considerations. The effect therefore depends on the exact primitives and how the protocol exposes or uses them. Predicting a date for practical compromise is unnecessary to recognize that migration requires preparation.
 
-To mitigate the risk of quantum computing attacks, it is important to implement measures such as using quantum-resistant algorithms, monitoring for advances in quantum computing technology, and regularly updating the encryption used to secure blockchain networks. It is also important to have a proper research and development of post-quantum cryptography to be ready for the future of quantum computers.
-
-Quantum computing attacks are considered a long-term risk for blockchain networks, as the technology is still in its early stages of development and it's not yet clear when it will be powerful enough to break the encryption used to secure blockchain networks. However, it is important to stay informed about the latest developments in quantum computing technology, and to have plans in place to address the potential risks associated with quantum computing attacks.
+[NIST’s post-quantum standards program](https://csrc.nist.gov/projects/post-quantum-cryptography) provides context for replacement primitives. Adopting them in a blockchain is a protocol and account-migration problem: signature size, verification cost, existing balances, and agreement on new rules all matter. An individual wallet update cannot unilaterally change what the network accepts. Inventory the cryptographic dependencies and distinguish long-lived migration work from an assertion that a network is already vulnerable to a deployed quantum attack.
 
 ## Blockchain bloat attacks
 
-Blockchain bloat attacks refer to an attack on a blockchain network where an attacker uses a large number of small transactions to fill up the storage capacity of full nodes on the network, making it difficult or impossible for those nodes to process legitimate transactions. This can lead to network congestion, slow transaction processing times, and increased fees for legitimate users.
+A system can become harder to operate as history, state, or verification work grows. An adversary may deliberately consume these resources through transactions that are valid under the protocol but expensive for other participants to retain or process. High activity alone is not evidence of an attack; the resource economics and pattern matter.
 
-One of the most significant risks associated with blockchain bloat attacks is that they can lead to a decreased availability and reliability of the blockchain network, making it difficult or impossible for legitimate users to transact on the network. This can have a negative impact on the value of the cryptocurrency and the overall user experience.
+Distinguish historical block storage from active state and from the work needed to validate new activity. Pruning old data can reduce local storage, but it does not eliminate every state-growth or validation-cost problem. [Bitcoin Core’s pruning documentation](https://bitcoincore.org/en/releases/0.11.0/) describes deleting previously validated raw block and undo data while retaining the databases needed by the node.
 
-To mitigate the risk of blockchain bloat attacks, it is important to implement measures such as using pruning techniques to reduce the size of the blockchain, using client-side filtering to prevent large numbers of small transactions from being broadcast to the network, and having a well-designed fee structure that discourages small transactions.
-
-Blockchain bloat attacks are a relatively new type of vulnerability in the blockchain industry, and the best practices for preventing and mitigating them are still being developed. However, it is important to stay informed about the latest developments in this area and to have plans in place to address the potential risks associated with blockchain bloat attacks.
+Protocol designers need resource limits and fees that reflect the costs being imposed. Operators need capacity monitoring and supported retention policies. Simply filtering small transactions is not a complete answer: a small transaction can be legitimate, while a larger valid transaction may consume substantial resources. Review the actual bottleneck and who bears its cost.
 
 ## Blockchain governance attacks
 
-Blockchain governance attacks refer to an attack on a blockchain network where an attacker seeks to undermine or manipulate the governance mechanisms that are in place to manage the network. Blockchain governance refers to the process of decision-making and rule-setting in a decentralized network. This can include things like protocol upgrades, changes to consensus mechanisms, and the allocation of network resources.
+Governance can change permissions, move treasury assets, or upgrade a contract. An attacker who obtains the required voting or administrative authority may cause a harmful action through the governance process itself. The code can execute correctly while the outcome defeats the community’s expectations.
 
-One of the most significant risks associated with blockchain governance attacks is that they can lead to a loss of trust and credibility in the network, as well as a loss of value for the cryptocurrency. This can happen if an attacker is able to manipulate the governance mechanisms in place, allowing them to make decisions that are not in the best interest of the network or its users.
+Review who can propose, vote, cancel, and execute; when voting power is measured; and which assets or contracts are controlled by the result. Temporary access to voting power, concentrated delegation, low participation, and a poorly constrained executor create different risks.
 
-To mitigate the risk of blockchain governance attacks, it is important to have a well-designed governance structure in place that is decentralized and transparent. This can include things like on-chain governance mechanisms, where decisions are made through a voting process, and off-chain governance mechanisms, where decisions are made by a group of elected representatives. It is also important to have a robust system in place for detecting and responding to suspicious activity and to have a proper communication system to keep the community informed.
-
-Blockchain governance attacks are a type of vulnerability in the blockchain industry, and it's crucial to have measures in place to prevent them from happening. It's also important to be aware of the best practices for blockchain governance, such as having a decentralized and transparent governance structure, and having a robust system in place for detecting and responding to suspicious activity.
-
-
-
+[OpenZeppelin’s governance guide](https://docs.openzeppelin.com/contracts/5.x/governance) illustrates mechanisms such as voting snapshots and timelocks. A timelock provides a response window only if someone monitors proposals and has a useful action available. On-chain voting is not inherently safer than every alternative. The goal is a coherent authority model whose failure modes are understood, including the powers retained by administrators and emergency councils.
 
 ## Conclusion
 
-To mitigate the risks of these vulnerabilities, it is important to keep software updated, use strong and unique passwords, and to be vigilant about phishing attempts. Additionally, using a hardware wallet to store private keys and seed phrases can provide an extra layer of security. To detect and prevent attacks, it is important to monitor the network for unusual activity and to have incident response plans in place. Network segmentation can also help limit the damage in case of a successful attack by isolating the compromised nodes.
+A useful security review turns the threat list into specific work. Identify the assets, state the assumptions protecting them, and ask which actor could break each assumption. Prioritize the failures with both serious consequences and a plausible path in the system being reviewed.
 
-Using firewalls and intrusion detection systems can help prevent unauthorized access to the network, encryption can help protect sensitive data, regular code auditing can help identify and fix vulnerabilities, using decentralized storage solutions such as IPFS can help prevent data breaches and loss of data and using decentralized exchanges (DEXs) can help protect against centralized points of failure. Having a Bug bounty program can also incentivize security researchers to report vulnerabilities to the network in exchange for rewards.
+For each important risk, record a preventive control, an observable signal, and a response owner. Test the response: can a service be isolated, a role revoked, a dependency replaced, or users informed while the system is under pressure? A control that cannot be operated during an incident is weaker than it appears on a diagram.
 
-While blockchain technology has the potential to revolutionize digital transactions, it is not without its vulnerabilities. To fully realize the benefits of blockchain technology, it is essential to stay informed and to take proactive measures to secure the network and protect user's assets.
+Avoid substituting one technology label for analysis. A decentralized exchange still has contract and economic risks. IPFS does not automatically provide confidentiality or permanent availability. A hardware wallet does not validate a business decision. Security comes from understanding which property each component supplies and how those properties fit together.
+
+The ledger is one part of the system. Reviewing the whole path—from external data and signing decisions to consensus and governance—is what makes the assessment useful.
